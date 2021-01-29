@@ -1,0 +1,340 @@
+/* Welcome page
+ - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
+ .home-page {
+
+  .background-header {
+      display: none;
+  }
+
+  .headerinfo {
+    text-align: justify;
+    max-width: 75%;
+  }
+
+  .jumbo {
+
+    @media only screen and (max-width: 414px) {
+      background-position: bottom;
+      background-size: 100% auto;
+
+      span {
+        color: $black;
+        font-size: rem-calc(60);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
+      h1 {
+        color: $black;
+        font-size: rem-calc(35);
+        font-weight: 700;
+        line-height: rem-calc(40);
+      }
+
+      .lead {
+        color: $black;
+        font-size: rem-calc(20);
+        font-weight: 700;
+        line-height: rem-calc(25);
+      }
+
+      .button {
+        background: $brand;
+        color: black;
+        max-width: 100%;
+      }
+
+      .headerinfo {
+        text-align: justify;
+        max-width: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 414px) and (max-width: 550px) {
+      background-position: bottom;
+      background-size: 100% auto;
+
+
+      span {
+        color: $black;
+        font-size: rem-calc(60);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
+      h1 {
+        color: $black;
+        font-size: rem-calc(35);
+        font-weight: 700;
+        line-height: rem-calc(40);
+      }
+
+      .lead {
+        color: $black;
+        font-size: rem-calc(20);
+        font-weight: 700;
+        line-height: rem-calc(25);
+      }
+
+      .button {
+        background: $brand;
+        color: black;
+        max-width: 100%;
+      }
+
+      .headerinfo {
+        text-align: justify;
+        max-width: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 550px) and (max-width: 640px) {
+      background-position: bottom;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(390);
+
+
+      h1 {
+        color: $black;
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .lead {
+        color: $brand;
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .button {
+        background: $brand;
+        color: #fff;
+        max-width: 100%;
+      }
+
+      .headerinfo {
+        text-align: justify;
+        max-width: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 640px) and (max-width: 768px) {
+      padding-top: 10px;
+      background-size: 100% auto;;
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(60);
+
+      h1 {
+        color: $black;
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .lead {
+        color: $brand;
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .button {
+        background: $brand;
+        color: #fff;
+        max-width: 100%;
+      }
+
+      .headerinfo {
+        text-align: justify;
+        max-width: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 950px) {
+      padding-top: 20px;
+      background-size: 100% auto;;
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(60);
+
+      span {
+        color: $white;
+        font-size: rem-calc(20);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
+      h1 {
+        color: $white;
+        margin-top: rem-calc(190);
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(40);
+      }
+
+      .lead {
+        color: $white;
+        font-size: rem-calc(20);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .button {
+        background: $brand;
+        color: black;
+        max-width: 100%;
+      }
+    }
+
+
+    @media only screen and (min-width: 950px) and (max-width: 1280px) {
+      padding-top: 40px;
+      background-size: 100% auto;;
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(160);
+
+      span {
+        color: $white;
+        font-size: rem-calc(20);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
+      h1 {
+        color: $white;
+        margin-top: rem-calc(190);
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(40);
+      }
+
+      .lead {
+        color: $white;
+        font-size: rem-calc(20);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .button {
+        background: $brand;
+        color: black;
+        max-width: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 1280px) and (max-width: 1554px) {
+      padding-top: 45px;
+      background-size: 100% auto;;
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(180);
+
+      span {
+        color: $white;
+        font-size: rem-calc(20);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
+      h1 {
+        color: $white;
+        margin-top: rem-calc(230);
+        font-size: rem-calc(40);
+        font-weight: 700;
+        line-height: rem-calc(40);
+      }
+
+      .lead {
+        color: $white;
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .button {
+        background: $brand;
+        color: black;
+        max-width: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 1554px) and (max-width: 1900px) {
+      padding-top: 50px;
+      background-size: 100% auto;;
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(80);
+
+      span {
+        color: $white;
+        font-size: rem-calc(20);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
+      h1 {
+        color: $white;
+        margin-top: rem-calc(230);
+        font-size: rem-calc(40);
+        font-weight: 700;
+        line-height: rem-calc(40);
+      }
+
+      .lead {
+        color: $white;
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .button {
+        background: $brand;
+        color: black;
+        max-width: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 1900px) {
+      padding-top: 50px;
+      background-size: 100% auto;;
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(80);
+
+      span {
+        color: $white;
+        font-size: rem-calc(20);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
+      h1 {
+        color: $white;
+        margin-top: rem-calc(230);
+        font-size: rem-calc(40);
+        font-weight: 700;
+        line-height: rem-calc(40);
+      }
+
+      .lead {
+        color: $white;
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .button {
+        background: $brand;
+        color: black;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+
+// Homepage
+
+.welcometitle {
+  color: $brand;
+}

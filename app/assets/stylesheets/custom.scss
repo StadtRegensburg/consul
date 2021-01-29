@@ -1,3 +1,8 @@
+@import "custom/_welcome";
+@import "custom_fonts";
+
+
+
 // Dropdown
 
 .main-nav,
@@ -76,4 +81,12 @@ a {
   @include breakpoint(medium) {
       color: #fff;
   }
+}
+
+
+
+// Homepage
+
+.welcometitle {
+  color: $brand;
 }
