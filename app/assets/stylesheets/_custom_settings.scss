@@ -1,12 +1,7 @@
 // brand_color
-
 $brand:             #214969;
 $dark:              darken($brand, 10%);
-
-
-
 // brand_button
-
 $button-font-family: inherit;
 $button-padding: 0.85em 1em;
 $button-margin: 0 0 $global-margin 0;
@@ -28,19 +23,13 @@ $button-opacity-disabled: 0.25;
 $button-background-hover-lightness: -20%;
 $button-hollow-hover-lightness: -50%;
 $button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
-
 // brand_button_group
-
 $buttongroup-margin: 1rem;
 $buttongroup-spacing: 1px;
 $buttongroup-child-selector: ".button";
 $buttongroup-expand-max: 6;
 $buttongroup-radius-on-each: true;
-
-
-
 // fonts
-
 $body-font-family: 'DM Sans Regular', 'DM Sans Bold', 'PT Serif Web Regular', sans-serif !important;
 $header-font-family: 'DM Sans Regular', 'DM Sans Bold', 'PT Serif Web Regular', sans-serif !important;
 $base-font-size:      16px;
