@@ -1,10 +1,17 @@
+
+
 @import "custom/_welcome";
-@import "custom_fonts";
+
+
+
+
+
+
+
 
 
 
 // Dropdown
-
 .main-nav,
 .drop-nav {
   background: $brand;
@@ -44,7 +51,6 @@
   display: none;
   z-index: 1000;
 }
-
 // width of the list items
 .drop-nav li {
   border-bottom: 1px solid rgba(255,255,255,.2);
@@ -62,31 +68,22 @@
 .flyout-nav {
   background: $brand;
 }
-
 #alert {
   z-index: 1000;
   position: absolute;
 }
-
 #notice {
   z-index: 1000;
   position: absolute;
 }
-
 .subnavigation {
   background: $brand;
 }
-
 a {
   @include breakpoint(medium) {
       color: #fff;
   }
 }
-
-
-
-// Homepage
-
 .welcometitle {
   color: $brand;
 }
