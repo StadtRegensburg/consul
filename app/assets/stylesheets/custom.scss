@@ -1,5 +1,17 @@
-// Overrides and adds customized styles in this file
-// Read more on documentation:
-// * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
-// * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
-//
+// Supporter Box Bugfix
+
+.topless {
+  @include breakpoint(small) {
+    top: auto !important;
+    }
+ 
+  @include breakpoint(medium) {
+  top: 0px !important;
+  }
+}
+
+
+// fonts
+
+@import 'custom_fonts';
+
