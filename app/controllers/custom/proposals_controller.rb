@@ -1,19 +1,16 @@
 require_dependency Rails.root.join("app", "controllers", "proposals_controller").to_s
 
 class ProposalsController
-
   before_action :process_tags, only: [:create, :update]
-
   def index_customization
+    take_only_by_tag_names
     discard_draft
     discard_archived
     load_retired
     load_selected
     load_featured
     remove_archived_from_order_links
-    take_only_by_tag_names
   end
-  
 private
   def process_tags
     params[:proposal][:tag_list_categories].split(",").each do |t|
