@@ -11,8 +11,8 @@ class ProposalsController
     load_featured
     remove_archived_from_order_links    
     take_only_by_tag_names
-
   end
+
 private
   def process_tags
     params[:proposal][:tag_list_categories].split(",").each do |t|
