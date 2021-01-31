@@ -52,8 +52,8 @@
       <%end%>
     </div>
     <div class="small-12 column">
-      <%if Debate::MANAGE_SUBCATEGORIES & Debate::TAGS_CLOUD > 0%>
-        <%@subcategories = Tag.subcategory.order(:name) %>
+      <%@subcategories = Tag.subcategory.order(:name) %>
+      <%if (Debate::MANAGE_SUBCATEGORIES & Debate::TAGS_CLOUD > 0) && @subcategories.count > 0 %>
         <br>
         <div id="category_tags" class="tags">
           <%= f.label :category_tag_list, t("proposals.form.tag_subcategory_label") %>
