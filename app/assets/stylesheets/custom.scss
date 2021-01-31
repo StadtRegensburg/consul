@@ -69,11 +69,6 @@
 .subnavigation {
   background: $white;
 }
-a {
-  @include breakpoint(medium) {
-      color: $brand;
-  }
-}
 .welcometitle {
   color: $brand;
 }
