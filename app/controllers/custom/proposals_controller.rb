@@ -4,14 +4,39 @@ class ProposalsController
   
   before_action :process_tags, only: [:create, :update]
   
+  before_action :authenticate_user!, except: [:index, :show, :map, :summary, :json_data]
+
+  def all_proposal_map_locations
+    ids = if params[:search]
+      Proposal.search(params[:search]).pluck(:id)
+    elsif params[:tags]
+      Proposal.not_archived.published.tagged_with(params[:tags].split(","), all: true)
+    else
+      Proposal.not_archived.published.pluck(:id)
+    end
+    MapLocation.where(proposal_id: ids).map(&:json_data)
+  end
+
+  def json_data
+    proposal = Proposal.find(params[:id])
+    data = {
+      proposal_id: proposal.id,
+      proposal_title: proposal.title
+    }.to_json
+    respond_to do |format|
+      format.json { render json: data }
+    end
+  end
+
   def index_customization
     discard_draft
     discard_archived
     load_retired
     load_selected
     load_featured
-    remove_archived_from_order_links    
-    take_only_by_tag_names
+    remove_archived_from_order_links
+    take_only_by_tag_names 
+    @proposals_coordinates = all_proposal_map_locations
   end
 
   private
