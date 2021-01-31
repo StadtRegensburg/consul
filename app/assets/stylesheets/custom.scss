@@ -15,7 +15,7 @@
 // Dropdown
 .main-nav,
 .drop-nav {
-  background: $brand;
+  background: #d0003a;
 }
 .main-nav {
   float: left;
@@ -50,12 +50,13 @@
 .flyout-nav {
   position: absolute;
   display: none;
+  padding: 0px 0px 0px 10px;
   z-index: 1000;
 }
 // width of the list items
 .drop-nav li {
   border-bottom: 1px solid rgba(255,255,255,.2);
-  width: 200px;
+  width: 380px;
 }
 .dropdown:hover > .drop-nav,
 .flyout:hover > .flyout-nav {
@@ -67,7 +68,7 @@
 }
 .flyout:hover a,
 .flyout-nav {
-  background: $brand;
+  background: #d0003a;
 }
 #alert {
   z-index: 1000;
@@ -78,12 +79,7 @@
   position: absolute;
 }
 .subnavigation {
-  background: $white;
-}
-a {
-  @include breakpoint(medium) {
-      color: $brand;
-  }
+  background: #d0003a;
 }
 .welcometitle {
   color: $brand;

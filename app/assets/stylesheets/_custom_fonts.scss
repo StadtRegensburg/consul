@@ -1,19 +1,56 @@
 // fonts
-// DM Sans Regular 
+  // Humanist b
+  @font-face {
+    font-family: "Humnst b";
+    src: font-url("custom/hum777b.ttf") format("ttf"), font-url("custom/DMSans-Regular.ttf") format("ttf");
+    font-weight: 100;
+    font-style: normal; }
+
+// Humanist bi
+  @font-face {
+    font-family: "Humnst bi";
+    src: font-url("custom/hum777bi.ttf") format("ttf"), font-url("custom/DMSans-Bold.ttf") format("ttf");
+    font-weight: 100;
+    font-style: bold; }
+
+// Humanist i
+  @font-face {
+    font-family: "Humnst i";
+    src: font-url("custom/hum777i.ttf") format("ttf"), font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf");
+    font-weight: 100;
+    font-style: normal; }
+
+// Humanist k
 @font-face {
-  font-family: "DM Sans Regular";
-  src: font-url("custom/DMSans-Regular.ttf") format("ttf"), font-url("custom/DMSans-Regular.ttf") format("ttf");
-  font-weight: 100;
-  font-style: normal; }
-// DM Sans Bold 
+    font-family: "Humnst k";
+    src: font-url("custom/hum777k.ttf") format("ttf"), font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf");
+    font-weight: 100;
+    font-style: normal; }
+
+// Humanist ki
 @font-face {
-  font-family: "DM Sans Bold";
-  src: font-url("custom/DMSans-Bold.ttf") format("ttf"), font-url("custom/DMSans-Bold.ttf") format("ttf");
-  font-weight: 100;
-  font-style: bold; }
-// PT Serif Web Regular
+    font-family: "Humnst ki";
+    src: font-url("custom/hum777ki.ttf") format("ttf"), font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf");
+    font-weight: 100;
+    font-style: normal; }
+
+// Humanist l
 @font-face {
-  font-family: "PT Serif Web Regular";
-  src: font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf"), font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf");
-  font-weight: 100;
-  font-style: normal; }
+    font-family: "Humnst l";
+    src: font-url("custom/hum777l.ttf") format("ttf"), font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf");
+    font-weight: 100;
+    font-style: normal; }
+
+// Humanist li
+@font-face {
+    font-family: "Humnst li";
+    src: font-url("custom/hum777li.ttf") format("ttf"), font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf");
+    font-weight: 100;
+    font-style: normal; }
+
+// Humanist n
+@font-face {
+    font-family: "Humnst n";
+    src: font-url("custom/hum777n.ttf") format("ttf"), font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf");
+    font-weight: 100;
+    font-style: normal; }
