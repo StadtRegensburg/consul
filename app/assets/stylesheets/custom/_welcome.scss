@@ -229,7 +229,7 @@
       }
     }
 
-    @media only screen and (min-width: 1554px) and (max-width: 1900px) {
+    @media only screen and (min-width: 1554px) {
       padding-top: 40px;
       background-size: 100% auto;;
       background-repeat: no-repeat;
@@ -248,27 +248,6 @@
         color: #fff;
         max-width: 100%;
         margin-top: rem-calc(10);
-      }
-    }
-
-    @media only screen and (min-width: 1900px) {
-      padding-top: 370px;
-      background-size: 100% auto;;
-      background-repeat: no-repeat;
-      padding-bottom: rem-calc(80);
-      color: $brand;
-
-      .lead {
-        color: $brand;
-        font-size: rem-calc(30);
-        font-weight: 700;
-        line-height: rem-calc(30);
-      }
-
-      .button {
-        background: $brand;
-        color: #fff;
-        max-width: 100%;
       }
     }
   }
