@@ -1,9 +1,4 @@
 de:
-<<<<<<< HEAD
-  proposals:
-    proposal:
-      reason_for_supports_necessary: ""
-=======
   debates:
     form:
       tags_categories: "Eigene Kategorie(n) hinzufügen"
@@ -24,4 +19,3 @@ de:
       subcategories: "Unterkategorien"
   alerts:
     select_one_category: "Bitte wählen Sie zunächst eine Kategorie"
->>>>>>> setup_project
