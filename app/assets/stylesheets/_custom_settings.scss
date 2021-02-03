@@ -1,6 +1,6 @@
 // brand_color
-$brand:             #214969;
-$dark:              darken($brand, 10%);
+$brand:             #fb2905;
+$dark:              #ff4008;
 // brand_button
 $button-font-family: inherit;
 $button-padding: 0.85em 1em;
@@ -30,6 +30,6 @@ $buttongroup-child-selector: ".button";
 $buttongroup-expand-max: 6;
 $buttongroup-radius-on-each: true;
 // fonts
-$body-font-family: 'DM Sans Regular', 'DM Sans Bold', 'PT Serif Web Regular', sans-serif !important;
-$header-font-family: 'DM Sans Regular', 'DM Sans Bold', 'PT Serif Web Regular', sans-serif !important;
+$body-font-family: 'MinionPro-Regular', 'MyriadPro-BoldIt', 'PT Serif Web Regular', sans-serif !important;
+$header-font-family: 'MinionPro-Regular', 'MyriadPro-BoldIt', 'PT Serif Web Regular', sans-serif !important;
 $base-font-size:      16px;
