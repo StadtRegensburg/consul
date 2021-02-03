@@ -19,7 +19,7 @@
   <%= render "feeds" %>
 
   <div class="row">
-    <div class="small-9 column headerinfo">
+    <div class="small-12 medium-9 column headerinfo">
       <% page = SiteCustomization::Page.find_by slug: "indexdt" %>
       <% if page %>
         <h4 class="welcometitle"><%= page.title %></h4>

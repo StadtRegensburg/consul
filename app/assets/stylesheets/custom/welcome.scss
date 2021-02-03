@@ -1,5 +1,4 @@
-/* Welcome page
- - - - - - - - - - - - - - - - - - - - - - - - - -*/
+// Welcome page
 
  .home-page {
 
@@ -11,159 +10,121 @@
     text-align: justify;
   }
 
-
   .jumbo {
 
-    @media only screen and (max-width: 414px) {
-      background-position: bottom;
-      background-size: 100% auto;
-      background-repeat: no-repeat;
-      padding-bottom: rem-calc(220);
+    background-position: bottom;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: $welcomebgcolor;
+
+    @media only screen and (max-width: 550px) {
+      padding-bottom: rem-calc(12);
 
       span {
         display: none;
       }
 
       h1 {
-        color: $black;
+        color: $welcomeheadline;
         font-size: rem-calc(35);
         font-weight: 700;
         line-height: rem-calc(40);
       }
 
       .lead {
-        color: $black;
+        color: $welcomelead;
         font-size: rem-calc(20);
         font-weight: 700;
         line-height: rem-calc(25);
       }
 
       .button {
-        background: $brand;
-        color: $white;
-        max-width: 100%;
-      }
-    }
-
-    @media only screen and (min-width: 414px) and (max-width: 550px) {
-      background-position: bottom;
-      background-size: 100% auto;
-      background-repeat: no-repeat;
-      padding-bottom: rem-calc(330);
-      color: $brand;
-
-      span {
-        display: none;
-      }
-
-      h1 {
-        color: $brand;
-        font-size: rem-calc(35);
-        font-weight: 700;
-        line-height: rem-calc(40);
-      }
-
-      .lead {
-        color: $brand;
-        font-size: rem-calc(20);
-        font-weight: 700;
-        line-height: rem-calc(25);
-      }
-
-      .button {
-        background: $brand;
-        color: $white;
+        background: $welcomebuttonbg;
+        color: $welcomebuttontext;
         max-width: 100%;
       }
     }
 
     @media only screen and (min-width: 550px) and (max-width: 640px) {
-      background-position: bottom;
-      background-size: 100% auto;
-      background-repeat: no-repeat;
       padding-bottom: rem-calc(390);
-      background-color: $bcol;
 
       span {
         display: none;
       }
 
       h1 {
-        color: $brand;
+        color: $welcomeheadline;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .lead {
-        color: $brand;
-        font-size: rem-calc(30);
+        color: $welcomelead;
+        font-size: rem-calc(20);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .button {
-        background: $brand;
-        color: $white;
+        background: $welcomebuttonbg;
+        color: $welcomebuttontext;
         max-width: 100%;
       }
     }
 
     @media only screen and (min-width: 640px) and (max-width: 768px) {
       padding-top: 10px;
-      background-size: 100% auto;;
-      background-repeat: no-repeat;
-      padding-bottom: rem-calc(60);
+      padding-bottom: rem-calc(150);
 
       span {
         display: none;
       }
 
       h1 {
-        color: $brand;
+        color: $welcomeheadline;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .lead {
-        color: $brand;
-        font-size: rem-calc(25);
+        color: $welcomelead;
+        font-size: rem-calc(20);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .button {
-        background: $brand;
-        color: $white;
+        background: $welcomebuttonbg;
+        color: $welcomebuttontext;
         max-width: 100%;
       }
     }
 
     @media only screen and (min-width: 768px) and (max-width: 950px) {
       padding-top: 40px;
-      background-size: 100% auto;;
-      background-repeat: no-repeat;
-      padding-bottom: rem-calc(250);
+      background-color: $welcomebgcolor;
+      padding-bottom: rem-calc(200);
       color: $brand;
     
       h1 {
-        color: $brand;
-        font-size: rem-calc(38);
+        color: $welcomeheadline;
+        font-size: rem-calc(35);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .lead {
-        color: $brand;
-        font-size: rem-calc(30);
+        color: $welcomelead;
+        font-size: rem-calc(25);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .button {
-        background: $brand;
-        color: $white;
+        background: $welcomebuttonbg;
+        color: $welcomebuttontext;
         max-width: 100%;
       }
     }
@@ -171,98 +132,124 @@
 
     @media only screen and (min-width: 950px) and (max-width: 1280px) {
       padding-top: 40px;
-      background-size: 100% auto;;
-      background-repeat: no-repeat;
+      background-color: $welcomebgcolor;
       padding-bottom: rem-calc(300);
       color: $brand;
       
       h1 {
-        color: $brand;
+        color: $welcomeheadline;
         font-size: rem-calc(38);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .lead {
-        color: $brand;
+        color: $welcomelead;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .button {
-        background: $brand;
-        color: #fff;
+        background: $welcomebuttonbg;
+        color: $welcomebuttontext;
         max-width: 100%;
       }
     }
 
     @media only screen and (min-width: 1280px) and (max-width: 1554px) {
       padding-top: 40px;
-      background-size: 100% auto;;
-      background-repeat: no-repeat;
       padding-bottom: rem-calc(300);
 
       span {
-        color: $brand;
+        color: $welcomespan;
         font-size: rem-calc(20);
         font-weight: 300;
         line-height: rem-calc(30);
       }
 
       h1 {
-        color: $brand;
+        color: $welcomeheadline;
         font-size: rem-calc(40);
         font-weight: 700;
         line-height: rem-calc(40);
       }
 
       .lead {
-        color: $brand;
+        color: $welcomelead;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .button {
-        background: $brand;
-        color: $white;
+        background: $welcomebuttonbg;
+        color: $welcomebuttontext;
         max-width: 100%;
       }
     }
 
-    @media only screen and (min-width: 1554px) {
+    @media only screen and (min-width: 1554px) and (max-width: 1900px) {
       padding-top: 50px;
-      background-size: 100% auto;;
-      background-repeat: no-repeat;
       padding-bottom: rem-calc(400);
 
       span {
-        color: $brand;
+        color: $welcomespan;
         font-size: rem-calc(20);
         font-weight: 300;
         line-height: rem-calc(30);
       }
 
       h1 {
-        color: $brand;
+        color: $welcomeheadline;
         font-size: rem-calc(40);
         font-weight: 700;
         line-height: rem-calc(40);
       }
 
       .lead {
-        color: $brand;
+        color: $welcomelead;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .button {
-        background: $brand;
-        color: $white;
+        background: $welcomebuttonbg;
+        color: $welcomebuttontext;
         max-width: 100%;
-        margin-top: rem-calc(10);
+      }
+    }
+
+    @media only screen and (min-width: 1900px) {
+      padding-top: 50px;
+      padding-bottom: rem-calc(600);
+
+      span {
+        color: $welcomespan;
+        font-size: rem-calc(20);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
+      h1 {
+        color: $welcomeheadline;
+        font-size: rem-calc(40);
+        font-weight: 700;
+        line-height: rem-calc(40);
+      }
+
+      .lead {
+        color: $welcomelead;
+        font-size: rem-calc(30);
+        font-weight: 700;
+        line-height: rem-calc(30);
+      }
+
+      .button {
+        background: $welcomebuttonbg;
+        color: $welcomebuttontext;
+        max-width: 100%;
       }
     }
   }
@@ -270,61 +257,20 @@
 
 
 // Homepage
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 550px) {
+  .welcometitle {
+    font-size: 25px;
+    color: $black;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
   .welcometitle {
     font-size: 25px;
   }
 }
 
-
-@media only screen and (min-width: 414px) and (max-width: 550px) {
-  .welcometitle {
-    font-size: 25px;
-  }
-}
-
-
-@media only screen and (min-width: 550px) and (max-width: 640px) {
-  .welcometitle {
-    font-size: 25px;
-  }
-}
-
-
-@media only screen and (min-width: 640px) and (max-width: 768px) {
-  .welcometitle {
-    font-size: 25px;
-  }
-}
-
-
-@media only screen and (min-width: 768px) and (max-width: 950px) {
-  .welcometitle {
-    font-size: 25px;
-  }
-}
-
-
-@media only screen and (min-width: 950px) and (max-width: 1280px) {
-  .welcometitle {
-    font-size: 25px;
-  }
-}
-
-
-@media only screen and (min-width: 1280px) and (max-width: 1554px) {
-  .welcometitle {
-    font-size: 30px;
-  }
-}
-
-@media only screen and (min-width: 1554px) and (max-width: 1900px) {
-  .welcometitle {
-    font-size: 30px;
-  }
-}
-
-@media only screen and (min-width: 1900px) {
+@media only screen and (min-width: 1280px) {
   .welcometitle {
     font-size: 30px;
   }
