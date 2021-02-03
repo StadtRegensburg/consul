@@ -70,11 +70,19 @@
 
     <%tag_list_o = @proposal.new_record? && @proposal.errors.empty? ? tags : @proposal.tags%>
     <%tag_list = @proposal.new_record? && @proposal.errors.empty? ? tags.map(&:name).join(",") : @proposal.tag_list.to_s%>
+
     <%categories = tag_list_o.select { |t| t.kind == 'category' }%>
     <%subcategories = tag_list_o.select { |t| t.kind == 'subcategory' }%>
 
+    <%categories_logic = Proposal::MANAGE_CATEGORIES%>
+    <%subcategories_logic = Proposal::MANAGE_SUBCATEGORIES%>
+    <%tags.each do |t|%>
+      <%categories_logic |= t.custom_logic_category_code%>
+      <%subcategories_logic |= t.custom_logic_subcategory_code%>
+    <%end%>
+
     <div class="small-12 column">
-      <%if Proposal::MANAGE_CATEGORIES & Proposal::TAGS_CLOUD > 0%>
+      <%if categories_logic & Proposal::TAGS_CLOUD > 0%>
         <div id="category_tags" class="tags">
           <%= f.label :category_tag_list, t("proposals.form.tag_category_label") %>
           <% @categories.each do |tag| %>
@@ -82,19 +90,19 @@
           <% end %>
         </div>
       <%end%>
-      <%if Proposal::MANAGE_CATEGORIES & Proposal::TAGS_CUSTOM > 0%>
+      <%if categories_logic & Proposal::TAGS_CUSTOM > 0%>
         <%= f.text_field :tag_list_categories, value: categories.map{|c| c.name}.join(","),
           label: t("debates.form.tags_categories"),
           placeholder: t("debates.form.tags_placeholder"),
           data: { js_url: suggest_tags_path },
           class: "js-tag-list tag-autocomplete list-categories" %>
-      <%elsif (Proposal::MANAGE_CATEGORIES | 3) > 0%>
+      <%elsif (categories_logic | 3) > 0%>
         <%=f.hidden_field :tag_list_categories, value: categories.map(&:name).join(","), class: "js-tag-list list-categories"%>
       <%end%>
     </div>
     <div class="small-12 column">
       <%@subcategories = Tag.subcategory.order(:name) %>
-      <%if (Proposal::MANAGE_SUBCATEGORIES & Proposal::TAGS_CLOUD > 0) && @subcategories.count > 0 %>
+      <%if (subcategories_logic & Proposal::TAGS_CLOUD > 0) && @subcategories.count > 0 %>
         <br>
         <div id="category_tags" class="tags">
           <%= f.label :category_tag_list, t("proposals.form.tag_subcategory_label") %>
@@ -103,17 +111,17 @@
           <% end %>
         </div>
       <%end%>
-      <%if Proposal::MANAGE_SUBCATEGORIES & Proposal::TAGS_CUSTOM > 0%>
+      <%if subcategories_logic & Proposal::TAGS_CUSTOM > 0%>
         <%= f.text_field :tag_list_subcategories, value: subcategories.map{|c| c.name}.join(","),
           label: t("debates.form.tags_subcategories"),
           placeholder: t("debates.form.tags_placeholder"),
           data: { js_url: suggest_tags_path },
           class: "js-tag-list tag-autocomplete list-subcategories" %>
-      <%elsif (Proposal::MANAGE_SUBCATEGORIES | 3) > 0%>
+      <%elsif (subcategories_logic | 3) > 0%>
         <%=f.hidden_field :tag_list_subcategories, value: subcategories.map(&:name).join(","), class: "js-tag-list list-subcategories"%>
       <%end%>
     </div>
-    <%if Proposal::MANAGE_SUBCATEGORIES | Proposal::MANAGE_CATEGORIES == 1%>
+    <%if subcategories_logic | categories_logic == 1%>
       <div class="small-12 column">
         <%=f.hidden_field :tag_list, value: tags.map(&:name).join(",")%>
       </div>
