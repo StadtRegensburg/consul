@@ -17,10 +17,10 @@
   text-decoration: none;
 
   &:hover {
-    background: #e0e0e0;
+    background: #f8d6d6;
   }
   &.selected{
-    background: #e7f2fc;
-    color: #004a83;
+    background: #f8d6d6;
+    color: $brand;
   }
 }
