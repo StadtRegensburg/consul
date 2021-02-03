@@ -9,20 +9,19 @@
 
   .headerinfo {
     text-align: justify;
-    max-width: 75%;
   }
+
 
   .jumbo {
 
     @media only screen and (max-width: 414px) {
       background-position: bottom;
       background-size: 100% auto;
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(220);
 
       span {
-        color: $black;
-        font-size: rem-calc(60);
-        font-weight: 300;
-        line-height: rem-calc(30);
+        display: none;
       }
 
       h1 {
@@ -54,24 +53,23 @@
     @media only screen and (min-width: 414px) and (max-width: 550px) {
       background-position: bottom;
       background-size: 100% auto;
-
+      background-repeat: no-repeat;
+      padding-bottom: rem-calc(330);
+      color: $brand;
 
       span {
-        color: $black;
-        font-size: rem-calc(60);
-        font-weight: 300;
-        line-height: rem-calc(30);
+        display: none;
       }
 
       h1 {
-        color: $black;
+        color: $brand;
         font-size: rem-calc(35);
         font-weight: 700;
         line-height: rem-calc(40);
       }
 
       .lead {
-        color: $black;
+        color: $brand;
         font-size: rem-calc(20);
         font-weight: 700;
         line-height: rem-calc(25);
@@ -94,10 +92,14 @@
       background-size: 100% auto;
       background-repeat: no-repeat;
       padding-bottom: rem-calc(390);
+      background-color: $bcol;
 
+      span {
+        display: none;
+      }
 
       h1 {
-        color: $black;
+        color: $brand;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
@@ -128,8 +130,12 @@
       background-repeat: no-repeat;
       padding-bottom: rem-calc(60);
 
+      span {
+        display: none;
+      }
+
       h1 {
-        color: $black;
+        color: $brand;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
@@ -137,7 +143,7 @@
 
       .lead {
         color: $brand;
-        font-size: rem-calc(30);
+        font-size: rem-calc(25);
         font-weight: 700;
         line-height: rem-calc(30);
       }
@@ -155,29 +161,19 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 950px) {
-      padding-top: 20px;
+      padding-top: 40px;
       background-size: 100% auto;;
       background-repeat: no-repeat;
-      padding-bottom: rem-calc(60);
-
-      span {
-        color: $white;
-        font-size: rem-calc(20);
-        font-weight: 300;
-        line-height: rem-calc(30);
-      }
+      padding-bottom: rem-calc(250);
+      color: $brand;
 
       h1 {
-        color: $black;
-        margin-top: rem-calc(190);
-        font-size: rem-calc(30);
-        font-weight: 700;
-        line-height: rem-calc(40);
+        font-size: rem-calc(38);
       }
 
       .lead {
-        color: $black;
-        font-size: rem-calc(20);
+        color: $brand;
+        font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
       }
@@ -194,60 +190,46 @@
       padding-top: 40px;
       background-size: 100% auto;;
       background-repeat: no-repeat;
-      padding-bottom: rem-calc(160);
+      padding-bottom: rem-calc(300);
+      color: $brand;
 
-      span {
-        color: $white;
-        font-size: rem-calc(20);
-        font-weight: 300;
-        line-height: rem-calc(30);
-      }
-
-      h1 {
-        color: $black;
-        margin-top: rem-calc(190);
-        font-size: rem-calc(30);
-        font-weight: 700;
-        line-height: rem-calc(40);
-      }
 
       .lead {
-        color: $white;
-        font-size: rem-calc(20);
+        color: $brand;
+        font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
       }
 
       .button {
         background: $brand;
-        color: $white;
+        color: #fff;
         max-width: 100%;
       }
     }
 
     @media only screen and (min-width: 1280px) and (max-width: 1554px) {
-      padding-top: 45px;
+      padding-top: 40px;
       background-size: 100% auto;;
       background-repeat: no-repeat;
-      padding-bottom: rem-calc(180);
+      padding-bottom: rem-calc(300);
 
       span {
-        color: $black;
+        color: $brand;
         font-size: rem-calc(20);
         font-weight: 300;
         line-height: rem-calc(30);
       }
 
       h1 {
-        color: $black;
-        margin-top: rem-calc(230);
+        color: $brand;
         font-size: rem-calc(40);
         font-weight: 700;
         line-height: rem-calc(40);
       }
 
       .lead {
-        color: $black;
+        color: $brand;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
@@ -264,25 +246,24 @@
       padding-top: 50px;
       background-size: 100% auto;;
       background-repeat: no-repeat;
-      padding-bottom: rem-calc(80);
+      padding-bottom: rem-calc(400);
 
       span {
-        color: $white;
+        color: $brand;
         font-size: rem-calc(20);
         font-weight: 300;
         line-height: rem-calc(30);
       }
 
       h1 {
-        color: $black;
-        margin-top: rem-calc(230);
+        color: $brand;
         font-size: rem-calc(40);
         font-weight: 700;
         line-height: rem-calc(40);
       }
 
       .lead {
-        color: $white;
+        color: $brand;
         font-size: rem-calc(30);
         font-weight: 700;
         line-height: rem-calc(30);
@@ -292,6 +273,7 @@
         background: $brand;
         color: $white;
         max-width: 100%;
+        margin-top: rem-calc(10);
       }
     }
   }
@@ -299,6 +281,62 @@
 
 
 // Homepage
-.welcometitle {
-  color: $brand;
+@media only screen and (max-width: 414px) {
+  .welcometitle {
+    font-size: 25px;
+  }
+}
+
+
+@media only screen and (min-width: 414px) and (max-width: 550px) {
+  .welcometitle {
+    font-size: 25px;
+  }
+}
+
+
+@media only screen and (min-width: 550px) and (max-width: 640px) {
+  .welcometitle {
+    font-size: 25px;
+  }
+}
+
+
+@media only screen and (min-width: 640px) and (max-width: 768px) {
+  .welcometitle {
+    font-size: 25px;
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 950px) {
+  .welcometitle {
+    font-size: 25px;
+  }
+}
+
+
+@media only screen and (min-width: 950px) and (max-width: 1280px) {
+  .welcometitle {
+    font-size: 25px;
+  }
+}
+
+
+@media only screen and (min-width: 1280px) and (max-width: 1554px) {
+  .welcometitle {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (min-width: 1554px) and (max-width: 1900px) {
+  .welcometitle {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .welcometitle {
+    font-size: 30px;
+  }
 }
