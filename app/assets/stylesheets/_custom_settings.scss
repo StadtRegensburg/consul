@@ -1,6 +1,9 @@
 // brand_color
 $brand:             #003D90;
 $dark:              $brand;
+$bcol:              lighten($brand, 90%);
+
+
 // brand_button
 $button-font-family: inherit;
 $button-padding: 0.85em 1em;
