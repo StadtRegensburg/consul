@@ -2,7 +2,7 @@
 // Dropdown
 .main-nav,
 .drop-nav {
-  background: $brand;
+  background: $white;
 }
 .main-nav {
   float: left;
@@ -14,7 +14,7 @@
     border-left: none;
   }
   .main-nav a {
-    color: #fff;
+    color: $black;
     display: block;
     text-decoration: none;
   }
@@ -28,6 +28,7 @@
 .flyout-nav {
   position: absolute;
   display: none;
+  padding: 0px 10px 0px 10px;
   z-index: 1000;
 }
 // width of the list items
@@ -45,7 +46,7 @@
 }
 .flyout:hover a,
 .flyout-nav {
-  background: $brand;
+  background: $white;
 }
 #alert {
   z-index: 1000;
