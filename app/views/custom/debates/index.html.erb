@@ -7,7 +7,7 @@
   <% content_for :canonical do %>
     <%= render "shared/canonical", href: debates_url %>
   <% end %>
-  
+
   <main>
     <% if @search_terms || @advanced_search_terms %>
       <div class="highlight no-margin-top padding margin-bottom">
@@ -30,17 +30,17 @@
     <% else %>
       <%= render "shared/section_header", i18n_namespace: "debates.index.section_header", image: "debates" %>
     <% end %>
-  
+
     <% if feature?("user.recommendations") && @recommended_debates.present? %>
       <%= render "shared/recommended_index", recommended: @recommended_debates,
                                              disable_recommendations_path: recommendations_disable_debates_path,
                                              namespace: "debates" %>
     <% end %>
-  
+
     <%tags = []%>
     <%can_create = true%>
     <%selected_tags = params[:tags]&.split(",")&.map {|tt| t2 = Tag.find_by(name: tt)}&.compact || []%>
-  
+
     <%if Debate::MANAGE_CATEGORIES & Debate::TAGS_PREDEFINED > 0%>
       <%tag_categories = selected_tags&.map {|tt| tt&.kind == 'category' ? tt : nil}&.compact %>
       <%can_create = tag_categories&.length > 0%>
@@ -53,30 +53,30 @@
     <%end%>
     <div class="row">
       <div id="debates" class="debates-list small-12 medium-9 column">
-  
+
         <%= render "shared/banner" %>
-  
+
         <% unless @search_terms || !has_featured? %>
           <%= render "featured_debates" %>
         <% end %>
-  
+
         <div class="row">
           <div class="small-12 column">
             <%= render "view_mode" %>
           </div>
         </div>
-  
+
         <%= render "shared/advanced_search", search_path: debates_path(page: 1) %>
-  
+
         <%= render "shared/order_links", i18n_namespace: "debates.index" %>
-  
+
         <div class="show-for-small-only">
-  
-  
-  
-          <%= link_to t("debates.index.start_debate"), new_debate_path(tags: tags.any? ? tags.map{|t| t.name}.join(",") : nil), class: "button expanded", onclick: can_create ? "return true" : "alert('#{t("alerts.select_one_category", model: t("activerecord.models.debate.one"))}'); return false;" , disabled: !can_create %>
+
+
+
+          <%= link_to t("debates.index.start_debate"), new_debate_path(tags: tags.any? ? tags.map{|t| t.name} : nil), class: "button expanded", onclick: can_create ? "return true" : "alert('#{t("alerts.select_one_category", model: t("activerecord.models.debate.one"))}'); return false;" , disabled: !can_create %>
         </div>
-  
+
         <% if @debates.any? || current_user.blank? %>
           <% if debates_default_view? %>
             <%= render @debates %>
@@ -89,7 +89,7 @@
           <%= empty_recommended_debates_message_text(current_user) %>
         <% end %>
         <%= paginate @debates %>
-  
+
         <% unless @search_terms || @advanced_search_terms %>
           <div id="section_help" class="margin" data-magellan-target="section_help">
             <p class="lead">
@@ -103,15 +103,15 @@
           </div>
         <% end %>
       </div>
-  
+
       <div class="small-12 medium-3 column">
         <aside class="margin-bottom">
-  
-          <%= link_to t("debates.index.start_debate"), new_debate_path(tags: tags.any? ? tags.map{|t| t.name}.join(",") : nil), class: "button expanded", onclick: can_create ? "return true" : "alert('#{t("alerts.select_one_category", model: t("activerecord.models.debate.one"))}'); return false;" , disabled: !can_create %>
+
+          <%= link_to t("debates.index.start_debate"), new_debate_path(tags: tags.any? ? tags.map{|t| t.name} : nil), class: "button expanded", onclick: can_create ? "return true" : "alert('#{t("alerts.select_one_category", model: t("activerecord.models.debate.one"))}'); return false;" , disabled: !can_create %>
           <%= render "shared/categories", model: "debate" %>
           <%= render "shared/tag_cloud", taggable: "debate" %>
         </aside>
       </div>
-  
+
     </div>
   </main>
