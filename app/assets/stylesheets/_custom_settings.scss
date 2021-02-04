@@ -1,6 +1,11 @@
 // brand_color
 $brand:             #003D90;
 $dark:               darken($brand, 10%);
+// fonts
+$body-font-family: 'DM Sans Regular', 'DM Sans Bold', 'PT Serif Web Regular', sans-serif !important;
+$header-font-family: 'DM Sans Regular', 'DM Sans Bold', 'PT Serif Web Regular', sans-serif !important;
+$base-font-size:      16px;
+// custom_settings
 $light:              lighten($brand, 70%);
 $welcomebgcolor:     $white;
 $welcomespan:        $brand;
