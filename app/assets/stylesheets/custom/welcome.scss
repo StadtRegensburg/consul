@@ -6,19 +6,18 @@
       display: none;
   }
 
-  .headerinfo {
-    text-align: justify;
-  }
-
   .jumbo {
-
-    background-position: bottom;
+  
+    background-position: $welcomebgposition;
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-color: $welcomebgcolor;
 
+
+
     @media only screen and (max-width: 550px) {
-      padding-bottom: rem-calc(12);
+      padding-top: 20px;
+      padding-bottom: rem-calc(1);
 
       span {
         display: none;
@@ -41,12 +40,12 @@
       .button {
         background: $welcomebuttonbg;
         color: $welcomebuttontext;
-        max-width: 100%;
       }
     }
 
-    @media only screen and (min-width: 550px) and (max-width: 640px) {
-      padding-bottom: rem-calc(390);
+    @media only screen and (min-width: 550px) and (max-width: 639px) {
+      padding-top: 20px;
+      padding-bottom: rem-calc(1);
 
       span {
         display: none;
@@ -67,14 +66,14 @@
       }
 
       .button {
+        margin-top: 320px;
         background: $welcomebuttonbg;
         color: $welcomebuttontext;
-        max-width: 100%;
       }
     }
 
     @media only screen and (min-width: 640px) and (max-width: 768px) {
-      padding-top: 10px;
+      padding-top: 20px;
       padding-bottom: rem-calc(150);
 
       span {
@@ -98,19 +97,24 @@
       .button {
         background: $welcomebuttonbg;
         color: $welcomebuttontext;
-        max-width: 100%;
       }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 950px) {
-      padding-top: 40px;
-      background-color: $welcomebgcolor;
-      padding-bottom: rem-calc(200);
-      color: $brand;
-    
+    @media only screen and (min-width: 768px) and (max-width: 1280px) {
+      height: 380px;
+      background-position: $welcomebgposition;
+      padding-top: $welcometextpositionmedium;
+      
+      span {
+        color: $welcomespan;
+        font-size: rem-calc(15);
+        font-weight: 300;
+        line-height: rem-calc(30);
+      }
+
       h1 {
         color: $welcomeheadline;
-        font-size: rem-calc(35);
+        font-size: rem-calc(38);
         font-weight: 700;
         line-height: rem-calc(30);
       }
@@ -125,41 +129,13 @@
       .button {
         background: $welcomebuttonbg;
         color: $welcomebuttontext;
-        max-width: 100%;
       }
     }
 
-
-    @media only screen and (min-width: 950px) and (max-width: 1280px) {
-      padding-top: 40px;
-      background-color: $welcomebgcolor;
-      padding-bottom: rem-calc(300);
-      color: $brand;
-      
-      h1 {
-        color: $welcomeheadline;
-        font-size: rem-calc(38);
-        font-weight: 700;
-        line-height: rem-calc(30);
-      }
-
-      .lead {
-        color: $welcomelead;
-        font-size: rem-calc(30);
-        font-weight: 700;
-        line-height: rem-calc(30);
-      }
-
-      .button {
-        background: $welcomebuttonbg;
-        color: $welcomebuttontext;
-        max-width: 100%;
-      }
-    }
-
-    @media only screen and (min-width: 1280px) and (max-width: 1554px) {
-      padding-top: 40px;
-      padding-bottom: rem-calc(300);
+    @media only screen and (min-width: 1280px) and (max-width: 1900px) {
+      height: 500px;
+      background-position: $welcomebgposition;
+      padding-top: $welcometextpositionmedium;
 
       span {
         color: $welcomespan;
@@ -185,45 +161,13 @@
       .button {
         background: $welcomebuttonbg;
         color: $welcomebuttontext;
-        max-width: 100%;
-      }
-    }
-
-    @media only screen and (min-width: 1554px) and (max-width: 1900px) {
-      padding-top: 50px;
-      padding-bottom: rem-calc(400);
-
-      span {
-        color: $welcomespan;
-        font-size: rem-calc(20);
-        font-weight: 300;
-        line-height: rem-calc(30);
-      }
-
-      h1 {
-        color: $welcomeheadline;
-        font-size: rem-calc(40);
-        font-weight: 700;
-        line-height: rem-calc(40);
-      }
-
-      .lead {
-        color: $welcomelead;
-        font-size: rem-calc(30);
-        font-weight: 700;
-        line-height: rem-calc(30);
-      }
-
-      .button {
-        background: $welcomebuttonbg;
-        color: $welcomebuttontext;
-        max-width: 100%;
       }
     }
 
     @media only screen and (min-width: 1900px) {
-      padding-top: 50px;
-      padding-bottom: rem-calc(600);
+      height: 600px;
+      background-position: $welcomebgposition;
+      padding-top: $welcometextpositionlarge;
 
       span {
         color: $welcomespan;
@@ -249,7 +193,6 @@
       .button {
         background: $welcomebuttonbg;
         color: $welcomebuttontext;
-        max-width: 100%;
       }
     }
   }
