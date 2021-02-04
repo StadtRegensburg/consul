@@ -14,26 +14,25 @@
     border-left: none;
   }
   .main-nav a {
-    color: $dropdownmaincolor;
+    color: $dropdowntextcolor;
     display: block;
     text-decoration: none;
   }
 .drop,
 .flyout {
   position: relative;
-  padding: 0px 10px 0px 10px;
   z-index: 1000;
 }
 .drop-nav,
 .flyout-nav {
   position: absolute;
   display: none;
-  padding: 0px 10px 0px 10px;
+  padding-left: 25px;
   z-index: 1000;
 }
 // width of the list items
 .drop-nav li {
-  border-bottom: 1px solid rgba(255,255,255,.2);
+  border-bottom: 1px solid $dropdownbordercolor;
   width: $dropdownwidth;
 }
 .drop:hover > .drop-nav,
@@ -46,10 +45,10 @@
 }
 .flyout:hover a,
 .flyout-nav {
-  background: $dropdownflyoutbackground;
+  background: $dropdownbackground;
 }
 .subnavigation {
-  background: $dropdownflyoutbackground;
+  background: $dropdownbackground;
 }
 #alert {
   z-index: 1000;
