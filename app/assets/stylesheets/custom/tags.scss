@@ -20,7 +20,7 @@
     background: #e0e0e0;
   }
   &.selected{
-    background: lighten($brand, 65%);
-    color: $brand;
+    background: $tagsbackgroundcolor;
+    color: $tagstextcolor;
   }
 }
