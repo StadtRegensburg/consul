@@ -51,11 +51,11 @@
   background: $dropdownbackground;
 }
 #alert {
-  z-index: 1000;
+  z-index: 3000;
   position: absolute;
 }
 #notice {
-  z-index: 1000;
+  z-index: 3000;
   position: absolute;
 }
 .dropdown {
