@@ -1,38 +1,48 @@
 // brand_color
-$brand:             #003D90;
-$dark:              $brand;
-$bcol:              lighten($brand, 90%);
-
-
-// brand_button
-$button-font-family: inherit;
-$button-padding: 0.85em 1em;
-$button-margin: 0 0 $global-margin 0;
-$button-fill: solid;
-$button-background: $primary-color;
-$button-background-hover: scale-color($button-background, $lightness: -15%);
-$button-color: $white;
-$button-color-alt: $black;
-$button-radius: $global-radius;
-$button-hollow-border-width: 1px;
-$button-sizes: (
-  tiny: 0.6rem,
-  small: 0.75rem,
-  default: 0.9rem,
-  large: 1.25rem,
-);
-$button-palette: $foundation-palette;
-$button-opacity-disabled: 0.25;
-$button-background-hover-lightness: -20%;
-$button-hollow-hover-lightness: -50%;
-$button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
-// brand_button_group
-$buttongroup-margin: 1rem;
-$buttongroup-spacing: 1px;
-$buttongroup-child-selector: ".button";
-$buttongroup-expand-max: 6;
-$buttongroup-radius-on-each: true;
+$brand:                     #003d90;
+$dark:                        darken($brand, 0%);
 // fonts
-$body-font-family: 'Humnst b', 'Humnst b', 'Humnst i', sans-serif !important;
-$header-font-family: 'Humnst b', 'Humnst b', 'Humnst i', sans-serif !important;
+$body-font-family: 'sourcesanspro-regular-webfont', 'sourcesanspro-bold-webfont', 'PT_Serif_Web-Regular', sans-serif !important;
+$header-font-family: 'sourcesanspro-regular-webfont', 'sourcesanspro-bold-webfont', 'PT_Serif_Web-Regular', sans-serif !important;
 $base-font-size:      16px;
+    // Regular 
+    @font-face {
+      font-family: "sourcesanspro-regular-webfont";
+      src: font-url("sourcesanspro-regular-webfont.ttf") format("ttf"), font-url("custom/DMSans-Regular.ttf") format("ttf");
+      font-weight: 100;
+      font-style: normal; }
+    // Bold 
+    @font-face {
+      font-family: "sourcesanspro-bold-webfont";
+      src: font-url("sourcesanspro-bold-webfont.ttf") format("ttf"), font-url("custom/DMSans-Bold.ttf") format("ttf");
+      font-weight: 100;
+      font-style: bold; }
+    // Fallback
+    @font-face {
+      font-family: "PT_Serif_Web-Regular";
+      src: font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf"), font-url("custom/PT_Serif_Web-Regular.ttf") format("ttf");
+      font-weight: 100;
+      font-style: normal; }
+$base-font-size:      16px;
+// custom_settings
+$light:                       lighten($brand, 70%);
+$welcomebgcolor:              $white;
+$welcomebgposition:           top;
+$welcometextpositionsmall:    rem-calc(15);
+$welcometextpositionmedium:   rem-calc(20);     
+$welcometextpositionlarge:    rem-calc(25);          
+// text_center / line 30 & 34
+// <div class="small-12 medium-6 column <%= "medium-9 small-centered text-center" unless header.image.present? %>">
+// <div class="small-12 medium-6 large-4 <%= "small-centered text-center" unless header.image.present? %>">      
+$welcomespan:                 $brand;
+$welcomeheadline:             $brand;
+$welcomelead:                 $brand;
+$welcomebuttonbg:             $brand;
+$welcomebuttontext:           $white;
+$welcometitle:                $brand;
+$dropdownbackground:          #d0003a;
+$dropdowntextcolor:           $white;
+$dropdownbordercolor:         darken($dropdownbackground, 5%);
+$dropdownwidth:               300px;
+$tagsbackgroundcolor:         lighten($brand, 65%);
+$tagstextcolor:               $brand;
