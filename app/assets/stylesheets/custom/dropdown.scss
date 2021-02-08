@@ -2,7 +2,7 @@
 // Dropdown
 .main-nav,
 .drop-nav {
-  background: $white;
+  background: $dropdownbackground;
 }
 .main-nav {
   float: left;
@@ -14,29 +14,28 @@
     border-left: none;
   }
   .main-nav a {
-    color: $black;
+    color: $dropdowntextcolor;
     display: block;
     text-decoration: none;
   }
-.dropdown,
+.drop,
 .flyout {
   position: relative;
-  padding: 0px 10px 0px 10px;
   z-index: 1000;
 }
 .drop-nav,
 .flyout-nav {
   position: absolute;
   display: none;
-  padding: 0px 10px 0px 10px;
+  padding-left: 25px;
   z-index: 1000;
 }
 // width of the list items
 .drop-nav li {
-  border-bottom: 1px solid rgba(255,255,255,.2);
-  width: 200px;
+  border-bottom: 1px solid $dropdownbordercolor;
+  width: $dropdownwidth;
 }
-.dropdown:hover > .drop-nav,
+.drop:hover > .drop-nav,
 .flyout:hover > .flyout-nav {
   display: block;
 }
@@ -46,7 +45,10 @@
 }
 .flyout:hover a,
 .flyout-nav {
-  background: $white;
+  background: $dropdownbackground;
+}
+.subnavigation {
+  background: $dropdownbackground;
 }
 #alert {
   z-index: 1000;
@@ -56,9 +58,7 @@
   z-index: 1000;
   position: absolute;
 }
-.subnavigation {
-  background: $white;
-}
-.welcometitle {
-  color: $brand;
+.dropdown {
+  z-index: 3000;
+  position: relative;
 }

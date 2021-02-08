@@ -17,10 +17,10 @@
   text-decoration: none;
 
   &:hover {
-    background: #f8d6d6;
+    background: #e0e0e0;
   }
   &.selected{
-    background: #f8d6d6;
-    color: $brand;
+    background: $tagsbackgroundcolor;
+    color: $tagstextcolor;
   }
 }
