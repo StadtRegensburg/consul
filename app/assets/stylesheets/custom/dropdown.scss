@@ -28,7 +28,7 @@
   position: absolute;
   display: none;
   padding-left: 25px;
-  z-index: 1000;
+  z-index: 2000;
 }
 // width of the list items
 .drop-nav li {
@@ -51,11 +51,11 @@
   background: $dropdownbackground;
 }
 #alert {
-  z-index: 1500;
+  z-index: 3000;
   position: absolute;
 }
 #notice {
-  z-index: 1500;
+  z-index: 3000;
   position: absolute;
 }
 .dropdown {
