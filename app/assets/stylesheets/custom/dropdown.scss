@@ -18,25 +18,17 @@
     display: block;
     text-decoration: none;
   }
-.drop {
-  position: relative;
-  z-index: 800;
-}
+.drop,
 .flyout {
   position: relative;
-  z-index: 900;
-}
-.drop-nav {
-  position: absolute;
-  display: none;
-  padding-left: 25px;
   z-index: 1000;
 }
+.drop-nav,
 .flyout-nav {
   position: absolute;
   display: none;
   padding-left: 25px;
-  z-index: 1100;
+  z-index: 1000;
 }
 // width of the list items
 .drop-nav li {
