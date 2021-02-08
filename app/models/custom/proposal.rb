@@ -1,6 +1,6 @@
 require_dependency Rails.root.join("app", "models", "proposal").to_s
 class Proposal < ApplicationRecord
-  MANAGE_CATEGORIES    = 0b001
+  MANAGE_CATEGORIES    = 0b010
   MANAGE_SUBCATEGORIES = 0b100
 
   TAGS_PREDEFINED = 0b001
