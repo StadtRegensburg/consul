@@ -80,7 +80,7 @@
       <%categories_logic |= t.custom_logic_category_code%>
       <%subcategories_logic |= t.custom_logic_subcategory_code%>
     <%end%>
-    <%categories_logic = Proposal::MANAGE_CATEGORIES if categories_logic ==0 %>
+    <%categories_logic = Proposal::MANAGE_CATEGORIES if categories_logic == 0 %>
     <%subcategories_logic = Proposal::MANAGE_SUBCATEGORIES if subcategories_logic == 0%>
 
     <div class="small-12 column">
