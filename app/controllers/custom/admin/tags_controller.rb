@@ -31,7 +31,13 @@ class Admin::TagsController < Admin::BaseController
   private
 
     def tag_params
-      params.require(:tag).permit(:name, :kind)
+      if params[:tag][:category_code]
+        params[:tag][:custom_logic_category_code] = params[:tag][:category_code].reduce(0){|sum, i| sum += i.to_i}
+      end
+      if params[:tag][:subcategory_code]
+        params[:tag][:custom_logic_subcategory_code] = params[:tag][:subcategory_code].reduce(0){|sum, i| sum += i.to_i}
+      end
+      params.require(:tag).permit(:name, :kind, :custom_logic_category_code, :custom_logic_subcategory_code)
     end
 
     def find_tag
