@@ -74,12 +74,14 @@
     <%categories = tag_list_o.select { |t| t.kind == 'category' }%>
     <%subcategories = tag_list_o.select { |t| t.kind == 'subcategory' }%>
 
-    <%categories_logic = Proposal::MANAGE_CATEGORIES%>
-    <%subcategories_logic = Proposal::MANAGE_SUBCATEGORIES%>
+    <%categories_logic = 0%>
+    <%subcategories_logic = 0%>
     <%tags.each do |t|%>
       <%categories_logic |= t.custom_logic_category_code%>
       <%subcategories_logic |= t.custom_logic_subcategory_code%>
     <%end%>
+    <%categories_logic = Proposal::MANAGE_CATEGORIES if categories_logic == 0 %>
+    <%subcategories_logic = Proposal::MANAGE_SUBCATEGORIES if subcategories_logic == 0%>
 
     <div class="small-12 column">
       <%if categories_logic & Proposal::TAGS_CLOUD > 0%>
