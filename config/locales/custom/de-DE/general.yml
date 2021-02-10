@@ -17,5 +17,6 @@ de:
   shared:
     tags_cloud:
       subcategories: "Unterkategorien"
+      tags: Tags von Nutzern
   alerts:
     select_one_category: "Bitte wählen Sie zunächst eine Kategorie"
