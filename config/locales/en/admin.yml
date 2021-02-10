@@ -1440,12 +1440,6 @@ en:
         title: Proposal topics
         topic: Topic
         help: "When a user creates a proposal, the following topics are suggested as default tags."
-      logic:
-        category: Category
-        subcategory: Subcategory
-        custom: Custom
-        predefined: Predefined
-        cloud: Tag cloud
     users:
       columns:
         id: ID
