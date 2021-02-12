@@ -1,5 +1,8 @@
 require_dependency Rails.root.join("app", "models", "debate").to_s
-class Debate < ApplicationRecord
+
+class Debate
+  include Imageable
+
   MANAGE_CATEGORIES    = 0b110
   MANAGE_SUBCATEGORIES = 0b110
 

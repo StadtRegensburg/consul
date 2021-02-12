@@ -1,7 +1,6 @@
 <%= render "shared/globalize_locales", resource: @debate %>
 
 <%= translatable_form_for(@debate, html: {class: "debate-form"}) do |f| %>
-
   <%= render "shared/errors", resource: @debate %>
 
   <div class="row column">
@@ -20,6 +19,12 @@
         <%= translations_form.text_area :description,
               maxlength: Debate.description_max_length,
               class: "html-area" %>
+      </div>
+    <% end %>
+
+    <% if feature?(:allow_images) %>
+      <div class="images small-12 column">
+        <%= render "images/nested_image", imageable: @debate, f: f %>
       </div>
     <% end %>
 
@@ -103,4 +108,6 @@
       <%= f.submit(class: "button", value: t("debates.#{action_name}.form.submit_button")) %>
     </div>
   </div>
+
 <% end %>
+
