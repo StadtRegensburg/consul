@@ -73,6 +73,7 @@
     <%categories = tag_list_o.select { |t| t.kind == 'category' }%>
     <%subcategories = tag_list_o.select { |t| t.kind == 'subcategory' }%>
 
+
     <%categories_logic = 0%>
     <%subcategories_logic = 0%>
 
@@ -88,7 +89,6 @@
       <%=f.hidden_field :tags, value: params[:tags].join(',') %>
     <%end%>
 
-
     <div class="small-12 column">
       <%if categories_logic & Proposal::TAGS_CLOUD > 0%>
         <div id="category_tags" class="tags">
@@ -98,6 +98,7 @@
           <% end %>
         </div>
       <%end%>
+
     </div>
     <div class="small-12 column">
       <%@subcategories = Tag.subcategory.order(:name) %>
@@ -121,7 +122,6 @@
     </div>
 
       <%=f.hidden_field :tag_list_predefined, value: tags.reject{|t| !['category', 'subcategory'].include?(t.kind)}.map(&:name).join(","), class: "js-tag-list list-tags predefined"%>
-
 
     <% if current_user.unverified? %>
       <div class="small-12 column">
