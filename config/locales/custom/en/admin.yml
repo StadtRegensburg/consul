@@ -12,8 +12,8 @@ en:
       index:
         scope: Subcategory
       logic:
-        category: category
-        subcategory: subcategory
-        predefined: predefined
+        category: Category
+        subcategory: Subcategory
+        custom: Custom
+        predefined: Predefined
         cloud: Tag cloud
-        custom: custom
