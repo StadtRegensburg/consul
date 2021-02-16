@@ -88,6 +88,7 @@
       <%=f.hidden_field :tags, value: params[:tags].join(',') %>
     <%end%>
 
+
     <div class="small-12 column">
       <%if categories_logic & Proposal::TAGS_CLOUD > 0%>
         <div id="category_tags" class="tags">
@@ -120,6 +121,7 @@
     </div>
 
       <%=f.hidden_field :tag_list_predefined, value: tags.reject{|t| !['category', 'subcategory'].include?(t.kind)}.map(&:name).join(","), class: "js-tag-list list-tags predefined"%>
+
 
     <% if current_user.unverified? %>
       <div class="small-12 column">

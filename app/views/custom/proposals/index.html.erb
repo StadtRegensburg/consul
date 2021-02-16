@@ -62,7 +62,6 @@
     <%can_create = can_create && ((Proposal.subcategory_predefined? && tag_subcategories&.length > 0) || !Proposal.subcategory_predefined? )%>
     <%tags += tag_subcategories%>
 
-
     <div class="row">
 
       <% if feature?(:map) %>
