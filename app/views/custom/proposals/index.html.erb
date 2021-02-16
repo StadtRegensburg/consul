@@ -11,6 +11,7 @@
     <% if [
             @search_terms,
             @advanced_search_terms,
+            @tag_filter,
             params[:retired].present?,
             params[:selected].present?
           ].any? %>
@@ -27,6 +28,12 @@
                   ) %>
                 <% end %>
               <p>
+            <% elsif @tag_filter %>
+              <h2><%= t("shared.search_results") %></h2>
+              <p>
+                <%= page_entries_info @proposals %>
+                <%= t("proposals.index.filter_topic", count: @proposals.size, topic: @tag_filter) %>
+              </p>
             <% elsif params[:retired].present? %>
               <h2><%= t("proposals.index.retired_proposals") %></h2>
             <% elsif params[:selected].present? %>
@@ -43,6 +50,7 @@
                                              disable_recommendations_path: recommendations_disable_proposals_path,
                                              namespace: "proposals" %>
     <% end %>
+
     <%tags = []%>
     <%selected_tags = params[:tags]&.split(",")&.map {|tt| t2 = Tag.find_by(name: tt)}&.compact || []%>
 
@@ -56,8 +64,19 @@
 
 
     <div class="row">
+
+      <% if feature?(:map) %>
+        <div class="map inline">
+          <h3><%= t("proposals.index.map") %></h3>
+          <%= render_map(nil, "proposals", false, nil, @proposals_coordinates) %>
+        </div>
+        <div class="no-bullet margin-top">
+        </div>
+      <%end%>
       <div id="proposals" class="proposals-list small-12 medium-9 column">
-        <%= render "shared/banner" %>
+        <% if has_banners? %>
+          <%= render "shared/banner" %>
+        <% end %>
         <% if show_featured_proposals? %>
           <div id="featured-proposals" class="row featured-proposals">
             <div class="small-12 column">
@@ -103,7 +122,7 @@
             <%= empty_recommended_proposals_message_text(current_user) %>
           <% end %>
           <%= paginate @proposals %>
-          <% unless @search_terms || @advanced_search_terms %>
+          <% unless @search_terms || @advanced_search_terms || @tag_filter %>
             <div id="section_help" class="margin" data-magellan-target="section_help">
               <p class="lead">
                 <strong><%= t("proposals.index.section_footer.title") %></strong>
