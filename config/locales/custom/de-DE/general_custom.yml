@@ -1,5 +1,9 @@
 de:
   custom:
+    polls:
+      show:
+        results_menu: Zwischenergebnisse für Admins
+        info_menu: Abstimmung
     comments:
       reply_form:
         leave_comment: 'Schreiben Sie eine Antwort'
