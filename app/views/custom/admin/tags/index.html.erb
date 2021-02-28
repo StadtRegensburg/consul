@@ -5,6 +5,7 @@
   <div class="small-12 medium-6">
     <%= f.text_field :name %>
     <%= f.radio_button :kind, "category", label: "Category", selected: "selected" %>
+    <%= f.radio_button :kind, "project", label: "Project" %>
     <%= f.radio_button :kind, "subcategory", label: "Subcategory" %>
 
   </div>
@@ -33,6 +34,7 @@
 
             <div class="small-9 column">
               <%=f.text_field :name, {label: ""}%>
+                <%if ['category', 'subcategory'].include?(tag.kind)%>
                 <div class='row'>
                   <div class='small-4 column'>
                     <b><%=t("admin.tags.logic.category")%></b>
@@ -73,6 +75,7 @@
                     </div>
                   </div>
                 </div>
+              <%end%>
             </div>
 
             <div class="small-3 column">
