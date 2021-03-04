@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210218195121) do
+ActiveRecord::Schema.define(version: 20210303092642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1407,6 +1407,9 @@ ActiveRecord::Schema.define(version: 20210218195121) do
     t.integer "polls_count", default: 0
     t.integer "custom_logic_category_code", default: 0
     t.integer "custom_logic_subcategory_code", default: 0
+    t.boolean "custom_logic_category_cloud"
+    t.boolean "custom_logic_subcategory_cloud"
+    t.boolean "custom_logic_usertags_cloud"
     t.index ["debates_count"], name: "index_tags_on_debates_count"
     t.index ["legislation_processes_count"], name: "index_tags_on_legislation_processes_count"
     t.index ["legislation_proposals_count"], name: "index_tags_on_legislation_proposals_count"
