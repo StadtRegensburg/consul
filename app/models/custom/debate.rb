@@ -3,17 +3,11 @@ require_dependency Rails.root.join("app", "models", "debate").to_s
 class Debate
   include Imageable
 
-  MANAGE_CATEGORIES    = 0b010
-  MANAGE_SUBCATEGORIES = 0b010
+  has_and_belongs_to_many :projekts
 
-  TAGS_PREDEFINED = 0b001
-  TAGS_CLOUD      = 0b010
-  TAGS_CUSTOM     = 0b100
+  validates :projekts, presence: true, if: :require_a_projekt?
 
-  def self.category_predefined?
-    MANAGE_CATEGORIES & TAGS_PREDEFINED > 0
-  end
-  def self.subcategory_predefined?
-    MANAGE_SUBCATEGORIES & TAGS_PREDEFINED > 0
+  def require_a_projekt?
+    Setting["projekts.connected_resources"].present? ? true : false
   end
 end

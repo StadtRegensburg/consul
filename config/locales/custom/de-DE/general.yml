@@ -37,17 +37,17 @@ de:
       deleted: Dieser Kommentar wurde gelöscht
       moderator: Moderator*in
       responses:
-        zero: Keine Rückmeldungen
+        zero: Keine Antworten
         one: 1 Antwort
         other: "%{count} Antworten"
       responses_show:
-        zero: Keine Rückmeldungen
-        one: "1 Rückmeldung (Anzeigen)"
-        other: "%{count} Rückmeldungen (Anzeigen)"
+        zero: Keine Antworten
+        one: "1 Antwort (Anzeigen)"
+        other: "%{count} Antworten (Anzeigen)"
       responses_collapse:
-        zero: Keine Rückmeldungen
-        one: "1 Antwort (Kollaps)"
-        other: "%{count} Antworten (Kollaps)"
+        zero: Keine Antworten
+        one: "1 Antwort (Einklappen)"
+        other: "%{count} Antworten (Einklappen)"
       user_deleted: Benutzer gelöscht
       votes:
         zero: Keine Bewertungen
@@ -407,7 +407,7 @@ de:
       recommendation_two: Diskussionen oder Kommentare, die illegale Handlungen beinhalten, werden gelöscht sowie diejenigen, die die Diskussionen absichtlich sabotieren. Alles andere ist erlaubt.
       recommendations_title: Empfehlungen zum Erstellen eines Vorschlags
       start_new: Neuen Vorschlag erstellen
-      start_new_in: Erstellen Sie einen Vorschlag in %{category}
+      start_new_in: Erstellen Sie einen Vorschlag
       help: Wie funktionieren Vorschläge?
     notice:
       retired: Vorschlag im Ruhezustand
@@ -749,9 +749,10 @@ de:
         message: "Sie sehen %{limit} %{count} Vorschläge mit dem Begriff \"%{query}\""
         see_all: "Alle anzeigen"
     tags_cloud:
+      projekts: Projekte
       districts: "Bereiche"
       districts_list: "Liste der Bereiche"
-      categories: "Tags"
+      categories: Kategorien
       subcategories: "Unterkategorien"
       tags: Tags von Nutzern
     target_blank: " (Link öffnet im neuen Fenster)"
@@ -993,4 +994,4 @@ de:
       co: "k"
       si: "s"
   alerts:
-    select_one_category: "Bitte wählen Sie zunächst eine Kategorie"
+    select_one_category: "Bitte wählen Sie nur eine Kategorie"

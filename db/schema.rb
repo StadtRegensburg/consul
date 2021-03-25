@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210203202811) do
+ActiveRecord::Schema.define(version: 20210319081657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -362,6 +362,12 @@ ActiveRecord::Schema.define(version: 20210203202811) do
     t.string "voting_style", default: "knapsack"
   end
 
+  create_table "budgets_projekts", id: false, force: :cascade do |t|
+    t.bigint "budget_id", null: false
+    t.bigint "projekt_id", null: false
+    t.index ["projekt_id", "budget_id"], name: "index_budgets_projekts_on_projekt_id_and_budget_id", unique: true
+  end
+
   create_table "campaigns", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "track_id"
@@ -510,6 +516,12 @@ ActiveRecord::Schema.define(version: 20210203202811) do
     t.index ["hidden_at"], name: "index_debates_on_hidden_at"
     t.index ["hot_score"], name: "index_debates_on_hot_score"
     t.index ["tsv"], name: "index_debates_on_tsv", using: :gin
+  end
+
+  create_table "debates_projekts", id: false, force: :cascade do |t|
+    t.bigint "debate_id", null: false
+    t.bigint "projekt_id", null: false
+    t.index ["projekt_id", "debate_id"], name: "index_debates_projekts_on_projekt_id_and_debate_id", unique: true
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
@@ -1171,6 +1183,12 @@ ActiveRecord::Schema.define(version: 20210203202811) do
     t.index ["starts_at", "ends_at"], name: "index_polls_on_starts_at_and_ends_at"
   end
 
+  create_table "polls_projekts", id: false, force: :cascade do |t|
+    t.bigint "poll_id", null: false
+    t.bigint "projekt_id", null: false
+    t.index ["projekt_id", "poll_id"], name: "index_polls_projekts_on_projekt_id_and_poll_id", unique: true
+  end
+
   create_table "progress_bar_translations", id: :serial, force: :cascade do |t|
     t.integer "progress_bar_id", null: false
     t.string "locale", null: false
@@ -1188,6 +1206,30 @@ ActiveRecord::Schema.define(version: 20210203202811) do
     t.integer "progressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "projekts", force: :cascade do |t|
+    t.string "name"
+    t.bigint "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "order_number"
+    t.boolean "total_duration_active"
+    t.date "total_duration_start"
+    t.date "total_duration_end"
+    t.boolean "debate_phase_active"
+    t.date "debate_phase_start"
+    t.date "debate_phase_end"
+    t.boolean "proposal_phase_active"
+    t.date "proposal_phase_start"
+    t.date "proposal_phase_end"
+    t.index ["parent_id"], name: "index_projekts_on_parent_id"
+  end
+
+  create_table "projekts_proposals", id: false, force: :cascade do |t|
+    t.bigint "proposal_id", null: false
+    t.bigint "projekt_id", null: false
+    t.index ["projekt_id", "proposal_id"], name: "index_projekts_proposals_on_projekt_id_and_proposal_id", unique: true
   end
 
   create_table "proposal_notifications", id: :serial, force: :cascade do |t|
@@ -1331,7 +1373,8 @@ ActiveRecord::Schema.define(version: 20210203202811) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "locale"], name: "index_site_customization_content_blocks_on_name_and_locale", unique: true
+    t.string "key"
+    t.index ["key", "name", "locale"], name: "locale_key_name_index", unique: true
   end
 
   create_table "site_customization_images", id: :serial, force: :cascade do |t|
@@ -1365,6 +1408,8 @@ ActiveRecord::Schema.define(version: 20210203202811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "locale"
+    t.bigint "projekt_id"
+    t.index ["projekt_id"], name: "index_site_customization_pages_on_projekt_id"
   end
 
   create_table "stats_versions", id: :serial, force: :cascade do |t|
@@ -1406,6 +1451,9 @@ ActiveRecord::Schema.define(version: 20210203202811) do
     t.integer "polls_count", default: 0
     t.integer "custom_logic_category_code", default: 0
     t.integer "custom_logic_subcategory_code", default: 0
+    t.boolean "custom_logic_category_cloud"
+    t.boolean "custom_logic_subcategory_cloud"
+    t.boolean "custom_logic_usertags_cloud"
     t.index ["debates_count"], name: "index_tags_on_debates_count"
     t.index ["legislation_processes_count"], name: "index_tags_on_legislation_processes_count"
     t.index ["legislation_proposals_count"], name: "index_tags_on_legislation_proposals_count"
@@ -1487,6 +1535,8 @@ ActiveRecord::Schema.define(version: 20210203202811) do
     t.boolean "public_interests", default: false
     t.boolean "recommended_debates", default: true
     t.boolean "recommended_proposals", default: true
+    t.string "plz"
+    t.boolean "plz_consent"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["geozone_id"], name: "index_users_on_geozone_id"
@@ -1646,9 +1696,11 @@ ActiveRecord::Schema.define(version: 20210203202811) do
   add_foreign_key "poll_recounts", "poll_officer_assignments", column: "officer_assignment_id"
   add_foreign_key "poll_voters", "polls"
   add_foreign_key "polls", "budgets"
+  add_foreign_key "projekts", "projekts", column: "parent_id"
   add_foreign_key "proposals", "communities"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
+  add_foreign_key "site_customization_pages", "projekts"
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
 end
