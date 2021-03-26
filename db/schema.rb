@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210319081657) do
+ActiveRecord::Schema.define(version: 20210326072836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1223,6 +1223,7 @@ ActiveRecord::Schema.define(version: 20210319081657) do
     t.boolean "proposal_phase_active"
     t.date "proposal_phase_start"
     t.date "proposal_phase_end"
+    t.boolean "show_in_navigation"
     t.index ["parent_id"], name: "index_projekts_on_parent_id"
   end
 
@@ -1525,7 +1526,7 @@ ActiveRecord::Schema.define(version: 20210319081657) do
     t.datetime "date_of_birth"
     t.boolean "email_on_proposal_notification", default: true
     t.boolean "email_digest", default: true
-    t.boolean "email_on_direct_message", default: true
+    t.boolean "email_on_direct_message", default: false
     t.boolean "official_position_badge", default: false
     t.datetime "password_changed_at", default: "2015-01-01 01:01:01", null: false
     t.boolean "created_from_signature", default: false
