@@ -112,6 +112,7 @@
 //= require budget_edit_associations
 //= require datepicker
 //= require projekts
+//= require responsive_menu
 
 var initialize_modules = function() {
   "use strict";
@@ -121,6 +122,7 @@ var initialize_modules = function() {
   App.Comments.initialize();
   App.Users.initialize();
   App.Projekts.initialize();
+  App.ResponsiveMenu.initialize();
   App.Votes.initialize();
   App.AllowParticipation.initialize();
   App.Tags.initialize();

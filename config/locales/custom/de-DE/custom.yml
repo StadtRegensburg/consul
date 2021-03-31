@@ -1,5 +1,8 @@
 de:
   custom:
+    menu:
+      archived: Abgelaufene Projekte
+      account: Konto
     settings:
       projekts:
         connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
