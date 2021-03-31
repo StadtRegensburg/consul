@@ -95,6 +95,8 @@
       <% end %>
     </div>
 
+    <% if false %>
+
     <div class="projekt-tags-column">
       <% if projekts.any? { |projekt| projekt.children.any? { |projekt| projekt.children.any? { |projekt| projekt.children.any? } } } %>
         <h6><%= t('custom.projekts.new.fourth_level') %></h6>
@@ -124,5 +126,8 @@
         <% end %>
       <% end %>
     </div>
+
+    <% end %>
+
   </div>
 </div>
