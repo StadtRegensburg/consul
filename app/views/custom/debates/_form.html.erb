@@ -35,7 +35,6 @@
       <%= render partial: "shared/projekts", locals: { f: f, model: @debate }  %>
     </div>
 
-
     <%if Setting["feature.enable_categories"]%>
       <div class="small-12 column">
         <%if @categories.any? %>
@@ -79,4 +78,3 @@
   </div>
 
 <% end %>
-

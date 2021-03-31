@@ -66,13 +66,9 @@
       </div>
     <% end %>
 
-
     <div class="small-12 column">
       <%= render partial: "shared/projekts", locals: { f: f, model: @proposal }  %>
     </div>
-
-
-
 
     <%if Setting["feature.enable_categories"]%>
       <div class="small-12 column">
@@ -97,7 +93,6 @@
           class: "tag-autocomplete list-categories" %>
       </div>
     <%end%>
-
 
     <% if current_user.unverified? %>
       <div class="small-12 column">

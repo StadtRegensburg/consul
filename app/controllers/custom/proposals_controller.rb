@@ -17,6 +17,7 @@ class ProposalsController
     take_only_by_tag_names
     take_by_projekts
     @proposals_coordinates = all_proposal_map_locations
+    @selected_tags = all_selected_tags
   end
 
   private
