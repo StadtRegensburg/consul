@@ -70,7 +70,7 @@
       <%= render partial: "shared/projekts", locals: { f: f, model: @proposal }  %>
     </div>
 
-    <%if Setting["feature.enable_categories"]%>
+    <%if categories_enabled? %>
       <div class="small-12 column">
         <%if @categories.any? %>
           <div id="category_tags" class="tags">
@@ -84,7 +84,7 @@
       <%=f.hidden_field :tag_list_predefined, value: @proposal.tags.reject{|t| !['category'].include?(t.kind)}.map(&:name).join(","), class: "js-tag-list list-tags predefined"%>
     <%end%>
 
-    <%if Setting["feature.enable_custom_tags"]%>
+    <%if custom_tag_enabled? %>
       <div class="small-12 column">
         <%= f.text_field :tag_list_custom, value: @proposal.tags.where(kind: nil).map{|c| c.name}.join(","),
           label: t("debates.form.tags_custom"),

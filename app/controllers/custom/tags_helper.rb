@@ -33,4 +33,12 @@ module TagsHelper
       "#"
     end
   end
+
+  def categories_enabled?
+    Setting["extended_feature.enable_categories"]
+  end
+
+  def custom_tag_enabled?
+    Setting["extended_feature.enable_custom_tags"]
+  end
 end

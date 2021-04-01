@@ -4,6 +4,14 @@ de:
       archived: Abgelaufene Projekte
       account: Konto
     settings:
+      extended_feature:
+        enable_categories: Tags aktivieren
+        enable_categories_description: Tags aktivieren beschreibung
+        enable_custom_tags: Custom Tags aktivieren
+        enable_custom_tags_description: Custom Tags aktivieren beschreibung
+      extended_option:
+        max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
+        max_active_proposals_per_user_description: Maximale Anzahl aktiver Vorschläge pro Benutzer beschreibung
       projekts:
         connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
         connected_resources_description: Diskussionen & Vorschläge können ohne Projektzuordnung nicht erstellt werden
@@ -15,6 +23,11 @@ de:
           sidebar: Archivierte Projekte in Projektseitenleiste  anzeigen
           sidebar_description: Zeigt archivierte Projekte in der Projektseitenleiste wenn aktiviert
     admin:
+      settings:
+        index:
+          extended_features: Erweiterte Funktionen
+          extended_options: Erweiterte Konfigurationseinstellungen
+
       menu:
         projekts: Projekte
       projekts:

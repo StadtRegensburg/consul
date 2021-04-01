@@ -1,4 +1,4 @@
-<%if @tag_cloud.tags.any? && Setting["feature.enable_custom_tags"]%>
+<%if @tag_cloud.tags.any? && custom_tag_enabled? %>
   <div id="tag-cloud">
     <div class="sidebar-divider"></div>
     <h2 class="sidebar-title"><%= t("shared.tags_cloud.tags") %></h2>

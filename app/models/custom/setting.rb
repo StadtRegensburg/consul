@@ -7,6 +7,10 @@ class Setting < ApplicationRecord
       prefix
     elsif %w[remote_census].include? prefix
       key.rpartition(".").first
+    elsif %w[extended_feature].include? prefix
+      key.rpartition(".").first
+    elsif %w[extended_option].include? prefix
+      key.rpartition(".").first
     else
       "configuration"
     end
@@ -125,17 +129,15 @@ class Setting < ApplicationRecord
         "projekts.connected_resources": false,
         "projekts.predefined": false,
         "projekts.show_archived.navigation": true,
-        "projekts.show_archived.sidebar": true
+        "projekts.show_archived.sidebar": true,
+        "extended_feature.enable_categories": nil,
+        "extended_feature.enable_custom_tags": nil,
+        "extended_option.max_active_proposals_per_user": 100
       }
     end
 
     def reset_defaults
       defaults.each { |name, value| self[name] = value }
-    end
-
-    def init_tags_setting
-      self["feature.enable_categories"] = true
-      self["feature.enable_custom_tags"] = true
     end
   end
 end

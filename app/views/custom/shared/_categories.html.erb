@@ -1,4 +1,4 @@
-<%if @categories.any? && Setting["feature.enable_categories"]%>
+<%if @categories.any? && categories_enabled? %>
   <div class="sidebar-divider"></div>
   <h2 class="sidebar-title"><%= t("shared.tags_cloud.categories") %></h2>
   <br>
