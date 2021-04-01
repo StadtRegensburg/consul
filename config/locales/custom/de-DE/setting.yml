@@ -3,9 +3,9 @@ de:
     settings:
       extended_feature:
         enable_categories: Tags aktivieren
-        enable_categories_description: Tags aktivieren beschreibung
-        enable_custom_tags: Custom Tags aktivieren
-        enable_custom_tags_description: Custom Tags aktivieren beschreibung
+        enable_categories_description: Aktivieren Sie die Auswahl vordefinierter Tags
+        enable_custom_tags: Nutzer-Tags aktivieren
+        enable_custom_tags_description: Aktivieren Sie die Eingabe individueller Nutzer-Tags
         enable_proposal_support_withdrawal: Aktivieren Sie die Rücknahme der Angebotsunterstützung
         enable_proposal_support_withdrawal_description: Aktivieren Sie die Rücknahme der Angebotsunterstützung beschreibung
         elasticsearch: "Elasticsearch"
