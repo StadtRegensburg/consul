@@ -133,12 +133,23 @@ class Setting < ApplicationRecord
         "extended_feature.enable_categories": nil,
         "extended_feature.enable_custom_tags": nil,
         "extended_feature.enable_proposal_support_withdrawal": nil,
+        "feature.elasticsearch": false,
         "extended_option.max_active_proposals_per_user": 100
       }
     end
 
     def reset_defaults
       defaults.each { |name, value| self[name] = value }
+    end
+
+    def force_presence_date_of_birth?
+      Setting["feature.remote_census"].present? &&
+        Setting["remote_census.request.date_of_birth"].present?
+    end
+
+    def force_presence_postal_code?
+      Setting["feature.remote_census"].present? &&
+        Setting["remote_census.request.postal_code"].present?
     end
   end
 end
