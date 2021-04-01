@@ -12,6 +12,10 @@ de:
         elasticsearch_description: "Elasticsearch ist die führende verteilte, RESTful, Open-Source-Such- und Analyse-Engine, die auf Geschwindigkeit, horizontale Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung ausgelegt ist."
         map_above_proposals: Show map above proposals
         map_above_proposals_description: Show map above proposals description
+        extended_editor_for_admins: Show extended editor for admins
+        extended_editor_for_admins_description: Show extended editor for admins description
+        extended_editor_for_users: Show extended editor for users
+        extended_editor_for_users_description: Show extended editor for users description
       extended_option:
         max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
         max_active_proposals_per_user_description: Maximale Anzahl aktiver Vorschläge pro Benutzer beschreibung

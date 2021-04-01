@@ -44,6 +44,7 @@
 //= require turbolinks
 //= require turbolinks_anchors
 //= require ckeditor/loader
+//= require ckeditor/config.js
 //= require_directory ./ckeditor
 //= require social-share-button
 //= require initial
@@ -183,3 +184,13 @@ var destroy_non_idempotent_modules = function() {
 
 $(document).on("turbolinks:load", initialize_modules);
 $(document).on("turbolinks:before-cache", destroy_non_idempotent_modules);
+
+$(function() {
+  "use strict";
+
+  Turbolinks.enableProgressBar();
+
+  $(document).ready(initialize_modules);
+  $(document).on("page:load", initialize_modules);
+  $(document).on("ajax:complete", initialize_modules);
+});
