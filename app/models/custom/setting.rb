@@ -132,6 +132,7 @@ class Setting < ApplicationRecord
         "projekts.show_archived.sidebar": true,
         "extended_feature.enable_categories": nil,
         "extended_feature.enable_custom_tags": nil,
+        "extended_feature.enable_proposal_support_withdrawal": nil,
         "extended_option.max_active_proposals_per_user": 100
       }
     end

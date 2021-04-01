@@ -9,6 +9,8 @@ de:
         enable_categories_description: Tags aktivieren beschreibung
         enable_custom_tags: Custom Tags aktivieren
         enable_custom_tags_description: Custom Tags aktivieren beschreibung
+        enable_proposal_support_withdrawal: Aktivieren Sie die Rücknahme der Angebotsunterstützung
+        enable_proposal_support_withdrawal_description: Aktivieren Sie die Rücknahme der Angebotsunterstützung beschreibung
       extended_option:
         max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
         max_active_proposals_per_user_description: Maximale Anzahl aktiver Vorschläge pro Benutzer beschreibung
@@ -80,6 +82,11 @@ de:
         filter_button: 'Projekte filtern'
       errors:
         presence: 'Bitte wählen Sie ein Projekt'
+    proposals:
+      index:
+        max_number_reached: "Du hast die maximale Anzahl (%{max_number}) an Vorschlägen pro Nutzer erreicht. Bevor du einen weiteren Vorschlag erstellen kannst, musst du einen aktiven Vorschlag zurückziehen."
+      proposal:
+        unsupport: Zurückziehen
     polls:
       show:
         results_menu: Zwischenergebnisse für Admins
