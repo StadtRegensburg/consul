@@ -133,7 +133,7 @@ class Setting < ApplicationRecord
         "extended_feature.enable_categories": nil,
         "extended_feature.enable_custom_tags": nil,
         "extended_feature.enable_proposal_support_withdrawal": nil,
-        "feature.elasticsearch": false,
+        "extended_feature.elasticsearch": false,
         "extended_option.max_active_proposals_per_user": 100
       }
     end

@@ -1,5 +1,25 @@
 de:
-  settings:
-    features:
-      elasticsearch: "Elasticsearch"
-      elasticsearch_description: "Elasticsearch ist die führende verteilte, RESTful, Open-Source-Such- und Analyse-Engine, die auf Geschwindigkeit, horizontale Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung ausgelegt ist."
+  custom:
+    settings:
+      extended_feature:
+        enable_categories: Tags aktivieren
+        enable_categories_description: Tags aktivieren beschreibung
+        enable_custom_tags: Custom Tags aktivieren
+        enable_custom_tags_description: Custom Tags aktivieren beschreibung
+        enable_proposal_support_withdrawal: Aktivieren Sie die Rücknahme der Angebotsunterstützung
+        enable_proposal_support_withdrawal_description: Aktivieren Sie die Rücknahme der Angebotsunterstützung beschreibung
+        elasticsearch: "Elasticsearch"
+        elasticsearch_description: "Elasticsearch ist die führende verteilte, RESTful, Open-Source-Such- und Analyse-Engine, die auf Geschwindigkeit, horizontale Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung ausgelegt ist."
+      extended_option:
+        max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
+        max_active_proposals_per_user_description: Maximale Anzahl aktiver Vorschläge pro Benutzer beschreibung
+      projekts:
+        connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
+        connected_resources_description: Diskussionen & Vorschläge können ohne Projektzuordnung nicht erstellt werden
+        predefined: Projektvorauswahl treffen
+        predefined_description: Die gefilterten Projekte beim Erstellen von Diskussionen & Vorschlägen vorauswählen
+        show_archived:
+          navigation: Archivierte Projekte in Navigation anzeigen
+          navigation_description: Zeigt archivierte Projekte in der Navigationsleiste wenn aktiviert
+          sidebar: Archivierte Projekte in Projektseitenleiste  anzeigen
+          sidebar_description: Zeigt archivierte Projekte in der Projektseitenleiste wenn aktiviert
