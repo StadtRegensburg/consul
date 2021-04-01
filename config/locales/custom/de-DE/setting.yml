@@ -10,6 +10,8 @@ de:
         enable_proposal_support_withdrawal_description: Aktivieren Sie die Rücknahme der Angebotsunterstützung beschreibung
         elasticsearch: "Elasticsearch"
         elasticsearch_description: "Elasticsearch ist die führende verteilte, RESTful, Open-Source-Such- und Analyse-Engine, die auf Geschwindigkeit, horizontale Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung ausgelegt ist."
+        map_above_proposals: Show map above proposals
+        map_above_proposals_description: Show map above proposals description
       extended_option:
         max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
         max_active_proposals_per_user_description: Maximale Anzahl aktiver Vorschläge pro Benutzer beschreibung

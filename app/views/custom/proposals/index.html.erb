@@ -55,7 +55,7 @@
     <%can_create = true %>
 
     <div class="row">
-      <% if feature?(:map) %>
+      <% if extended_feature?(:map_above_proposals) %>
         <div class="map inline">
           <h3><%= t("proposals.index.map") %></h3>
           <%= render_map(nil, "proposals", false, nil, @proposals_coordinates) %>
