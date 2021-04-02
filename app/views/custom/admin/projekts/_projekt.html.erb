@@ -48,9 +48,11 @@
                        id: "projekt_name_#{projekt.id}", 
                        label: t('custom.admin.projekts.index.name_singular') %>
       <div class='projekt-link'>
-        <%= link_to t("custom.admin.projekts.index.edit_page"), edit_admin_site_customization_page_path(projekt.page) %>
-        <br>
-        <%= link_to t("custom.admin.projekts.index.page_link"), projekt.page.url if projekt.page.published? %>
+        <% if projekt.page.present?  %>
+          <%= link_to t("custom.admin.projekts.index.edit_page"), edit_admin_site_customization_page_path(projekt.page) %>
+          <br>
+          <%= link_to t("custom.admin.projekts.index.page_link"), projekt.page.url if projekt.page.published? %>
+        <% end %>
       </div>
     </td>
 
