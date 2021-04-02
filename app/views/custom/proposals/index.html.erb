@@ -150,7 +150,7 @@
           </p>
           <% if params[:retired].blank? %>
 					  <%= render "shared/projekts_sidebar" %>
-            <%= render "shared/categories", model: "proposal" %>
+            <%= render "shared/categories", taggable: "proposal" %>
             <%= render "shared/tag_cloud", taggable: "proposal" %>
             <%= render "geozones" %>
           <% end %>
