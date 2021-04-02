@@ -16,6 +16,12 @@ de:
         extended_editor_for_admins_description: Show extended editor for admins description
         extended_editor_for_users: Show extended editor for users
         extended_editor_for_users_description: Show extended editor for users description
+        intro_text_for_debates: Einleitungstext für Diskussionen
+        intro_text_for_debates_description: Aktievieren Sie einen individuellen Einleitungstext oberhalb der Diskussionsübersicht
+        intro_text_for_proposals: Einleitungstext für Vorschläge
+        intro_text_for_proposals_description: Aktievieren Sie einen individuellen Einleitungstext oberhalb der Vorschlagsübersicht
+        intro_text_for_polls: Einleitungstext für Abstimmungen
+        intro_text_for_polls_description: Aktievieren Sie einen individuellen Einleitungstext oberhalb der Abstimmungsübersicht
       extended_option:
         max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
         max_active_proposals_per_user_description: Maximale Anzahl aktiver Vorschläge pro Benutzer beschreibung

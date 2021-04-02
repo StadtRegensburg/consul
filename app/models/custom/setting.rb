@@ -137,6 +137,9 @@ class Setting < ApplicationRecord
         "extended_feature.map_above_proposals": false,
         "extended_feature.extended_editor_for_admins": false,
         "extended_feature.extended_editor_for_users": false,
+        "extended_feature.intro_text_for_debates": false,
+        "extended_feature.intro_text_for_proposals": false,
+        "extended_feature.intro_text_for_polls": false,
         "extended_option.max_active_proposals_per_user": 100
       }
     end
