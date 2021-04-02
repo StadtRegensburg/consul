@@ -6,6 +6,7 @@ de:
     admin:
       settings:
         index:
+          extended_settings: Erweiterte Einstellungen
           extended_features: Erweiterte Funktionen
           extended_options: Erweiterte Konfigurationseinstellungen
 
