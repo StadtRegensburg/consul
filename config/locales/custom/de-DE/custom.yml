@@ -66,12 +66,18 @@ de:
     proposals:
       index:
         max_number_reached: "Du hast die maximale Anzahl (%{max_number}) an Vorschlägen pro Nutzer erreicht. Bevor du einen weiteren Vorschlag erstellen kannst, musst du einen aktiven Vorschlag zurückziehen."
+        projekts: Projekte
       proposal:
         unsupport: Zurückziehen
     polls:
+      index:
+        projekts: Projekte
       show:
         results_menu: Zwischenergebnisse für Admins
         info_menu: Abstimmung
+    debates:
+      index:
+        projekts: Projekte
     comments:
       reply_form:
         leave_comment: 'Schreiben Sie eine Antwort'
