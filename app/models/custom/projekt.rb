@@ -68,12 +68,12 @@ class Projekt < ApplicationRecord
     page_title = self.name
     last_page_id = SiteCustomization::Page.last.id
     clean_slug = self.name.downcase.gsub(/[^a-z0-9\s]/, '').gsub(/\s+/, '-')
-    pages_with_similar_slugs = SiteCustomization::Page.where("slug ~ ?", "^#{clean_slug}(_|$)").order(id: :asc)
+    pages_with_similar_slugs = SiteCustomization::Page.where("slug ~ ?", "^#{clean_slug}(-[0-9]+$|$)").order(id: :asc)
 
-    if pages_with_similar_slugs.any? && pages_with_similar_slugs.last.slug.match?(/_\d+$/)
-      page_slug = clean_slug + '_' + (pages_with_similar_slugs.last.slug.split('_')[-1].to_i + 1).to_s
+    if pages_with_similar_slugs.any? && pages_with_similar_slugs.last.slug.match?(/-\d+$/)
+      page_slug = clean_slug + '-' + (pages_with_similar_slugs.last.slug.split('-')[-1].to_i + 1).to_s
     elsif pages_with_similar_slugs.any?
-      page_slug = clean_slug + '_2'
+      page_slug = clean_slug + '-2'
     else
       page_slug = clean_slug
     end
