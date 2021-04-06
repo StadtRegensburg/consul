@@ -22,6 +22,8 @@ de:
         intro_text_for_proposals_description: Aktievieren Sie einen individuellen Einleitungstext oberhalb der Vorschlagsübersicht
         intro_text_for_polls: Einleitungstext für Abstimmungen
         intro_text_for_polls_description: Aktievieren Sie einen individuellen Einleitungstext oberhalb der Abstimmungsübersicht
+        intermediate_poll_results_for_admins: Zwischenergebnisse von Abstimmungen für Admins anzeigen
+        intermediate_poll_results_for_admins_description: Aktivieren Sie die Einsicht in Zwischenergebnisse zu Abstimmungen für Administratoren
       extended_option:
         max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
         max_active_proposals_per_user_description: Maximale Anzahl aktiver Vorschläge pro Benutzer beschreibung
