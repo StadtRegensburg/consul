@@ -14,6 +14,9 @@ CKEDITOR.editorConfig = function( config )
   config.allowedContent = true;
   config.format_tags = "p;h1;h2;h3;h4;h5;h6";
 
+  config.stylesSet = 'columns';
+  config.enterMode = CKEDITOR.ENTER_BR;
+
   config.removePlugins = "balloonpanel,balloontoolbar,copyformatting,scayt,wsc";
 
   config.mjAccordion_managePopupTitle = true;
@@ -104,7 +107,7 @@ CKEDITOR.editorConfig = function( config )
   config.toolbar_extended = [
     { name: "paragraph", groups: [ "list", "indent", "blocks", "align", "bidi" ], items: [ "NumberedList", "BulletedList", "-", "Outdent", "Indent", "-", "Blockquote", "CreateDiv", "-", "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock" ] },
     { name: "links", items: [ "Link", "Unlink", "Anchor" ] },
-    { name: "styles", items: [ "Styles", "Format", "Font", "FontSize" ] },
+    { name: "styles", items: [ "Format", "Font", "FontSize", "Styles" ] },
     { name: "basicstyles", groups: [ "basicstyles", "cleanup" ], items: [ "Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "-", "RemoveFormat" ] },
     { name: "colors", items: [ "TextColor", "BGColor" ] },
     { name: "insert", items: [ "Image", "Table", "MJAccordion", "Source", "HorizontalRule", "SpecialChar" ] },
