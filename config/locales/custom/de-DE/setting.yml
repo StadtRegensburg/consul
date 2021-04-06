@@ -10,12 +10,12 @@ de:
         enable_proposal_support_withdrawal_description: Aktivieren Sie die Rücknahme der Angebotsunterstützung beschreibung
         elasticsearch: "Elasticsearch"
         elasticsearch_description: "Elasticsearch ist die führende verteilte, RESTful, Open-Source-Such- und Analyse-Engine, die auf Geschwindigkeit, horizontale Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung ausgelegt ist."
-        map_above_proposals: Show map above proposals
-        map_above_proposals_description: Show map above proposals description
-        extended_editor_for_admins: Show extended editor for admins
-        extended_editor_for_admins_description: Show extended editor for admins description
-        extended_editor_for_users: Show extended editor for users
-        extended_editor_for_users_description: Show extended editor for users description
+        map_above_proposals: Kartenübersicht für Vorschläge
+        map_above_proposals_description: Aktivieren Sie die Kartenübersicht oberhalb der Vorschlagsliste
+        extended_editor_for_admins: Erweiterter Editor für den Admin-Panel
+        extended_editor_for_admins_description: Aktivieren Sie den erweiterten Editor für Inhalte, die im Admin-Panel erstellt werden
+        extended_editor_for_users: Erweiterter Editor für Nutzer im Frontend
+        extended_editor_for_users_description: Aktivieren Sie den erweiterten Editor für Inhalte, die im Frontend von Nutzern erstellt werden
         intro_text_for_debates: Einleitungstext für Diskussionen
         intro_text_for_debates_description: Aktievieren Sie einen individuellen Einleitungstext oberhalb der Diskussionsübersicht
         intro_text_for_proposals: Einleitungstext für Vorschläge
