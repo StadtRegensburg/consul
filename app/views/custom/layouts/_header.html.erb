@@ -51,11 +51,7 @@
         <%= render "shared/subnavigation" %>
       </div>
       <div class="small-12 medium-3 column">
-        <%if extended_feature?("elasticsearch")%>
-          <%= render "shared/elasticsearch_form" %>
-        <%else%>
-          <%= yield :header_addon %>
-        <%end%>
+        <%= yield :header_addon %>
       </div>
     </div>
   </div>
