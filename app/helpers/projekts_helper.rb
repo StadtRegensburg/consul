@@ -90,7 +90,7 @@ module ProjektsHelper
     if matching_polls.count == 1
       return format_date_range(matching_polls.first.starts_at, matching_polls.first.ends_at)
     else
-      return "#{matching_polls.count} active"
+      return "#{matching_polls.count} aktive"
     end
   end
 end

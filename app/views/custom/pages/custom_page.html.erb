@@ -19,10 +19,6 @@
     <div class="small-12 medium-9 column">
       <%= auto_link_already_sanitized_html AdminWYSIWYGSanitizer.new.sanitize(@custom_page.content) %>
 
-      <% if @custom_page.projekt.present? && @custom_page.projekt.children.any? %>
-        <%= render partial: 'child_projekts', locals: { current_page: @custom_page }  %>
-      <% end %>
-
       <% if @custom_page.print_content_flag %>
         <div class="small-12 medium-3 column">
           <%= render "/shared/print" %>
