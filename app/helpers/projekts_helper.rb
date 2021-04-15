@@ -66,4 +66,9 @@ module ProjektsHelper
   def related_polls_exist?(projekt)
     Poll.joins(:projekts).where(projekts: { id: projekt.all_children_ids.push(projekt.id) }).any?
   end
+
+  def format_date(date)
+    return '' if date.blank?
+    date.strftime("%d.%m.%Y")
+  end
 end

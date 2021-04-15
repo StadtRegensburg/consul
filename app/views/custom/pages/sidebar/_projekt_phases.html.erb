@@ -1,0 +1,27 @@
+<div class="sidebar-divider"></div>
+
+<h2 class="sidebar-title"><%= t("custom.pages.projekts_sidebar.phases_title") %></h2>
+
+<div class='projekt-phase'>
+  <%= t("custom.pages.projekts.sidebar.projekt_duration") %>
+  <br>
+  <%= "#{format_date(projekt.total_duration_start)} - #{format_date(projekt.total_duration_end)}" %>
+</div>
+
+<div class='projekt-phase debate-phase'>
+  <%= link_to debates_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>
+    <%= t("custom.pages.projekts.sidebar.debate_phase") %>
+    <span class='link-icon'> </span>
+  <% end %>
+  <br>
+  <%= "#{format_date(projekt.debate_phase_start)} - #{format_date(projekt.debate_phase_end)}" %>
+</div>
+
+<div class='projekt-phase proposals-phase'>
+  <%= link_to proposals_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>
+    <%= t("custom.pages.projekts.sidebar.proposal_phase") %>
+    <span class='link-icon'> </span>
+  <% end %>
+  <br>
+  <%= "#{format_date(projekt.proposal_phase_start)} - #{format_date(projekt.proposal_phase_end)}" %>
+</div>
