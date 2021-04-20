@@ -30,6 +30,12 @@ de:
         hide_comment_replies_by_default_description: Aktivieren Sie das standardmäßige Einklappen von Kommentaren, um Übersichtlichkeit zu schaffen
         link_out_warning: Warnung für Linkouts
         link_out_warning_description: Aktivieren Sie ein Popup, in dem der Nutzer bevor eines Linkouts zu einer externen Webseite gewarnt wird.
+        show_selected_proposals_in_proposal_sidebar: show selected proposals in proposal sidebar
+        show_selected_proposals_in_proposal_sidebar_description: show selected proposals in proposal sidebar description
+        show_geozones_in_proposal_sidebar: show geozones in proposal sidebar
+        show_geozones_in_proposal_sidebar_description: show geozones in proposal sidebar description
+        show_suggested_proposals_in_proposal_sidebar: show suggested proposals in proposal sidebar
+        show_suggested_proposals_in_proposal_sidebar_description: show suggested proposals in proposal sidebar description
       extended_option:
         max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
         max_active_proposals_per_user_description: Maximale Anzahl aktiver Vorschläge pro Benutzer beschreibung
