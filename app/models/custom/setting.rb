@@ -134,6 +134,7 @@ class Setting < ApplicationRecord
         "extended_feature.enable_custom_tags": nil,
         "extended_feature.enable_proposal_support_withdrawal": nil,
         "extended_feature.map_above_proposals": false,
+        "extended_feature.head_image_for_debates": false,
         "extended_feature.extended_editor_for_admins": false,
         "extended_feature.extended_editor_for_users": false,
         "extended_feature.intermediate_poll_results_for_admins": false,

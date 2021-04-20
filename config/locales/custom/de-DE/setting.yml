@@ -12,6 +12,8 @@ de:
         elasticsearch_description: "Elasticsearch ist die führende verteilte, RESTful, Open-Source-Such- und Analyse-Engine, die auf Geschwindigkeit, horizontale Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung ausgelegt ist."
         map_above_proposals: Kartenübersicht für Vorschläge
         map_above_proposals_description: Aktivieren Sie die Kartenübersicht oberhalb der Vorschlagsliste
+        head_image_for_debates: Titelbild für Diskussionen
+        head_image_for_debates_description: Aktivieren Sie das Hinzufügen eines Titelbildes für Diskussionen
         extended_editor_for_admins: Erweiterter Editor für den Admin-Panel
         extended_editor_for_admins_description: Aktivieren Sie den erweiterten Editor für Inhalte, die im Admin-Panel erstellt werden
         extended_editor_for_users: Erweiterter Editor für Nutzer im Frontend
