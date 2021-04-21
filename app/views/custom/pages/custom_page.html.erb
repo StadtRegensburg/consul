@@ -2,8 +2,7 @@
 <% provide :title do %><%= @custom_page.title %><% end %>
 
 <main>
-  <div class="custom-page-offset" ></div>
-  <div class="row margin-top">
+  <div class="row">
     <div class="column">
       <% if @custom_page.projekt.present? %>
         <%= render partial: 'breadcrumbs', locals: { current_page: @custom_page } %>
