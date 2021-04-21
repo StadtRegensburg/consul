@@ -2,6 +2,14 @@
   "use strict";
   App.Projekts = {
 
+    // Functions for projekt page sidebar
+
+    toggleChildren: function($label) {
+      $label.attr('aria-expanded', function (i, attr) {
+        return attr == 'true' ? 'false' : 'true'
+      });
+    },
+
     // Functions for selectors in form
 
     toggleChildProjekts: function($label) {
@@ -302,6 +310,13 @@
         event.preventDefault()
         var clickedLink = this.href
         App.Projekts.modifyFilterParams(clickedLink);
+      });
+
+
+
+      $("body").on("click", ".js-icon-toggle-child-projekts", function(event) {
+        var $label = $(this).parent();
+        App.Projekts.toggleChildren($label);
       });
 
     }
