@@ -1,5 +1,18 @@
 de:
   custom:
+    account:
+      settings:
+        public_activity: Meine Aktivität veröffentlichen
+        public_interests: Vorschläge, denen ich folge, veröffentlichen
+
+        email_on_comment: Benachrichtigung erhalten, bei Kommentare zu meinen Aktivitäten
+        email_on_comment_reply: Benachrichtigung erhalten, bei Antworten auf meine Kommentare
+        newsletter: Benachrichtigung erhalten, bei wichtigen System-Infos zur Plattform
+        email_digest: Erhalten Sie eine Zusammenfassung Benachrichtigungen zu Vorschlägen
+        email_on_direct_message: Private Nachrichten per Mail zulassen
+
+      show:
+        user_permission_votes: An Abstimmungen teilnehmen
     menu:
       archived: Abgelaufene Projekte
       account: Konto
