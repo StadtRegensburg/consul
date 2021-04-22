@@ -147,6 +147,7 @@ class Setting < ApplicationRecord
         "extended_feature.intro_text_for_proposals": false,
         "extended_feature.intro_text_for_polls": false,
         "extended_feature.link_out_warning": false,
+        "extended_feature.two_click_iframe_solution": false,
         "extended_option.max_active_proposals_per_user": 100,
         "extended_option.description_max_length": 6000
       }

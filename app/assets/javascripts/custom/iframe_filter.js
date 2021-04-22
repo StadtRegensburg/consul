@@ -12,13 +12,15 @@
     },
 
     initialize: function() {
-      App.IframeFilter.blurIframes();
+      if ( document.querySelector("meta[name='two-click-iframes']").getAttribute("content") === 'active' ) {
+        App.IframeFilter.blurIframes();
 
-      $("body").on("click", ".js-iframe-consent-button", function(event) {
-        event.preventDefault();
-        $(this).closest('.iframe-wrapper').find('iframe').css('filter', 'none')
-        $(this).closest('.iframe-explainer').hide();
-      });
+        $("body").on("click", ".js-iframe-consent-button", function(event) {
+          event.preventDefault();
+          $(this).closest('.iframe-wrapper').find('iframe').css('filter', 'none')
+          $(this).closest('.iframe-explainer').hide();
+        });
+      }
     }
   }
 }).call(this);

@@ -36,6 +36,8 @@ de:
         show_geozones_in_proposal_sidebar_description: Aktivierne Sie die Navigation über eine kleine Karten-Übersicht
         show_suggested_proposals_in_proposal_sidebar: Weitere Vorschlagslisten
         show_suggested_proposals_in_proposal_sidebar_description: "Aktivieren Sie \"Weitere Vorschlagslisten\", um zusätzliche Vorschlagslisten anzuzeigen"
+        two_click_iframe_solution: Zwei-Klick-Lösung für IFrames
+        two_click_iframe_solution_description: Aktivieren Sie die Zwei-Klick-Lösung für IFrames, um einen Blur-Effekt hinzuzufügen
       extended_option:
         max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
         max_active_proposals_per_user_description: Legen Sie die maximale Anzahl an aktiven Vorschlägen pro Nutzer fest
