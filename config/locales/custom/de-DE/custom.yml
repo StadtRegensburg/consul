@@ -1,5 +1,8 @@
 de:
   custom:
+    layouts:
+      footer:
+        description: Die Plattform basiert auf %{consul}, einer %{open_source} und wurde von demokratie.today modifiziert.
     account:
       settings:
         public_activity: Meine Aktivität veröffentlichen
