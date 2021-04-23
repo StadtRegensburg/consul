@@ -2,6 +2,7 @@ de:
   custom:
     layouts:
       footer:
+        impressum: Impressum
         description: Die Plattform basiert auf %{consul}, einer %{open_source} und wurde von demokratie.today modifiziert.
     account:
       settings:
