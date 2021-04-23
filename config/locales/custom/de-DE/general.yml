@@ -218,7 +218,7 @@ de:
     footer:
       accessibility: Barrierefreiheit
       conditions: Allgemeine Nutzungsbedingungen
-      consul: CONSUL Anwendung
+      consul: CONSUL
       consul_url: https://github.com/consul/consul
       contact_us: Für technische Unterstützung geben Sie ein
       copyright: CONSUL, %{year}
