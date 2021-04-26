@@ -1,5 +1,6 @@
 class Admin::ProjektsController < Admin::BaseController
   before_action :find_projekt, only: [:update, :destroy]
+  before_action :load_geozones, only: [:new, :create, :edit, :update]
 
   def index
     @projekts = Projekt.top_level
@@ -54,10 +55,14 @@ class Admin::ProjektsController < Admin::BaseController
   private
 
 	def projekt_params
-    params.require(:projekt).permit(:name, :parent_id, :total_duration_active, :total_duration_start, :total_duration_end, :debate_phase_active, :debate_phase_start, :debate_phase_end, :proposal_phase_active, :proposal_phase_start, :proposal_phase_end, :show_in_navigation )
+    params.require(:projekt).permit(:name, :parent_id, :total_duration_active, :total_duration_start, :total_duration_end, :debate_phase_active, :debate_phase_start, :debate_phase_end, :proposal_phase_active, :proposal_phase_start, :proposal_phase_end, :show_in_navigation, :geozone_restricted, geozone_ids: [])
 	end
 
 	def find_projekt
 		@projekt = Projekt.find(params[:id])
 	end
+
+  def load_geozones
+    @geozones = Geozone.all.order(:name)
+  end
 end

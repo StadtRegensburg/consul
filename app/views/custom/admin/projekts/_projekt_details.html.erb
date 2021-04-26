@@ -6,21 +6,21 @@
         <%= t("custom.admin.projekts.edit.projekt_duration") %>
       </div>
       <div>
-        <%= "#{projekt.total_duration_start} - #{projekt.total_duration_end}" %>
+        <%=  format_date_range(projekt.total_duration_start, projekt.total_duration_end) %>
       </div>
 
       <div>
         <%= t("custom.admin.projekts.edit.debate_phase") %>
       </div>
       <div>
-        <%= "#{projekt.debate_phase_start} - #{projekt.debate_phase_end}" %>
+        <%= format_date_range(projekt.debate_phase_start, projekt.debate_phase_end) %>
       </div>
 
       <div>
         <%= t("custom.admin.projekts.edit.proposal_phase") %>
       </div>
       <div>
-        <%= "#{projekt.proposal_phase_start} - #{projekt.proposal_phase_end}" %>
+        <%= format_date_range(projekt.proposal_phase_start, projekt.proposal_phase_end) %>
       </div>
 
       <div>

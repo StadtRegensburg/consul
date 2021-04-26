@@ -67,6 +67,18 @@
     <%= f.check_box :show_in_navigation, { label: t('custom.admin.projekts.edit.show_in_navigation_checkbox') } %>
   </div>
 
+  <div class="geozone-options">
+    <%= f.check_box :geozone_restricted, data: { checkbox_toggle: "#geozones" } %>
+  </div>
+
+  <div id="geozones" style="<%= @projekt.geozone_restricted? ? "" : "display:none" %>">
+    <%= f.collection_check_boxes(:geozone_ids, @geozones, :id, :name) do |b| %>
+      <%= b.label do %>
+        <%= b.check_box + b.text %>
+      <% end %>
+    <% end %>
+  </div>
+
   <div>
     <%= f.submit(t("custom.admin.projekts.edit.update"), class: "button success") %>
   </div>

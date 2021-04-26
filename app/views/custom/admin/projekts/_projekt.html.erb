@@ -63,9 +63,7 @@
 
     <td class='small-3' id="projekt_<%= projekt.id %>">
       <div class='projekt-action-buttons'>
-        <% if projekt.in?(@projekts) %>
-          <%= link_to t("custom.admin.projekts.edit_projekt"), edit_admin_projekt_path(projekt.id), class: 'button hollow' %>
-        <% end %>
+        <%= link_to t("custom.admin.projekts.edit_projekt"), edit_admin_projekt_path(projekt.id), class: 'button hollow' %>
         <%= f.submit(t("admin.actions.update"), class: "button success") %>
         <%= link_to t("custom.admin.projekts.destroy"), admin_projekt_path(projekt), method: :delete, class: "button hollow alert" %>
      </div>
@@ -73,9 +71,7 @@
   <% end %>
 </tr>
 
-<% if projekt.in?(@projekts) %>
-  <%= render partial: 'projekt_details', locals: { projekt: projekt } %>
-<% end %>
+<%= render partial: 'projekt_details', locals: { projekt: projekt } %>
 
 <% if projekt.children.any? %>
   <% projekt.children.order(order_number: :asc).each do |child_projekt| %>

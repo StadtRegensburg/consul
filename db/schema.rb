@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210326072836) do
+ActiveRecord::Schema.define(version: 20210426111032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -615,6 +615,12 @@ ActiveRecord::Schema.define(version: 20210326072836) do
     t.integer "poll_id"
     t.index ["geozone_id"], name: "index_geozones_polls_on_geozone_id"
     t.index ["poll_id"], name: "index_geozones_polls_on_poll_id"
+  end
+
+  create_table "geozones_projekts", id: false, force: :cascade do |t|
+    t.bigint "geozone_id", null: false
+    t.bigint "projekt_id", null: false
+    t.index ["projekt_id", "geozone_id"], name: "index_geozones_projekts_on_projekt_id_and_geozone_id", unique: true
   end
 
   create_table "i18n_content_translations", id: :serial, force: :cascade do |t|
@@ -1224,6 +1230,7 @@ ActiveRecord::Schema.define(version: 20210326072836) do
     t.date "proposal_phase_start"
     t.date "proposal_phase_end"
     t.boolean "show_in_navigation"
+    t.boolean "geozone_restricted"
     t.index ["parent_id"], name: "index_projekts_on_parent_id"
   end
 
