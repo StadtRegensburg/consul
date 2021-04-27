@@ -40,10 +40,10 @@ module ProjektsHelper
   def debate_phase_active?(projekt)
     top_parent = projekt.top_parent
 
-    return false unless ( top_parent.debate_phase_start || top_parent.total_duration_start )
-    return false unless ( top_parent.debate_phase_end || top_parent.total_duration_end )
+    return false unless ( top_parent.debate_phase.start_date || top_parent.total_duration_start )
+    return false unless ( top_parent.debate_phase.end_date || top_parent.total_duration_end )
 
-    if top_parent.debate_phase_active && (top_parent.debate_phase_start || top_parent.total_duration_start) < Date.today && (top_parent.debate_phase_end || top_parent.total_duration_end ) > Date.today
+    if top_parent.debate_phase.active && (top_parent.debate_phase.start_date || top_parent.total_duration_start) < Date.today && (top_parent.debate_phase.end_end || top_parent.total_duration_end ) > Date.today
 			return true
     else
 			return false
@@ -53,10 +53,10 @@ module ProjektsHelper
   def proposal_phase_active?(projekt)
     top_parent = projekt.top_parent
 
-    return false unless ( top_parent.proposal_phase_start || top_parent.total_duration_start )
-    return false unless ( top_parent.proposal_phase_end || top_parent.total_duration_end )
+    return false unless ( top_parent.proposal_phase.start_date || top_parent.total_duration_start )
+    return false unless ( top_parent.proposal_phase.end_date || top_parent.total_duration_end )
 
-    if top_parent.proposal_phase_active && (top_parent.proposal_phase_start || top_parent.total_duration_start) < Date.today && (top_parent.proposal_phase_end || top_parent.total_duration_end ) > Date.today
+    if top_parent.proposal_phase.active && (top_parent.proposal_phase.start_date || top_parent.total_duration_start) < Date.today && (top_parent.proposal_phase.end_date || top_parent.total_duration_end ) > Date.today
 			return true
     else
 			return false

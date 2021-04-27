@@ -16,7 +16,7 @@ class Projekt < ApplicationRecord
 
   accepts_nested_attributes_for :debate_phase, :proposal_phase
 
-  after_create :create_corresponding_page, :set_order
+  after_create :create_corresponding_page, :set_order, :create_projekt_phases
   after_destroy :ensure_order_integrity
 
   scope :top_level, -> { where(parent: nil) }
@@ -97,6 +97,11 @@ class Projekt < ApplicationRecord
     else
       self.update(order_number: 1)
     end
+  end
+
+  def create_projekt_phases
+    self.debate_phase = ProjektPhase::DebatePhase.create
+    self.proposal_phase = ProjektPhase::ProposalPhase.create
   end
 
   def swap_order_numbers_up

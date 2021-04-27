@@ -13,14 +13,22 @@
         <%= t("custom.admin.projekts.edit.debate_phase") %>
       </div>
       <div>
-        <%= format_date_range(projekt.debate_phase_start, projekt.debate_phase_end) %>
+        <% if projekt.debate_phase.present? %>
+          <%= format_date_range(projekt.debate_phase.start_date, projekt.debate_phase.end_date) %>
+        <% else %>
+          <%= format_date_range %>
+        <% end %>
       </div>
 
       <div>
         <%= t("custom.admin.projekts.edit.proposal_phase") %>
       </div>
       <div>
-        <%= format_date_range(projekt.proposal_phase_start, projekt.proposal_phase_end) %>
+        <% if projekt.proposal_phase.present? %>
+          <%= format_date_range(projekt.proposal_phase.start_date, projekt.proposal_phase.end_date) %>
+        <% else %>
+          <%= format_date_range %>
+        <% end %>
       </div>
 
       <div>
