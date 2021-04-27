@@ -69,6 +69,7 @@ de:
           proposal_phase: Vorschlagsphase
           voting_phase: Abstimmungsphase
           voting_manage: Abstimmungen verwalten
+          geozone_restricted: Nur verifizierte Nutzer
           show_in_navigation_checkbox: Projekt in Navigation anzeigen
           show_in_navigation:
             yes: Ja

@@ -13,7 +13,8 @@ span.icon-projekts::before {
   }
 }
 
-table.projekts {
+table.projekts,
+table.edit-projekt {
   
   tr:nth-child(even),
   tr:hover {
@@ -26,6 +27,22 @@ table.projekts {
 
   tr.projekt-details {
     border-top: none;
+  }
+}
+
+table.edit-projekt {
+  tr.projekt_phase_settings {
+    border-bottom: none;
+  }
+
+  tr.projekt_phase_geozones {
+    border-top: none;
+  }
+
+  div[id^="geozones_for"] {
+    .geozone-check-box {
+      float: left;
+    }
   }
 }
 

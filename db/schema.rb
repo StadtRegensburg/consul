@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210426111032) do
+ActiveRecord::Schema.define(version: 20210426181731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -617,12 +617,6 @@ ActiveRecord::Schema.define(version: 20210426111032) do
     t.index ["poll_id"], name: "index_geozones_polls_on_poll_id"
   end
 
-  create_table "geozones_projekts", id: false, force: :cascade do |t|
-    t.bigint "geozone_id", null: false
-    t.bigint "projekt_id", null: false
-    t.index ["projekt_id", "geozone_id"], name: "index_geozones_projekts_on_projekt_id_and_geozone_id", unique: true
-  end
-
   create_table "i18n_content_translations", id: :serial, force: :cascade do |t|
     t.integer "i18n_content_id", null: false
     t.string "locale", null: false
@@ -1214,6 +1208,27 @@ ActiveRecord::Schema.define(version: 20210426111032) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "projekt_phase_geozones", force: :cascade do |t|
+    t.bigint "projekt_phase_id"
+    t.bigint "geozone_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["geozone_id"], name: "index_projekt_phase_geozones_on_geozone_id"
+    t.index ["projekt_phase_id"], name: "index_projekt_phase_geozones_on_projekt_phase_id"
+  end
+
+  create_table "projekt_phases", force: :cascade do |t|
+    t.string "type"
+    t.date "start_date"
+    t.date "end_date"
+    t.boolean "active"
+    t.boolean "geozone_restricted"
+    t.bigint "projekt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projekt_id"], name: "index_projekt_phases_on_projekt_id"
+  end
+
   create_table "projekts", force: :cascade do |t|
     t.string "name"
     t.bigint "parent_id"
@@ -1230,7 +1245,6 @@ ActiveRecord::Schema.define(version: 20210426111032) do
     t.date "proposal_phase_start"
     t.date "proposal_phase_end"
     t.boolean "show_in_navigation"
-    t.boolean "geozone_restricted"
     t.index ["parent_id"], name: "index_projekts_on_parent_id"
   end
 
@@ -1704,6 +1718,9 @@ ActiveRecord::Schema.define(version: 20210426111032) do
   add_foreign_key "poll_recounts", "poll_officer_assignments", column: "officer_assignment_id"
   add_foreign_key "poll_voters", "polls"
   add_foreign_key "polls", "budgets"
+  add_foreign_key "projekt_phase_geozones", "geozones"
+  add_foreign_key "projekt_phase_geozones", "projekt_phases"
+  add_foreign_key "projekt_phases", "projekts"
   add_foreign_key "projekts", "projekts", column: "parent_id"
   add_foreign_key "proposals", "communities"
   add_foreign_key "related_content_scores", "related_contents"

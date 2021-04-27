@@ -6,9 +6,15 @@ class Projekt < ApplicationRecord
   has_and_belongs_to_many :polls
   has_and_belongs_to_many :proposals
   has_and_belongs_to_many :budgets
-  has_and_belongs_to_many :geozones
 
   has_one :page, class_name: "SiteCustomization::Page", dependent: :destroy
+
+  has_many :projekt_phases, dependent: :destroy
+  has_one :debate_phase, class_name: 'ProjektPhase::DebatePhase'
+  has_one :proposal_phase, class_name: 'ProjektPhase::ProposalPhase'
+  has_many :geozones, through: :projekt_phase
+
+  accepts_nested_attributes_for :debate_phase, :proposal_phase
 
   after_create :create_corresponding_page, :set_order
   after_destroy :ensure_order_integrity
