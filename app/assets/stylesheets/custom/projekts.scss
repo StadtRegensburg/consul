@@ -206,8 +206,8 @@ table.edit-projekt {
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 2.5em;
-    color: #878787;
-    font-weight: 500;
+    color: #222;
+    font-weight: 800;
     font-size: 0.875em;
     padding-right: 20%;
     border-left: 1px solid #ECF2FB;
@@ -215,14 +215,13 @@ table.edit-projekt {
 
   label.highlighted {
     background: #ECF2FB;
-    color: #06408E;
   }
 
   label.show-arrow:after {
     content: '';
     position: absolute;
     right: 18px;
-    top: 41%;
+    top: 23px;
     width: 7px;
     height: 7px;
     border: 1.5px solid #C6C6C6;
@@ -236,6 +235,12 @@ table.edit-projekt {
     cursor: pointer;
     height: 0;
     width: 0;
+  }
+
+  .projekt-phase-details {
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: 0.75rem;
   }
 
 }

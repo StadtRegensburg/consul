@@ -156,12 +156,16 @@
     initialize: function() {
       $("body").on("click", ".js-show-children-projekts", function(event) {
         event.preventDefault();
-        if ( event.target.classList.contains('js-show-children-projekts') ) {
+
+        if ( event.target.tagName == 'LABEL' ) {
           var $label = $(this)
-          App.Projekts.toggleChildProjekts($label);
-          App.Projekts.highlightLabel($label);
-          return false;
+        } else {
+          var $label = $(this).parent()
         }
+
+        App.Projekts.toggleChildProjekts($label);
+        App.Projekts.highlightLabel($label);
+        return false;
       });
 
       $("body").on("click", ".js-select-projekt", function() {

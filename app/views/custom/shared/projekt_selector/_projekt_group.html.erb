@@ -1,4 +1,5 @@
 <% parent_projekt_id ||= 0 %>
+<% phase_name = 'debate_phase' if controller.controller_name == 'debates' %>
 
 <div class="projekt-group" <%= "data-parent=#{parent_projekt_id}" %> >
   <%= f.collection_radio_buttons :projekt_id, projekts, :id, :name, {include_hidden: false} do |rb| %>
@@ -6,6 +7,11 @@
     <% rb.label(class: "js-show-children-projekts #{arrow}", data: {projekt_id: rb.object.id} ) do  %>
       <%= rb.radio_button %>
       <%= rb.text %>
+      <div class='projekt-phase-details js-show-children-projekts'>
+        <%= get_projekt_phase_duration(rb.object.send(phase_name)) if phase_name %>
+        <br>
+        <%= get_projekt_phase_limitations(rb.object.send(phase_name)) if phase_name %>
+      </div>
       <div class="checkmark-wrapper js-select-projekt">
         <span class="checkmark "></span>
       </div>

@@ -84,6 +84,16 @@ module ProjektsHelper
     end
   end
 
+  def get_projekt_phase_duration(phase)
+    format_date_range(phase.start_date, phase.end_date)
+  end
+
+  def get_projekt_phase_limitations(phase)
+    return phase.geozones.names.join(', ') if phase.geozones.any? && phase.geozone_restricted
+    return 'Alle Bürger der Stadt' if phase.geozone_restricted
+    'Alle Nutzer der Platform'
+  end
+
   def format_polls_range(projekt)
     matching_polls = Poll.joins(:projekts).where(projekts: {id: projekt.all_children_ids.push(projekt.id) }).distinct
 
