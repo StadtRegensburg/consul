@@ -68,6 +68,13 @@ class Projekt < ApplicationRecord
     end
   end
 
+  def self.ensure_projekt_phases
+    all.each do |projekt|
+      projekt.debate_phase = ProjektPhase::DebatePhase.create unless projekt.debate_phase
+      projekt.proposal_phase = ProjektPhase::ProposalPhase.create unless projekt.proposal_phase
+    end
+  end
+
   private
 
   def create_corresponding_page

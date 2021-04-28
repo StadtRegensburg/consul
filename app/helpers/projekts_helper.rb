@@ -85,13 +85,22 @@ module ProjektsHelper
   end
 
   def get_projekt_phase_duration(phase)
-    format_date_range(phase.start_date, phase.end_date)
+    if phase
+      format_date_range(phase.start_date, phase.end_date)
+    else
+      format_date_range
+    end
   end
 
   def get_projekt_phase_limitations(phase)
-    return phase.geozones.names.join(', ') if phase.geozones.any? && phase.geozone_restricted
-    return 'Alle Bürger der Stadt' if phase.geozone_restricted
+    if phase
+      return phase.geozones.names.join(', ') if phase.geozones.any? && phase.geozone_restricted
+      return 'Alle Bürger der Stadt' if phase.geozone_restricted
+    end
     'Alle Nutzer der Platform'
+  end
+
+  def projekt_phase_disabled?(user, phase)
   end
 
   def format_polls_range(projekt)
