@@ -129,11 +129,17 @@ table.edit-projekt {
   text-decoration: none !important;
   border-radius: 4px;
   font-size: 0.8rem;
-  width: 240px;
-  text-align: center; 
+  width: 190px;
+  text-align: center;
+  margin-top: 0.5em;
 
   &:hover {
     color: $white;
+  }
+
+  &:focus {
+    color: $white;
+    outline: none;
   }
 }
 

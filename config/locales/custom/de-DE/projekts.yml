@@ -10,10 +10,10 @@ de:
             projekt_duration: Gesamtdauer
             debate_phase: Diskussionsphase
             debate_phase_link: Zu den aktuellen Diskussionen
-            debate_phase_button: Direkt eine neue Diskussion starten
+            debate_phase_button: Starten Sie eine Diskussion
             proposal_phase: Vorschlagsphase
             proposal_phase_link: Zu den aktuellen Vorschlägen
-            proposal_phase_button: Direkt einen Vorschlag starten
+            proposal_phase_button: Vorschlag erstellen
             voting_phase: Abstimmungsphase
             voting_phase_link: Zu den Abstimmungen
             voting_phase_active_count:

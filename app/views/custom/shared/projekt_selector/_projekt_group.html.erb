@@ -3,27 +3,29 @@
 <% phase_name = 'proposal_phase' if controller.controller_name == 'proposals' %>
 
 
-
-<div class="projekt-group" <%= "data-parent=#{parent_projekt_id}" %> >
+<div class="projekt-group" <%= "data-parent=#{parent_projekt_id}" %> <%= 'style=display:block;' if show_projekt_group_in_selector?(projekts) %> >
   <%= f.collection_radio_buttons :projekt_id, projekts, :id, :name, {include_hidden: false} do |rb| %>
 
-    <% if phase_name %>
-      <% @projekt_phase = rb.object.send(phase_name) %>
-      <% disabled_class = can?(:select, @projekt_phase) ? '' : 'projekt-phase-disabled' %>
+    <% @projekt_phase = rb.object.send(phase_name) if phase_name %>
 
-      <% (params[:projekt].to_i == rb.object.id) && can?(:select, @projekt_phase) ?  checked_radio = 'checked' : checked_radio = '' %>
-    <% end %>
+    <% disable_radio_button = ((can?(:select, @projekt_phase) || ((current_user.administrator?) && controller.controller_name == 'polls') ) ? false : true)  %>
+    <% disabled_class = ((can?(:select, @projekt_phase) || ((current_user.administrator?) && controller.controller_name == 'polls') ) ? '' : 'projekt-phase-disabled') %>
 
 
     <% rb.object.children.any? ? arrow = 'show-arrow' : arrow = ''  %>
     <% rb.label(class: "js-show-children-projekts #{arrow} #{disabled_class}", data: {projekt_id: rb.object.id} ) do  %>
-      <%= rb.radio_button(disabled: !can?(:select, @projekt_phase), checked: checked_radio) %>
+
+      <%= rb.radio_button(disabled: disable_radio_button, checked: check_radio_button?(rb.object.id)) %>
       <%= rb.text %>
-      <div class='projekt-phase-details js-show-children-projekts'>
-        <%= get_projekt_phase_duration(rb.object.send(phase_name)) if phase_name %>
-        <br>
-        <%= get_projekt_phase_limitations(rb.object.send(phase_name)) if phase_name %>
-      </div>
+
+      <% if phase_name %>
+        <div class='projekt-phase-details js-show-children-projekts'>
+          <%= get_projekt_phase_duration(rb.object.send(phase_name)) %>
+          <br>
+          <%= get_projekt_phase_limitations(rb.object.send(phase_name)) if Setting["feature.user.skip_verification"].blank? %>
+        </div>
+      <% end %>
+
       <div class="checkmark-wrapper js-select-projekt">
         <span class="checkmark "></span>
       </div>

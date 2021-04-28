@@ -17,8 +17,10 @@
     <%= get_projekt_phase_duration(projekt.debate_phase) %>
     <br>
 
-    <%= get_projekt_phase_limitations(projekt.debate_phase) %>
-    <br>
+    <% if Setting["feature.user.skip_verification"].blank? %>
+      <%= get_projekt_phase_limitations(projekt.debate_phase) %>
+      <br>
+    <% end %>
 
     <%= link_to debates_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>
       <%= t("custom.projekt.page.sidebar.phases.debate_phase_link") %>
@@ -41,8 +43,10 @@
     <%= get_projekt_phase_duration(projekt.proposal_phase) %>
     <br>
 
-    <%= get_projekt_phase_limitations(projekt.proposal_phase) %>
-    <br>
+    <% if Setting["feature.user.skip_verification"].blank? %>
+      <%= get_projekt_phase_limitations(projekt.proposal_phase) %>
+      <br>
+    <% end %>
 
     <%= link_to proposals_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>
       <%= t("custom.projekt.page.sidebar.phases.proposal_phase_link") %>
@@ -62,9 +66,6 @@
   <br>
 
   <%= t("custom.projekt.page.sidebar.phases.voting_phase_active_count", count: related_polls(projekt).count) %>
-  <br>
-
-  <%= related_polls(projekt).map{ |poll| poll.geozones.names }.join(', ') %>
   <br>
 
   <%= link_to polls_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>

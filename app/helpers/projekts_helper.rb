@@ -99,4 +99,35 @@ module ProjektsHelper
   def related_polls(projekt, timestamp = Date.current.beginning_of_day)
     Poll.where(projekt_id: projekt.all_children_ids.push(projekt.id)).where("starts_at <= ? AND ? <= ends_at", timestamp, timestamp)
   end
+
+  def check_radio_button?(current_projekt_id)
+    resource = @debate || @proposal || @poll
+    
+    if resource && resource.projekt.present?
+      selected_projekt_id = resource.projekt.id
+    elsif params[:projekt].present?
+      selected_projekt_id = params[:projekt].to_i
+    else
+      selected_projekt_id = nil
+    end
+
+    (selected_projekt_id == current_projekt_id) && (can?(:select, @projekt_phase) || current_user.administrator) ?  'checked' : ''
+
+  end
+
+  def show_projekt_group_in_selector?(projekts)
+    resource = @debate || @proposal || @poll
+
+    if resource && resource.projekt.present?
+      selected_projekt_id = resource.projekt.id
+    elsif params[:projekt].present?
+      selected_projekt_id = params[:projekt].to_i
+    else
+      selected_projekt_id = nil
+    end
+
+    if selected_projekt_id
+      (projekts.ids + projekts.map{ |projekt| projekt.all_children_ids }.flatten).include?(selected_projekt_id)
+    end
+  end
 end
