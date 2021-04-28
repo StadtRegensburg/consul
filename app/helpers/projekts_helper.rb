@@ -43,7 +43,7 @@ module ProjektsHelper
     return false unless ( top_parent.debate_phase.start_date || top_parent.total_duration_start )
     return false unless ( top_parent.debate_phase.end_date || top_parent.total_duration_end )
 
-    if top_parent.debate_phase.active && (top_parent.debate_phase.start_date || top_parent.total_duration_start) < Date.today && (top_parent.debate_phase.end_end || top_parent.total_duration_end ) > Date.today
+    if top_parent.debate_phase.active && (top_parent.debate_phase.start_date || top_parent.total_duration_start) < Date.today && (top_parent.debate_phase.end_date || top_parent.total_duration_end ) > Date.today
 			return true
     else
 			return false
@@ -64,7 +64,7 @@ module ProjektsHelper
   end
 
   def related_polls_exist?(projekt)
-    Poll.joins(:projekts).where(projekts: { id: projekt.all_children_ids.push(projekt.id) }).any?
+    Poll.where(projekt_id: projekt.all_children_ids.push(projekt.id)).any?
   end
 
   def format_date(date)

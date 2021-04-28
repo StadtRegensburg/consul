@@ -1,0 +1,14 @@
+<% parent_projekt_id ||= 0 %>
+
+<div class="projekt-group" <%= "data-parent=#{parent_projekt_id}" %> >
+  <%= f.collection_radio_buttons :projekt_id, projekts, :id, :name, {include_hidden: false} do |rb| %>
+    <% rb.object.children.any? ? arrow = 'show-arrow' : arrow = ''  %>
+    <% rb.label(class: "js-show-children-projekts #{arrow}", data: {projekt_id: rb.object.id} ) do  %>
+      <%= rb.radio_button %>
+      <%= rb.text %>
+      <div class="checkmark-wrapper js-select-projekt">
+        <span class="checkmark "></span>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210427085952) do
+ActiveRecord::Schema.define(version: 20210427114943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -505,6 +505,7 @@ ActiveRecord::Schema.define(version: 20210427085952) do
     t.integer "geozone_id"
     t.tsvector "tsv"
     t.datetime "featured_at"
+    t.bigint "projekt_id"
     t.index ["author_id", "hidden_at"], name: "index_debates_on_author_id_and_hidden_at"
     t.index ["author_id"], name: "index_debates_on_author_id"
     t.index ["cached_votes_down"], name: "index_debates_on_cached_votes_down"
@@ -515,6 +516,7 @@ ActiveRecord::Schema.define(version: 20210427085952) do
     t.index ["geozone_id"], name: "index_debates_on_geozone_id"
     t.index ["hidden_at"], name: "index_debates_on_hidden_at"
     t.index ["hot_score"], name: "index_debates_on_hot_score"
+    t.index ["projekt_id"], name: "index_debates_on_projekt_id"
     t.index ["tsv"], name: "index_debates_on_tsv", using: :gin
   end
 
@@ -1178,7 +1180,9 @@ ActiveRecord::Schema.define(version: 20210427085952) do
     t.integer "budget_id"
     t.string "related_type"
     t.integer "related_id"
+    t.bigint "projekt_id"
     t.index ["budget_id"], name: "index_polls_on_budget_id", unique: true
+    t.index ["projekt_id"], name: "index_polls_on_projekt_id"
     t.index ["related_type", "related_id"], name: "index_polls_on_related_type_and_related_id"
     t.index ["starts_at", "ends_at"], name: "index_polls_on_starts_at_and_ends_at"
   end
@@ -1297,6 +1301,7 @@ ActiveRecord::Schema.define(version: 20210427085952) do
     t.integer "community_id"
     t.datetime "published_at"
     t.boolean "selected", default: false
+    t.bigint "projekt_id"
     t.index ["author_id", "hidden_at"], name: "index_proposals_on_author_id_and_hidden_at"
     t.index ["author_id"], name: "index_proposals_on_author_id"
     t.index ["cached_votes_up"], name: "index_proposals_on_cached_votes_up"
@@ -1305,6 +1310,7 @@ ActiveRecord::Schema.define(version: 20210427085952) do
     t.index ["geozone_id"], name: "index_proposals_on_geozone_id"
     t.index ["hidden_at"], name: "index_proposals_on_hidden_at"
     t.index ["hot_score"], name: "index_proposals_on_hot_score"
+    t.index ["projekt_id"], name: "index_proposals_on_projekt_id"
     t.index ["tsv"], name: "index_proposals_on_tsv", using: :gin
   end
 
@@ -1680,6 +1686,7 @@ ActiveRecord::Schema.define(version: 20210427085952) do
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
+  add_foreign_key "debates", "projekts"
   add_foreign_key "documents", "users"
   add_foreign_key "failed_census_calls", "poll_officers"
   add_foreign_key "failed_census_calls", "users"
@@ -1712,11 +1719,13 @@ ActiveRecord::Schema.define(version: 20210427085952) do
   add_foreign_key "poll_recounts", "poll_officer_assignments", column: "officer_assignment_id"
   add_foreign_key "poll_voters", "polls"
   add_foreign_key "polls", "budgets"
+  add_foreign_key "polls", "projekts"
   add_foreign_key "projekt_phase_geozones", "geozones"
   add_foreign_key "projekt_phase_geozones", "projekt_phases"
   add_foreign_key "projekt_phases", "projekts"
   add_foreign_key "projekts", "projekts", column: "parent_id"
   add_foreign_key "proposals", "communities"
+  add_foreign_key "proposals", "projekts"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "site_customization_pages", "projekts"

@@ -120,6 +120,29 @@ table.edit-projekt {
 
 // Index and new views
 
+
+.projekt-chip {
+  display: inline-block;
+  font-size: 0.875em;
+  background: #ececec;
+  color: #222;
+  padding: 5px 1em;
+  margin-bottom: .5em;
+
+  a {
+    color: #222;
+  }
+
+  &.filtered-projekt {
+    background: #06408E;
+
+    a {
+      color: #fff;
+    }
+  }
+}
+
+
 #projekt-tags {
   margin: 1em 0;
 }
@@ -144,36 +167,31 @@ table.edit-projekt {
     color: #878787;
   }
 
+  .checkmark-wrapper {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    height: 25px;
+    width: 30px;
+  }
+
   .checkmark {
     position: absolute;
-    top: 19px;
-    left: 12px;
+    top: 3px;
+    left: 3px;
     height: 14px;
     width: 14px;
+    border-radius: 50%;
+  }
+
+  input:not(:checked) ~ .checkmark-wrapper > .checkmark {
+    background: #fff;
     border: 1.5px solid #C6C6C6;
-    border-radius: 2px;
   }
 
-  input:checked ~ .checkmark-before {
-    display: block;
-  }
-
-  input:checked ~ .checkmark {
+  input:checked ~ .checkmark-wrapper > .checkmark {
     background: #06408E;
     border: 1.5px solid #06408E;
-  }
-
-  .checkmark-before {
-    content: "";
-    position: absolute;
-    display: none;
-    left: 17px;
-    top: 21px;
-    width: 4px;
-    height: 7px;
-    border: 1.5px solid #fff;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
   }
 
   label {
@@ -182,21 +200,22 @@ table.edit-projekt {
     position: relative;
     cursor: pointer;
     user-select: none;
-
     font-size: 1em;
     font-weight: initial;
     line-height: 1.5rem;
-
     padding-top: 1em;
     padding-bottom: 1em;
-    padding-left: 2.2em;
-
+    padding-left: 2.5em;
     color: #878787;
     font-weight: 500;
     font-size: 0.875em;
     padding-right: 20%;
-
     border-left: 1px solid #ECF2FB;
+  }
+
+  label.highlighted {
+    background: #ECF2FB;
+    color: #06408E;
   }
 
   label.show-arrow:after {
@@ -211,7 +230,7 @@ table.edit-projekt {
     transform: rotate(-45deg);
   }
 
-  input[type='checkbox'] {
+  input[type='radio'] {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -221,27 +240,6 @@ table.edit-projekt {
 
 }
 
-
-.projekt-chip {
-  display: inline-block;
-  font-size: 0.875em;
-  background: #ececec;
-  color: #222;
-  padding: 5px 1em;
-  margin-bottom: .5em;
-
-  a {
-    color: #222;
-  }
-
-  &.filtered-projekt {
-    background: #06408E;
-
-    a {
-      color: #fff;
-    }
-  }
-}
 
 #projekt-tags {
 
