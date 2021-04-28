@@ -29,7 +29,7 @@ module ProjektsHelper
       module_links.push(link)
     end
 
-    if related_polls_exist?(projekt)
+    if related_polls(projekt).any?
       link = link_to t('custom.menu.polls'), (polls_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}"), class: 'projekt-module-link'
       module_links.push(link)
     end
@@ -61,10 +61,6 @@ module ProjektsHelper
     else
 			return false
     end
-  end
-
-  def related_polls_exist?(projekt)
-    Poll.where(projekt_id: projekt.all_children_ids.push(projekt.id)).any?
   end
 
   def format_date(date)
@@ -100,16 +96,7 @@ module ProjektsHelper
     'Alle Nutzer der Platform'
   end
 
-  def projekt_phase_disabled?(user, phase)
-  end
-
-  def format_polls_range(projekt)
-    matching_polls = Poll.joins(:projekts).where(projekts: {id: projekt.all_children_ids.push(projekt.id) }).distinct
-
-    if matching_polls.count == 1
-      return format_date_range(matching_polls.first.starts_at, matching_polls.first.ends_at)
-    else
-      return "#{matching_polls.count} aktive"
-    end
+  def related_polls(projekt, timestamp = Date.current.beginning_of_day)
+    Poll.where(projekt_id: projekt.all_children_ids.push(projekt.id)).where("starts_at <= ? AND ? <= ends_at", timestamp, timestamp)
   end
 end

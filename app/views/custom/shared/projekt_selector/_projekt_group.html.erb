@@ -1,11 +1,23 @@
 <% parent_projekt_id ||= 0 %>
 <% phase_name = 'debate_phase' if controller.controller_name == 'debates' %>
+<% phase_name = 'proposal_phase' if controller.controller_name == 'proposals' %>
+
+
 
 <div class="projekt-group" <%= "data-parent=#{parent_projekt_id}" %> >
   <%= f.collection_radio_buttons :projekt_id, projekts, :id, :name, {include_hidden: false} do |rb| %>
+
+    <% if phase_name %>
+      <% @projekt_phase = rb.object.send(phase_name) %>
+      <% disabled_class = can?(:select, @projekt_phase) ? '' : 'projekt-phase-disabled' %>
+
+      <% (params[:projekt].to_i == rb.object.id) && can?(:select, @projekt_phase) ?  checked_radio = 'checked' : checked_radio = '' %>
+    <% end %>
+
+
     <% rb.object.children.any? ? arrow = 'show-arrow' : arrow = ''  %>
-    <% rb.label(class: "js-show-children-projekts #{arrow}", data: {projekt_id: rb.object.id} ) do  %>
-      <%= rb.radio_button %>
+    <% rb.label(class: "js-show-children-projekts #{arrow} #{disabled_class}", data: {projekt_id: rb.object.id} ) do  %>
+      <%= rb.radio_button(disabled: !can?(:select, @projekt_phase), checked: checked_radio) %>
       <%= rb.text %>
       <div class='projekt-phase-details js-show-children-projekts'>
         <%= get_projekt_phase_duration(rb.object.send(phase_name)) if phase_name %>

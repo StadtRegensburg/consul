@@ -170,6 +170,11 @@
 
       $("body").on("click", ".js-select-projekt", function() {
         var $label = $(this).parent()
+
+        if ( $label.hasClass('projekt-phase-disabled')) {
+          return false;
+        }
+
         var $radioButton = $label.find(":radio").first()
         App.Projekts.highlightLabel($label);
 

@@ -8,49 +8,67 @@
   <%= format_date_range(projekt.total_duration_start, projekt.total_duration_end) %>
 </div>
 
-<% if debate_phase_active?(projekt) %>
+<% if debate_phase_active?(projekt) && projekt.debate_phase.present? %>
   <div class='projekt-phase debate-phase'>
+
+    <strong><%= t("custom.projekt.page.sidebar.phases.debate_phase") %></strong>
+    <br>
+
+    <%= get_projekt_phase_duration(projekt.debate_phase) %>
+    <br>
+
+    <%= get_projekt_phase_limitations(projekt.debate_phase) %>
+    <br>
+
     <%= link_to debates_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>
-      <%= t("custom.projekt.page.sidebar.phases.debate_phase") %>
-      <span class='link-icon'> </span>
+      <%= t("custom.projekt.page.sidebar.phases.debate_phase_link") %>
     <% end %>
     <br>
-    <% if projekt.debate_phase.present? %>
-      <%= format_date_range(projekt.debate_phase.start_date, projekt.debate_phase.end_date) %>
-    <% else %>
-      <%= format_date_range %>
+
+    <%= link_to new_debate_path + "?projekt=#{projekt.id}", class: 'projekt-phase-button' do %>
+      <%= t("custom.projekt.page.sidebar.phases.debate_phase_button") %>
     <% end %>
-    <br>
-    Alle Nutzer
+
   </div>
 <% end %>
 
-<% if proposal_phase_active?(projekt) %>
+<% if proposal_phase_active?(projekt) && projekt.proposal_phase.present?  %>
   <div class='projekt-phase proposals-phase'>
+
+    <strong><%= t("custom.projekt.page.sidebar.phases.proposal_phase") %></strong>
+    <br>
+
+    <%= get_projekt_phase_duration(projekt.proposal_phase) %>
+    <br>
+
+    <%= get_projekt_phase_limitations(projekt.proposal_phase) %>
+    <br>
+
     <%= link_to proposals_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>
-      <%= t("custom.projekt.page.sidebar.phases.proposal_phase") %>
-      <span class='link-icon'> </span>
+      <%= t("custom.projekt.page.sidebar.phases.proposal_phase_link") %>
     <% end %>
     <br>
-    <% if projekt.proposal_phase.present? %>
-      <%= format_date_range(projekt.proposal_phase.start_date, projekt.proposal_phase.end_date) %>
-    <% else %>
-      <%= format_date_range %>
+
+    <%= link_to new_proposal_path + "?projekt=#{projekt.id}", class: 'projekt-phase-button' do %>
+      <%= t("custom.projekt.page.sidebar.phases.proposal_phase_button") %>
     <% end %>
-    <br>
-    Alle Nutzer
+
   </div>
 <% end %>
 
-<% if related_polls_exist?(projekt) %>
-  <div class='projekt-phase voting-phase'>
-    <%= link_to polls_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>
-      <%= t("custom.projekt.page.sidebar.phases.voting_phase") %>
-      <span class='link-icon'> </span>
-    <% end %>
-    <br>
-    <%= format_polls_range(projekt) %>
-    <br>
-    Alle Nutzer
-  </div>
-<% end %>
+<div class='projekt-phase voting-phase'>
+
+  <strong><%= t("custom.projekt.page.sidebar.phases.voting_phase") %></strong>
+  <br>
+
+  <%= t("custom.projekt.page.sidebar.phases.voting_phase_active_count", count: related_polls(projekt).count) %>
+  <br>
+
+  <%= related_polls(projekt).map{ |poll| poll.geozones.names }.join(', ') %>
+  <br>
+
+  <%= link_to polls_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}" do %>
+    <%= t("custom.projekt.page.sidebar.phases.voting_phase_link") %>
+  <% end %>
+
+</div>

@@ -121,6 +121,23 @@ table.edit-projekt {
 // Index and new views
 
 
+.projekt-phase-button {
+  padding: 0.3rem 0.5rem;
+  display: inline-block;
+  background: $brand;
+  color: $white;
+  text-decoration: none !important;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  width: 240px;
+  text-align: center; 
+
+  &:hover {
+    color: $white;
+  }
+}
+
+
 .projekt-chip {
   display: inline-block;
   font-size: 0.875em;
@@ -227,6 +244,14 @@ table.edit-projekt {
     border: 1.5px solid #C6C6C6;
     border-width: 0 2px 2px 0;
     transform: rotate(-45deg);
+  }
+
+  label.projekt-phase-disabled {
+    color: #878787;
+
+    .checkmark-wrapper:hover {
+      cursor: not-allowed;
+    }
   }
 
   input[type='radio'] {
