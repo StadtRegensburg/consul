@@ -19,12 +19,12 @@ module ProjektsHelper
 
     module_links = []
 
-    if debate_phase_active?(projekt)
+    if projekt_phase_show_in_navigation?(projekt, 'debate_phase')
       link = link_to t('custom.menu.debates'), (debates_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}"), class: 'projekt-module-link'
       module_links.push(link)
     end
 
-    if proposal_phase_active?(projekt)
+    if projekt_phase_show_in_navigation?(projekt, 'proposal_phase')
       link = link_to t('custom.menu.proposals'), (proposals_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}"), class: 'projekt-module-link'
       module_links.push(link)
     end
@@ -37,30 +37,19 @@ module ProjektsHelper
     module_links.join(' | ').html_safe
   end
 
-  def debate_phase_active?(projekt)
-    top_parent = projekt.top_parent
-
-    return false unless ( top_parent.debate_phase.start_date || top_parent.total_duration_start )
-    return false unless ( top_parent.debate_phase.end_date || top_parent.total_duration_end )
-
-    if top_parent.debate_phase.active && (top_parent.debate_phase.start_date || top_parent.total_duration_start) < Date.today && (top_parent.debate_phase.end_date || top_parent.total_duration_end ) > Date.today
-			return true
-    else
-			return false
-    end
+  def projekt_phase_active?(projekt, phase_name)
+    projekt.send(phase_name).active
   end
 
-  def proposal_phase_active?(projekt)
-    top_parent = projekt.top_parent
+  def projekt_phase_selectable?(projekt, phase_name)
+    projekt.send(phase_name).active &&
+      ((projekt.send(phase_name).start_date <= Date.today if projekt.send(phase_name).start_date) || projekt.send(phase_name).start_date.blank? ) &&
+      ((projekt.send(phase_name).end_date >= Date.today if projekt.send(phase_name).end_date) || projekt.send(phase_name).end_date.blank? )
+  end
 
-    return false unless ( top_parent.proposal_phase.start_date || top_parent.total_duration_start )
-    return false unless ( top_parent.proposal_phase.end_date || top_parent.total_duration_end )
-
-    if top_parent.proposal_phase.active && (top_parent.proposal_phase.start_date || top_parent.total_duration_start) < Date.today && (top_parent.proposal_phase.end_date || top_parent.total_duration_end ) > Date.today
-			return true
-    else
-			return false
-    end
+  def projekt_phase_show_in_navigation?(projekt, phase_name)
+    projekt.send(phase_name).active &&
+      ((projekt.send(phase_name).start_date <= Date.today if projekt.send(phase_name).start_date) || projekt.send(phase_name).start_date.blank? )
   end
 
   def format_date(date)
@@ -93,7 +82,7 @@ module ProjektsHelper
       return phase.geozones.names.join(', ') if phase.geozones.any? && phase.geozone_restricted
       return 'Alle Bürger der Stadt' if phase.geozone_restricted
     end
-    'Alle Nutzer der Platform'
+    'Alle Nutzer der Plattform'
   end
 
   def related_polls(projekt, timestamp = Date.current.beginning_of_day)

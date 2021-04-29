@@ -20,7 +20,8 @@ class Projekt < ApplicationRecord
 
   scope :top_level, -> { where(parent: nil) }
   scope :with_order_number, -> { where.not(order_number: nil).order(order_number: :asc) }
-  scope :top_level_active, -> { top_level.with_order_number.where( "total_duration_active = ? and (total_duration_end IS NULL OR total_duration_end > ?)", true, Date.today) }
+
+  scope :top_level_active, -> { top_level.with_order_number.where( "total_duration_active = ? and (total_duration_end IS NULL OR total_duration_end >= ?)", true, Date.today) }
   scope :top_level_archived, -> { top_level.with_order_number.where( "total_duration_active = ? and total_duration_end < ?", true, Date.today) }
 
   def all_children_ids(all_children_ids = [])
@@ -32,6 +33,10 @@ class Projekt < ApplicationRecord
     end
 
     all_children_ids
+  end
+
+  def top_level?
+    self.parent.blank?
   end
 
   def top_parent

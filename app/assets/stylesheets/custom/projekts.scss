@@ -50,7 +50,7 @@ table.edit-projekt {
 	}
 }
 
-table.edit-projekt {
+#edit_projekt {
   tr.projekt_phase_settings {
     border-bottom: none;
   }
@@ -63,6 +63,10 @@ table.edit-projekt {
     .geozone-check-box {
       float: left;
     }
+  }
+
+  .fieldset-disabled {
+    opacity: 0.3;
   }
 }
 

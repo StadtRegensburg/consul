@@ -4,8 +4,20 @@ class ProjektPhase < ApplicationRecord
   has_many :geozones, through: :projekt_phase_geozones
 
   def selectable_by?(user)
+    geozone_allowed = if geozone_restricted && geozone_ids.any?
+                        geozone_ids.include?(user.geozone_id) || Setting["feature.user.skip_verification"].present?
+                      elsif geozone_restricted
+                        user.level_two_or_three_verified? || Setting["feature.user.skip_verification"].present?
+                      else 
+                        true
+                      end
+
     user.present? &&
-      user.level_two_or_three_verified? &&
-      (!geozone_restricted || geozone_ids.include?(user.geozone_id))
+      geozone_allowed &&
+         self.active &&
+           ((self.start_date <= Date.today if self.start_date) || self.start_date.blank? ) &&
+             ((self.end_date >= Date.today if self.end_date) || self.end_date.blank? )
+
+
   end
 end
