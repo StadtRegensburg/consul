@@ -28,6 +28,26 @@ table.edit-projekt {
   tr.projekt-details {
     border-top: none;
   }
+
+  tr.projekt-row[aria-expanded="false"] {
+    .info-arrow {
+      transform: rotate(0deg);
+    }
+
+    &+tr.projekt-details {
+      display: none;
+    }
+	}
+
+  tr.projekt-row[aria-expanded="true"] {
+    .info-arrow {
+      transform: rotate(180deg);
+    }
+
+    &+tr.projekt-details {
+      display: table-row;
+    }
+	}
 }
 
 table.edit-projekt {
@@ -46,23 +66,35 @@ table.edit-projekt {
   }
 }
 
-.projekt-link,
-.projekt-dates {
+.projekt-summary {
+  display: grid;
+  grid-template-columns: 250px 300px;
+  margin-bottom: 2em;
   font-size: 0.875em;
-}
 
-.projekt-link {
-  margin-top: -1em;
+  .section-title,
+  .debate-phase,
+  .proposal-phase {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .debate-phase,
+  .proposal-phase {
+    display: grid;
+    grid-template-columns: 250px 300px;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  .margin-top {
+    margin-top: 1rem;
+  }
 
   a {
     margin-left: 0 !important;
   }
-}
 
-.projekt-dates {
-  display: grid;
-  grid-template-columns: 250px 300px;
-  margin-bottom: 2em;
 }
 
 form select {
@@ -73,6 +105,31 @@ form select {
 
 tr.projekt-row td {
   vertical-align: top;
+}
+
+td.projekt-info {
+  label {
+    padding-left: 12px;
+  }
+
+  .info-arrow {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .info-arrow:after {
+    content: "\f078";
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    height: auto;
+    position: absolute;
+    transition: 0.25s; 
+    font-size: 24px;
+    left: 14px;
+    top: 10px;
+  }
 }
 
 td.projekt-level {
