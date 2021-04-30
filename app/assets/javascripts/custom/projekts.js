@@ -18,7 +18,7 @@
     },
 
     highlightLabel: function($label) {
-      $('#projekt-tags-selector label').each( function() {
+      $label.closest('.projekt-tags-column').find('label').each( function() {
         $(this).removeClass('highlighted')
       })
       $label.addClass('highlighted')
