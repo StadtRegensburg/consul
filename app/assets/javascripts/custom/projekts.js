@@ -188,10 +188,11 @@
       $("body").on("click", ".js-filter-projekt", function() {
         var $checkbox = $(this);
         App.Projekts.formNewFilterProjektsRequest($checkbox);
+
         var $parentProjekt = $(this).closest('li');
 
         if ( $parentProjekt.next().prop("tagName")  === 'UL' && $checkbox.is(':checked')  ) {
-          var $childrentCheckboxes = $parentProjekt.next().find('.js-filter-projekt');
+          var $childrentCheckboxes = $parentProjekt.siblings().find('.js-filter-projekt');
 
           $childrentCheckboxes.each( function() {
             $(this).prop( "checked", true )
