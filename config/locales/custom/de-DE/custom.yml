@@ -121,6 +121,12 @@ de:
     comments:
       reply_form:
         leave_comment: 'Schreiben Sie eine Antwort'
+      restricted:
+        geo_limitation: 'Dieses projekt ist auf die folgende Gebiete beschränkt: %{geozones}'
+        debate_phase_expired: Die Diskussionsphase ist bereits abgelaufen. Neue Kommentare können nicht mehr hinzugefügt werden
+        proposal_phase_expired: Die Vorschlagsphase ist bereits abgelaufen. Neue Kommentare können nicht mehr hinzugefügt werden
+        poll_phase_expired: Die Abstimmungsphase ist bereits abgelaufen. Neue Kommentare können nicht mehr hinzugefügt werden
+
     images:
       form:
         image_name: 'Name des Titelbildes'
