@@ -1,5 +1,8 @@
 de:
   custom:
+    pages:
+      impressum:
+        title: Impressum
     users:
       verify_account_link_short: verifizieren
       login_to_vote: "Sie müssen sich %{signin} oder %{signup}, um teilnehmen zu können"
