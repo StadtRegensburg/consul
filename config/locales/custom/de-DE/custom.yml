@@ -96,6 +96,7 @@ de:
           projekt_phases: Projektphasen
           projekt_phase_limitation: Beschränkung
 
+
     projekts:
       new:
         first_level: 'Erste Projektebene'
@@ -109,6 +110,7 @@ de:
         filter_button: 'Projekte filtern'
       errors:
         presence: 'Bitte wählen Sie ein Projekt'
+      backlink: Zur Projektübersicht
     proposals:
       form:
         tags_custom: Nutzer-Tags
