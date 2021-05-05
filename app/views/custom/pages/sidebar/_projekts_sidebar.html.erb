@@ -1,4 +1,4 @@
-<% if projekt.page && projekt.page.published? %>
+<% if extended_feature?('projekt_page_sharing') && projekt.page && projekt.page.published? %>
   <%= render "shared/social_share",
       share_title: t("custom.pages.social_share.share"),
       title: projekt.page.title,
