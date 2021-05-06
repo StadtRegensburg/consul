@@ -59,3 +59,13 @@ de:
           navigation_description: Zeigt archivierte Projekte in der Navigationsleiste wenn aktiviert
           sidebar: Archivierte Projekte in Projektseitenleiste  anzeigen
           sidebar_description: Zeigt archivierte Projekte in der Projektseitenleiste wenn aktiviert
+        show_phases_in_projekt_page_sidebar: Projektphasen in Projektseite
+        show_phases_in_projekt_page_sidebar_description: Aktivieren Sie die Projektphasen in der rechten Seitenleiste der Projektseite
+        show_total_duration_in_projekts_page_sidebar: Gesamtdauer in Projektphasen
+        show_total_duration_in_projekts_page_sidebar_description: "Zeigt die Phase \"Gesamtdauer\" in den Projektphasen in der rechten Seitenleiste der Projektseite an"
+        show_not_active_phases_in_projekts_page_sidebar: Nicht aktive Teilnahmephasen
+        show_not_active_phases_in_projekts_page_sidebar_description: "Zeigt die Phasen \"Diskussionen\", \"Vorschläge\" und \"Abstimmungen an, auch wenn diese nicht aktiviert sind"
+        show_navigator_in_projekts_page_sidebar: Projektnavigation in Projektseite
+        show_navigator_in_projekts_page_sidebar_description: Zeigt die Projektnavigation in der rechten Seitenleiste der Projektseiten an
+        show_module_links_in_flyout_menu: Modul-Links in den Dropdowns
+        show_module_links_in_flyout_menu_description: Zeigt die die Modul-Links unterhalb einzelner Dropdown-Einträge an
