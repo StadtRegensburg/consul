@@ -35,6 +35,10 @@
 }
 
 .account-admin-items {
+  li#notifications {
+    margin-right: 0;
+  }
+
   a {
     display: inline-block;
   }
