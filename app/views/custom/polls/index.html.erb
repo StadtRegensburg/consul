@@ -66,7 +66,14 @@
       <% end %>
 
       <div id="section_help" class="margin" data-magellan-target="section_help">
-        <%=render_custom_block 'polls_help' %>
+        <% if extended_feature?('custom_help_text_in_modules')  %>
+          <%=render_custom_block 'polls_help' %>
+        <% else %>
+          <p class="lead">
+            <strong><%= t("polls.index.section_footer.title") %></strong>
+          </p>
+          <p><%= t("polls.index.section_footer.description") %></p>
+        <% end %>
         <%= render_custom_partial "footer" %>
       </div>
     </div>

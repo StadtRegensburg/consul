@@ -95,7 +95,18 @@
 
         <% unless @search_terms || @advanced_search_terms %>
           <div id="section_help" class="margin" data-magellan-target="section_help">
-            <%=render_custom_block 'debates_help' %>
+            <% if extended_feature?('custom_help_text_in_modules') %>
+              <%=render_custom_block 'debates_help' %>
+            <% else %>
+              <p class="lead">
+                <strong><%= t("debates.index.section_footer.title") %></strong>
+              </p>
+              <p><%= t("debates.index.section_footer.description") %></p>
+              <p><%= t("debates.index.section_footer.help_text_1") %></p>
+              <p><%= sanitize(t("debates.index.section_footer.help_text_2",
+                        org: link_to(setting["org_name"], new_user_registration_path))) %></p>
+              </p>
+            <% end %>
           </div>
         <% end %>
       </div>
