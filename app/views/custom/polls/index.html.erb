@@ -34,10 +34,12 @@
             <%= link_to t('polls.index.section_header.help'), '#section_help' %>
           </div>
           <div class='small-12 medium-3 column small'>
-            <div class='float-right'>
-              <%= @all_polls.count %>
-              <%= t('activerecord.models.poll', count: @all_polls.count) %>
-            </div>
+            <% if extended_feature?('show_number_of_entries_in_modules') %>
+              <div class='float-right'>
+                <%= @all_polls.count %>
+                <%= t('activerecord.models.poll', count: @all_polls.count) %>
+              </div>
+            <% end %>
           </div>
         </div>
 
