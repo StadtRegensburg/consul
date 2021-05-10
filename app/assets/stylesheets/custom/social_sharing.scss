@@ -87,11 +87,15 @@
   }
 }
 
-.custom-page .social-share-full .social-share-button {
+.social-share-full .social-share-button {
   display: inline;
 }
 
 .featured-proposals {
+
+  .social-share-full {
+    margin-bottom: 1rem;
+  }
 
   .share-supported {
 
@@ -112,12 +116,8 @@
       }
     }
 
-    .ssb-linkedin {
-      &::before {
-        content: url(linkedin-icon-black.svg);
-        top: 1px;
-        margin-left: -0.65rem;
-      }
+    .social-share-button .ssb-icon::before {
+       vertical-align: baseline;
     }
   }
 }
