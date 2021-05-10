@@ -116,6 +116,7 @@
           <%= render "shared/projekts_sidebar" %>
           <%= render "shared/categories", taggable: "debate" %>
           <%= render "shared/tag_cloud", taggable: "debate" %>
+          <%= render SDG::Goals::TagCloudComponent.new("Debate") %>
         </aside>
       </div>
 

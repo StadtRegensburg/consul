@@ -12,7 +12,7 @@ class SDG::Goals::TagCloudComponent < ApplicationComponent
   private
 
     def heading
-      t("sdg.goals.filter.heading")
+      t("custom.sdg.goals.filter.heading")
     end
 
     def goals
