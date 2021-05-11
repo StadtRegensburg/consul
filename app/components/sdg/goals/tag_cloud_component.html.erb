@@ -2,4 +2,10 @@
   <div class="sidebar-divider"></div>
   <h2 class="sidebar-title"><%= heading %></h2>
   <%= render SDG::FilterLinksComponent.new(goals, class_name.constantize) %>
+
+  <div class="filter">
+    <label for="advanced_search_target"><%= t("shared.advanced_search.target") %></label>
+    <%= select_tag("select_target", target_options,
+                  include_blank: t("shared.advanced_search.target_blank"), class: 'js-sdg-custom-target-filter')  %>
+  </div>
 </div>

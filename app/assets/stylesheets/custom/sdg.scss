@@ -4,3 +4,15 @@
      position: relative;
   }
 }
+
+
+// Styling goals
+
+li.unselected-goal img {
+  filter: grayscale(1);
+  opacity: 40%;
+}
+
+li.unselected-goal:hover img {
+  opacity: 1;
+}

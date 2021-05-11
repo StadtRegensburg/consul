@@ -10,6 +10,7 @@ class DebatesController < ApplicationController
     @featured_debates = @debates.featured
     take_only_by_tag_names
     take_by_projekts
+    take_by_sdgs
     @selected_tags = all_selected_tags
   end
 
@@ -54,6 +55,12 @@ class DebatesController < ApplicationController
   def take_by_projekts
     if params[:projekts].present?
       @resources = @resources.where(projekt_id: params[:projekts].split(',')).distinct
+    end
+  end
+
+  def take_by_sdgs
+    if params[:sdg_goals]
+      @resources = @resources.includes(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
     end
   end
 end

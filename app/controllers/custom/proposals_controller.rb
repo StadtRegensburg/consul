@@ -15,6 +15,7 @@ class ProposalsController
     remove_archived_from_order_links
     take_only_by_tag_names
     take_by_projekts
+    take_by_sdgs
     @proposals_coordinates = all_proposal_map_locations
     @selected_tags = all_selected_tags
   end
@@ -73,6 +74,12 @@ class ProposalsController
     def take_by_projekts
       if params[:projekts].present?
         @resources = @resources.where(projekt_id: params[:projekts].split(',')).distinct
+      end
+    end
+
+    def take_by_sdgs
+      if params[:sdg_goals]
+        @resources = @resources.includes(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
       end
     end
 

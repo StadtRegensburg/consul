@@ -14,6 +14,7 @@ class PollsController < ApplicationController
     @polls = @polls.created_by_admin.not_budget.send(@current_filter).includes(:geozones)
     take_only_by_tag_names
     take_by_projekts
+    take_by_sdgs
 
     @all_polls = @polls
 
@@ -41,6 +42,12 @@ class PollsController < ApplicationController
   def take_by_projekts
     if params[:projekts].present?
       @polls = @polls.where(projekt_id: params[:projekts].split(',') ).distinct
+    end
+  end
+
+  def take_by_sdgs
+    if params[:sdg_goals]
+      @polls = @polls.includes(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
     end
   end
 end
