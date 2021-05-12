@@ -9,8 +9,7 @@ module LinkListHelper
 
         goal_code = link_options[:data].present? ? link_options[:data][:code] : nil
 
-        highlight_sdg_chip = (@filtered_goals.nil? || @filtered_goals.include?(goal_code)) || ( (@filtered_target.nil? || @filtered_target == goal_code) && goal_code.class.name == "String" )
-        active_class = highlight_sdg_chip ? 'selected-goal' : 'unselected-goal'
+        active_class = highlight_sdg_chip(goal_code) ? 'selected-goal' : 'unselected-goal'
 
         js_class = goal_code.class.name == "Integer" ? "js-sdg-custom-goal-filter" : "js-sdg-custom-target-filter-tag"
 
@@ -18,6 +17,18 @@ module LinkListHelper
 					link_to text, '#', link_options
         end
       end, "\n")
+    end
+  end
+
+  def highlight_sdg_chip(goal_code)
+    if goal_code.class.name == "Integer"
+      return  @filtered_goals.nil? || @filtered_goals.include?(goal_code)
+    end
+
+    if goal_code.class.name == "String"
+      return (@filtered_goals.nil? && @filtered_target.nil?) ||
+        @filtered_target == goal_code ||
+        @filtered_goals.include?(goal_code.split('.')[0].to_i)
     end
   end
 end
