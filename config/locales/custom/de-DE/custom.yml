@@ -5,8 +5,9 @@ de:
         filter:
           heading: UN-Nachhaltigkeitsziele
       targets:
-        label: Unterziele filtern
-        select: Select a target
+        label: "Filter für Unterziele (%{more_link})"
+        more_link_text: Mehr Info
+        select: Unterziel auswählen
     pages:
       social_share:
         share: Teilen
