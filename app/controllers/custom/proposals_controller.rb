@@ -78,8 +78,13 @@ class ProposalsController
     end
 
     def take_by_sdgs
-      if params[:sdg_goals]
-        @resources = @resources.includes(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
+      if params[:sdg_targets].present?
+        @resources = @resources.joins(:sdg_global_targets).where(sdg_targets: { code: params[:sdg_targets].split(',')[0] }).distinct
+        return
+      end
+
+      if params[:sdg_goals].present?
+        @resources = @resources.joins(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
       end
     end
 

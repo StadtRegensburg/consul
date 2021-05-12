@@ -6,11 +6,15 @@ module LinkListHelper
 
     tag.ul(options) do
       safe_join(links.select(&:present?).map do |text, url, current = false, **link_options|
-        selected_goal_codes = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : []
+
         goal_code = link_options[:data].present? ? link_options[:data][:code] : nil
-        active_class = (selected_goal_codes.blank? || selected_goal_codes.include?(goal_code)) ? 'selected-goal' : 'unselected-goal'
-        current_class = params[:sdg_goals].present? 
-        tag.li(class: "js-sdg-custom-goal-filter #{active_class}") do
+
+        highlight_sdg_chip = (@filtered_goals.nil? || @filtered_goals.include?(goal_code)) || (@filtered_target.nil? || @filtered_target == goal_code)
+        active_class = highlight_sdg_chip ? 'selected-goal' : 'unselected-goal'
+
+        js_class = goal_code.class.name == "Integer" ? "js-sdg-custom-goal-filter" : "js-sdg-custom-target-filter-tag"
+
+        tag.li(class: "#{js_class} #{active_class}") do
 					link_to text, '#', link_options
         end
       end, "\n")

@@ -3,7 +3,9 @@ de:
     sdg:
       goals:
         filter:
-          heading: ZIELE FÜR NACHHALTIGE ENTWICKLUNG
+          heading: UN-Nachhaltigkeitsziele
+      targets:
+        select: Select a target
     pages:
       social_share:
         share: Teilen

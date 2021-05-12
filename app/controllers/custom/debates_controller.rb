@@ -7,6 +7,9 @@ class DebatesController < ApplicationController
   before_action :process_tags, only: [:create, :update]
 
   def index_customization
+    @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
+    @filtered_target = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
+
     @featured_debates = @debates.featured
     take_only_by_tag_names
     take_by_projekts
@@ -59,8 +62,13 @@ class DebatesController < ApplicationController
   end
 
   def take_by_sdgs
-    if params[:sdg_goals]
-      @resources = @resources.includes(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
+    if params[:sdg_targets].present?
+      @resources = @resources.joins(:sdg_global_targets).where(sdg_targets: { code: params[:sdg_targets].split(',')[0] }).distinct
+      return
+    end
+
+    if params[:sdg_goals].present?
+      @resources = @resources.joins(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
     end
   end
 end

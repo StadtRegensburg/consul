@@ -5,7 +5,12 @@
     updateSDGFilterGoals: function() {
       var url = new URL(window.location.href);
       var clickedSDGCode = $(event.target).parent().attr('data-code');
-      var currentSDGTarget = url.searchParams.get('sdg_targets').split(',')[0]
+      var currentSDGTarget = "";
+
+
+      if (url.searchParams.get('sdg_targets')) {
+        currentSDGTarget = url.searchParams.get('sdg_targets').split(',')[0]
+      }
 
       if (url.searchParams.get('sdg_goals')) {
         var currentSDGCodes = url.searchParams.get('sdg_goals').split(',');
@@ -33,14 +38,25 @@
       window.location.href = url.href;
     },
 
-    updateSDGFilterTargets: function(selectedValue) {
+    updateSDGFilterTargets: function(selectedValue, source = '') {
       var url = new URL(window.location.href);
+      var currentSDGTargetCodes = url.searchParams.get('sdg_targets') || [];
 
-      var currentSDGTargetCodes = [];
-
-      currentSDGTargetCodes.push(selectedValue);
+      if (currentSDGTargetCodes.includes(selectedValue)) {
+        currentSDGTargetCodes = [];
+      } else {
+        currentSDGTargetCodes = [selectedValue];
+      }
 
       url.searchParams.set('sdg_targets', currentSDGTargetCodes.join(','))
+
+      if ( currentSDGTargetCodes.length > 0 ) {
+        url.searchParams.set('sdg_goals', currentSDGTargetCodes[0].split('.')[0])
+      }
+
+      if ( currentSDGTargetCodes.length == 0 ) {
+        url.searchParams.delete('sdg_targets')
+      };
 
       window.history.pushState('', '', url);
       window.location.href = url.href;
@@ -52,9 +68,15 @@
         App.SDGCustom.updateSDGFilterGoals();
       });
 
-      $("body").on("change", ".js-sdg-custom-target-filter", function(event) {
+      $("body").on("change", ".js-sdg-custom-target-filter-dropdown", function(event) {
         var selectedValue = event.target.value;
         App.SDGCustom.updateSDGFilterTargets(selectedValue);
+      });
+
+      $("body").on("click", ".js-sdg-custom-target-filter-tag", function(event) {
+        event.preventDefault();
+        var selectedValue = event.target.getAttribute('data-code');
+        App.SDGCustom.updateSDGFilterTargets(selectedValue, 'tag');
       });
     }
   };

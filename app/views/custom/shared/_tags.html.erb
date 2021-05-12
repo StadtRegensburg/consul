@@ -1,4 +1,4 @@
-<%- limit ||= nil %>
+<% limit ||= nil %>
 <% tag_filter_class = controller.action_name == 'index' ? 'js-projekt-tag-filter-link' : ''  %>
 
 <%= render SDG::TagListComponent.new(taggable, limit: limit) %>

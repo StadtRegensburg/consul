@@ -8,9 +8,17 @@
 
 // Styling goals
 
-li.unselected-goal img {
-  filter: grayscale(1);
-  opacity: 40%;
+li.unselected-goal {
+
+  img {
+    filter: grayscale(1);
+    opacity: 40%;
+  }
+
+  a {
+    background-color: #ececec !important;
+    color: #222 !important;
+  }
 }
 
 li.unselected-goal:hover img {
