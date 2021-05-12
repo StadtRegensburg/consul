@@ -5,6 +5,7 @@
     updateSDGFilterGoals: function() {
       var url = new URL(window.location.href);
       var clickedSDGCode = $(event.target).parent().attr('data-code');
+      var currentSDGTarget = url.searchParams.get('sdg_targets').split(',')[0]
 
       if (url.searchParams.get('sdg_goals')) {
         var currentSDGCodes = url.searchParams.get('sdg_goals').split(',');
@@ -24,6 +25,10 @@
         url.searchParams.delete('sdg_goals')
       };
 
+      if ( !currentSDGCodes.includes(currentSDGTarget.split('.')[0]) ) {
+        url.searchParams.delete('sdg_targets')
+      }
+
       window.history.pushState('', '', url);
       window.location.href = url.href;
     },
@@ -31,13 +36,10 @@
     updateSDGFilterTargets: function(selectedValue) {
       var url = new URL(window.location.href);
 
-      if (url.searchParams.get('sdg_targets')) {
-        var currentSDGTargetCodes = url.searchParams.get('sdg_targets').split(',');
-      } else {
-        var currentSDGTargetCodes = [];
-      }
+      var currentSDGTargetCodes = [];
 
       currentSDGTargetCodes.push(selectedValue);
+
       url.searchParams.set('sdg_targets', currentSDGTargetCodes.join(','))
 
       window.history.pushState('', '', url);
