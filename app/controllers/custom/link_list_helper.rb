@@ -9,7 +9,7 @@ module LinkListHelper
 
         goal_code = link_options[:data].present? ? link_options[:data][:code] : nil
 
-        highlight_sdg_chip = (@filtered_goals.nil? || @filtered_goals.include?(goal_code)) || (@filtered_target.nil? || @filtered_target == goal_code)
+        highlight_sdg_chip = (@filtered_goals.nil? || @filtered_goals.include?(goal_code)) || ( (@filtered_target.nil? || @filtered_target == goal_code) && goal_code.class.name == "String" )
         active_class = highlight_sdg_chip ? 'selected-goal' : 'unselected-goal'
 
         js_class = goal_code.class.name == "Integer" ? "js-sdg-custom-goal-filter" : "js-sdg-custom-target-filter-tag"

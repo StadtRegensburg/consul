@@ -5,6 +5,7 @@ de:
         filter:
           heading: UN-Nachhaltigkeitsziele
       targets:
+        label: Unterziele filtern
         select: Select a target
     pages:
       social_share:
