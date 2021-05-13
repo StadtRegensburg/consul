@@ -9,6 +9,7 @@ class DebatesController < ApplicationController
   def index_customization
     @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
     @filtered_target = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
+    @geozones = Geozone.all
 
     @featured_debates = @debates.featured
     take_only_by_tag_names
