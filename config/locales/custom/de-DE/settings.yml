@@ -17,15 +17,15 @@ de:
     max_votes_for_proposal_edit: "Anzahl von Stimmen bei der ein Vorschlag nicht länger bearbeitet werden kann"
     max_votes_for_proposal_edit_description: "Ab dieser Anzahl von Unterstützungen kann der Autor eines Vorschlags diesen nicht mehr bearbeiten"
     max_votes_for_debate_edit: "Anzahl von Stimmen bei der eine Diskussion nicht länger bearbeitet werden kann"
-    max_votes_for_debate_edit_description: "Ab dieser Anzahl von Unterstützungen kann der Autor einer Diskussion diese nicht länger ändern"
+    max_votes_for_debate_edit_description: "Ab dieser Anzahl von Unterstützungen kann der Autor einer Debatte diese nicht länger ändern"
     proposal_code_prefix: "Präfix für Vorschlag-Codes"
     proposal_code_prefix_description: "Dieses Präfix wird in den Vorschlägen vor dem Erstellungsdatum und der ID angezeigt"
     featured_proposals_number: "Zahl der veröffentlichten Vorschläge"
     featured_proposals_number_description: "Anzahl der veröffentlichten Vorschläge, die angezeigt werden, wenn die Funktion Veröffentlichte Vorschläge aktiv ist"
     votes_for_proposal_success: "Anzahl der notwendigen Stimmen zur Genehmigung eines Vorschlags"
-    votes_for_proposal_success_description: "Wenn ein Vorschlag diese Anzahl von Unterstützungen erreicht, kann er nicht mehr mehr unterstützt werden und gilt als erfolgreich"
+    votes_for_proposal_success_description: "Wenn ein Antrag diese Anzahl von Unterstützungen erreicht, kann er nicht mehr mehr unterstützt werden und gilt als erfolgreich"
     months_to_archive_proposals: "Anzahl der Monate, um Vorschläge zu archivieren"
-    months_to_archive_proposals_description: "Nach dieser Anzahl von Monaten werden die Vorschläge archiviert und können keine Unterstützung mehr erhalten\""
+    months_to_archive_proposals_description: "Nach dieser Anzahl von Monaten werden die Anträge archiviert und können keine Unterstützung mehr erhalten\""
     email_domain_for_officials: "E-Mail-Domäne für Beamte"
     email_domain_for_officials_description: "Alle Benutzer, die mit dieser Domain registriert sind, erhalten bei der Registrierung eine Bestätigung ihres Kontos"
     twitter_handle: "Twitter Benutzer*name"
@@ -64,9 +64,9 @@ de:
       successful_proposal_id: Erfolgreicher Vorschlag
       successful_proposal_id_description: Dieser Vorschlag wird als Referenz für einen erfolgreichen Vorschlag in der Unterstützungs-Anzahl verwendet und im Dashboard-Diagramm angezeigt.
       poll_short_title: Abstimmungen
-      poll_short_title_description: Kurze Beschreibung der Abstimmung-Funktion. Erlaubt Benutzer*innen Abstimmungen zu einem Vorschlag zu erstellen
+      poll_short_title_description: Kurze Beschreibung der Umfrage-Funktion. Erlaubt Benutzer*innen Umfragen zu einem Vorschlag zu erstellen
       poll_description: Beschreibung Abstimmung
-      poll_description_description: Detaillierte Beschreibung der Abstimmung-Funktion
+      poll_description_description: Detaillierte Beschreibung der Umfrage-Funktion
       poll_link: Weitere Informationen Link
       poll_link_description: Füge einen zusätzlichen Informationslink zur Funktionaliät der Abstimmung in der Kontrollanzeige hinzu
       email_short_title: E-Mail
@@ -90,22 +90,22 @@ de:
       google_login: "Google login"
       google_login_description: "Anmeldung mit Google-Account erlauben"
       wordpress_login: "Wordpress login"
-      wordpress_login_description: "Anmeldung mit Wordpress-Account erlauben"
+      wordpress_login_description: "Allow users to sign up with their Wordpress Account"
       featured_proposals: "Veröffentlichte Vorschläge"
       featured_proposals_description: "Zeigt veröffentlichte Vorschläge auf der Index Vorschlags-Seite"
       signature_sheets: "Unterschriftenbögen"
-      signature_sheets_description: "Es ermöglicht das Hinzufügen von vor Ort gesammelten Unterschriften aus dem Administrationspanel zu Vorschlägen und Investitionsprojekten des Budgets"
+      signature_sheets_description: "Es ermöglicht das Hinzufügen von vor Ort gesammelten Unterschriften aus dem Administrationspanel zu Vorschlägen und Investitionsprojekten des Bürgerhaushalts"
       user:
         recommendations: "Empfehlungen"
         recommendations_description: "Zeigt Nutzerempfehlungen auf der Startseite auf Grundlage der Tags aus den folgenden Objekten"
         skip_verification: "Benutzer*überprüfung überspringen"
         skip_verification_description: "Dies wird die Nutzerüberprüfung deaktivieren und alle registrierten Nutzer werden fähig sein, an allen Prozessen teilzunehmen"
-        recommendations_on_debates: "Empfehlungen für Diskussionen"
-        recommendations_on_debates_description: "Zeigt Nutzern Empfehlungen für Diskussionenseiten an, basierend auf den Tags und den Objekten, denen sie folgen"
-        recommendations_on_proposals: "Empfehlungen für Vorschläge"
+        recommendations_on_debates: "Empfehlungen für Debatten"
+        recommendations_on_debates_description: "Zeigt Nutzern Empfehlungen für Debattenseiten an, basierend auf den Tags und den Objekten, denen sie folgen"
+        recommendations_on_proposals: "Empfehlungen für Anträge"
         recommendations_on_proposals_description: "Zeigt Nutzern Empfehlungen für Vorschlagsseiten an, basierend auf den Tags und den Objekten, denen sie folgen"
-      community: "Community für Vorschläge und Investitionen"
-      community_description: "Schaltet den Community-Bereich in der Rubrik Vorschläge und Investitionsprojekte der Budgets ein"
+      community: "Community für Anträge und Investitionen"
+      community_description: "Schaltet den Community-Bereich in der Rubrik Vorschläge und Investitionsprojekte der Bürgerhaushalte ein"
       map: "Standort des Antrages und der Budgetinvestition"
       map_description: "Ermöglicht die Geolokalisierung der Vorschläge und Investitionsprojekte"
       allow_images: "Upload und Anzeigen von Bildern erlauben"
@@ -127,11 +127,11 @@ de:
       valuation_comment_notification: "Bewertung Kommentar Benachrichtigung"
       valuation_comment_notification_description: "Senden Sie eine E-Mail an alle verbundenen Benutzer*innen, wenn ein neuer Bewertungskommentar erstellt wird - mit Ausnahme des Bewertungskommentars für Budgetinvestitionen"
       graphql_api: "GraphQL API"
-      elasticsearch: "Elasticsearch"
-      elasticsearch_description: "Elasticsearch ist die führende verteilte, RESTful, open-source Such- und Analyse-Engine, die für Geschwindigkeit, horizontale Skalierbarkeit, Zuverlässigkeit und einfach Verwaltung entwicklet wurde."
       dashboard:
-        notification_emails: "Dashboard Benachrichtigungs-Emails"
-        notification_emails_description: "Aktivieren Sie das Senden von Dashboard Benachrichtigungs-Emails an die Autoren von Vorschlägen."
+        notification_emails: "Dashboard Email-Benachrichtigungen"
+        notification_emails_description: "Aktivieren Sie das Senden von Dashboard-E-Mail-Benachrichtigungen an die Autoren von Vorschlägen"
+      sdg: SDG
+      sdg_description: Aktivieren Sie die Abschnitte "Sustainable Development Goals" im Administrationsmenü und in den Globalen Einstellungen.
     remote_census:
       general:
         endpoint: "Endpunkt"
@@ -154,8 +154,8 @@ de:
         date_of_birth_description: "In welchem Antwortpfad befindet sich das Geburtsdatum des Benutzers?"
         postal_code: "Pfad für Postleitzahl"
         postal_code_description: "In welchem Antwortpfad befindet sich die Postleitzahl des Benutzers?"
-        district: "Pfad für Gebiet"
-        district_description: "In welchem Antwortpfad befindet sich der Gebiet des Benutzers?"
+        district: "Pfad für Bezirk"
+        district_description: "In welchem Antwortpfad befindet sich der Bezirk des Benutzers?"
         gender: "Pfad für Geschlecht"
         gender_description: "In welchem Antwortpfad befindet sich das Geschlecht des Benutzers?"
         name: "Pfad für Vornamen"
@@ -172,14 +172,14 @@ de:
       zoom: "Zoom"
       zoom_description: "Zoomen, um die Kartenposition anzuzeigen"
     process:
-      debates: "Diskussionen"
-      debates_description: "Der Diskussionenraum der Bürger richtet sich an alle, die Themen präsentieren können, die sie betreffen und zu denen sie ihre Ansichten mit anderen teilen wollen"
+      debates: "Debatten"
+      debates_description: "Der Debattenraum der Bürger richtet sich an alle, die Themen präsentieren können, die sie betreffen und zu denen sie ihre Ansichten mit anderen teilen wollen"
       proposals: "Vorschläge"
       proposals_description: "Die Vorschläge der Bürger sind eine Möglichkeit für Nachbarn und Kollektive direkt zu entscheiden, wie sie ihre Stadt gestalten wollen, nachdem sie ausreichende Unterstützung erhalten und sich einer Bürgerabstimmung unterzogen haben"
       polls: "Abstimmungen"
       polls_description: "Bürgerabstimmungen sind ein partizipatorischer Mechanismus, mit dem Bürger mit Wahlrecht direkte Entscheidungen treffen können"
-      budgets: "Budget"
-      budgets_description: "Bei Budgets entscheiden die Bürger, welche von ihren Nachbarn vorgestellten Projekte einen Teil des Budgets erhalten"
+      budgets: "Bürgerhaushalt"
+      budgets_description: "Bei Bürgerhaushalten entscheiden die Bürger, welche von ihren Nachbarn vorgestellten Projekte einen Teil des Budgets erhalten"
       legislation: "Kollaborative Gesetzgebung"
       legislation_description: "In partizipativen Prozessen wird den Bürgern die Möglichkeit geboten, sich an der Ausarbeitung und Änderung von Vorschriften, die die Gesellschaft betreffen, zu beteiligen und ihre Meinung zu bestimmten geplanten Aktionen abzugeben"
     html:
@@ -209,6 +209,15 @@ de:
         max_size_description: "Zulässige maximale Größe für upload eines Dokuments (in Megabytes/MB)"
         content_types: "Akzeptierte Inhaltstypen für Dokumente"
         content_types_description: "Wählen Sie alle Inhaltsarten, die zum Upload für Dokumente erlaubt sind"
-    features:
-      elasticsearch: "Elasticsearch"
-      elasticsearch_description: "Elasticsearch ist die führende verteilte, RESTful, Open-Source-Such- und Analyse-Engine, die auf Geschwindigkeit, horizontale Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung ausgelegt ist."
+    sdg:
+      process:
+        debates: Mit Diskussionen zusammenhängende SDGs
+        debates_description: Das Verknüpfen von Diskussionen und SDGs erlauben.
+        proposals: Mit Vorschlägen zusammenhängende SDGs
+        proposals_description: Das Verknüpfen von Vorschlägen und SDGs erlauben.
+        polls: Mit Abstimmungen zusammenhängende SDGs
+        polls_description: Das Verknüpfen von Abstimmungen und SDGs erlauben.
+        budgets: Mit Budgets zusammenhängende SDGs
+        budgets_description: Das Verknüpfen von Budgets und SDGs erlauben.
+        legislation: Mit Beteiligungsverfahren zusammenhängende SDGs
+        legislation_description: Das Verknüpfen von Beteiligungsverfahren und SDGs erlauben.
