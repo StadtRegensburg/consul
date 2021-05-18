@@ -1,3 +1,5 @@
+<% resource_name = @resource_name.capitalize.constantize.model_name.human(count: :other) %>
+
 <div class="sidebar-divider"></div>
 
 <h2 class="sidebar-title projekt-tag-chip-geozones projekt-tag-chip-icon"><%= t("custom.geozones.sidebar_filter.title") %></h2>
@@ -5,26 +7,18 @@
 <div id='filter-geozones'>
 
   <ul>
-    <li <%= "class=label-selected" if @selected_geozone_restriction == 'all_users' %> >
-      <%= label_tag 'geozone_restriction_all_users', class: 'label_class' do %>
-        <%= radio_button_tag :geozone_restriction, 'all_users', @selected_geozone_restriction == 'all_users', { class: 'js-filter-geozone-restriction' }  %>
-        <%= t('custom.geozones.sidebar_filter.all_users') %>
+    <li <%= "class=label-selected" if (@selected_geozone_restriction == 'all_resources') || (@selected_geozone_restriction == '') %> >
+      <%= label_tag 'geozone_restriction_all_resources', class: 'label_class' do %>
+        <%= radio_button_tag :geozone_restriction, 'all_resources', (@selected_geozone_restriction == 'all_resources') || (@selected_geozone_restriction == ''), { class: 'js-filter-geozone-restriction' }  %>
+        <%= t('custom.geozones.sidebar_filter.all_resources', resource_name: resource_name) %>
         <span class="checkmark"></span>
       <% end %>
     </li>
 
-    <li <%= "class=label-selected" if @selected_geozone_restriction == 'all_citizens' %> >
-      <%= label_tag 'geozone_restriction_all_citizens', class: 'label_class' do %>
-        <%= radio_button_tag :geozone_restriction, 'all_citizens', @selected_geozone_restriction == 'all_citizens', { class: 'js-filter-geozone-restriction' }  %>
-        <%= t('custom.geozones.sidebar_filter.all_verified') %>
-        <span class="checkmark"></span>
-      <% end %>
-    </li>
-
-    <li <%= "class=label-selected" if @selected_geozone_restriction == 'limited' %> >
-      <%= label_tag 'geozone_restriction_limited', class: 'label_class toggle-geozones-list' do %>
-        <%= radio_button_tag :geozone_restriction, 'limited', @selected_geozone_restriction == 'limited', { class: 'js-filter-geozone-restriction' }  %>
-        <%= t('custom.geozones.sidebar_filter.limited_by_geozone') %>
+    <li <%= "class=label-selected" if @selected_geozone_restriction == 'only_citizens' %> >
+      <%= label_tag 'geozone_restriction_only_citizens', class: 'label_class toggle-geozones-list' do %>
+        <%= radio_button_tag :geozone_restriction, 'only_citizens', @selected_geozone_restriction == 'only_citizens', { class: 'js-filter-geozone-restriction' }  %>
+        <%= t('custom.geozones.sidebar_filter.only_citizens') %>
         <span class="checkmark"></span>
       <% end %>
     </li>

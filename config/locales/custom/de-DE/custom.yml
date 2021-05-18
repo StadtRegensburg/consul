@@ -126,9 +126,8 @@ de:
       backlink: Zur Projektübersicht
     geozones:
       sidebar_filter:
-        all_users: Alle Nutzer der Platform
-        all_verified: Alle Bürger der Stadt
-        limited_by_geozone: Beschränkt auf folgende Gebiete
+        all_resources: "Alle %{resource_name}"
+        only_citizens: Nur Bürger der Stadt
         show_more: Mehr anzeigen
         title: Gebiete
         filter_button: Gebiete filtern

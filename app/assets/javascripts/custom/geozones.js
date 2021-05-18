@@ -61,10 +61,6 @@
       $("body").on("click", ".js-reset-geozone-filter", function() {
         var url = new URL(window.location.href);
 
-        if (url.searchParams.get('geozone_restriction')) {
-          url.searchParams.delete('geozone_restriction');
-        }
-
         if (url.searchParams.get('geozones')) {
           url.searchParams.delete('geozones');
         }
@@ -80,6 +76,11 @@
             $(this).removeClass('label-selected');
           }
         )
+
+        url.searchParams.delete('geozones');
+        url.searchParams.set('geozone_restriction', 'all_resources');
+        $('#filter-geozones li').first().addClass('label-selected');
+        $('#filter-geozones li input[type="radio"]').first().prop("checked", true);
 
         window.history.pushState('', '', url)
         //window.location.href = url;

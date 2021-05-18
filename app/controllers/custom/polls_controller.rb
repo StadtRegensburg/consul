@@ -9,6 +9,7 @@ class PollsController < ApplicationController
   helper_method :resource_model, :resource_name
 
   def index
+    @resource_name = 'poll'
     @tag_cloud = tag_cloud
 
     @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
@@ -66,14 +67,14 @@ class PollsController < ApplicationController
 
   def take_by_geozones
     case @selected_geozone_restriction
-    when 'all_users'
+    when 'all_resources'
       @polls
-    when 'all_citizens'
-      @polls = @polls.where( geozone_restricted: true )
-    when 'limited'
-      @polls = @polls.where( geozone_restricted: true ).joins(:geozones).where( geozones: { id: @selected_geozones } )
-    else
-      @resources
+    when 'only_citizens'
+      if @selected_geozones.blank?
+        @polls = @polls.where( geozone_restricted: true )
+      else
+        @polls = @polls.where( geozone_restricted: true ).joins(:geozones).where( geozones: { id: @selected_geozones } )
+      end
     end
   end
 end

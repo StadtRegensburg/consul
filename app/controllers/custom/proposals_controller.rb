@@ -98,14 +98,14 @@ class ProposalsController
 
     def take_by_geozones
       case @selected_geozone_restriction
-      when 'all_users'
+      when 'all_resources'
         @resources
-      when 'all_citizens'
-        @resources = @resources.joins(:proposal_phase).where(projekt_phases: { geozone_restricted: true })
-      when 'limited'
-        @resources = @resources.joins(:geozones).where(projekt_phases: { geozone_restricted: true }).where(geozones: { id: @selected_geozones })
-      else
-        @resources
+      when 'only_citizens'
+        if @selected_geozones.blank?
+          @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: true })
+        else
+          @resources = @resources.joins(:geozones).where(projekt_phases: { geozone_restricted: true }).where(geozones: { id: @selected_geozones })
+        end
       end
     end
 
