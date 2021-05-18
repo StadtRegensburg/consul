@@ -11,6 +11,9 @@ class PollsController < ApplicationController
   def index
     @tag_cloud = tag_cloud
 
+    @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
+    @filtered_target = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
+
     @geozones = Geozone.all
     @selected_geozone_restriction = params[:geozone_restriction] || ''
     @selected_geozones = (params[:geozones] || '').split(',').map(&:to_i)

@@ -7,6 +7,9 @@ class ProposalsController
   before_action :process_tags, only: [:create, :update]
 
   def index_customization
+    @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
+    @filtered_target = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
+
     @geozones = Geozone.all
     @selected_geozone_restriction = params[:geozone_restriction] || ''
     @selected_geozones = (params[:geozones] || '').split(',').map(&:to_i)
