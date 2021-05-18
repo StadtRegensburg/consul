@@ -65,9 +65,7 @@
           <%= icon('far', 'edit') %>
         <% end %>
 
-        <%= button_tag( type: 'submit', class: "configure-link update-projekt-link", title: t("admin.actions.update")) do %>
-          <%= icon('fas', 'sync') %>
-        <% end %>
+        <%= f.submit( '', class: "configure-link update-projekt-link", title: t("admin.actions.update") ) %>
 
         <%= link_to admin_projekt_path(projekt), method: :delete, class: "destroy-link", title: t("custom.admin.projekts.destroy") do %>
           <%= icon('far', 'trash-alt') %>
