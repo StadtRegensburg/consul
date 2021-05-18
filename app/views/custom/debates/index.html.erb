@@ -62,10 +62,10 @@
         <%= render "shared/order_links", i18n_namespace: "debates.index" %>
 
         <div class='row'>
-          <div class='small-12 medium-9 column small'>
+          <div class='small-6 column small'>
             <%= link_to t('debates.index.section_header.help'), '#section_help' %>
           </div>
-          <div class='small-12 medium-3 column small'>
+          <div class='small-6 column small'>
             <% if extended_feature?('show_number_of_entries_in_modules') %>
               <div class='float-right'>
                 <%= @debates.except(:limit, :offset).count %>
