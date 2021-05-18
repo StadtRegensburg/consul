@@ -7,6 +7,10 @@ class ProposalsController
   before_action :process_tags, only: [:create, :update]
 
   def index_customization
+    @geozones = Geozone.all
+    @selected_geozone_restriction = params[:geozone_restriction] || ''
+    @selected_geozones = (params[:geozones] || '').split(',').map(&:to_i)
+
     discard_draft
     discard_archived
     load_retired
@@ -16,6 +20,7 @@ class ProposalsController
     take_only_by_tag_names
     take_by_projekts
     take_by_sdgs
+    take_by_geozones
     @proposals_coordinates = all_proposal_map_locations
     @selected_tags = all_selected_tags
   end
@@ -85,6 +90,19 @@ class ProposalsController
 
       if params[:sdg_goals].present?
         @resources = @resources.joins(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
+      end
+    end
+
+    def take_by_geozones
+      case @selected_geozone_restriction
+      when 'all_users'
+        @resources
+      when 'all_citizens'
+        @resources = @resources.joins(:proposal_phase).where(projekt_phases: { geozone_restricted: true })
+      when 'limited'
+        @resources = @resources.joins(:geozones).where(projekt_phases: { geozone_restricted: true }).where(geozones: { id: @selected_geozones })
+      else
+        @resources
       end
     end
 

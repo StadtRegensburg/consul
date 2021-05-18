@@ -4,6 +4,8 @@ class Debate
   include Imageable
 
   belongs_to :projekt, optional: true
+  has_one :debate_phase, through: :projekt
+  has_many :geozones, through: :debate_phase
 
   validates :projekt_id, presence: true, if: :require_a_projekt?
 
