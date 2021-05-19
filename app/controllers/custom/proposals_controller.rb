@@ -102,7 +102,7 @@ class ProposalsController
         @resources
       when 'only_citizens'
         if @selected_geozones.blank?
-          @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: true })
+          @resources = @resources.joins(:proposal_phase).where(projekt_phases: { geozone_restricted: true })
         else
           @resources = @resources.joins(:geozones).where(projekt_phases: { geozone_restricted: true }).where(geozones: { id: @selected_geozones })
         end
