@@ -10,4 +10,16 @@ class Proposal < ApplicationRecord
   def require_a_projekt?
     Setting["projekts.connected_resources"].present? ? true : false
   end
+
+  def votable_by?(user)
+      user &&
+      !user.organization? &&
+      user.level_two_or_three_verified? &&
+      (
+        Setting['feature.user.skip_verification'].present? ||
+        proposal_phase && proposal_phase.geozones.blank? ||
+        (proposal_phase && proposal_phase.geozones.any? && proposal_phase.geozones.include?(user.geozone) )
+      ) &&
+      proposal_phase && !proposal_phase.expired?
+  end
 end
