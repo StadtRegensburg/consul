@@ -126,6 +126,7 @@ de:
       backlink: Zur Projektübersicht
     geozones:
       sidebar_filter:
+        all_resources: "Alle %{resource_name}"
         no_restriction: Ohne Gebietszuordnung
         only_citizens: Stadtweite Zuordnung
         only_geozones: Zuordnung zu Stadtteilen

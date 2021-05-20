@@ -79,11 +79,15 @@ class DebatesController < ApplicationController
 
   def take_by_geozones
     case @selected_geozone_restriction
-    when 'no_restriction'
+    when 'all_resources'
       @resources
+    when 'no_restriction'
+      query_string = "projekt_phases.geozone_restricted = ? OR debates.projekt_id IS NULL"
+      @resources = @resources.left_outer_joins(:debate_phase).where(query_string,  @selected_geozone_restriction )
     when 'only_citizens'
-      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: true }).distinct
+      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: @selected_geozone_restriction }).distinct
     when 'only_geozones'
+      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: @selected_geozone_restriction }).distinct
       if @selected_geozones.present?
         @resources = @resources.joins(:geozones).where(geozones: { id: @selected_geozones }).distinct
       else
