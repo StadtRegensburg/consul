@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_06_090134) do
+ActiveRecord::Schema.define(version: 2021_05_19_153925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1212,7 +1212,7 @@ ActiveRecord::Schema.define(version: 2021_05_06_090134) do
     t.date "start_date"
     t.date "end_date"
     t.boolean "active"
-    t.boolean "geozone_restricted"
+    t.string "geozone_restricted"
     t.bigint "projekt_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

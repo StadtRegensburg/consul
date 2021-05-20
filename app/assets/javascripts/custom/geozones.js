@@ -78,7 +78,7 @@
         )
 
         url.searchParams.delete('geozones');
-        url.searchParams.set('geozone_restriction', 'all_resources');
+        url.searchParams.set('geozone_restriction', 'no_restriction');
         $('#filter-geozones li').first().addClass('label-selected');
         $('#filter-geozones li input[type="radio"]').first().prop("checked", true);
 
