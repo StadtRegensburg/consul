@@ -1,5 +1,10 @@
 // Shared tags icons
 
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .projekt-tag-chip {
   display: inline-block;
   font-size: 0.875em;
@@ -7,6 +12,7 @@
   color: #222;
   padding: 5px 1em;
   margin-bottom: .5em;
+  margin-right: .3em;
 
   a {
     color: #222;
@@ -40,7 +46,7 @@
   content: "\f507";
 }
 
-.projekt-tag-chip-geozones.projekt-tag-chip-icon:before {
+.projekt-tag-chip-geozone.projekt-tag-chip-icon:before {
   content: "\f21d";
 }
 

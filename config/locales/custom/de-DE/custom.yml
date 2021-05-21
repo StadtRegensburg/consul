@@ -128,7 +128,7 @@ de:
       sidebar_filter:
         all_resources: "Alle %{resource_name}"
         no_restriction: Ohne Gebietszuordnung
-        only_citizens: Stadtweite Zuordnung
+        only_citizens: Ganze Stadt
         only_geozones: Zuordnung zu Stadtteilen
         show_more: Mehr anzeigen
         title: Gebiete
