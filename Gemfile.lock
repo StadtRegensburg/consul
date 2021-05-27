@@ -48,17 +48,16 @@ GEM
     acts_as_votable (0.12.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    ahoy_matey (1.6.0)
+    ahoy_matey (2.1.0)
       addressable
       browser (~> 2.0)
-      geocoder
-      rack-attack (< 6)
-      railties
-      referer-parser (>= 0.3.0)
+      device_detector
+      geocoder (>= 1.4.5)
+      railties (>= 4.2)
+      referer-parser (>= 0.3)
       request_store
-      safely_block (>= 0.1.1)
+      safely_block (>= 0.2.1)
       user_agent_parser
-      uuidtools
     airbrake (5.8.1)
       airbrake-ruby (~> 1.8)
     airbrake-ruby (1.8.0)
@@ -89,7 +88,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bindex (0.8.1)
-    browser (2.5.3)
+    browser (2.7.1)
     builder (3.2.4)
     bullet (6.1.0)
       activesupport (>= 3.0.0)
@@ -165,6 +164,7 @@ GEM
     delayed_job_active_record (4.1.4)
       activerecord (>= 3.0, < 6.1)
       delayed_job (>= 3.0, < 5)
+    device_detector (1.0.5)
     devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -216,7 +216,7 @@ GEM
       rainbow
       rubocop (~> 0.79)
       smart_properties
-    errbase (0.0.3)
+    errbase (0.2.1)
     erubi (1.10.0)
     eslintrb (2.1.0)
       execjs
@@ -250,7 +250,7 @@ GEM
       activesupport (>= 4.1, < 6.0)
       railties (>= 4.1, < 6.0)
       tzinfo (~> 1.2, >= 1.2.2)
-    geocoder (1.6.3)
+    geocoder (1.6.7)
     github_changelog_generator (1.15.2)
       activesupport
       faraday-http-cache
@@ -456,8 +456,6 @@ GEM
     rack (2.2.3)
     rack-accept (0.4.5)
       rack (>= 0.4)
-    rack-attack (5.0.1)
-      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -553,8 +551,8 @@ GEM
     rvm1-capistrano3 (1.4.0)
       capistrano (~> 3.0)
       sshkit (>= 1.2)
-    safely_block (0.2.0)
-      errbase
+    safely_block (0.3.0)
+      errbase (>= 0.1.1)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -642,8 +640,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.7.0)
     uniform_notifier (1.13.0)
-    user_agent_parser (2.6.0)
-    uuidtools (2.1.5)
+    user_agent_parser (2.7.0)
     view_component (2.19.1)
       activesupport (>= 5.0.0, < 7.0)
     warden (1.2.9)
@@ -678,7 +675,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 6.5.0)
   acts_as_votable (~> 0.12.1)
-  ahoy_matey (~> 1.6.0)
+  ahoy_matey (~> 2.1.0)
   airbrake (~> 5.0)
   ancestry (~> 3.2.1)
   audited (~> 4.9.0)
@@ -780,4 +777,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (~> 0.12.4)
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

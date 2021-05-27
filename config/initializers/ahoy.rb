@@ -1,14 +1,11 @@
-Ahoy.geocode = false
-
-class Ahoy::Store < Ahoy::Stores::ActiveRecordStore
-  # Track user IP
-  def track_event(name, properties, options)
-    super do |event|
-      event.ip = request.ip
-    end
-  end
-
-  def exclude?
-    false
-  end
+class Ahoy::Store < Ahoy::DatabaseStore
 end
+
+# set to true for JavaScript tracking
+Ahoy.api = false
+
+# better user agent parsing
+Ahoy.user_agent_parser = :device_detector
+
+Ahoy.mask_ips = true
+Ahoy.cookies = false
