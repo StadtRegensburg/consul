@@ -1,5 +1,9 @@
 de:
   custom:
+    gdpr_notice:
+      message: "We're using cookies. Learn more at %{link}"
+      accept: I agree
+      reject: I reject
     sdg:
       goals:
         filter:

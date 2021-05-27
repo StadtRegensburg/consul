@@ -87,3 +87,11 @@
     </div>
   </div>
 </footer>
+
+<div class='gdpr-notice js-gdpr-notice'>
+   <%= sanitize t('custom.gdpr_notice.message', link: link_to(page_url("privacy"), page_path("privacy"))) %>
+  <div class='float-right'>
+    <%= link_to t('custom.gdpr_notice.accept'), '#', class: 'button success js-accept-gdpr-notice' %>
+    <%= link_to t('custom.gdpr_notice.reject'), '#', class: 'button alert js-reject-gdpr-notice' %>
+  </div>
+</div>
