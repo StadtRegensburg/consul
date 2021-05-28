@@ -1,9 +1,10 @@
 de:
   custom:
     gdpr_notice:
-      message: "We're using cookies. Learn more at %{link}"
-      accept: I agree
-      reject: I reject
+      title: Verwendung von Cookies
+      message: "<p>Die Applikation verwendet Cookies und ähnliche Technologien zur Bereitstellung, Aufrechterhaltung und Verbesserung unserer Dienste. Wenn Sie damit einverstanden sind, verwenden wir diese Daten für erweiterte Analysen hinsichtlich der Nutzung dieser Plattform.</p><p>Falls Sie nicht einverstanden sind, werde die Nutzungsdaten komplett anonym erfasst und auf aggregiertem Niveau analysiert.</p>"
+      accept: Cookies zulassen
+      reject: Cookies ablehnen
     sdg:
       goals:
         filter:
