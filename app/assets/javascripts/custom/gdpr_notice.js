@@ -15,9 +15,19 @@
       App.GDPRNotice.hideGDPRNotice();
     },
 
+    reject: function() {
+      event.preventDefault();
+      App.Cookies.saveCookie('gdpr_notice_accept', false, 180)
+      App.GDPRNotice.hideGDPRNotice();
+    },
+
     initialize: function() {
       $("body").on("click", ".js-accept-gdpr-notice", function() {
         App.GDPRNotice.accept();
+      });
+
+      $("body").on("click", ".js-reject-gdpr-notice", function() {
+        App.GDPRNotice.reject();
       });
 
       App.GDPRNotice.hideGDPRNotice();
