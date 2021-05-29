@@ -62,6 +62,8 @@ de:
         description_max_length_description: Legen Sie fest, wie viele Zeichen für Vorschläge maximal verwendet werden dürfen
         devise_timeout_min: Dauer von Nutzer-Sitzungen
         devise_timeout_min_description: Legen Sie fest, wie lange ein Nutzer pro Sitzung eingeloggt bleiben soll in Minuten
+        devise_verification_token_validity_days: Gültigkeit des Verifikationslinks in Tagen
+        devise_verification_token_validity_days_description: Legen Sie fest, wie lange der Verifikationslink gültig ist
 
 
       projekts:

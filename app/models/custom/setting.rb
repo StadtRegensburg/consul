@@ -168,7 +168,8 @@ class Setting < ApplicationRecord
         # "extended_feature.elasticsearch": false,
         "extended_option.max_active_proposals_per_user": 100,
         "extended_option.description_max_length": 6000,
-        "extended_option.devise_timeout_min": 30
+        "extended_option.devise_timeout_min": 30,
+        "extended_option.devise_verification_token_validity_days": 3
       }
     end
 
