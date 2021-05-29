@@ -5,15 +5,39 @@
     data-deep-link-smudge="true"
     data-deep-link-smudge-delay="500"
     data-tabs>
-  <li class="tabs-title is-active">
-    <%= link_to "#tab-projekt-configuration" do %>
+  <li class="tabs-title is-active" id="projekt-phases-tab">
+    <%= link_to "#tab-projekt-phases" do %>
       <%= t("custom.admin.projekts.edit.projekt_phases_tab.name") %>
     <% end %>
   </li>
 
-  <li class="tabs-title" id="projekts-settings-tab">
-    <%= link_to "#tab-projekts-settings" do %>
+  <li class="tabs-title" id="projekt-settings-tab">
+    <%= link_to "#tab-projekt-settings" do %>
       <%= t("custom.admin.projekts.edit.projekt_settings_tab.name") %>
+    <% end %>
+  </li>
+
+  <li class="tabs-title" id="projekt-map-tab">
+    <%= link_to "#tab-projekt-map" do %>
+      <%= t("custom.admin.projekts.edit.projekt_map_tab.name") %>
+    <% end %>
+  </li>
+
+  <li class="tabs-title" id="projekt-updates-tab">
+    <%= link_to "#tab-projekt-updates" do %>
+      <%= t("custom.admin.projekts.edit.projekt_updates_tab.name") %>
+    <% end %>
+  </li>
+
+  <li class="tabs-title" id="projekt-milestones-tab">
+    <%= link_to "#tab-projekt-milestones" do %>
+      <%= t("custom.admin.projekts.edit.projekt_milestones_tab.name") %>
+    <% end %>
+  </li>
+
+  <li class="tabs-title" id="projekts-news-tab">
+    <%= link_to "#tab-projekt-news" do %>
+      <%= t("custom.admin.projekts.edit.projekt_news_tab.name") %>
     <% end %>
   </li>
 </ul>

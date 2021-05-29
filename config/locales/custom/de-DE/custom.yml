@@ -103,6 +103,14 @@ de:
             voting_manage: Abstimmungen verwalten
           projekt_settings_tab:
             name: Projektfunktionen
+          projekt_map_tab:
+            name: Kartenkonfiguration
+          projekt_updates_tab:
+            name: Benachrichtigungen
+          projekt_milestones_tab:
+            name: Meilensteine
+          projekt_news_tab:
+            name: News-Feed
           show_in_navigation_checkbox: Projekt in Navigation anzeigen
           show_in_navigation:
             yes: Ja
