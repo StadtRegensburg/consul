@@ -205,6 +205,4 @@ $(document).on("turbolinks:before-cache", destroy_non_idempotent_modules);
 
 
 // GDPR
-if ( App.Cookies.getCookie('gdpr_notice_accept') == 'false' ) {
-  ahoy.configure({cookies: false});
-}
+ahoy.configure({cookies: false});

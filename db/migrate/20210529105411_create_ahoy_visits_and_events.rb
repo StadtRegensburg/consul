@@ -39,13 +39,18 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
 
     add_index :ahoy_visits, [:visit_token], unique: true
 
-    def change
-      change_column :ahoy_events, :visit, :references
-      change_column :ahoy_events, :user, :references
-      change_column :ahoy_events, :time, :timestamp
+    rename_table :ahoy_events, :ahoy_events_old
 
+    create_table :ahoy_events do |t|
+      t.references :visit
+      t.references :user
+
+      t.string :name
+      t.jsonb :properties
+      t.timestamp :time
     end
 
+    add_index :ahoy_events, [:name, :time]
     add_index :ahoy_events, "properties jsonb_path_ops", using: "gin"
   end
 end

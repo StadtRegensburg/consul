@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_151744) do
+ActiveRecord::Schema.define(version: 2021_05_29_105411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -69,18 +69,29 @@ ActiveRecord::Schema.define(version: 2021_05_27_151744) do
     t.index ["user_id"], name: "index_administrators_on_user_id"
   end
 
-  create_table "ahoy_events", id: :uuid, default: nil, force: :cascade do |t|
+  create_table "ahoy_events", force: :cascade do |t|
+    t.bigint "visit_id"
+    t.bigint "user_id"
+    t.string "name"
+    t.jsonb "properties"
+    t.datetime "time"
+    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties_jsonb_path_ops", opclass: :jsonb_path_ops, using: :gin
+    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
+    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end
+
+  create_table "ahoy_events_old", id: :uuid, default: nil, force: :cascade do |t|
     t.uuid "visit_id"
     t.integer "user_id"
     t.string "name"
     t.jsonb "properties"
     t.datetime "time"
     t.string "ip"
-    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
-    t.index ["properties"], name: "index_ahoy_events_on_properties_jsonb_path_ops", opclass: :jsonb_path_ops, using: :gin
-    t.index ["time"], name: "index_ahoy_events_on_time"
-    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
-    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+    t.index ["name", "time"], name: "index_ahoy_events_old_on_name_and_time"
+    t.index ["time"], name: "index_ahoy_events_old_on_time"
+    t.index ["user_id"], name: "index_ahoy_events_old_on_user_id"
+    t.index ["visit_id"], name: "index_ahoy_events_old_on_visit_id"
   end
 
   create_table "ahoy_visits", force: :cascade do |t|
