@@ -66,7 +66,7 @@ de:
         devise_verification_token_validity_days_description: Legen Sie fest, wie lange der Verifikationslink gültig ist
 
 
-      projekts:
+      projekt:
         connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
         connected_resources_description: Diskussionen & Vorschläge können ohne Projektzuordnung nicht erstellt werden
         projekt_page_sharing: Teilen-Funktion in Projektseite

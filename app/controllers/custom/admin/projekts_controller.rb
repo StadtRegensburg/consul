@@ -16,6 +16,8 @@ class Admin::ProjektsController < Admin::BaseController
 
     @projekt.build_proposal_phase if @projekt.proposal_phase.blank?
     @projekt.proposal_phase.geozones.build
+
+    @projekt_settings = ProjektSetting.where(projekt: @projekt)
   end
 
   def update

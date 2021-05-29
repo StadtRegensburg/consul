@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_29_105411) do
+ActiveRecord::Schema.define(version: 2021_05_29_124338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1256,6 +1256,15 @@ ActiveRecord::Schema.define(version: 2021_05_29_105411) do
     t.index ["projekt_id"], name: "index_projekt_phases_on_projekt_id"
   end
 
+  create_table "projekt_settings", force: :cascade do |t|
+    t.bigint "projekt_id"
+    t.string "key"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projekt_id"], name: "index_projekt_settings_on_projekt_id"
+  end
+
   create_table "projekts", force: :cascade do |t|
     t.string "name"
     t.bigint "parent_id"
@@ -1811,6 +1820,7 @@ ActiveRecord::Schema.define(version: 2021_05_29_105411) do
   add_foreign_key "projekt_phase_geozones", "geozones"
   add_foreign_key "projekt_phase_geozones", "projekt_phases"
   add_foreign_key "projekt_phases", "projekts"
+  add_foreign_key "projekt_settings", "projekts"
   add_foreign_key "projekts", "projekts", column: "parent_id"
   add_foreign_key "proposals", "communities"
   add_foreign_key "proposals", "projekts"

@@ -3,6 +3,7 @@ namespace :admin do
 
   # custom routes
   resources :projekts, only: [:index, :create, :update, :destroy] do
+    resources :projekt_settings, only: [:update]
     member do
       get :order_up
       get :order_down

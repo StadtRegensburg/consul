@@ -13,6 +13,8 @@ class Projekt < ApplicationRecord
   has_one :proposal_phase, class_name: 'ProjektPhase::ProposalPhase'
   has_many :geozones, through: :projekt_phase
 
+  has_many :projekt_settings
+
   accepts_nested_attributes_for :debate_phase, :proposal_phase
 
   after_create :create_corresponding_page, :set_order, :create_projekt_phases
