@@ -17,7 +17,7 @@ class Projekt < ApplicationRecord
 
   accepts_nested_attributes_for :debate_phase, :proposal_phase
 
-  after_create :create_corresponding_page, :set_order, :create_projekt_phases
+  after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings
   after_destroy :ensure_order_integrity
 
   scope :top_level, -> { where(parent: nil) }
@@ -72,6 +72,14 @@ class Projekt < ApplicationRecord
     unless siblings.with_order_number.pluck(:order_number).first == 1 && siblings.with_order_number.pluck(:order_number).each_cons(2).all? { |a, b| b == a + 1 }
       update(order_number: nil)
       set_order
+    end
+  end
+
+  def create_default_settings
+    ProjektSetting.defaults.each do |name, value|
+      unless ProjektSetting.find_by(key: name, projekt_id: self.id)
+        ProjektSetting.create(key: name, value: value, projekt_id: self.id)
+      end
     end
   end
 

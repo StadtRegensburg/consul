@@ -66,7 +66,7 @@ de:
         devise_verification_token_validity_days_description: Legen Sie fest, wie lange der Verifikationslink gültig ist
 
 
-      projekt:
+      projekts:
         connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
         connected_resources_description: Diskussionen & Vorschläge können ohne Projektzuordnung nicht erstellt werden
         projekt_page_sharing: Teilen-Funktion in Projektseite
@@ -86,3 +86,20 @@ de:
         show_navigator_in_projekts_page_sidebar_description: Zeigt die Projektnavigation in der rechten Seitenleiste der Projektseiten an
         show_module_links_in_flyout_menu: Modul-Links in den Dropdowns
         show_module_links_in_flyout_menu_description: Zeigt die die Modul-Links unterhalb einzelner Dropdown-Einträge an
+
+      projekt:
+        show_in_navigation: Projekt in Navigation anzeigen
+        show_in_navigation_description: Zeigt das Projekt in der Top-Navigation der Webseite an
+        show_projekt_footer: Projekt Fußzeile
+        show_projekt_footer_description: Aktiviert die Projekt Fußzeile
+        show_activity_and_map_in_projekt_footer: Aktivität & in Fußzeile anzeigen
+        show_activity_and_map_in_projekt_footer_description: Aktiviert die Aktivitätsübersicht inkl. Übersichtskarte in der Fußzeile eines Projektes
+        show_comments_in_projekt_footer: Kommentare in Fußzeile anzeigen
+        show_comments_in_projekt_footer_description: Aktiviert die Kommentarfunktion in der Fußzeile eines Projekts
+        show_notifications_in_projekt_footer: Benachrichtigungen in Fußzeile anzeigen
+        show_notifications_in_projekt_footer_description: Aktiviert die Benachrichtigungsfunktion in der Fußzeile eines Projekts
+        show_milestones_in_projekt_footer: Milensteine in der Fußzeile anzeigen
+        show_milestones_in_projekt_footer_description: Aktiviert die Meilensteinfunktion in der Fußzeile eines Projekts
+        show_newsfeed_in_projekt_footer: News-Feed in Fußzeile anzeigen
+        show_newsfeed_in_projekt_footer_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
+

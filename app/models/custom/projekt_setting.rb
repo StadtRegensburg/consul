@@ -9,15 +9,13 @@ class ProjektSetting < ApplicationRecord
 
     def defaults
       {
-        "projekt.connected_resources": nil,
-        "projekt.projekt_page_sharing": nil,
-        "projekt.show_archived.navigation": true,
-        "projekt.show_archived.sidebar": true,
-        "projekt.show_phases_in_projekt_page_sidebar": true,
-        "projekt.show_total_duration_in_projekts_page_sidebar": true,
-        "projekt.show_not_active_phases_in_projekts_page_sidebar": true,
-        "projekt.show_navigator_in_projekts_page_sidebar": true,
-        "projekt.show_module_links_in_flyout_menu": true,
+        "projekt.show_in_navigation": nil,
+        "projekt.show_projekt_footer": nil,
+        "projekt.show_activity_and_map_in_projekt_footer": true,
+        "projekt.show_comments_in_projekt_footer": true,
+        "projekt.show_notifications_in_projekt_footer": true,
+        "projekt.show_milestones_in_projekt_footer": true,
+        "projekt.show_newsfeed_in_projekt_footer": true
       }
     end
 
