@@ -18,6 +18,9 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt.proposal_phase.geozones.build
 
     @projekt_settings = ProjektSetting.where(projekt: @projekt)
+
+    @projekt_notification = ProjektNotification.new
+    @projekt_notifications = ProjektNotification.where(projekt: @projekt).order(created_at: :desc)
   end
 
   def update
@@ -74,7 +77,8 @@ class Admin::ProjektsController < Admin::BaseController
   def projekt_params
     params.require(:projekt).permit(:name, :parent_id, :total_duration_active, :total_duration_start, :total_duration_end, :show_in_navigation,
                                     debate_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
-                                    proposal_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ])
+                                    proposal_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
+                                    projekt_notifications: [:title, :body])
   end
 
   def find_projekt

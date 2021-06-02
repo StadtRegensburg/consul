@@ -13,9 +13,10 @@ class Projekt < ApplicationRecord
   has_one :proposal_phase, class_name: 'ProjektPhase::ProposalPhase'
   has_many :geozones, through: :projekt_phase
 
-  has_many :projekt_settings
+  has_many :projekt_settings, dependent: :destroy
+  has_many :projekt_notifications, dependent: :destroy
 
-  accepts_nested_attributes_for :debate_phase, :proposal_phase
+  accepts_nested_attributes_for :debate_phase, :proposal_phase, :projekt_notifications
 
   after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings
   after_destroy :ensure_order_integrity

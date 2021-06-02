@@ -477,3 +477,57 @@ span.projekt-backlink:before {
   font-family: 'Font Awesome 5 Free';
   opacity: 0.9;
 }
+
+
+
+// Projekt notifications
+
+.admin .projekt-notification {
+  position: relative;
+
+  input[type='checkbox'] {
+    display: none;
+  }
+
+  .edit-projekt-notification-form {
+    display: none;
+  }
+
+  input:checked ~ .projekt-notification-content {
+    display: none;
+  }
+
+  input:checked ~ .edit-projekt-notification-form {
+    display: block;
+  }
+  
+  .edit-projekt-notification {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .edit-projekt-notification::before {
+    content: "\f044";
+    font-weight: normal;
+    font-family: 'Font Awesome 5 Free';
+    color: #004a83;
+  }
+
+  .delete-projekt-notification {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .delete-projekt-notification::before {
+    content: "\f2ed";
+    font-weight: normal;
+    font-family: 'Font Awesome 5 Free';
+    color: #cc4b37;
+  }
+}

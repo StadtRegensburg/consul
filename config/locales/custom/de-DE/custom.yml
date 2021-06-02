@@ -105,8 +105,14 @@ de:
             name: Projektfunktionen
           projekt_map_tab:
             name: Kartenkonfiguration
-          projekt_updates_tab:
+          projekt_notifications_tab:
             name: Benachrichtigungen
+            page_title: Nachricht senden
+            title: Nachricht senden
+            notification_title: Titel
+            notification_body: Nachricht
+            button: Nachricht senden
+
           projekt_milestones_tab:
             name: Meilensteine
           projekt_news_tab:
