@@ -5,6 +5,8 @@ namespace :admin do
   resources :projekts, only: [:index, :create, :update, :destroy] do
     resources :projekt_settings, only: [:update]
     resources :projekt_notifications, only: [:create, :update, :destroy]
+    resources :milestones, controller: "projekt_milestones"
+    resources :progress_bars, except: :show, controller: "projekt_progress_bars"
     member do
       get :order_up
       get :order_down
