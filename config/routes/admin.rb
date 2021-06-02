@@ -12,6 +12,7 @@ namespace :admin do
       get :order_down
       get :edit
     end
+    put :update_map, to: "projekts#update_map"
   end
 
   resources :organizations, only: :index do

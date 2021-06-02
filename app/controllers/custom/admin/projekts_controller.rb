@@ -17,7 +17,9 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt.build_proposal_phase if @projekt.proposal_phase.blank?
     @projekt.proposal_phase.geozones.build
 
-    @projekt_settings = ProjektSetting.where(projekt: @projekt)
+    all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
+    @projekt_features = all_settings["feature"]
+    @projekt_map_settings = all_settings["map"]
 
     @projekt_notification = ProjektNotification.new
     @projekt_notifications = ProjektNotification.where(projekt: @projekt).order(created_at: :desc)
@@ -30,6 +32,14 @@ class Admin::ProjektsController < Admin::BaseController
     else
       render action: :edit
     end
+  end
+
+  def update_map
+    ProjektSetting.find_by(key: "map.latitude", projekt: params[:projekt_id]).update(value: params[:latitude])
+    ProjektSetting.find_by(key: "map.longitude", projekt: params[:projekt_id]).update(value: params[:longitude])
+    ProjektSetting.find_by(key: "map.zoom", projekt: params[:projekt_id]).update(value: params[:zoom])
+
+    redirect_to edit_admin_projekt_path(params[:projekt_id]) + '#tab-projekt-map', notice: t("admin.settings.index.map.flash.update")
   end
 
   def create
