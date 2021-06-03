@@ -1,0 +1,51 @@
+<ul class="tabs"
+    id="projekts_tabs"
+    data-deep-link="true"
+    data-update-history="true"
+    data-deep-link-smudge="true"
+    data-deep-link-smudge-delay="500"
+    data-tabs>
+
+  <% if projekt_feature?(@custom_page.projekt, 'show_activity_and_map_in_projekt_footer') %>
+    <li class="tabs-title is-active">
+      <%= link_to "#tab-activities" do %>
+        <h3>
+          <%= t("custom.projekt.footer.show.activities_tab") %>
+        </h3>
+      <% end %>
+    </li>
+  <% end %>
+
+  <% if projekt_feature?(@custom_page.projekt, 'show_comments_in_projekt_footer') %>
+    <li class="tabs-title">
+      <%= link_to "#tab-comments" do %>
+        <h3>
+          <%= t("custom.projekt.footer.show.comments_tab") %>
+          <span class="js-comments-count">(<%= @custom_page.projekt.comments.count %>)</span>
+        </h3>
+      <% end %>
+    </li>
+  <% end %>
+
+  <% if projekt_feature?(@custom_page.projekt, 'show_notifications_in_projekt_footer') %>
+    <li class="tabs-title">
+      <%= link_to "#tab-notifications" do %>
+        <h3>
+          <%= t("custom.projekt.footer.show.notifications_tab") %>
+          (<%= @custom_page.projekt.projekt_notifications.count %>)
+        </h3>
+      <% end %>
+    </li>
+  <% end %>
+
+  <% if projekt_feature?(@custom_page.projekt, 'show_milestones_in_projekt_footer') %>
+    <li class="tabs-title">
+      <%= link_to "#tab-milestones" do %>
+        <h3>
+          <%= t("custom.projekt.footer.show.milestones_tab") %>
+          (<%= @custom_page.projekt.milestones.count %>)
+        </h3>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

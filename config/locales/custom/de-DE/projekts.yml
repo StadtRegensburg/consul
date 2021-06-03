@@ -25,4 +25,9 @@ de:
               other: "%{count} aktive Abstimmungen"
           navigator:
             title: Projektverzeichnis
-
+      footer:
+        show:
+          activities_tab: Aktivität
+          comments_tab: Kommentare
+          notifications_tab: Benachrichtigungen
+          milestones_tab: Meilensteine

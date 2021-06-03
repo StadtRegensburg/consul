@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_124036) do
+ActiveRecord::Schema.define(version: 2021_06_03_130200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1284,6 +1284,9 @@ ActiveRecord::Schema.define(version: 2021_06_01_124036) do
     t.date "total_duration_start"
     t.date "total_duration_end"
     t.boolean "show_in_navigation"
+    t.integer "comments_count", default: 0
+    t.datetime "hidden_at"
+    t.integer "author_id"
     t.index ["parent_id"], name: "index_projekts_on_parent_id"
   end
 

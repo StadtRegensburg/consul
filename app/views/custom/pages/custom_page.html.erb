@@ -26,10 +26,44 @@
             <%= render partial: 'pages/sidebar/projekts_sidebar', locals: { projekt: @custom_page.projekt } %>
           </div>
         </div>
+
       <% else %>
         <%= render 'custom_page_content' %>
       <% end %>
 
     </div>
   </div>
+
+  <% if @custom_page.projekt.present? && projekt_feature?(@custom_page.projekt, 'show_projekt_footer') %>
+    <div class="additional-content margin-top">
+      <div class="filter-subnav">
+        <div class="row">
+          <div class="small-12 column">
+            <%= render "custom/pages/projekt_footer/filter_subnav" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs-content" data-tabs-content="projekts_tabs">
+
+      <% if projekt_feature?(@custom_page.projekt, 'show_activity_and_map_in_projekt_footer') %>
+        <%= render "custom/pages/projekt_footer/activities" %>
+      <% end %>
+
+      <% if projekt_feature?(@custom_page.projekt, 'show_comments_in_projekt_footer') %>
+        <div class="tabs-panel" id="tab-comments">
+          <%= render "custom/pages/projekt_footer/comments" %>
+        </div>
+      <% end %>
+
+      <% if projekt_feature?(@custom_page.projekt, 'show_notifications_in_projekt_footer') %>
+        <%= render "custom/pages/projekt_footer/notifications" %>
+      <% end %>
+
+      <% if projekt_feature?(@custom_page.projekt, 'show_milestones_in_projekt_footer') %>
+        <%= render "milestones/milestones", milestoneable: @custom_page.projekt %>
+      <% end %>
+    </div>
+  <% end %>
 </main>

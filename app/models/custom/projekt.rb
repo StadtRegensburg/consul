@@ -1,5 +1,7 @@
 class Projekt < ApplicationRecord
   include Milestoneable
+  acts_as_paranoid column: :hidden_at
+  include ActsAsParanoidAliases
 
   has_many :children, class_name: 'Projekt', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Projekt', optional: true
@@ -17,6 +19,9 @@ class Projekt < ApplicationRecord
 
   has_many :projekt_settings, dependent: :destroy
   has_many :projekt_notifications, dependent: :destroy
+
+  has_many :comments, as: :commentable, inverse_of: :commentable
+  belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :projekts
 
   accepts_nested_attributes_for :debate_phase, :proposal_phase, :projekt_notifications
 

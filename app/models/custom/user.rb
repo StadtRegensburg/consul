@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   before_create :set_default_privacy_settings_to_false, if: :gdpr_conformity?
 
+  has_many :projekts, -> { with_hidden }, foreign_key: :author_id, inverse_of: :author
+
   def gdpr_conformity?
     Setting["extended_feature.gdpr_conformity"].present?
   end
