@@ -18,8 +18,8 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt.proposal_phase.geozones.build
 
     all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
-    @projekt_features = all_settings["feature"]
-    @projekt_map_settings = all_settings["map"]
+    @projekt_features = all_settings["projekt_feature"]
+    @projekt_map_settings = all_settings["projekt_map"]
 
     @projekt_notification = ProjektNotification.new
     @projekt_notifications = ProjektNotification.where(projekt: @projekt).order(created_at: :desc)
@@ -35,9 +35,9 @@ class Admin::ProjektsController < Admin::BaseController
   end
 
   def update_map
-    ProjektSetting.find_by(key: "map.latitude", projekt: params[:projekt_id]).update(value: params[:latitude])
-    ProjektSetting.find_by(key: "map.longitude", projekt: params[:projekt_id]).update(value: params[:longitude])
-    ProjektSetting.find_by(key: "map.zoom", projekt: params[:projekt_id]).update(value: params[:zoom])
+    ProjektSetting.find_by(key: "projekt_map.latitude", projekt: params[:projekt_id]).update(value: params[:latitude])
+    ProjektSetting.find_by(key: "projekt_map.longitude", projekt: params[:projekt_id]).update(value: params[:longitude])
+    ProjektSetting.find_by(key: "projekt_map.zoom", projekt: params[:projekt_id]).update(value: params[:zoom])
 
     redirect_to edit_admin_projekt_path(params[:projekt_id]) + '#tab-projekt-map', notice: t("admin.settings.index.map.flash.update")
   end
@@ -85,7 +85,7 @@ class Admin::ProjektsController < Admin::BaseController
   private
 
   def projekt_params
-    params.require(:projekt).permit(:name, :parent_id, :total_duration_active, :total_duration_start, :total_duration_end, :show_in_navigation,
+    params.require(:projekt).permit(:name, :parent_id, :total_duration_active, :total_duration_start, :total_duration_end,
                                     debate_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
                                     proposal_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
                                     projekt_notifications: [:title, :body])

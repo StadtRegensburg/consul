@@ -39,10 +39,6 @@
     </tbody>
   </table>
 
-  <div class='projekt-options <%= 'fieldset-disabled' unless @projekt.top_level? %>' >
-    <%= f.check_box :show_in_navigation, { label: t('custom.admin.projekts.edit.show_in_navigation_checkbox'), disabled: (true unless @projekt.top_level?) } %>
-  </div>
-
   <div>
     <%= f.submit(t("custom.admin.projekts.edit.update"), class: "button success") %>
   </div>

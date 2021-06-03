@@ -87,7 +87,7 @@ de:
         show_module_links_in_flyout_menu: Modul-Links in den Dropdowns
         show_module_links_in_flyout_menu_description: Zeigt die die Modul-Links unterhalb einzelner Dropdown-Einträge an
 
-      projekt:
+      projekt_feature:
         show_in_navigation: Projekt in Navigation anzeigen
         show_in_navigation_description: Zeigt das Projekt in der Top-Navigation der Webseite an
         show_projekt_footer: Projekt Fußzeile
@@ -103,3 +103,10 @@ de:
         show_newsfeed_in_projekt_footer: News-Feed in Fußzeile anzeigen
         show_newsfeed_in_projekt_footer_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
 
+      projekt_map:
+        latitude: Breitengrad
+        latitude_description: Breitengrad zur Anzeige der Kartenposition
+        longitude: Längengrad
+        longitude_description: Längengrad, um den Position der Karte zu zeigen
+        zoom: Zoom
+        zoom_description: Zoom, um die Kartenposition anzuzeigen
