@@ -1,5 +1,5 @@
 <%= form_for(@projekt, url: admin_projekt_path, as: :projekt) do |f| %>
-
+  <%= hidden_field_tag :tab, '#tab-projekt-phases' %>
   <table class='edit-projekt'>
     <thead>
       <th scope="col" class="small-3"><%= t("custom.admin.projekts.edit.projekt_phases_tab.phase_name") %></th>

@@ -2,6 +2,7 @@ class Projekt < ApplicationRecord
   include Milestoneable
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
+  include Mappable
 
   has_many :children, class_name: 'Projekt', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Projekt', optional: true
@@ -25,7 +26,7 @@ class Projekt < ApplicationRecord
 
   accepts_nested_attributes_for :debate_phase, :proposal_phase, :projekt_notifications
 
-  after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings
+  after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location
   after_destroy :ensure_order_integrity
 
   scope :top_level, -> { where(parent: nil) }
@@ -160,6 +161,17 @@ class Projekt < ApplicationRecord
         projekt.update(order_number: new_order)
         new_order += 1
       end
+    end
+  end
+
+  def create_map_location
+    unless map_location.present?
+      MapLocation.create(
+        latitude: Setting['map.latitude'],
+        longitude: Setting['map.longitude'],
+        zoom: Setting['map.zoom'],
+        projekt_id: self.id
+      )
     end
   end
 end

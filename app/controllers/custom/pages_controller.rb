@@ -3,6 +3,7 @@ require_dependency Rails.root.join("app", "controllers", "pages_controller").to_
 class PagesController < ApplicationController
   include CommentableActions
   include HasOrders
+  include CustomHelper
 
   has_orders %w[most_voted newest oldest], only: :show
 
@@ -13,7 +14,10 @@ class PagesController < ApplicationController
     @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
     set_resource_instance
 
-    @feeds = Widget::Feed.all
+    if @custom_page.projekt.present?
+      @proposals_coordinates = all_projekt_proposals_map_locations(@custom_page.projekt)
+    end
+		@feeds = Widget::Feed.all
 
     if @custom_page.present?
       @cards = @custom_page.cards

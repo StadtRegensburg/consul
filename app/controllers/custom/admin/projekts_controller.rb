@@ -1,4 +1,6 @@
 class Admin::ProjektsController < Admin::BaseController
+  include MapLocationAttributes
+
   before_action :find_projekt, only: [:update, :destroy]
   before_action :load_geozones, only: [:new, :create, :edit, :update]
 
@@ -17,6 +19,8 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt.build_proposal_phase if @projekt.proposal_phase.blank?
     @projekt.proposal_phase.geozones.build
 
+    @projekt.build_map_location if @projekt.map_location.blank?
+
     all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
     @projekt_features = all_settings["projekt_feature"]
     @projekt_map_settings = all_settings["projekt_map"]
@@ -28,16 +32,15 @@ class Admin::ProjektsController < Admin::BaseController
   def update
     if @projekt.update_attributes(projekt_params)
       @projekt.update_order
-      redirect_to admin_projekts_path
+      redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
     else
       render action: :edit
     end
   end
 
   def update_map
-    ProjektSetting.find_by(key: "projekt_map.latitude", projekt: params[:projekt_id]).update(value: params[:latitude])
-    ProjektSetting.find_by(key: "projekt_map.longitude", projekt: params[:projekt_id]).update(value: params[:longitude])
-    ProjektSetting.find_by(key: "projekt_map.zoom", projekt: params[:projekt_id]).update(value: params[:zoom])
+    map_location = MapLocation.find_by(projekt: params[:projekt_id])
+    map_location.update(latitude: params[:latitude], longitude: params[:longitude], zoom: params[:zoom])
 
     redirect_to edit_admin_projekt_path(params[:projekt_id]) + '#tab-projekt-map', notice: t("admin.settings.index.map.flash.update")
   end
@@ -88,7 +91,8 @@ class Admin::ProjektsController < Admin::BaseController
     params.require(:projekt).permit(:name, :parent_id, :total_duration_active, :total_duration_start, :total_duration_end,
                                     debate_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
                                     proposal_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
-                                    projekt_notifications: [:title, :body])
+                                    map_location_attributes: map_location_attributes,
+                                    projekt_notifications: [:title, :body]).merge(skip_map: '1')
   end
 
   def find_projekt

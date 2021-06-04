@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_130200) do
+ActiveRecord::Schema.define(version: 2021_06_04_074939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -921,7 +921,9 @@ ActiveRecord::Schema.define(version: 2021_06_03_130200) do
     t.integer "zoom"
     t.integer "proposal_id"
     t.integer "investment_id"
+    t.bigint "projekt_id"
     t.index ["investment_id"], name: "index_map_locations_on_investment_id"
+    t.index ["projekt_id"], name: "index_map_locations_on_projekt_id"
     t.index ["proposal_id"], name: "index_map_locations_on_proposal_id"
   end
 
@@ -1809,6 +1811,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_130200) do
   add_foreign_key "legislation_proposals", "legislation_processes"
   add_foreign_key "locks", "users"
   add_foreign_key "managers", "users"
+  add_foreign_key "map_locations", "projekts"
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "users"
