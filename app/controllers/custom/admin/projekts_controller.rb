@@ -23,7 +23,7 @@ class Admin::ProjektsController < Admin::BaseController
 
     all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
     @projekt_features = all_settings["projekt_feature"]
-    @projekt_map_settings = all_settings["projekt_map"]
+    @projekt_newsfeed_settings = all_settings["projekt_newsfeed"]
 
     @projekt_notification = ProjektNotification.new
     @projekt_notifications = ProjektNotification.where(projekt: @projekt).order(created_at: :desc)

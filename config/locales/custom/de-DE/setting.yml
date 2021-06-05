@@ -103,10 +103,8 @@ de:
         show_newsfeed_in_projekt_footer: News-Feed in Fußzeile anzeigen
         show_newsfeed_in_projekt_footer_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
 
-      projekt_map:
-        latitude: Breitengrad
-        latitude_description: Breitengrad zur Anzeige der Kartenposition
-        longitude: Längengrad
-        longitude_description: Längengrad, um den Position der Karte zu zeigen
-        zoom: Zoom
-        zoom_description: Zoom, um die Kartenposition anzuzeigen
+      projekt_newsfeed:
+        id: Newsfeed ID 
+        id_description:  
+        type: Newsfeed Type
+        type_description: 

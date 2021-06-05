@@ -10,7 +10,7 @@ class ProjektSetting < ApplicationRecord
   end
 
   def type
-    if %w[projekt_feature projekt_map].include? prefix
+    if %w[projekt_feature projekt_newsfeed].include? prefix
       prefix
     else
       "configuration"
@@ -23,14 +23,12 @@ class ProjektSetting < ApplicationRecord
       {
         "projekt_feature.show_in_navigation": nil,
         "projekt_feature.show_projekt_footer": nil,
-        "projekt_feature.show_activity_and_map_in_projekt_footer": true,
-        "projekt_feature.show_comments_in_projekt_footer": true,
-        "projekt_feature.show_notifications_in_projekt_footer": true,
-        "projekt_feature.show_milestones_in_projekt_footer": true,
-        "projekt_feature.show_newsfeed_in_projekt_footer": true,
-        "projekt_map.latitude": '51.372637664637566',
-        "projekt_map.longitude": '-0.06454467773437501',
-        "projekt_map.zoom": 10
+        "projekt_feature.show_comments_in_projekt_footer": nil,
+        "projekt_feature.show_notifications_in_projekt_footer": nil,
+        "projekt_feature.show_milestones_in_projekt_footer": nil,
+        "projekt_feature.show_newsfeed_in_projekt_footer": nil,
+        "projekt_newsfeed.id": nil,
+        "projekt_newsfeed.type": nil
       }
     end
 

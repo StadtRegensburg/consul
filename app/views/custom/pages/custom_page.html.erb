@@ -47,9 +47,7 @@
 
     <div class="tabs-content" data-tabs-content="projekts_tabs">
 
-      <% if projekt_feature?(@custom_page.projekt, 'show_activity_and_map_in_projekt_footer') %>
-        <%= render "custom/pages/projekt_footer/activities" %>
-      <% end %>
+      <%= render "custom/pages/projekt_footer/activities" %>
 
       <% if projekt_feature?(@custom_page.projekt, 'show_comments_in_projekt_footer') %>
         <div class="tabs-panel" id="tab-comments">
@@ -63,6 +61,12 @@
 
       <% if projekt_feature?(@custom_page.projekt, 'show_milestones_in_projekt_footer') %>
         <%= render "milestones/milestones", milestoneable: @custom_page.projekt %>
+      <% end %>
+
+      <% if projekt_feature?(@custom_page.projekt, 'show_newsfeed_in_projekt_footer') &&
+            ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.id").value.present? &&
+            ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.type").value.present? %>
+        <%= render "custom/pages/projekt_footer/newsfeed" %>
       <% end %>
     </div>
   <% end %>

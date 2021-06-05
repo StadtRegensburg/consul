@@ -6,15 +6,13 @@
     data-deep-link-smudge-delay="500"
     data-tabs>
 
-  <% if projekt_feature?(@custom_page.projekt, 'show_activity_and_map_in_projekt_footer') %>
-    <li class="tabs-title is-active">
-      <%= link_to "#tab-activities" do %>
-        <h3>
-          <%= t("custom.projekt.footer.show.activities_tab") %>
-        </h3>
-      <% end %>
-    </li>
-  <% end %>
+  <li class="tabs-title is-active">
+    <%= link_to "#tab-activities" do %>
+      <h3>
+        <%= t("custom.projekt.footer.show.activities_tab") %>
+      </h3>
+    <% end %>
+  </li>
 
   <% if projekt_feature?(@custom_page.projekt, 'show_comments_in_projekt_footer') %>
     <li class="tabs-title">
@@ -44,6 +42,18 @@
         <h3>
           <%= t("custom.projekt.footer.show.milestones_tab") %>
           (<%= @custom_page.projekt.milestones.count %>)
+        </h3>
+      <% end %>
+    </li>
+  <% end %>
+
+  <% if projekt_feature?(@custom_page.projekt, 'show_newsfeed_in_projekt_footer') &&
+        ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.id").value.present? &&
+        ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.type").value.present? %>
+    <li class="tabs-title">
+      <%= link_to "#tab-newsfeed" do %>
+        <h3>
+          <%= t("custom.projekt.footer.show.newsfeed_tab") %>
         </h3>
       <% end %>
     </li>
