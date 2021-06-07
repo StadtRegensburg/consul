@@ -112,7 +112,6 @@ de:
             notification_title: Titel
             notification_body: Nachricht
             button: Nachricht senden
-
           projekt_milestones_tab:
             name: Meilensteine
           projekt_news_tab:

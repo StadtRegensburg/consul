@@ -50,7 +50,7 @@
   <% if projekt_feature?(@custom_page.projekt, 'show_newsfeed_in_projekt_footer') &&
         ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.id").value.present? &&
         ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.type").value.present? %>
-    <li class="tabs-title">
+    <li class="tabs-title" id='js-reload-newsfeed'>
       <%= link_to "#tab-newsfeed" do %>
         <h3>
           <%= t("custom.projekt.footer.show.newsfeed_tab") %>
@@ -59,3 +59,10 @@
     </li>
   <% end %>
 </ul>
+
+<script>
+  $('#js-reload-newsfeed').on('click', function() {
+    $('#newsfeed-placeholder').html('');
+    $("#newsfeed-placeholder" ).load(window.location.href + " #newsfeed-placeholder" );
+  } );
+</script>
