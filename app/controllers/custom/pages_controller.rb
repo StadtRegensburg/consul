@@ -14,12 +14,15 @@ class PagesController < ApplicationController
     @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
     set_resource_instance
 
-    if @custom_page.projekt.present?
-      @proposals_coordinates = all_projekt_proposals_map_locations(@custom_page.projekt)
-    end
-		@feeds = Widget::Feed.all
 
-    if @custom_page.present?
+    if @custom_page.present? && @custom_page.projekt.present?
+      @proposals_coordinates = all_projekt_proposals_map_locations(@custom_page.projekt)
+
+      @most_active_proposals = Proposal.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(5)
+      set_proposal_votes(@most_active_proposals)
+      @most_active_debates = Debate.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(5)
+      set_debate_votes(@most_active_debates)
+
       @cards = @custom_page.cards
       render action: :custom_page
     else

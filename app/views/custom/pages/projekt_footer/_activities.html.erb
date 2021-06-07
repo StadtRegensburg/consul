@@ -17,6 +17,16 @@
   <div class="no-bullet margin-top">
   </div>
 
-  <%= render Widget::Feeds::ParticipationComponent.new(@feeds) %>
+
+  <div class="row">
+    <div class="column small-12 medium-9">
+      <h2><%= t('custom.projekt.footer.show.most_active_proposals') %></h2>
+      <%= render partial: "proposals/proposal", collection: @most_active_proposals %>
+
+      <h2 class='title'><%= t('custom.projekt.footer.show.most_active_debates') %></h2>
+      <%= render partial: "debates/debate", collection: @most_active_debates %>
+    </div>
+  </div>
+
 
 </div>
