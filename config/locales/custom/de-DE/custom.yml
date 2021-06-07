@@ -67,6 +67,8 @@ de:
         tabs:
           configuration: Konfigurationseinstellungen
           settings: Funktionen
+          map_settings: Standard-Kartenkonfiguration
+          geozones: Geozonen verwalten
         index:
           info: Info
           name_plural: Projekte
