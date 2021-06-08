@@ -8,6 +8,7 @@ class StatsController < ApplicationController
   skip_authorization_check
 
   def index
+    redirect_to root_path
     @visits = daily_cache("visits") { Ahoy::Visit.count }
     @debates = daily_cache("debates") { Debate.with_hidden.count }
     @proposals = daily_cache("proposals") { Proposal.with_hidden.count }
