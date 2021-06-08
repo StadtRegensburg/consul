@@ -18,9 +18,9 @@ class PagesController < ApplicationController
     if @custom_page.present? && @custom_page.projekt.present?
       @proposals_coordinates = all_projekt_proposals_map_locations(@custom_page.projekt)
 
-      @most_active_proposals = Proposal.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(5)
+      @most_active_proposals = Proposal.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(3)
       set_proposal_votes(@most_active_proposals)
-      @most_active_debates = Debate.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(5)
+      @most_active_debates = Debate.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(3)
       set_debate_votes(@most_active_debates)
 
       @cards = @custom_page.cards

@@ -537,3 +537,15 @@ span.projekt-backlink:before {
 .projekt-footer {
   margin-top: 5em;
 }
+
+#tab-activities .most-active-resources {
+  .tabs-panel {
+    padding: 0;
+  }
+
+  .all-projekt-resources-link {
+    float: right;
+    color: #CE003E;
+    padding-top: 0.5rem;
+  }
+}
