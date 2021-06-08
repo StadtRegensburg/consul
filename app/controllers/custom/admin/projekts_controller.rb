@@ -94,7 +94,7 @@ class Admin::ProjektsController < Admin::BaseController
                                     debate_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
                                     proposal_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
                                     map_location_attributes: map_location_attributes,
-                                    projekt_notifications: [:title, :body]).merge(skip_map: '1')
+                                    projekt_notifications: [:title, :body])
   end
 
   def find_projekt

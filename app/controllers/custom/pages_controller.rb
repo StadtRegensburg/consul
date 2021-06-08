@@ -20,8 +20,11 @@ class PagesController < ApplicationController
 
       @most_active_proposals = Proposal.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(3)
       set_proposal_votes(@most_active_proposals)
+
       @most_active_debates = Debate.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(3)
       set_debate_votes(@most_active_debates)
+
+      @latest_polls = Poll.where(projekt: @custom_page.projekt).current.order(created_at: :asc).limit(3)
 
       @cards = @custom_page.cards
       render action: :custom_page

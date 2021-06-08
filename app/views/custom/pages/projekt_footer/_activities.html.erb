@@ -40,13 +40,21 @@
               <%= t("custom.projekt.footer.show.most_active_debates") %>
             <% end %>
           </li>
+
+          <li class="tabs-title" id="projekt-latest-polls-tab">
+            <%= link_to "#tab-projekt-latest-polls" do %>
+              <%= t("custom.projekt.footer.show.latest_polls") %>
+            <% end %>
+          </li>
         </ul>
 
         <div class="tabs-panel is-active" id="tab-projekt-most-active-proposals">
           <div class="row">
             <div class="column medium-3">
-              <%= link_to new_proposal_path + "?projekt=#{@custom_page.projekt.id}", class: 'button expanded' do %>
-                <%= t("custom.projekt.page.sidebar.phases.proposal_phase_button") %>
+              <% if projekt_phase_selectable?(@custom_page.projekt, 'proposal_phase') %>
+                <%= link_to new_proposal_path + "?projekt=#{@custom_page.projekt.id}", class: 'button expanded' do %>
+                  <%= t("custom.projekt.page.sidebar.phases.proposal_phase_button") %>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -61,8 +69,10 @@
         <div class="tabs-panel" id="tab-projekt-most-active-debates">
           <div class="row">
             <div class="column medium-3">
-              <%= link_to new_debate_path + "?projekt=#{@custom_page.projekt.id}", class: 'button expanded' do %>
-                <%= t("custom.projekt.page.sidebar.phases.debate_phase_button") %>
+              <% if projekt_phase_selectable?(@custom_page.projekt, 'debate_phase') %>
+                <%= link_to new_debate_path + "?projekt=#{@custom_page.projekt.id}", class: 'button expanded' do %>
+                  <%= t("custom.projekt.page.sidebar.phases.debate_phase_button") %>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -73,7 +83,18 @@
             <%= t("custom.projekt.page.sidebar.phases.debate_phase_link") %>
           <% end %>
         </div>
+
+
+        <div class="tabs-panel" id="tab-projekt-latest-polls">
+
+          <%= render partial: "polls/poll_group", locals: { poll_group: @latest_polls } %>
+
+          <%= link_to polls_path + "?projekts=#{@custom_page.projekt.id}", class: 'all-projekt-resources-link' do %>
+            <%= t("custom.projekt.page.sidebar.phases.voting_phase_link") %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
