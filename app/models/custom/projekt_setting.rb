@@ -22,8 +22,14 @@ class ProjektSetting < ApplicationRecord
     def defaults
       {
         "projekt_feature.show_in_navigation": nil,
-        "projekt_feature.show_projekt_footer": nil,
-        "projekt_feature.show_comments_in_projekt_footer": nil,
+
+        "projekt_feature.show_phases_in_projekt_page_sidebar": 'active',
+        "projekt_feature.show_total_duration_in_projekts_page_sidebar": 'active',
+        "projekt_feature.show_not_active_phases_in_projekts_page_sidebar": nil,
+        "projekts.show_navigator_in_projekts_page_sidebar": true,
+
+        "projekt_feature.show_projekt_footer": 'active',
+        "projekt_feature.show_comments_in_projekt_footer": 'active',
         "projekt_feature.show_notifications_in_projekt_footer": nil,
         "projekt_feature.show_milestones_in_projekt_footer": nil,
         "projekt_feature.show_newsfeed_in_projekt_footer": nil,
