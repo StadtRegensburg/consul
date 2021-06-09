@@ -9,10 +9,14 @@ module ProjektSettingsHelper
     false
   end
 
+  def show_projekt_phase_in_projekt_page?(projekt, phase_name)
+    projekt.send(phase_name).present? && ( projekt_feature?(projekt, "general.show_not_active_phases_in_projekts_page_sidebar") || projekt_phase_active?(projekt, phase_name) )
+  end
+
   def active_tab_in_activity?(projekt, tab)
-    if projekt.debate_phase.present? && ( projekt_feature?(projekt, "general.show_not_active_phases_in_projekts_page_sidebar") || projekt_phase_active?(projekt, 'debate_phase') )
+    if show_projekt_phase_in_projekt_page?(projekt, 'debate_phase')
       active_tab = 'debates'
-    elsif projekt.proposal_phase.present? && ( projekt_feature?(projekt, "general.show_not_active_phases_in_projekts_page_sidebar") || projekt_phase_active?(projekt, 'proposal_phase') )
+    elsif show_projekt_phase_in_projekt_page?(projekt, 'proposal_phase')
       active_tab = 'proposals'
     elsif ( projekt_feature?(projekt, "general.show_not_active_phases_in_projekts_page_sidebar") || related_polls(projekt).count > 0 )
       active_tab = 'polls'

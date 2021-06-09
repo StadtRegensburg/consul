@@ -35,3 +35,6 @@ de:
           most_active_debates: "Aktivste Diskussionen"
           most_active_proposals: "Aktivste Vorschläge"
           latest_polls: 'Aktive Abstimmungen'
+          no_proposals: Bislang wurden noch keine Vorschläge erstellt. Erstellen Sie als Erste(r) einen Vorschlag!
+          no_debates: Bislang wurden noch keine Diskussionen gestartet. Starten Sie als Erste(r) eine Diskussion!
+          no_polls: Bislang wurden noch keine Abstimmungen durchgeführt. Schauen Sie doch bei Gelegenheit wieder vorbei, um an künftigen Abstimmungen teilzunehmen.

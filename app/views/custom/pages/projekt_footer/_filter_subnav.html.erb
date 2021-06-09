@@ -14,40 +14,40 @@
     <% end %>
   </li>
 
-  <% if projekt_feature?(@custom_page.projekt, 'footer.show_comments_in_projekt_footer') %>
+  <% if projekt_feature?(projekt, 'footer.show_comments_in_projekt_footer') %>
     <li class="tabs-title">
       <%= link_to "#tab-comments" do %>
         <h3>
           <%= t("custom.projekt.footer.show.comments_tab") %>
-          <span class="js-comments-count">(<%= @custom_page.projekt.comments.count %>)</span>
+          <span class="js-comments-count">(<%= projekt.comments.count %>)</span>
         </h3>
       <% end %>
     </li>
   <% end %>
 
-  <% if projekt_feature?(@custom_page.projekt, 'footer.show_notifications_in_projekt_footer') %>
+  <% if projekt_feature?(projekt, 'footer.show_notifications_in_projekt_footer') %>
     <li class="tabs-title">
       <%= link_to "#tab-notifications" do %>
         <h3>
           <%= t("custom.projekt.footer.show.notifications_tab") %>
-          (<%= @custom_page.projekt.projekt_notifications.count %>)
+          (<%= projekt.projekt_notifications.count %>)
         </h3>
       <% end %>
     </li>
   <% end %>
 
-  <% if projekt_feature?(@custom_page.projekt, 'footer.show_milestones_in_projekt_footer') %>
+  <% if projekt_feature?(projekt, 'footer.show_milestones_in_projekt_footer') %>
     <li class="tabs-title">
       <%= link_to "#tab-milestones" do %>
         <h3>
           <%= t("custom.projekt.footer.show.milestones_tab") %>
-          (<%= @custom_page.projekt.milestones.count %>)
+          (<%= projekt.milestones.count %>)
         </h3>
       <% end %>
     </li>
   <% end %>
 
-  <% if projekt_feature?(@custom_page.projekt, 'footer.show_newsfeed_in_projekt_footer') &&
+  <% if projekt_feature?(projekt, 'footer.show_newsfeed_in_projekt_footer') &&
         ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.id").value.present? &&
         ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.type").value.present? %>
     <li class="tabs-title" id='js-reload-newsfeed'>
