@@ -105,6 +105,9 @@ de:
             voting_manage: Abstimmungen verwalten
           projekt_settings_tab:
             name: Projektfunktionen
+            general_settings: Allgemeine Einstellungen
+            sidebar_settings: Seitenleiste
+            footer_settings: Fußzeile
           projekt_map_tab:
             name: Kartenkonfiguration
           projekt_notifications_tab:

@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <% if @custom_page.projekt.present? && projekt_feature?(@custom_page.projekt, 'show_projekt_footer') %>
+  <% if @custom_page.projekt.present? && projekt_feature?(@custom_page.projekt, 'footer.show_projekt_footer') %>
     <div class="additional-content projekt-footer">
       <div class="filter-subnav">
         <div class="row">
@@ -49,21 +49,21 @@
 
       <%= render "custom/pages/projekt_footer/activities" %>
 
-      <% if projekt_feature?(@custom_page.projekt, 'show_comments_in_projekt_footer') %>
+      <% if projekt_feature?(@custom_page.projekt, 'footer.show_comments_in_projekt_footer') %>
         <div class="tabs-panel" id="tab-comments">
           <%= render "custom/pages/projekt_footer/comments" %>
         </div>
       <% end %>
 
-      <% if projekt_feature?(@custom_page.projekt, 'show_notifications_in_projekt_footer') %>
+      <% if projekt_feature?(@custom_page.projekt, 'footer.show_notifications_in_projekt_footer') %>
         <%= render "custom/pages/projekt_footer/notifications" %>
       <% end %>
 
-      <% if projekt_feature?(@custom_page.projekt, 'show_milestones_in_projekt_footer') %>
+      <% if projekt_feature?(@custom_page.projekt, 'footer.show_milestones_in_projekt_footer') %>
         <%= render "milestones/milestones", milestoneable: @custom_page.projekt %>
       <% end %>
 
-      <% if projekt_feature?(@custom_page.projekt, 'show_newsfeed_in_projekt_footer') &&
+      <% if projekt_feature?(@custom_page.projekt, 'footer.show_newsfeed_in_projekt_footer') &&
             ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.id").value.present? &&
             ProjektSetting.find_by(projekt_id: 1, key: "projekt_newsfeed.type").value.present? %>
         <%= render "custom/pages/projekt_footer/newsfeed" %>

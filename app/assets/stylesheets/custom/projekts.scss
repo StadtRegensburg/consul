@@ -219,31 +219,6 @@ div.projekt-phase-geozone-restriction-selector {
 
 // Index and new views
 
-
-.projekt-phase-button {
-  padding: 0.3rem 0.5rem;
-  display: inline-block;
-  background: $brand;
-  color: $white;
-  text-decoration: none !important;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  width: 190px;
-  text-align: center;
-  margin-top: 0.5em;
-
-  &:hover {
-    color: $white;
-  }
-
-  &:focus {
-    color: $white;
-    outline: none;
-  }
-}
-
-
-
 #projekt-tags {
   margin: 1em 0;
 }

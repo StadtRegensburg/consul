@@ -17,22 +17,35 @@ class ProjektSetting < ApplicationRecord
     end
   end
 
+  def projekt_feature_prefix
+    key.split(".").second
+  end
+
+  def projekt_feature_type
+    if %w[general sidebar footer].include? projekt_feature_prefix
+      projekt_feature_prefix
+    else
+      "configuration"
+    end
+  end
+
   class << self
 
     def defaults
       {
-        "projekt_feature.show_in_navigation": nil,
+        "projekt_feature.general.show_in_navigation": nil,
+        "projekt_feature.general.show_not_active_phases_in_projekts_page_sidebar": nil,
 
-        "projekt_feature.show_phases_in_projekt_page_sidebar": 'active',
-        "projekt_feature.show_total_duration_in_projekts_page_sidebar": 'active',
-        "projekt_feature.show_not_active_phases_in_projekts_page_sidebar": nil,
-        "projekts.show_navigator_in_projekts_page_sidebar": true,
+        "projekt_feature.sidebar.show_phases_in_projekt_page_sidebar": 'active',
+        "projekt_feature.sidebar.show_total_duration_in_projekts_page_sidebar": 'active',
+        "projekt_feature.sidebar.show_navigator_in_projekts_page_sidebar": true,
 
-        "projekt_feature.show_projekt_footer": 'active',
-        "projekt_feature.show_comments_in_projekt_footer": 'active',
-        "projekt_feature.show_notifications_in_projekt_footer": nil,
-        "projekt_feature.show_milestones_in_projekt_footer": nil,
-        "projekt_feature.show_newsfeed_in_projekt_footer": nil,
+        "projekt_feature.footer.show_projekt_footer": 'active',
+        "projekt_feature.footer.show_comments_in_projekt_footer": 'active',
+        "projekt_feature.footer.show_notifications_in_projekt_footer": nil,
+        "projekt_feature.footer.show_milestones_in_projekt_footer": nil,
+        "projekt_feature.footer.show_newsfeed_in_projekt_footer": nil,
+
         "projekt_newsfeed.id": nil,
         "projekt_newsfeed.type": nil
       }

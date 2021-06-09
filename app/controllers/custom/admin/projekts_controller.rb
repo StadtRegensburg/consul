@@ -24,7 +24,11 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt.build_map_location if @projekt.map_location.blank?
 
     all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
-    @projekt_features = all_settings["projekt_feature"]
+    all_projekt_features = all_settings["projekt_feature"].group_by(&:projekt_feature_type)
+    @projekt_features_general = all_projekt_features['general']
+    @projekt_features_sidebar = all_projekt_features['sidebar']
+    @projekt_features_footer = all_projekt_features['footer']
+
     @projekt_newsfeed_settings = all_settings["projekt_newsfeed"]
 
     @projekt_notification = ProjektNotification.new

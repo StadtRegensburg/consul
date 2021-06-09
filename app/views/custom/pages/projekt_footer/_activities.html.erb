@@ -29,26 +29,33 @@
             data-deep-link-smudge="true"
             data-deep-link-smudge-delay="500"
             data-tabs>
-          <li class="tabs-title is-active" id="projekt-most-active-proposals-tab">
-            <%= link_to "#tab-projekt-most-active-proposals" do %>
-              <%= t("custom.projekt.footer.show.most_active_proposals") %>
-            <% end %>
-          </li>
 
-          <li class="tabs-title" id="projekt-most-active-debates-tab">
-            <%= link_to "#tab-projekt-most-active-debates" do %>
-              <%= t("custom.projekt.footer.show.most_active_debates") %>
-            <% end %>
-          </li>
+          <% if @custom_page.projekt.proposal_phase.present? && ( projekt_feature?(@custom_page.projekt, "general.show_not_active_phases_in_projekts_page_sidebar") || projekt_phase_active?(@custom_page.projekt, 'proposal_phase') )  %>
+            <li class="tabs-title <%= active_tab_in_activity?(@custom_page.projekt, 'proposals') %>" id="projekt-most-active-proposals-tab">
+              <%= link_to "#tab-projekt-most-active-proposals" do %>
+                <%= t("custom.projekt.footer.show.most_active_proposals") %>
+              <% end %>
+            </li>
+          <% end %>
 
-          <li class="tabs-title" id="projekt-latest-polls-tab">
-            <%= link_to "#tab-projekt-latest-polls" do %>
-              <%= t("custom.projekt.footer.show.latest_polls") %>
-            <% end %>
-          </li>
+          <% if @custom_page.projekt.debate_phase.present? && ( projekt_feature?(@custom_page.projekt, "general.show_not_active_phases_in_projekts_page_sidebar") || projekt_phase_active?(@custom_page.projekt, 'debate_phase') )  %>
+            <li class="tabs-title <%= active_tab_in_activity?(@custom_page.projekt, 'debates') %>" id="projekt-most-active-debates-tab">
+              <%= link_to "#tab-projekt-most-active-debates" do %>
+                <%= t("custom.projekt.footer.show.most_active_debates") %>
+              <% end %>
+            </li>
+          <% end %>
+
+          <% if projekt_feature?(@custom_page.projekt, "general.show_not_active_phases_in_projekts_page_sidebar") || related_polls(@custom_page.projekt).count > 0 %>
+            <li class="tabs-title <%= active_tab_in_activity?(@custom_page.projekt, 'polls') %>" id="projekt-latest-polls-tab">
+              <%= link_to "#tab-projekt-latest-polls" do %>
+                <%= t("custom.projekt.footer.show.latest_polls") %>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
 
-        <div class="tabs-panel is-active" id="tab-projekt-most-active-proposals">
+        <div class="tabs-panel <%= active_tab_in_activity?(@custom_page.projekt, 'proposals') %>" id="tab-projekt-most-active-proposals">
           <div class="row">
             <div class="column medium-3">
               <% if projekt_phase_selectable?(@custom_page.projekt, 'proposal_phase') %>
@@ -66,7 +73,7 @@
           <% end %>
         </div>
 
-        <div class="tabs-panel" id="tab-projekt-most-active-debates">
+        <div class="tabs-panel <%= active_tab_in_activity?(@custom_page.projekt, 'debates') %>" id="tab-projekt-most-active-debates">
           <div class="row">
             <div class="column medium-3">
               <% if projekt_phase_selectable?(@custom_page.projekt, 'debate_phase') %>
@@ -85,7 +92,7 @@
         </div>
 
 
-        <div class="tabs-panel" id="tab-projekt-latest-polls">
+        <div class="tabs-panel <%= active_tab_in_activity?(@custom_page.projekt, 'polls') %>" id="tab-projekt-latest-polls">
 
           <%= render partial: "polls/poll_group", locals: { poll_group: @latest_polls } %>
 
