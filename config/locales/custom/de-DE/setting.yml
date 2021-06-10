@@ -84,24 +84,24 @@ de:
           show_not_active_phases_in_projekts_page_sidebar: Nicht aktive Teilnahmephasen
           show_not_active_phases_in_projekts_page_sidebar_description: "Zeigt die Phasen \"Diskussionen\", \"Vorschläge\" und \"Abstimmungen\" an, auch wenn diese nicht aktiviert sind"
         sidebar:
-          projekt_page_sharing: Teilen-Funktion in Projektseite
+          projekt_page_sharing: Teilen-Funktion
           projekt_page_sharing_description: Aktivieren Sie die Teilen-Funktion in der rechten Seitenleiste der Projektseite
-          show_phases_in_projekt_page_sidebar: Projektphasen in Projektseite
+          show_phases_in_projekt_page_sidebar: Projektphasen
           show_phases_in_projekt_page_sidebar_description: Aktivieren Sie die Projektphasen in der rechten Seitenleiste der Projektseite
-          show_total_duration_in_projekts_page_sidebar: Gesamtdauer in Projektphasen
+          show_total_duration_in_projekts_page_sidebar: Gesamtdauer des Projektes
           show_total_duration_in_projekts_page_sidebar_description: "Zeigt die Phase \"Gesamtdauer\" in den Projektphasen in der rechten Seitenleiste der Projektseite an"
-          show_navigator_in_projekts_page_sidebar: Projektverzeichnis in Projektseite
+          show_navigator_in_projekts_page_sidebar: Projektverzeichnis
           show_navigator_in_projekts_page_sidebar_description: Zeigt die Projektverzeichnis in der rechten Seitenleiste der Projektseiten an
         footer:
-          show_projekt_footer: Projekt Fußzeile
-          show_projekt_footer_description: Aktiviert die Projekt-Fußzeile (Aktivität)
-          show_comments_in_projekt_footer: Kommentare in Fußzeile anzeigen
+          show_projekt_footer: Fußzeile aktivieren
+          show_projekt_footer_description: Aktiviert die Projektfußzeile mit dem Reiter \"Aktivität\"
+          show_comments_in_projekt_footer: Kommentare
           show_comments_in_projekt_footer_description: Aktiviert die Kommentarfunktion in der Fußzeile eines Projekts
-          show_notifications_in_projekt_footer: Benachrichtigungen in Fußzeile anzeigen
+          show_notifications_in_projekt_footer: Benachrichtigungen
           show_notifications_in_projekt_footer_description: Aktiviert die Benachrichtigungsfunktion in der Fußzeile eines Projekts
-          show_milestones_in_projekt_footer: Milensteine in der Fußzeile anzeigen
+          show_milestones_in_projekt_footer: Milensteine
           show_milestones_in_projekt_footer_description: Aktiviert die Meilensteinfunktion in der Fußzeile eines Projekts
-          show_newsfeed_in_projekt_footer: News-Feed in Fußzeile anzeigen
+          show_newsfeed_in_projekt_footer: News-Feed
           show_newsfeed_in_projekt_footer_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
 
       projekt_newsfeed:
