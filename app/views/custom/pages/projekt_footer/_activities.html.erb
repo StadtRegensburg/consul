@@ -60,19 +60,25 @@
           <% if projekt_phase_active?(projekt, 'proposal_phase') %>
 
             <div class="row">
-              <div class="column medium-3">
-                <% if projekt_phase_selectable?(projekt, 'proposal_phase') %>
+              <% if projekt_phase_selectable?(projekt, 'proposal_phase') %>
+                <div class="column medium-3">
                   <%= link_to new_proposal_path + "?projekt=#{projekt.id}", class: 'button expanded' do %>
                     <%= t("custom.projekt.page.sidebar.phases.proposal_phase_button") %>
                   <% end %>
-                <% end %>
-              </div>
+                </div>
+              <% elsif projekt_phase_not_started_yet?(projekt, 'proposal_phase') %>
+                <div class="column">
+                  <%= t('custom.projekt.footer.show.proposal_phase_not_started') %>
+                </div>
+              <% elsif projekt_phase_expired?(projekt, 'proposal_phase') %>
+                <div class="column">
+                  <%= t('custom.projekt.footer.show.proposal_phase_expired') %>
+                </div>
+              <% end %>
             </div>
 
             <% if @most_active_proposals.empty? && projekt_phase_selectable?(projekt, 'proposal_phase') %>
               <%= t("custom.projekt.footer.show.no_proposals") %>
-            <% elsif @most_active_proposals.empty? %>
-              <%= t('custom.projekt.page.sidebar.phases.proposal_phase_not_active') %>
             <% elsif @most_active_proposals.exists? %>
               <%= render partial: "proposals/proposal", collection: @most_active_proposals %>
               <%= link_to proposals_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}", class: 'all-projekt-resources-link' do %>
@@ -90,19 +96,25 @@
           <% if projekt_phase_active?(projekt, 'debate_phase') %>
 
             <div class="row">
-              <div class="column medium-3">
-                <% if projekt_phase_selectable?(projekt, 'debate_phase') %>
+              <% if projekt_phase_selectable?(projekt, 'debate_phase') %>
+                <div class="column medium-3">
                   <%= link_to new_debate_path + "?projekt=#{projekt.id}", class: 'button expanded' do %>
                     <%= t("custom.projekt.page.sidebar.phases.debate_phase_button") %>
                   <% end %>
-                <% end %>
-              </div>
+                </div>
+              <% elsif projekt_phase_not_started_yet?(projekt, 'debate_phase') %>
+                <div class="column">
+                  <%= t('custom.projekt.footer.show.debate_phase_not_started') %>
+                </div>
+              <% elsif projekt_phase_expired?(projekt, 'debate_phase') %>
+                <div class="column">
+                  <%= t('custom.projekt.footer.show.debate_phase_expired') %>
+                </div>
+              <% end %>
             </div>
 
             <% if @most_active_debates.empty? && projekt_phase_selectable?(projekt, 'debate_phase') %>
               <%= t("custom.projekt.footer.show.no_debates") %>
-            <% elsif @most_active_debates.empty? %>
-              <%= t('custom.projekt.page.sidebar.phases.debate_phase_not_active') %>
             <% elsif @most_active_debates.exists? %>
               <%= render partial: "debates/debate", collection: @most_active_debates %>
               <%= link_to debates_path + "?projekts=#{projekt.all_children_ids.push(projekt.id).join(',')}", class: 'all-projekt-resources-link' do %>
