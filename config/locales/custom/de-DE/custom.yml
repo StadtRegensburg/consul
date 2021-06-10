@@ -1,4 +1,11 @@
 de:
+  activerecord:
+    errors:
+      models:
+        proposal:
+          attributes:
+            description:
+              too_long: 'is too long'
   custom:
     gdpr_notice:
       title: Verwendung von Cookies
