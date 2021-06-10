@@ -133,7 +133,7 @@ class Setting < ApplicationRecord
         "sdg.process.budgets": true,
         "sdg.process.legislation": true,
         "projekts.connected_resources": true,
-        "projekts.projekt_page_sharing": true,
+        # "projekts.projekt_page_sharing": true,
         "projekts.show_archived.navigation": true,
         "projekts.show_archived.sidebar": true,
         # "projekts.show_phases_in_projekt_page_sidebar": true,

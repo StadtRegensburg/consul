@@ -36,6 +36,7 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.general.show_in_navigation": nil,
         "projekt_feature.general.show_not_active_phases_in_projekts_page_sidebar": nil,
 
+        "projekt_feature.sidebar.projekt_page_sharing": 'active',
         "projekt_feature.sidebar.show_phases_in_projekt_page_sidebar": 'active',
         "projekt_feature.sidebar.show_total_duration_in_projekts_page_sidebar": 'active',
         "projekt_feature.sidebar.show_navigator_in_projekts_page_sidebar": true,
