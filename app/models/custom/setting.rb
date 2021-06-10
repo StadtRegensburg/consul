@@ -142,6 +142,7 @@ class Setting < ApplicationRecord
         # "projekts.show_navigator_in_projekts_page_sidebar": true,
         "projekts.show_module_links_in_flyout_menu": true,
         "extended_feature.gdpr_conformity": false,
+        "extended_feature.show_cookie_banner": true,
         "extended_feature.link_out_warning": false,
         "extended_feature.two_click_iframe_solution": false,
         "extended_feature.extended_editor_for_admins": false,

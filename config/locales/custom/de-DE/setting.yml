@@ -52,6 +52,8 @@ de:
         enable_proposal_notifications_tab_description: Aktivieren Sie die Benachrichtigungen von Autoren zu eigenen Vorschlägen
         enable_proposal_milestones_tab: Meilensteine in Vorschlägen
         enable_proposal_milestones_tab_description: Aktivieren Sie "Meilensteine" in Vorschlägen, die von der Verwaltung angelegt werden müssen
+        show_cookie_banner: Cookies Banner anzeigen
+        show_cookie_banner_description: Aktivieren Sie den Cookie-Banner, um Nutzer:innen auf Tracking hinzuweisen
 
 
 

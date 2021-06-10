@@ -92,10 +92,9 @@
   <div class="row">
     <div class="column">
       <h3><%= t('custom.gdpr_notice.title') %></h3>
-       <%= sanitize t('custom.gdpr_notice.message', link: link_to(page_url("privacy"), page_path("privacy"))) %>
+       <%= sanitize t('custom.gdpr_notice.message', link: link_to(t('custom.gdpr_notice.link_text'), page_path("privacy"))) %>
       <div>
         <%= link_to t('custom.gdpr_notice.accept'), '#', class: 'button success js-accept-gdpr-notice' %>
-        <%= link_to t('custom.gdpr_notice.reject'), '#', class: 'button hollow js-reject-gdpr-notice' %>
       </div>
     </div>
   </div>
