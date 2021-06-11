@@ -163,6 +163,12 @@ de:
       errors:
         presence: 'Bitte wählen Sie ein Projekt'
       backlink: Zur Projektübersicht
+      selector:
+        connected_resources:
+          debate_title: Zuordnung der Diskussion zu einem Projekt
+          debate_description: Bitte ordnen Sie Ihre Diskussion einem der nachfolgenden Projekte oder Unterprojekte zu. Dies dient dazu, dass die Diskussionen in der Diskussionsübersicht besser auffindbar sind.
+          proposal_title: Zuordnung des Vorschlags zu einem Projekt
+          proposal_description: Bitte ordnen Sie Ihren Vorschlag einem der nachfolgenden Projekte oder Unterprojekte zu. Dies dient dazu, dass die Vorschläge in der Vorschlagsübersicht besser auffindbar sind.
     geozones:
       sidebar_filter:
         all_resources: "Alle %{resource_name}"
