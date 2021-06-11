@@ -86,7 +86,7 @@ module ProjektsHelper
   end
 
   def get_projekt_phase_limitations(projekt_phase)
-    restriction_name = projekt_phase.geozone_restricted
+    restriction_name = projekt_phase.geozone_restricted || "no_restriction"
     geozones = projekt_phase.geozones
 
     if geozones.exists? && restriction_name == 'only_geozones'
