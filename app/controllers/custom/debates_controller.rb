@@ -11,8 +11,12 @@ class DebatesController < ApplicationController
     @filtered_target = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
 
     @geozones = Geozone.all
+
+    @selected_geozone_affiliation = params[:geozone_affiliation] || ''
+    @affiliated_geozones = (params[:affiliated_geozones] || '').split(',').map(&:to_i)
+
     @selected_geozone_restriction = params[:geozone_restriction] || ''
-    @selected_geozones = (params[:geozones] || '').split(',').map(&:to_i)
+    @restricted_geozones = (params[:restricted_geozones] || '').split(',').map(&:to_i)
 
     @featured_debates = @debates.featured
     take_only_by_tag_names
@@ -89,9 +93,9 @@ class DebatesController < ApplicationController
     when 'only_geozones'
       @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: @selected_geozone_restriction }).distinct
       if @selected_geozones.present?
-        @resources = @resources.joins(:geozones).where(geozones: { id: @selected_geozones }).distinct
+        @resources = @resources.joins(:geozone_limitations).where(geozones: { id: @selected_geozones }).distinct
       else
-        @resources = @resources.joins(:geozones).where.not(geozones: { id: nil }).distinct
+        @resources = @resources.joins(:geozone_limitations).where.not(geozones: { id: nil }).distinct
       end
     end
   end

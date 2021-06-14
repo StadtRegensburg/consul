@@ -1,7 +1,7 @@
 class ProjektPhase < ApplicationRecord
   belongs_to :projekt, optional: true
   has_many :projekt_phase_geozones, dependent: :destroy
-  has_many :geozones, through: :projekt_phase_geozones
+  has_many :geozone_limitations, through: :projekt_phase_geozones, source: :geozone
 
   def selectable_by?(user)
     geozone_allowed = if geozone_restricted && geozone_ids.any?

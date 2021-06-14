@@ -11,6 +11,6 @@
   <%= phase_form.radio_button :geozone_restricted, 'only_geozones', label: t('custom.geozones.sidebar_filter.only_geozones'), class: "#{phase_name}_only_geozones" %>
 
   <div class="projekt-phase-geozone-selector <%= phase_name %>">
-    <%= phase_form.collection_check_boxes(:geozone_ids, Geozone.all, :id, :name) %>
+    <%= phase_form.collection_check_boxes(:geozone_limitation_ids, Geozone.all, :id, :name) %>
   </div>
 </div>

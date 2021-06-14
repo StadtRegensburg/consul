@@ -176,13 +176,19 @@ de:
           proposal_description: Bitte ordnen Sie Ihren Vorschlag einem der nachfolgenden Projekte oder Unterprojekte zu. Dies dient dazu, dass die Vorschläge in der Vorschlagsübersicht besser auffindbar sind.
     geozones:
       sidebar_filter:
-        all_resources: "Alle %{resource_name}"
-        no_restriction: Ohne Gebietszuordnung
-        only_citizens: Ganze Stadt
-        only_geozones: Zuordnung zu Stadtteilen
-        show_more: Mehr anzeigen
-        title: Gebiete
-        filter_button: Gebiete filtern
+        affiliations:
+          title: Gebietszuordnung
+          no_affiliation: Keine Zuordnung
+          entire_stadt: Ganze Stadt
+          only_geozones: Zuordnung zu Stadtteil
+          filter_button: Gebiete filtern
+        limitations:
+          title: Teilnahmeberechtigung
+          no_restriction: Alle Nutzer:innen der Platform
+          only_citizens: Nur Bürger:innen der Stadt
+          only_geozones: Nur Bürger:innen des Stadtteils
+          show_more: Mehr anzeigen
+          filter_button: Teilnahmeberechtigkeit filtern
     proposals:
       form:
         tags_custom: Nutzer-Tags
