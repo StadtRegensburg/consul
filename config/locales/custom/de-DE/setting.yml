@@ -80,6 +80,9 @@ de:
         show_module_links_in_flyout_menu_description: Zeigt die die Modul-Links unterhalb einzelner Dropdown-Einträge an
 
       projekt_feature:
+        main:
+          activate: Projekt aktivieren
+          activate_description: Aktivieren Sie das Projekt, sodass es in der Applikation sichtbar ist
         general:
           show_in_navigation: Projekt in Navigation anzeigen
           show_in_navigation_description: Zeigt das Projekt in der Top-Navigation der Webseite an (nur für Top-Level-Projekte)

@@ -67,6 +67,10 @@ de:
           extended_settings: Erweiterte Einstellungen
           extended_features: Erweiterte Funktionen
           extended_options: Erweiterte Konfigurationseinstellungen
+          features:
+            activate:
+              enabled: Projekt aktiviert
+              disabled: Projekt deaktiviert
 
       menu:
         projekts: Projekte
@@ -101,7 +105,8 @@ de:
         destroy: Löschen
         edit:
           projekt_phases_tab:
-            name: Projektseite & -phasen
+            name: Projekteinstellungen
+            main_block_title: Projektstatus
             page_block_title: Projektseite
             phases_block_title: Projektphasen
             phase_name: Phase
@@ -118,7 +123,7 @@ de:
             voting_manage: Abstimmungen verwalten
           projekt_settings_tab:
             name: Projektfunktionen
-            general_settings: Allgemeine Einstellungen
+            general_settings: Allgemein
             sidebar_settings: Seitenleiste
             footer_settings: Fußzeile
           projekt_map_tab:

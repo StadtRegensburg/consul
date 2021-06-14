@@ -29,6 +29,7 @@ class Admin::ProjektsController < Admin::BaseController
 
     all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
     all_projekt_features = all_settings["projekt_feature"].group_by(&:projekt_feature_type)
+    @projekt_features_main = all_projekt_features['main']
     @projekt_features_general = all_projekt_features['general']
     @projekt_features_sidebar = all_projekt_features['sidebar']
     @projekt_features_footer = all_projekt_features['footer']
@@ -98,7 +99,7 @@ class Admin::ProjektsController < Admin::BaseController
   private
 
   def projekt_params
-    params.require(:projekt).permit(:name, :parent_id, :total_duration_active, :total_duration_start, :total_duration_end,
+    params.require(:projekt).permit(:name, :parent_id, :total_duration_start, :total_duration_end,
                                     debate_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
                                     proposal_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_ids: [] ],
                                     map_location_attributes: map_location_attributes,
