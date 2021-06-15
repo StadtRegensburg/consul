@@ -55,7 +55,7 @@
     </thead>
     <tbody>
 
-      <tr class= <%= 'fieldset-disabled' unless @projekt.top_level?  %>>
+      <tr class= "<%= 'fieldset-disabled' unless @projekt.top_level? %> projekt_phase_settings" >
         <td>
           <%= t("custom.admin.projekts.edit.projekt_phases_tab.projekt_duration") %>
         </td>
@@ -66,6 +66,13 @@
           <%= f.date_field :total_duration_end, disabled: (true unless @projekt.top_level?), label: t("custom.admin.projekts.edit.projekt_phases_tab.end_date")  %>
         </td>
         <td>
+        </td>
+      </tr>
+
+      <tr class="projekt_phase_geozones">
+        <td></td>
+        <td colspan="3">
+          <%= render partial: 'custom/admin/projekts/edit/projekt_phases/phase_geozone_affiliation', locals: { f: f } %>
         </td>
       </tr>
 

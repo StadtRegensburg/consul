@@ -12,17 +12,18 @@ class DebatesController < ApplicationController
 
     @geozones = Geozone.all
 
-    @selected_geozone_affiliation = params[:geozone_affiliation] || ''
+    @selected_geozone_affiliation = params[:geozone_affiliation] || 'no_affiliation'
     @affiliated_geozones = (params[:affiliated_geozones] || '').split(',').map(&:to_i)
 
-    @selected_geozone_restriction = params[:geozone_restriction] || ''
+    @selected_geozone_restriction = params[:geozone_restriction] || 'no_restriction'
     @restricted_geozones = (params[:restricted_geozones] || '').split(',').map(&:to_i)
 
     @featured_debates = @debates.featured
     take_only_by_tag_names
     take_by_projekts
     take_by_sdgs
-    take_by_geozones
+    take_by_geozone_affiliations
+    take_by_geozone_restrictions
     @selected_tags = all_selected_tags
   end
 
@@ -81,21 +82,36 @@ class DebatesController < ApplicationController
     end
   end
 
-  def take_by_geozones
-    case @selected_geozone_restriction
+  def take_by_geozone_affiliations
+    case @selected_geozone_affiliation
     when 'all_resources'
       @resources
-    when 'no_restriction'
-      query_string = "projekt_phases.geozone_restricted = ? OR debates.projekt_id IS NULL"
-      @resources = @resources.left_outer_joins(:debate_phase).where(query_string,  @selected_geozone_restriction )
-    when 'only_citizens'
-      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: @selected_geozone_restriction }).distinct
+    when 'no_affiliation'
+      @resources = @resources.joins(:projekt).where( projekts: { geozone_affiliated: 'no_affiliation' } ).distinct
+    when 'entire_city'
+      @resources = @resources.joins(:projekt).where(projekts: { geozone_affiliated: 'entire_city' } ).distinct
     when 'only_geozones'
-      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: @selected_geozone_restriction }).distinct
-      if @selected_geozones.present?
-        @resources = @resources.joins(:geozone_limitations).where(geozones: { id: @selected_geozones }).distinct
+      @resources = @resources.joins(:projekt).where(projekts: { geozone_affiliated: 'only_geozones' } ).distinct
+      if @affiliated_geozones.present?
+        @resources = @resources.joins(:geozone_affiliations).where(geozones: { id: @affiliated_geozones }).distinct
       else
-        @resources = @resources.joins(:geozone_limitations).where.not(geozones: { id: nil }).distinct
+        @resources = @resources.joins(:geozone_affiliations).where.not(geozones: { id: nil }).distinct
+      end
+    end
+  end
+
+  def take_by_geozone_restrictions
+    case @selected_geozone_restriction
+    when 'no_restriction'
+      @resources = @resources.joins(:debate_phase).where( projekt_phases: { geozone_restricted: ['no_restriction', 'only_citizens', 'only_geozones'] } ).distinct
+    when 'only_citizens'
+      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: ['only_citizens', 'only_geozones'] }).distinct
+    when 'only_geozones'
+      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: 'only_geozones' }).distinct
+      if @restricted_geozones.present?
+        @resources = @resources.joins(:geozone_restrictions).where(geozones: { id: @restricted_geozones }).distinct
+      else
+        @resources = @resources.joins(:geozone_restrictions).where.not(geozones: { id: nil }).distinct
       end
     end
   end

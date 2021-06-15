@@ -178,17 +178,19 @@ de:
       sidebar_filter:
         affiliations:
           title: Gebietszuordnung
-          no_affiliation: Keine Zuordnung
-          entire_stadt: Ganze Stadt
+          all_resources: "Alle %{resource_name}"
+          no_affiliation: Keine Gebietszuordnung
+          entire_city: "Stadtweite %{resource_name}"
+          entire_city_short: "Stadtweit"
           only_geozones: Zuordnung zu Stadtteil
-          filter_button: Gebiete filtern
-        limitations:
+          filter_button: Gebietszuordnung filtern
+        restrictions:
           title: Teilnahmeberechtigung
-          no_restriction: Alle Nutzer:innen der Platform
+          no_restriction: Alle Nutzer:innen der Plattform
           only_citizens: Nur Bürger:innen der Stadt
           only_geozones: Nur Bürger:innen des Stadtteils
           show_more: Mehr anzeigen
-          filter_button: Teilnahmeberechtigkeit filtern
+          filter_button: Berechtigung filtern
     proposals:
       form:
         tags_custom: Nutzer-Tags

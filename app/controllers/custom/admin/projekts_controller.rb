@@ -20,10 +20,10 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt = Projekt.find(params[:id])
 
     @projekt.build_debate_phase if @projekt.debate_phase.blank?
-    @projekt.debate_phase.geozone_limitations.build
+    @projekt.debate_phase.geozone_restrictions.build
 
     @projekt.build_proposal_phase if @projekt.proposal_phase.blank?
-    @projekt.proposal_phase.geozone_limitations.build
+    @projekt.proposal_phase.geozone_restrictions.build
 
     @projekt.build_map_location if @projekt.map_location.blank?
 
@@ -99,9 +99,9 @@ class Admin::ProjektsController < Admin::BaseController
   private
 
   def projekt_params
-    params.require(:projekt).permit(:name, :parent_id, :total_duration_start, :total_duration_end,
-                                    debate_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_limitation_ids: [] ],
-                                    proposal_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_limitatiolimitationn_ids: [] ],
+    params.require(:projekt).permit(:name, :parent_id, :total_duration_start, :total_duration_end, :geozone_affiliated, geozone_affiliation_ids: [],
+                                    debate_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    proposal_phase_attributes: [:start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     map_location_attributes: map_location_attributes,
                                     projekt_notifications: [:title, :body])
   end

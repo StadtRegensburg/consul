@@ -87,13 +87,13 @@ module ProjektsHelper
 
   def get_projekt_phase_limitations(projekt_phase)
     restriction_name = projekt_phase.geozone_restricted || "no_restriction"
-    geozones = projekt_phase.geozones
+    geozone_restrictions = projekt_phase.geozone_restrictions
 
-    if geozones.exists? && restriction_name == 'only_geozones'
-      return geozones.pluck(:name).join(', ')
+    if geozone_restrictions.exists? && restriction_name == 'only_geozones'
+      return geozone_restrictions.pluck(:name).join(', ')
     end
 
-    t("custom.geozones.sidebar_filter.#{restriction_name}" )
+    t("custom.geozones.sidebar_filter.restrictions.#{restriction_name}" )
   end
 
   def related_polls(projekt, timestamp = Date.current.beginning_of_day)

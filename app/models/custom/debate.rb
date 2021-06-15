@@ -5,7 +5,7 @@ class Debate
 
   belongs_to :projekt, optional: true
   has_one :debate_phase, through: :projekt
-  has_many :geozone_limitations, through: :debate_phase
+  has_many :geozone_restrictions, through: :debate_phase
   has_many :geozone_affiliations, through: :projekt
 
   validates :projekt_id, presence: true, if: :require_a_projekt?
