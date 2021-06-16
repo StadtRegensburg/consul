@@ -232,6 +232,20 @@
 
     },
 
+    replaceProjektMapOnProposalCreation: function($label) {
+
+      var defaultLat = $("#projekt-tags-selector").attr('data-default-map-latitude')
+      var defaultLng = $("#projekt-tags-selector").attr('data-default-map-longitude')
+      var defaultZoom = $("#projekt-tags-selector").attr('data-default-map-zoom')
+
+      if ($label.hasClass('selected')) {
+        App.Map.maps[0].setView([$label.attr('data-latitude'), $label.attr('data-longitude')], $label.attr('data-zoom'))
+      } else {
+        App.Map.maps[0].setView([defaultLat, defaultLng], defaultZoom)
+      }
+
+    },
+
 
     // Initializer
  
@@ -260,11 +274,10 @@
         var $radioButton = $label.find(":radio").first()
         App.Projekts.highlightLabel($label);
 
-        if ( $radioButton.is(":checked") ) {
-          $radioButton.prop( "checked", false);
-        } else {
-          $radioButton.prop( "checked", true );
-        }
+        $radioButton.prop( "checked", !$radioButton.prop( "checked") );
+        $label.toggleClass('selected')
+
+        App.Projekts.replaceProjektMapOnProposalCreation($label)
       });
 
       $("body").on("click", ".js-filter-projekt", function() {
