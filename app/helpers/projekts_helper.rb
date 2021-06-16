@@ -85,15 +85,26 @@ module ProjektsHelper
     end
   end
 
-  def get_projekt_phase_limitations(projekt_phase)
+  def get_projekt_affiliation_name(projekt)
+    affiliation_name = projekt.geozone_affiliated || "no_affiliation"
+    geozone_affiliations = projekt.geozone_affiliations
+
+    if geozone_affiliations.exists? && affiliation_name == 'only_geozones'
+      return 'Gebietszuordnung: ' + geozone_affiliations.pluck(:name).join(', ')
+    end
+
+    'Gebietszuordnung: ' + t("custom.geozones.projekt_selector.affiliations.#{affiliation_name}" )
+  end
+
+  def get_projekt_phase_restriction_name(projekt_phase)
     restriction_name = projekt_phase.geozone_restricted || "no_restriction"
     geozone_restrictions = projekt_phase.geozone_restrictions
 
     if geozone_restrictions.exists? && restriction_name == 'only_geozones'
-      return geozone_restrictions.pluck(:name).join(', ')
+      return 'Partizipation: ' + geozone_restrictions.pluck(:name).join(', ')
     end
 
-    t("custom.geozones.sidebar_filter.restrictions.#{restriction_name}" )
+    'Partizipation: ' + t("custom.geozones.sidebar_filter.restrictions.#{restriction_name}" )
   end
 
   def related_polls(projekt, timestamp = Date.current.beginning_of_day)

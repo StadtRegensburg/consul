@@ -33,9 +33,13 @@
       <% @geozones.each do |geozone| %>
         <%= render partial: "shared/sidebar_filter/geozones_sidebar_option", locals: { geozone: geozone, filter_block: 'restriction', selected_geozones: @restricted_geozones } %>
       <% end  %>
-      <small <%= "class=hide" unless @restricted_geozones.any?  %>>
-        <%= link_to t('custom.geozones.sidebar_filter.restrictions.show_more'), '#', class: 'js-show-all-geozones'  %>
-      </small>
+
+      <% if @restricted_geozones.any? && @restricted_geozones.size != @geozones.size %>
+        <small>
+          <%= link_to t('custom.geozones.sidebar_filter.restrictions.show_more'), '#', class: 'js-show-all-geozones'  %>
+        </small>
+      <% end %>
+
     </ul>
   </ul>
 

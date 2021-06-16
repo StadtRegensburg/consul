@@ -12,7 +12,7 @@ class DebatesController < ApplicationController
 
     @geozones = Geozone.all
 
-    @selected_geozone_affiliation = params[:geozone_affiliation] || 'no_affiliation'
+    @selected_geozone_affiliation = params[:geozone_affiliation] || 'all_resources'
     @affiliated_geozones = (params[:affiliated_geozones] || '').split(',').map(&:to_i)
 
     @selected_geozone_restriction = params[:geozone_restriction] || 'no_restriction'
@@ -34,6 +34,14 @@ class DebatesController < ApplicationController
 
     @related_contents = Kaminari.paginate_array(@debate.relationed_contents).page(params[:page]).per(5)
     redirect_to debate_path(@debate), status: :moved_permanently if request.path != debate_path(@debate)
+
+    @geozones = Geozone.all
+
+    @selected_geozone_affiliation = params[:geozone_affiliation] || 'all_resources'
+    @affiliated_geozones = (params[:affiliated_geozones] || '').split(',').map(&:to_i)
+
+    @selected_geozone_restriction = params[:geozone_restriction] || 'no_restriction'
+    @restricted_geozones = (params[:restricted_geozones] || '').split(',').map(&:to_i)
   end
 
   private

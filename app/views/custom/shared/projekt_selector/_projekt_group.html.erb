@@ -23,7 +23,12 @@
           <%= get_projekt_phase_duration(rb.object.send(phase_name)) %>
 
           <br>
-          <%= get_projekt_phase_limitations(rb.object.send(phase_name)) %>
+          <%= get_projekt_affiliation_name(rb.object) %>
+ 
+          <% unless skip_user_verification? %>
+            <br>
+            <%= get_projekt_phase_restriction_name(rb.object.send(phase_name)) %>
+          <% end %>
         </div>
       <% elsif phase_name %>
         <div class='projekt-phase-details'>

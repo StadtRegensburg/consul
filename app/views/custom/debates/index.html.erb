@@ -116,6 +116,8 @@
           <%= render "shared/projekts_sidebar" %>
           <%= render "shared/sidebar_filter/geozone_affiliations" %>
           <% if extended_feature?('show_geozone_filter_in_sidebar') %>
+          <% end %>
+          <% unless skip_user_verification? %>
             <%= render "shared/sidebar_filter/geozone_restrictions" %>
           <% end %>
           <%= render "shared/categories", taggable: "debate" %>

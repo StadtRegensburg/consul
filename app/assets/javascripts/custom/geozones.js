@@ -109,6 +109,7 @@
       $("body").on("click", ".js-filter-geozones", function() {
         var $checkbox = $(this)
         App.Geozones.updateGeozonesParams($checkbox);
+        $checkbox.closest('li').toggleClass('label-selected')
       });
 
       $("body").on("click", ".js-apply-geozone-filter", function() {

@@ -12,7 +12,7 @@ class ProposalsController
 
     @geozones = Geozone.all
 
-    @selected_geozone_affiliation = params[:geozone_affiliation] || 'no_affiliation'
+    @selected_geozone_affiliation = params[:geozone_affiliation] || 'all_resources'
     @affiliated_geozones = (params[:affiliated_geozones] || '').split(',').map(&:to_i)
 
     @selected_geozone_restriction = params[:geozone_restriction] || 'no_restriction'

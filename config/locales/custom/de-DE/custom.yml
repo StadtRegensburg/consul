@@ -164,7 +164,7 @@ de:
         title: 'Projekte'
         title_active: 'Aktive Projekte'
         title_archived: 'Abgelaufene Projekte'
-        filter_button: 'Projekte filtern'
+        filter_button: Nach Projekte filtern
       errors:
         presence: 'Bitte wählen Sie ein Projekt'
       backlink: Zur Projektübersicht
@@ -177,20 +177,29 @@ de:
     geozones:
       sidebar_filter:
         affiliations:
-          title: Gebietszuordnung
+          title: Gebiete
           all_resources: "Alle %{resource_name}"
           no_affiliation: Keine Gebietszuordnung
           entire_city: "Stadtweite %{resource_name}"
           entire_city_short: "Stadtweit"
           only_geozones: Zuordnung zu Stadtteil
-          filter_button: Gebietszuordnung filtern
+          filter_button: Nach Gebiete filtern
         restrictions:
-          title: Teilnahmeberechtigung
+          title: Partizipation
           no_restriction: Alle Nutzer:innen der Plattform
           only_citizens: Nur Bürger:innen der Stadt
           only_geozones: Nur Bürger:innen des Stadtteils
           show_more: Mehr anzeigen
-          filter_button: Berechtigung filtern
+          filter_button: Nach Partizipation filtern
+      projekt_selector:
+        affiliations:
+          no_affiliation: Keine Gebietszuordnung
+          entire_city: "Stadtweit"
+          only_geozones: Zuordnung zu Stadtteil
+        restrictions:
+          no_restriction: Alle Nutzer:innen der Plattform
+          only_citizens: Nur Bürger:innen der Stadt
+          only_geozones: Nur Bürger:innen des Stadtteils
     proposals:
       form:
         tags_custom: Nutzer-Tags
