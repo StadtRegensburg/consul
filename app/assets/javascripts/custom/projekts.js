@@ -232,13 +232,13 @@
 
     },
 
-    replaceProjektMapOnProposalCreation: function($label) {
+    replaceProjektMapOnProposalCreation: function($label, $radioButton) {
 
       var defaultLat = $("#projekt-tags-selector").attr('data-default-map-latitude')
       var defaultLng = $("#projekt-tags-selector").attr('data-default-map-longitude')
       var defaultZoom = $("#projekt-tags-selector").attr('data-default-map-zoom')
 
-      if ($label.hasClass('selected')) {
+      if ($radioButton.is(':checked')) {
         App.Map.maps[0].setView([$label.attr('data-latitude'), $label.attr('data-longitude')], $label.attr('data-zoom'))
       } else {
         App.Map.maps[0].setView([defaultLat, defaultLng], defaultZoom)
@@ -275,9 +275,10 @@
         App.Projekts.highlightLabel($label);
 
         $radioButton.prop( "checked", !$radioButton.prop( "checked") );
+
         $label.toggleClass('selected')
 
-        App.Projekts.replaceProjektMapOnProposalCreation($label)
+        App.Projekts.replaceProjektMapOnProposalCreation($label, $radioButton)
       });
 
       $("body").on("click", ".js-filter-projekt", function() {
