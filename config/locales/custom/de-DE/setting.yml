@@ -2,8 +2,11 @@ de:
   custom:
     settings:
       feature:
-        map: Karte standardmäßig einblenden
-        map_description: Zeigt die Standardkarte bei Projekten, die keine individuelle Karte festgelegt haben
+        map: Karten und Gebiete anzeigen
+        map_description: Zeigt sowohl Karten als auch Gebiete & Gebietsfilter in der Applikation an
+        user:
+          skip_verification: Standardmäßige Partizipation für alle Nutzer:innen der Plattform
+          skip_verification_description: Nutzer:innen können ohne Verifizierung am Beteiligungsprozess teilnehmen
       extended_feature:
         enable_categories: Tags
         enable_categories_description: Aktivieren Sie die Auswahl vordefinierter Tags
@@ -49,8 +52,6 @@ de:
         custom_help_text_in_modules_description: Am unteren Ende der Modulübersicht können individuelle Hilfstexte platziert werden
         show_number_of_entries_in_modules: Anzahl der Beteiligungen anzeigen
         show_number_of_entries_in_modules_description: Zeigt die Anzahl der Diskussionsbeiträge, Vorschläge und Abstimmungen an
-        show_geozone_filter_in_sidebar: Filter nach Gebieten
-        show_geozone_filter_in_sidebar_description: Aktivieren Sie Gebietsfilter in der rechten Seitenleiste für Diskussionen, Vorschläge und Abstimmungen
         enable_proposal_notifications_tab: Benachrichtigungen des Autors zu Vorschlägen
         enable_proposal_notifications_tab_description: Aktivieren Sie die Benachrichtigungen von Autoren zu eigenen Vorschlägen
         enable_proposal_milestones_tab: Meilensteine in Vorschlägen
@@ -81,8 +82,6 @@ de:
           sidebar_description: Zeigt archivierte Projekte in der Projektseitenleiste wenn aktiviert
         show_module_links_in_flyout_menu: Modul-Links in den Dropdowns
         show_module_links_in_flyout_menu_description: Zeigt die die Modul-Links unterhalb einzelner Dropdown-Einträge an
-        show_map_fallback: Karte standardmäßig einblenden
-        show_map_fallback_description: Zeigt die Standardkarte bei Projekten, die keine individuelle Karte festgelegt haben
 
       projekt_feature:
         main:

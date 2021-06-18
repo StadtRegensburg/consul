@@ -13,7 +13,9 @@
       <%= link_to sanitize(taggable.projekt.name), (taggables_path(taggable.class.name.underscore, '') + "&projekts=#{taggable.projekt.id}" ), class: "#{tag_filter_class} projekt-tag-chip-icon projekt-tag-chip-projekt" %>
     </div>
 
-    <%= prepare_geo_affiliation_tag(taggable, resource_name, tag_filter_class) %>
+    <% if feature?(:map) %>
+      <%= prepare_geo_affiliation_tag(taggable, resource_name, tag_filter_class) %>
+    <% end %>
   <% end %>
 
     <% unless skip_user_verification? %>

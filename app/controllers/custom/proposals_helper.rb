@@ -58,7 +58,7 @@ module ProposalsHelper
     if @selected_projekt
       projekt_feature?(@selected_projekt, "general.show_map") ? '' : 'hide'
     else
-      Setting["projekts.show_map_fallback"] ? '' : 'hide'
+      feature?(:map) ? '' : 'hide'
     end
   end
 end
