@@ -52,7 +52,7 @@
       <% end %>
 
       <% if projekt_feature?(@custom_page.projekt, 'footer.show_comments_in_projekt_footer') %>
-        <div class="tabs-panel <%= active_tab_in_projekt_footer?(@custom_page.projekt, 'comments') %>" id="tab-comments">
+        <div class="tabs-panel <%= active_tab_in_projekt_footer?(@custom_page.projekt, 'footer.show_comments_in_projekt_footer') %>" id="tab-comments">
           <%= render partial: "pages/projekt_footer/comments", locals: { projekt: @custom_page.projekt } %>
         </div>
       <% end %>
@@ -62,7 +62,7 @@
       <% end %>
 
       <% if projekt_feature?(@custom_page.projekt, 'footer.show_milestones_in_projekt_footer') %>
-        <%= render "milestones/milestones", milestoneable: @custom_page.projekt, is_active_tab: active_tab_in_projekt_footer?(@custom_page.projekt, 'milestones') %>
+        <%= render "milestones/milestones", milestoneable: @custom_page.projekt, is_active_tab: active_tab_in_projekt_footer?(@custom_page.projekt, 'footer.show_milestones_in_projekt_footer') %>
       <% end %>
 
       <% if projekt_feature?(@custom_page.projekt, 'footer.show_newsfeed_in_projekt_footer') &&

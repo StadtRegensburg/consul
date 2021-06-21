@@ -122,3 +122,7 @@ de:
         id_description:  
         type: Newsfeed Type
         type_description: 
+
+      projekt_custom_feature:
+        default_footer_tab: Standard-Element
+        default_footer_tab_description: Wählen Sie ein Standard-Element aus, welches beim Öffnen der Seite angezeigt wird

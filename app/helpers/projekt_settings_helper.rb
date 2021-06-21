@@ -18,16 +18,21 @@ module ProjektSettingsHelper
   end
 
   def active_tab_in_projekt_footer?(projekt, tab)
-    if projekt_feature?(projekt, 'footer.show_activity_in_projekt_footer')
-      active_tab = 'activity'
-    elsif  projekt_feature?(projekt, 'footer.show_comments_in_projekt_footer')
-      active_tab = 'comments'
-    elsif  projekt_feature?(projekt, 'footer.show_notifications_in_projekt_footer')
-      active_tab = 'notifications'
-    elsif  projekt_feature?(projekt, 'footer.show_milestones_in_projekt_footer')
-      active_tab = 'milestones'
-    elsif  projekt_feature?(projekt, 'footer.show_newsfeed_in_projekt_footer')
-      active_tab = 'newsfeed'
+    current_active_tab_selection_setting = ProjektSetting.find_by(projekt: projekt, key: 'projekt_custom_feature.default_footer_tab')
+    active_tab_setting = ProjektSetting.find_by(projekt: projekt, id: current_active_tab_selection_setting.value) if current_active_tab_selection_setting
+
+    if current_active_tab_selection_setting.present? && active_tab_setting.present? && active_tab_setting.value.present?
+      active_tab = active_tab_setting.key.split('.')[1..-1].join('.')
+    elsif projekt_feature?(projekt, 'footer.show_activity_in_projekt_footer')
+      active_tab = 'footer.show_activity_in_projekt_footer'
+    elsif projekt_feature?(projekt, 'footer.show_comments_in_projekt_footer')
+      active_tab = 'footer.show_comments_in_projekt_footer'
+    elsif projekt_feature?(projekt, 'footer.show_notifications_in_projekt_footer')
+      active_tab = 'footer.show_notifications_in_projekt_footer'
+    elsif projekt_feature?(projekt, 'footer.show_milestones_in_projekt_footer')
+      active_tab = 'footer.show_milestones_in_projekt_footer'
+    elsif projekt_feature?(projekt, 'footer.show_newsfeed_in_projekt_footer')
+      active_tab = 'footer.show_newsfeed_in_projekt_footer'
     end
 
     active_tab == tab ? 'is-active' : ''

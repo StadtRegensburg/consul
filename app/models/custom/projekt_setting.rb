@@ -52,7 +52,9 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.footer.show_newsfeed_in_projekt_footer": '',
 
         "projekt_newsfeed.id": '',
-        "projekt_newsfeed.type": ''
+        "projekt_newsfeed.type": '',
+
+        "projekt_custom_feature.default_footer_tab": nil
       }
     end
 
@@ -72,6 +74,10 @@ class ProjektSetting < ApplicationRecord
 
   def enabled?
     value.present?
+  end
+
+  def short_name
+    I18n.t("custom.settings.#{self.key}")
   end
 
 end

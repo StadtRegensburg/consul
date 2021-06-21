@@ -126,6 +126,7 @@ de:
             general_settings: Allgemein
             sidebar_settings: Seitenleiste
             footer_settings: Fußzeile
+            select_an_element: auswählen
           projekt_map_tab:
             name: Ind. Kartenkonfiguration
           projekt_notifications_tab:
