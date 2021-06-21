@@ -14,13 +14,13 @@
 
 
     <% rb.object.children.any? ? arrow = 'show-arrow' : arrow = ''  %>
-    <% rb.label(class: "js-show-children-projekts #{arrow} #{disabled_class} #{highlight_projekt_in_selector?(rb.object)} #{hide_map_class}", data: {projekt_id: rb.object.id, latitude: rb.object.map_location.latitude, longitude: rb.object.map_location.longitude, zoom: rb.object.map_location.zoom, maplocation: rb.object.map_location.id } ) do  %>
+    <% rb.label(class: "js-show-children-projekts #{arrow} #{disabled_class} #{highlight_projekt_in_selector?(rb.object)} #{hide_map_class} js-select-projekt", data: {projekt_id: rb.object.id, latitude: rb.object.map_location.latitude, longitude: rb.object.map_location.longitude, zoom: rb.object.map_location.zoom, maplocation: rb.object.map_location.id } ) do  %>
 
       <%= rb.radio_button(disabled: disable_radio_button, checked: check_radio_button?(rb.object.id)) %>
       <%= rb.text %>
 
       <% if phase_name && projekt_phase_active?(rb.object, phase_name) %>
-        <div class='projekt-phase-details js-show-children-projekts'>
+        <div class='projekt-phase-details js-show-children-projekts js-select-projekt'>
           <%= get_projekt_phase_duration(rb.object.send(phase_name)) %>
 
           <br>
@@ -39,7 +39,7 @@
       <% end %>
 
       <% unless projekt_feature?(rb.object, 'general.show_not_active_phases_in_projekts_page_sidebar') %>
-        <div class="checkmark-wrapper js-select-projekt">
+        <div class="checkmark-wrapper">
           <span class="checkmark "></span>
         </div>
       <% end %>
