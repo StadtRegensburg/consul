@@ -9,7 +9,7 @@
     <% @projekt_phase = rb.object.send(phase_name) if phase_name %>
 
     <% disable_radio_button = ((can?(:select, @projekt_phase) || ((current_user.administrator?) && controller.controller_name == 'polls') ) ? false : true)  %>
-    <% disabled_class = ((can?(:select, @projekt_phase) || ((current_user.administrator?) && controller.controller_name == 'polls') ) ? '' : 'projekt-phase-disabled') %>
+    <% disabled_class = ((can?(:select, @projekt_phase) || ((current_user.administrator?) && controller.controller_name == 'polls') || projekt_feature?(rb.object, 'general.show_not_active_phases_in_projekts_page_sidebar')  ) ? '' : 'projekt-phase-disabled') %>
     <% hide_map_class = projekt_feature?(rb.object, "general.show_map") ? '' : 'hide-map'  %>
 
 
@@ -31,16 +31,18 @@
             <%= get_projekt_phase_restriction_name(rb.object.send(phase_name)) %>
           <% end %>
         </div>
-      <% elsif phase_name %>
+      <% elsif phase_name && !projekt_feature?(rb.object, 'general.show_not_active_phases_in_projekts_page_sidebar') %>
         <div class='projekt-phase-details'>
           <%= t('custom.projekt.page.sidebar.phases.debate_phase_not_active') if phase_name == 'debate_phase' %>
           <%= t('custom.projekt.page.sidebar.phases.proposal_phase_not_active') if phase_name == 'proposal_phase' %>
         </div>
       <% end %>
 
-      <div class="checkmark-wrapper js-select-projekt">
-        <span class="checkmark "></span>
-      </div>
+      <% unless projekt_feature?(rb.object, 'general.show_not_active_phases_in_projekts_page_sidebar') %>
+        <div class="checkmark-wrapper js-select-projekt">
+          <span class="checkmark "></span>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
