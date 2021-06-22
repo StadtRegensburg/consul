@@ -90,17 +90,18 @@ table.edit-projekt {
 
   .section-title,
   .debate-phase,
-  .proposal-phase {
+  .proposal-phase,
+  .voting-phase {
     grid-column-start: 1;
     grid-column-end: 3;
   }
 
   .debate-phase,
-  .proposal-phase {
+  .proposal-phase,
+  .voting-phase {
     display: grid;
     grid-template-columns: 250px 300px;
-    margin-top: 1rem;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 
   .margin-top {
@@ -179,6 +180,10 @@ td.projekt-order {
   input {
     margin-right: 0.75em !important;
     margin-left: 0 !important;
+  }
+
+  .destroy-link {
+    color: #cc4b37;
   }
 }
 

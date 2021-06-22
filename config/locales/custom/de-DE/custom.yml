@@ -100,7 +100,14 @@ de:
           page: Seite
           edit_page: Seite bearbeiten
           page_link: Seite öffnen 
-          add_cards: Kacheln erstellen
+          add_cards: Kacheln erstellen/bearbeiten
+          projekt_information: Projektinformationen
+          projekt_duration: Gesamtdauer des Projekts
+          projekt_affiliation: Gebietszuordnung
+          debate_phase: Diskussionsphase
+          proposal_phase: Vorschlagsphase
+          voting_phase: Abstimmungsphase
+          projekt_phase_limitation: Partizipationsbeschränkung
         edit_projekt: Editieren
         destroy: Löschen
         edit:
@@ -145,6 +152,8 @@ de:
             name: News-Feed
           show_in_navigation_checkbox: Projekt in Navigation anzeigen
           show_in_navigation:
+          show_footer: Projekt Fußzeile
+          setting_indicator:
             yes: Ja
             no: Nein 
           update: Projekteinstellungen aktualisieren
