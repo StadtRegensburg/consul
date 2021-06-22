@@ -153,3 +153,9 @@
 .gray-labels label {
   color: #c2c2c2;
 }
+
+.paid-feature:after {
+  content: "\f3d1";
+  font-weight: bold;
+  font-family: "Font Awesome 5 Free";
+}
