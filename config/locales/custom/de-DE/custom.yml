@@ -108,7 +108,10 @@ de:
             name: Projekteinstellungen
             main_block_title: Projektstatus
             page_block_title: Projektseite
+            information_block_title: Projektinformationen
             phases_block_title: Projektphasen
+            affiliation: Gebietszuordnung
+            restriction: Partizipationsbeschränkung
             phase_name: Phase
             beginning: Anfangsdatum
             ending: Enddatum
