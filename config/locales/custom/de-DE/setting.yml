@@ -2,8 +2,8 @@ de:
   custom:
     settings:
       feature:
-        map: Karten und Gebiete anzeigen
-        map_description: Zeigt sowohl Karten als auch Gebiete & Gebietsfilter in der Applikation an
+        map: Karten anzeigen
+        map_description: Zeigt die Standardkarte oder die individuellen Karten in der Projektfußzeile und der Vorschlagsübersicht
         user:
           skip_verification: Standardmäßige Partizipation für alle Nutzer:innen der Plattform
           skip_verification_description: Nutzer:innen können ohne Verifizierung am Beteiligungsprozess teilnehmen
@@ -82,6 +82,8 @@ de:
           sidebar_description: Zeigt archivierte Projekte in der Projektseitenleiste wenn aktiviert
         show_module_links_in_flyout_menu: Modul-Links in den Dropdowns
         show_module_links_in_flyout_menu_description: Zeigt die die Modul-Links unterhalb einzelner Dropdown-Einträge an
+        show_affiliation_filter_in_index_sidebar: Gebietsfilter anzeigen
+        show_affiliation_filter_in_index_sidebar_description: Zeigt den Gebietsfilter in der rechten Seitenleiste der einzelnen Module
 
       projekt_feature:
         main:
