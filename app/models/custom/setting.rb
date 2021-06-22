@@ -148,7 +148,6 @@ class Setting < ApplicationRecord
         "extended_feature.intro_text_for_debates": false,
         "extended_feature.head_image_for_debates": false,
         "extended_feature.intro_text_for_proposals": false,
-        "extended_feature.map_above_proposals": false,
         "extended_feature.quorum_for_proposals": true,
         "extended_feature.enable_proposal_support_withdrawal": false,
         "extended_feature.show_selected_proposals_in_proposal_sidebar": true,

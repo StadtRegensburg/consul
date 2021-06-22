@@ -56,7 +56,7 @@
   <%tags = @selected_tags&.select{ |tag| tag.kind == 'category' } %>
   <%can_create = true %>
 
-  <% if extended_feature?(:map_above_proposals) %>
+  <% if feature?(:map) %>
     <div class="map inline">
       <% if filtered_projekt %>
         <%= render_map(filtered_projekt.map_location, "proposals", false, nil, @proposals_coordinates) %>
