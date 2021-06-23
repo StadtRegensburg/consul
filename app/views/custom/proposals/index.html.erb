@@ -129,7 +129,7 @@
       <div class="show-for-small-only margin-top">
         <% if @proposals.any? && current_user && proposal_limit_exceeded?(current_user) %>
           <div class='max-proposals-exceeded'>
-            <%= t('custom.proposals.index.max_number_reached', max_number: Setting['extended_option.max_active_proposals_per_user']) %>
+            <%= t('custom.proposals.index.max_number_reached', max_number: Setting['extended_option.proposals.max_active_proposals_per_user']) %>
           </div>
         <% else %>
           <%= link_to t("proposals.index.start_proposal"), new_proposal_path(tags: tags.any? ? tags.map{|t| t.name} : nil),
@@ -172,7 +172,7 @@
       <aside class="margin-bottom">
         <% if current_user && proposal_limit_exceeded?(current_user) %>
           <div class='max-proposals-exceeded'>
-            <%= t('custom.proposals.index.max_number_reached', max_number: Setting['extended_option.max_active_proposals_per_user']) %>
+            <%= t('custom.proposals.index.max_number_reached', max_number: Setting['extended_option.proposals.max_active_proposals_per_user']) %>
           </div>
         <% else %>
           <%= link_to t("proposals.index.start_proposal"), new_proposal_path(tags: tags.any? ? tags.map{|t| t.name} : nil),

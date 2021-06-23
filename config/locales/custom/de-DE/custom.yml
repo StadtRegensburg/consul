@@ -65,12 +65,18 @@ de:
       settings:
         index:
           extended_settings: Erweiterte Einstellungen
-          extended_features: Erweiterte Funktionen
           extended_options: Erweiterte Konfigurationseinstellungen
           features:
             activate:
               enabled: Projekt aktiviert
               disabled: Projekt deaktiviert
+          extended_features: 
+            general: Allgemeines & Features
+            gdpr: DSGVO
+            modulewide: Modulübergreifende Funktionen
+            debates: Diskussionen
+            proposals: Vorschläge
+            polls: Abstimmungen
 
       menu:
         projekts: Projekte

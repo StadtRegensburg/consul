@@ -32,10 +32,6 @@ de:
           link_out_warning_description: Aktivieren Sie ein Popup, in dem der Nutzer bevor eines Linkouts zu einer externen Webseite gewarnt wird
           two_click_iframe_solution: Zwei-Klick-Lösung für IFrames
           two_click_iframe_solution_description: Aktivieren Sie die Zwei-Klick-Lösung für IFrames, um einen Blur-Effekt hinzuzufügen
-          devise_timeout_min: Dauer von Nutzer-Sitzungen
-          devise_timeout_min_description: Legen Sie fest, wie lange ein Nutzer pro Sitzung eingeloggt bleiben soll in Minuten
-          devise_verification_token_validity_days: Gültigkeit des Verifikationslinks in Tagen
-          devise_verification_token_validity_days_description: Legen Sie fest, wie lange der Verifikationslink gültig ist
         modulewide:
           enable_categories: Tags
           enable_categories_description: Aktivieren Sie die Auswahl vordefinierter Tags
@@ -47,8 +43,6 @@ de:
           hide_comment_replies_by_default_description: Aktivieren Sie das standardmäßige Einklappen von Kommentaren, um Übersichtlichkeit zu schaffen
           custom_help_text_in_modules: Individuelle Hilfstexte zu Modulen
           custom_help_text_in_modules_description: Am unteren Ende der Modulübersicht können individuelle Hilfstexte platziert werden
-
-
         debates:
           intro_text_for_debates: Einleitungstext für Diskussionen
           intro_text_for_debates_description: Aktivieren Sie einen individuellen Einleitungstext oberhalb der Diskussionsübersicht
@@ -69,15 +63,24 @@ de:
           enable_proposal_notifications_tab_description: Aktivieren Sie die Benachrichtigungen von Autoren zu eigenen Vorschlägen
           enable_proposal_milestones_tab: Meilensteine in Vorschlägen
           enable_proposal_milestones_tab_description: Aktivieren Sie "Meilensteine" in Vorschlägen, die von der Verwaltung angelegt werden müssen
-          max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
-          max_active_proposals_per_user_description: Legen Sie die maximale Anzahl an aktiven Vorschlägen pro Nutzer fest
-          description_max_length: Maximale Zeichenanzahl für die Vorschlagsbeschreibung
-          description_max_length_description: Legen Sie fest, wie viele Zeichen für Vorschläge maximal verwendet werden dürfen
         polls:
           intro_text_for_polls: Einleitungstext für Abstimmungen
           intro_text_for_polls_description: Aktivieren Sie einen individuellen Einleitungstext oberhalb der Abstimmungsübersicht
           intermediate_poll_results_for_admins: Zwischenergebnisse von Abstimmungen für Admins
           intermediate_poll_results_for_admins_description: Aktivieren Sie die Einsicht in Zwischenergebnisse zu Abstimmungen für Administratoren
+
+      extended_option:
+        gdpr:
+          devise_timeout_min: Dauer von Nutzer-Sitzungen
+          devise_timeout_min_description: Legen Sie fest, wie lange ein Nutzer pro Sitzung eingeloggt bleiben soll in Minuten
+          devise_verification_token_validity_days: Gültigkeit des Verifikationslinks in Tagen
+          devise_verification_token_validity_days_description: Legen Sie fest, wie lange der Verifikationslink gültig ist
+        proposals:
+          max_active_proposals_per_user: Maximale Anzahl aktiver Vorschläge pro Benutzer
+          max_active_proposals_per_user_description: Legen Sie die maximale Anzahl an aktiven Vorschlägen pro Nutzer fest
+          description_max_length: Maximale Zeichenanzahl für die Vorschlagsbeschreibung
+          description_max_length_description: Legen Sie fest, wie viele Zeichen für Vorschläge maximal verwendet werden dürfen
+
       projekts:
         connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
         connected_resources_description: Diskussionen & Vorschläge können ohne Projektzuordnung nicht erstellt werden

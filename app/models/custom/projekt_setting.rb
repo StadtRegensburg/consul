@@ -70,6 +70,10 @@ class ProjektSetting < ApplicationRecord
       end
     end
 
+    def destroy_obsolete
+      ProjektSetting.all.each{ |setting| setting.destroy unless defaults.keys.include?(setting.key.to_sym) }
+    end
+
   end
 
   def enabled?

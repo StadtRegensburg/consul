@@ -144,8 +144,8 @@ class Setting < ApplicationRecord
         "extended_feature.gdpr.show_cookie_banner": true,
         "extended_feature.gdpr.link_out_warning": false,
         "extended_feature.gdpr.two_click_iframe_solution": false,
-        "extended_option.devise_timeout_min": 30,
-        "extended_option.devise_verification_token_validity_days": 3
+        "extended_option.gdpr.devise_timeout_min": 30,
+        "extended_option.gdpr.devise_verification_token_validity_days": 3,
         "extended_feature.modulewide.enable_categories": false,
         "extended_feature.modulewide.enable_custom_tags": false,
         "extended_feature.modulewide.show_number_of_entries_in_modules": false,
@@ -163,8 +163,8 @@ class Setting < ApplicationRecord
         "extended_feature.proposals.show_suggested_proposals_in_proposal_sidebar": true,
         "extended_feature.proposals.enable_proposal_notifications_tab": true,
         "extended_feature.proposals.enable_proposal_milestones_tab": true,
-        "extended_option.max_active_proposals_per_user": 100,
-        "extended_option.description_max_length": 6000,
+        "extended_option.proposals.max_active_proposals_per_user": 100,
+        "extended_option.proposals.description_max_length": 6000,
         "extended_feature.polls.intro_text_for_polls": false,
         "extended_feature.polls.intermediate_poll_results_for_admins": false,
       }
@@ -174,18 +174,9 @@ class Setting < ApplicationRecord
       defaults.each { |name, value| self[name] = value }
     end
 
-    def create_missing
-      defaults.each { |key, value| self[key] = value unless Setting.find_by(key: key).present? }
+    def destroy_obsolete
+      Setting.all.each{ |setting| setting.destroy unless defaults.keys.include?(setting.key.to_sym) }
     end
 
-    def force_presence_date_of_birth?
-      Setting["feature.remote_census"].present? &&
-        Setting["remote_census.request.date_of_birth"].present?
-    end
-
-    def force_presence_postal_code?
-      Setting["feature.remote_census"].present? &&
-        Setting["remote_census.request.postal_code"].present?
-    end
   end
 end
