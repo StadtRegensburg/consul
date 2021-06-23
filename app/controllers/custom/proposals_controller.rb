@@ -29,7 +29,7 @@ class ProposalsController
     take_by_sdgs
     take_by_geozone_affiliations
     take_by_geozone_restrictions
-    @proposals_coordinates = all_proposal_map_locations
+    @proposals_coordinates = all_proposal_map_locations(@resources)
     @selected_tags = all_selected_tags
   end
 
@@ -140,10 +140,15 @@ class ProposalsController
         @resources = @resources.joins(:proposal_phase).where(projekt_phases: { geozone_restricted: ['only_citizens', 'only_geozones'] }).distinct
       when 'only_geozones'
         @resources = @resources.joins(:proposal_phase).where(projekt_phases: { geozone_restricted: 'only_geozones' }).distinct
+
         if @restricted_geozones.present?
-          @resources = @resources.joins(:geozone_restrictions).where(geozones: { id: @restricted_geozones }).distinct
-        else
-          @resources = @resources.joins(:geozone_restrictions).where.not(geozones: { id: nil }).distinct
+          sql_query = "
+            INNER JOIN projekts AS projekts_proposals_join_for_restrictions ON projekts_proposals_join_for_restrictions.hidden_at IS NULL AND projekts_proposals_join_for_restrictions.id = proposals.projekt_id
+            INNER JOIN projekt_phases AS proposal_phases_proposals_join_for_restrictions ON proposal_phases_proposals_join_for_restrictions.projekt_id = projekts_proposals_join_for_restrictions.id AND proposal_phases_proposals_join_for_restrictions.type IN ('ProjektPhase::ProposalPhase')
+            INNER JOIN projekt_phase_geozones ON projekt_phase_geozones.projekt_phase_id = proposal_phases_proposals_join_for_restrictions.id
+            INNER JOIN geozones AS geozone_restrictions ON geozone_restrictions.id = projekt_phase_geozones.geozone_id
+          "
+          @resources = @resources.joins(sql_query).where(geozone_restrictions: { id: @restricted_geozones }).distinct
         end
       end
     end

@@ -196,6 +196,7 @@ de:
           entire_city: "Stadtweite %{resource_name}"
           entire_city_short: "Stadtweit"
           only_geozones: Zuordnung zu Stadtteil
+          show_more: Mehr anzeigen
           filter_button: Nach Gebiete filtern
         restrictions:
           title: Partizipation
