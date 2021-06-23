@@ -21,7 +21,7 @@ module ProposalsHelper
   end
 
   def withdraw_proposal_support_on?
-    Setting["extended_feature.enable_proposal_support_withdrawal"]
+    Setting["extended_feature.proposals.enable_proposal_support_withdrawal"]
   end
 
   def filtered_projekt
