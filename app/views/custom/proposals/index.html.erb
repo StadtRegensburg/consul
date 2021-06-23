@@ -77,7 +77,7 @@
 
       <%= render Shared::BannerComponent.new("proposals") %>
 
-      <% if extended_feature?(:intro_text_for_proposals) %>
+      <% if extended_feature?("proposals.intro_text_for_proposals") %>
         <%=render_custom_block 'proposals_welcome' %>
       <% end %>
 
@@ -116,7 +116,7 @@
           </div>
 
           <div class='small-6 column small'>
-            <% if extended_feature?('show_number_of_entries_in_modules') %>
+            <% if extended_feature?('modulewide.show_number_of_entries_in_modules') %>
               <div class='float-right'>
                 <%= @proposals.except(:limit, :offset).count %>
                 <%= t('activerecord.models.proposal', count: @proposals.except(:limit, :offset).count) %>
@@ -155,7 +155,7 @@
 
         <% unless @search_terms || @advanced_search_terms || @tag_filter %>
           <div id="section_help" class="margin" data-magellan-target="section_help">
-            <% if extended_feature?('custom_help_text_in_modules') %>
+            <% if extended_feature?('modulewide.custom_help_text_in_modules') %>
               <%=render_custom_block 'proposals_help' %>
             <% else %>
               <p class="lead">
@@ -181,7 +181,7 @@
             disabled: !can_create %>
         <% end %>
 
-        <% if extended_feature?('show_selected_proposals_in_proposal_sidebar') %>
+        <% if extended_feature?('proposals.show_selected_proposals_in_proposal_sidebar') %>
           <div class="sidebar-divider"></div>
           <h2 class="sidebar-title"><%= t("proposals.index.selected_proposals") %></h2>
           <br>
@@ -204,7 +204,7 @@
         <% end %>
         <%= render "retired" %>
 
-        <% if extended_feature?('show_suggested_proposals_in_proposal_sidebar') %>
+        <% if extended_feature?('proposals.show_suggested_proposals_in_proposal_sidebar') %>
           <%= render "proposals_lists" %>
         <% end %>
 
