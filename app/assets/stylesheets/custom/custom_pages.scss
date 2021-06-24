@@ -93,6 +93,11 @@ span.geo-affiliation-icon:before {
 li.projekt-navigator {
   position: relative;
   padding-right: 14px;
+  color: #878787;
+
+  a { 
+    color: $brand !important;
+  }
 
   &~ul.projekt-navigator {
     display: none;
