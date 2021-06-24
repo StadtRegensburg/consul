@@ -80,7 +80,7 @@
 
 	.sidebar-filter-button {
 		flex-grow: 1;
-		background: #d4e5fb;
+		background: $secondary;
 		color: $brand;
 		border-radius: 3px;
     margin-right: 0.5rem;
@@ -91,7 +91,7 @@
 
 	.sidebar-filter-button:hover,
 	.sidebar-filter-button:focus {
-		color: #fff;
+		color: $white;
 		background: $brand;
 		text-decoration:none;
 		cursor:pointer;
@@ -158,4 +158,10 @@
   content: "\f3d1";
   font-weight: bold;
   font-family: "Font Awesome 5 Free";
+}
+
+// Overriding foundation
+.button:hover, .button:focus {
+  background-color: $secondary;
+  color: $brand
 }
