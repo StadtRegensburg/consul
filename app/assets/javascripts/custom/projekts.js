@@ -302,13 +302,20 @@
 
         var $parentProjekt = $(this).closest('li');
 
-        if ( $parentProjekt.next().prop("tagName")  === 'UL' && $checkbox.is(':checked')  ) {
+        if ( $parentProjekt.next().prop("tagName")  === 'UL') {
           var $childrentCheckboxes = $parentProjekt.siblings().find('.js-filter-projekt');
 
-          $childrentCheckboxes.each( function() {
-            $(this).prop( "checked", true )
-            App.Projekts.formNewFilterProjektsRequest($(this));
-          });
+          if ( $checkbox.is(':checked') ) {
+            $childrentCheckboxes.each( function() {
+              $(this).prop( "checked", true )
+              App.Projekts.formNewFilterProjektsRequest($(this));
+            });
+          } else {
+            $childrentCheckboxes.each( function() {
+              $(this).prop( "checked", false)
+              App.Projekts.formNewFilterProjektsRequest($(this));
+            });
+          }
         }
       });
 

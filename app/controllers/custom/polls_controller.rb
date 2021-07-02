@@ -16,6 +16,11 @@ class PollsController < ApplicationController
     @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
     @filtered_target = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
 
+    if params[:projekt] && params[:projekts]
+      @selected_parent_projekt = Projekt.find_by(id: params[:projekt])
+      @selected_projekts_ids = params[:projekts].split(',')
+    end
+
     @geozones = Geozone.all
 
     @selected_geozone_affiliation = params[:geozone_affiliation] || 'all_resources'
