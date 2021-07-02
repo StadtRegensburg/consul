@@ -24,16 +24,6 @@ module ProposalsHelper
     Setting["extended_feature.proposals.enable_proposal_support_withdrawal"]
   end
 
-  def filtered_projekt
-    projekt_params = params[:projekts] || params[:projekt]
-
-    return nil unless projekt_params.present?
-    return nil if projekt_params.split(',').count != 1
-
-    filtered_projekt_id = projekt_params.split(',')[0].to_i
-    Projekt.find_by(id: filtered_projekt_id)
-  end
-
   def label_error_class?(field)
     return 'is-invalid-label' if @proposal.errors.any? && @proposal.errors[field].present?
     ""

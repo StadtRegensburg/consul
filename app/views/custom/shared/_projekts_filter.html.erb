@@ -1,7 +1,7 @@
 <% projekts.each do |projekt| %>
-  <% toggle_projekt = ( @selected_parent_projekt && (projekt.id == @selected_parent_projekt.id || (projekt.children.ids & @selected_parent_projekt.children.ids).any? ) ) ? true : false %>
-  <% label_class =  ( @selected_parent_projekt && @selected_projekts_ids && (projekt.id == @selected_parent_projekt.id || projekt.id.to_s.in?(@selected_projekts_ids)) ) ? 'label-selected' : 'label_regular' %>
-  <% checkbox_checked = @selected_parent_projekt && @selected_projekts_ids && projekt.id.to_s.in?(@selected_projekts_ids.push(@selected_parent_projekt.id.to_s))  %>
+  <% toggle_projekt = ( @selected_parent_projekt && (projekt.children.ids & @selected_parent_projekt.children.ids).any? ) ? true : false %>
+  <% label_class =  ( @selected_projekts_ids && projekt.id.to_s.in?(@selected_projekts_ids) ) ? 'label-selected' : 'label_regular' %>
+  <% checkbox_checked = @selected_projekts_ids && projekt.id.to_s.in?(@selected_projekts_ids)  %>
   <% projekt_color = projekt&.map_location&.pin_color || '#00cae9' %>
 
   <ul>
