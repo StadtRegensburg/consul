@@ -397,8 +397,8 @@
 
       $("body").on("click", ".js-reset-projekt-filter-toggle-status", function(event) {
         var resourceName = $(this).data('resources') + 'ProjektFilterToggleIds';
-        var projektId = $(this).data('projekt')
-        window.localStorage.setItem(resourceName, projektId);
+        var projektIds = $(this).data('projekts')
+        window.localStorage.setItem(resourceName, projektIds);
       });
 
       $('#filter-projekts-all').find('li').each( function() {

@@ -47,6 +47,15 @@ class Projekt < ApplicationRecord
     self.parent.level(counter+1)
   end
 
+  def all_parent_ids(all_parent_ids = [])
+    if self.parent.present?
+      all_parent_ids.push(parent.id)
+      parent.all_parent_ids(all_parent_ids)
+    end
+
+    all_parent_ids
+  end
+
   def all_children_ids(all_children_ids = [])
     if self.children.any?
       self.children.each do |child|
