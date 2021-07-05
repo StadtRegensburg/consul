@@ -52,6 +52,36 @@
       });
     },
 
+    updateProjektFilterToggleIds: function($label) {
+      var resourceName;
+      if (window.location.href.includes('proposals')) {
+        resourceName = 'proposals' + 'ProjektFilterToggleIds'
+      } else if (window.location.href.includes('debates')) {
+        resourceName = 'debates' + 'ProjektFilterToggleIds'
+      } else if (window.location.href.includes('polls')) {
+        resourceName = 'polls' + 'ProjektFilterToggleIds'
+      }
+
+      var currentToggleProjekts = window.localStorage.getItem(resourceName)
+      var currentToggleProjektIds;
+
+      if (currentToggleProjekts) {
+        currentToggleProjektIds = currentToggleProjekts.split(',')
+      } else {
+        currentToggleProjektIds = [];
+      }
+
+      var toggledProjektId = $label.find('input').first().val()
+
+      if ( !currentToggleProjektIds.includes(toggledProjektId) ) {
+        currentToggleProjektIds.push(toggledProjektId)
+      } else {
+        currentToggleProjektIds.splice(currentToggleProjektIds.indexOf(toggledProjektId), 1);
+      }
+
+      window.localStorage.setItem(resourceName, currentToggleProjektIds.join(','));
+    },
+
     formNewFilterProjektsRequest: function($checkbox) {
 
       var url = new URL(window.location.href);
@@ -356,11 +386,36 @@
       $("body").on("click", ".js-icon-toggle-child-projekts", function(event) {
         var $label = $(this).parent();
         App.Projekts.toggleChildrenInSidebar($label);
+        App.Projekts.updateProjektFilterToggleIds($label)
       });
 
       $("body").on("click", ".js-toggle-edit-projekt-info", function(event) {
         var $row = $(this).closest('tr');
         App.Projekts.toggleChildrenInSidebar($row);
+
+      });
+
+      $("body").on("click", ".js-reset-projekt-filter-toggle-status", function(event) {
+        var resourceName = $(this).data('resources') + 'ProjektFilterToggleIds';
+        var projektId = $(this).data('projekt')
+        window.localStorage.setItem(resourceName, projektId);
+      });
+
+      $('#filter-projekts-all').find('li').each( function() {
+        var resourceName;
+        if (window.location.href.includes('proposals')) {
+          resourceName = 'proposals' + 'ProjektFilterToggleIds'
+        } else if (window.location.href.includes('debates')) {
+          resourceName = 'debates' + 'ProjektFilterToggleIds'
+        } else if (window.location.href.includes('polls')) {
+          resourceName = 'polls' + 'ProjektFilterToggleIds'
+        }
+
+        var projektId = $(this).children('label').children('input').val()
+
+        if ( window.localStorage.getItem(resourceName) && window.localStorage.getItem(resourceName).split(',').includes(projektId) ) {
+          $(this).attr('aria-expanded', 'true')
+        }
 
       })
 
