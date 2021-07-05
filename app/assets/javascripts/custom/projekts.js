@@ -294,6 +294,36 @@
 
     },
 
+    setDefaultToggleProjektsIds: function() {
+
+      if (
+        !window.localStorage.getItem('proposalsProjektFilterToggleIds') ||
+        !window.localStorage.getItem('debatesProjektFilterToggleIds') ||
+        !window.localStorage.getItem('pollsProjektFilterToggleIds')
+      ) {
+        var topProjekts = $('#filter-projekts-active > ul > li > label > input')
+        var topProjektIds = $.map(topProjekts, function(n) { return $(n).val() }).join(',')
+      }
+
+      if (
+        !window.localStorage.getItem('proposalsProjektFilterToggleIds')
+      ) {
+        window.localStorage.setItem('proposalsProjektFilterToggleIds', topProjektIds)
+      }
+
+      if (
+        !window.localStorage.getItem('debatesProjektFilterToggleIds')
+      ) {
+        window.localStorage.setItem('debatesProjektFilterToggleIds', topProjektIds)
+      }
+
+      if (
+        !window.localStorage.getItem('pollssProjektFilterToggleIds')
+      ) {
+        window.localStorage.setItem('pollsProjektFilterToggleIds', topProjektIds)
+      }
+    },
+
 
     // Initializer
  
@@ -401,6 +431,8 @@
         window.localStorage.setItem(resourceName, projektIds);
       });
 
+      App.Projekts.setDefaultToggleProjektsIds();
+
       $('#filter-projekts-all').find('li').each( function() {
         var resourceName;
         if (window.location.href.includes('proposals')) {
@@ -417,7 +449,7 @@
           $(this).attr('aria-expanded', 'true')
         }
 
-      })
+      });
 
     }
   };

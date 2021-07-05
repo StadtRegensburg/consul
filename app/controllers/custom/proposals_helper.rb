@@ -3,7 +3,7 @@ require_dependency Rails.root.join("app", "helpers", "proposals_helper").to_s
 module ProposalsHelper
 
   def all_proposal_map_locations(proposals_for_map)
-    ids = proposals_for_map.except(:order).pluck(:id).uniq
+    ids = proposals_for_map.except(:limit, :offset, :order).pluck(:id).uniq
 
     MapLocation.where(proposal_id: ids).map(&:json_data)
   end
