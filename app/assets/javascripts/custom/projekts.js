@@ -295,7 +295,6 @@
     },
 
     setDefaultToggleProjektsIds: function() {
-
       if (
         !window.localStorage.getItem('proposalsProjektFilterToggleIds') ||
         !window.localStorage.getItem('debatesProjektFilterToggleIds') ||
@@ -318,7 +317,7 @@
       }
 
       if (
-        !window.localStorage.getItem('pollssProjektFilterToggleIds')
+        !window.localStorage.getItem('pollsProjektFilterToggleIds')
       ) {
         window.localStorage.setItem('pollsProjektFilterToggleIds', topProjektIds)
       }
@@ -400,9 +399,17 @@
           }
         )
 
+        window.localStorage.removeItem('proposalsProjektFilterToggleIds')
+        window.localStorage.removeItem('debatesProjektFilterToggleIds')
+        window.localStorage.removeItem('pollsProjektFilterToggleIds')
+
+        App.Projekts.setDefaultToggleProjektsIds();
+
         var url = new URL(window.location.href);
         url.searchParams.delete('projekts')
         window.history.pushState('', '', url)
+        window.location.href = url;
+
 
       });
 
