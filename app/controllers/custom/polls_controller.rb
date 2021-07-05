@@ -30,11 +30,14 @@ class PollsController < ApplicationController
     @restricted_geozones = (params[:restricted_geozones] || '').split(',').map(&:to_i)
 
     @polls = @polls.created_by_admin.not_budget.send(@current_filter).includes(:geozones)
-    take_only_by_tag_names
-    take_by_projekts
-    take_by_sdgs
-    take_by_geozone_affiliations
-    take_by_geozone_restrictions
+
+    unless params[:search].present?
+      take_only_by_tag_names
+      take_by_projekts
+      take_by_sdgs
+      take_by_geozone_affiliations
+      take_by_geozone_restrictions
+    end
 
     @all_polls = @polls
 

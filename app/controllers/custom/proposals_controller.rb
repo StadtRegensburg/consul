@@ -38,11 +38,15 @@ class ProposalsController
     load_selected
     load_featured
     remove_archived_from_order_links
-    take_only_by_tag_names
-    take_by_projekts
-    take_by_sdgs
-    take_by_geozone_affiliations
-    take_by_geozone_restrictions
+
+    unless params[:search].present?
+      take_only_by_tag_names
+      take_by_projekts
+      take_by_sdgs
+      take_by_geozone_affiliations
+      take_by_geozone_restrictions
+    end
+
     @proposals_coordinates = all_proposal_map_locations(@resources)
     @selected_tags = all_selected_tags
   end
