@@ -87,6 +87,8 @@
         url.searchParams.delete('projekts')
       }
 
+      url.searchParams.delete('search')
+
       window.history.pushState('', '', url)
     },
 
@@ -235,6 +237,7 @@
         }
       }
 
+      currentPageUrl.searchParams.delete('search')
 
       window.history.pushState('', '', currentPageUrl)
       window.location.href = currentPageUrl.href;
