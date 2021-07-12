@@ -1,7 +1,7 @@
 class Admin::ProjektsController < Admin::BaseController
   include MapLocationAttributes
 
-  before_action :find_projekt, only: [:update, :destroy]
+  before_action :find_projekt, only: [:update, :destroy, :quick_update]
   before_action :load_geozones, only: [:new, :create, :edit, :update]
 
   def index
@@ -47,6 +47,11 @@ class Admin::ProjektsController < Admin::BaseController
 
     @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
     @default_footer_tab_options = get_default_footer_tab_selection_options(@projekt)
+  end
+
+  def quick_update
+    @projekt.update_attributes(projekt_params)
+    redirect_back(fallback_location: admin_projekts_path)
   end
 
   def update

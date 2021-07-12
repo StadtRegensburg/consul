@@ -15,6 +15,7 @@ namespace :admin do
       get :order_up
       get :order_down
       get :edit
+      patch :quick_update
     end
     put :update_map, to: "projekts#update_map"
   end

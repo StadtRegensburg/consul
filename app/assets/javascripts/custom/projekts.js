@@ -458,6 +458,11 @@
 
       });
 
+      $("body").on("click", ".js-quick-projekt-update", function(event) {
+        event.preventDefault();
+        $(this).closest('tr').find('form').submit()
+      });
+
     }
   };
 }).call(this);
