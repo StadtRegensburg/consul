@@ -14,4 +14,8 @@ class Poll < ApplicationRecord
       current? &&
       (!geozone_restricted || geozone_ids.include?(user.geozone_id) || Setting['feature.user.skip_verification'])
   end
+
+  def comments_allowed?(user)
+    votable_by?(user)
+  end
 end

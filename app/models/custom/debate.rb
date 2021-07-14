@@ -32,5 +32,7 @@ class Debate
     #  user.voted_for?(self)
   end
 
-
+  def comments_allowed?(user)
+    votable_by?(user)
+  end
 end
