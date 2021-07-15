@@ -30,7 +30,7 @@ class Proposal < ApplicationRecord
   end
 
   def comments_allowed?(user)
-    votable_by?(user)
+    projekt.present? ? proposal_phase.selectable_by?(user) : false
   end
 
   def description_sanitized

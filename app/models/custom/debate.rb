@@ -33,6 +33,6 @@ class Debate
   end
 
   def comments_allowed?(user)
-    votable_by?(user)
+    projekt.present? ? debate_phase.selectable_by?(user) : false
   end
 end

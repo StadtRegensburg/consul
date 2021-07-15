@@ -16,6 +16,6 @@ class Poll < ApplicationRecord
   end
 
   def comments_allowed?(user)
-    votable_by?(user)
+    answerable_by?(user)
   end
 end

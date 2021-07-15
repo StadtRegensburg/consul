@@ -8,7 +8,7 @@
 
       <%= render "shared/wide_order_selector", i18n_namespace: "comments" %>
 
-      <% if user_signed_in? && @projekt && can?(:select, @projekt.debate_phase) %>
+      <% if user_signed_in? && @projekt && @debate.comments_allowed?(current_user) %>
         <%= render "comments/form", { commentable: @debate, parent_id: nil } %>
 
       <% elsif user_signed_in? && @projekt %>

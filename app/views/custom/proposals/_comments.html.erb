@@ -3,7 +3,7 @@
     <div id="comments" class="small-12 column">
       <%= render "shared/wide_order_selector", i18n_namespace: "comments" %>
 
-      <% if user_signed_in? && @projekt && can?(:select, @projekt.proposal_phase) %>
+      <% if user_signed_in? && @projekt && @proposal.comments_allowed?(current_user) %>
         <%= render "comments/form", { commentable: @proposal, parent_id: nil } %>
 
       <% elsif user_signed_in? && @projekt %>
