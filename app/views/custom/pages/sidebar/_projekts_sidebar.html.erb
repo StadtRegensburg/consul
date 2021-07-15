@@ -2,8 +2,8 @@
   <%= render "shared/social_share",
       share_title: t("custom.pages.social_share.share"),
       title: projekt.page.title,
-      url: projekt.page.full_url,
-      description: strip_tags(projekt.page.content),
+      url: url_for(only_path: false),
+      description: strip_tags(projekt.page.content)[0..200] + '...',
       mobile: projekt.page.title
   %>
 <% end %>
