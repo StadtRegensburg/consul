@@ -478,10 +478,10 @@
 
       $("body").on("click", ".js-preselect-projekt", function(event) {
         event.preventDefault();
-        var filteredProjekts = (new URL(document.location)).searchParams.get('projekts').split(',')
-        if ( filteredProjekts.length == 1 ) {
+        var filteredProjekts = (new URL(document.location)).searchParams.get('projekts')
+        if ( filteredProjekts && filteredProjekts.split(',').length == 1 ) {
           var current_url = $(this).attr('href')
-          $(this).attr('href', current_url + '?projekt=' + filteredProjekts[0])
+          $(this).attr('href', current_url + '?projekt=' + filteredProjekts.split(',')[0])
         }
 
         window.location.href = $(this).attr('href');
