@@ -20,6 +20,7 @@
             </div>
           <% end %>
         <% end %>
+        <%= render partial: 'polls/questions/answer_more_info_modal', locals: { answer: answer } %>
 
         <% if @answers_by_question_id[question.id] == answer.title || question.poll.voted_in_booth?(current_user) %>
           <span class="button answered"
@@ -35,7 +36,6 @@
             class: "button secondary hollow js-question-answer" %>
         <% end %>
 
-        <%= render partial: 'polls/questions/answer_more_info_modal', locals: { answer: answer } %>
       </div>
 
     <% end %>

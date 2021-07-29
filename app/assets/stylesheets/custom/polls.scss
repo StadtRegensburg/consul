@@ -26,6 +26,7 @@
   .poll-answer-more-info {
     position: relative;
     cursor: pointer;
+    color: $brand;
 
     &:after {
       position: absolute;
