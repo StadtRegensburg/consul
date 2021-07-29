@@ -83,6 +83,10 @@ de:
             debates: Diskussionen
             proposals: Vorschläge
             polls: Abstimmungen
+      polls:
+        questions:
+          show_images: Bilder für Antworten anzeigen
+
 
       menu:
         projekts: Projekte

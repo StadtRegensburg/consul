@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_130103) do
+ActiveRecord::Schema.define(version: 2021_07_29_081646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1127,6 +1127,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_130103) do
     t.datetime "updated_at"
     t.tsvector "tsv"
     t.string "video_url"
+    t.boolean "show_images", default: false
     t.index ["author_id"], name: "index_poll_questions_on_author_id"
     t.index ["poll_id"], name: "index_poll_questions_on_poll_id"
     t.index ["proposal_id"], name: "index_poll_questions_on_proposal_id"
@@ -1675,8 +1676,12 @@ ActiveRecord::Schema.define(version: 2021_06_22_130103) do
     t.boolean "public_interests", default: false
     t.boolean "recommended_debates", default: true
     t.boolean "recommended_proposals", default: true
+    t.string "keycloak_link"
+    t.string "first_name"
+    t.string "last_name"
     t.string "plz"
-    t.boolean "plz_consent"
+    t.string "location"
+    t.integer "bam_letter_verification_code"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["geozone_id"], name: "index_users_on_geozone_id"

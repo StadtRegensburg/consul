@@ -1,12 +1,26 @@
+<% has_more_info = question.question_answers.any? { |answer| answer.description.present? } %>
+
 <div class="poll-question-answers">
   <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
     <% question.question_answers.each do |answer| %>
       <div class='poll-answer-group'>
-        <% if answer.images.any? %>
-          <div class='poll-answer-thumbnail'>
-            <%= image_tag answer.images.first.attachment.url %>
+
+        <% if question.show_images? %>
+          <% image_class = (Setting["extended_feature.polls.additional_info_for_each_answer"] && has_more_info) ? "poll-answer-thumbnail poll-answer-more-info" : "poll-answer-thumbnail" %>
+          <div class='<%= image_class %>' data-open='model-question-<%= answer.id %>'>
+            <% if answer.images.any? %>
+              <%= image_tag answer.images.first.attachment.url %>
+            <% end %>
           </div>
+
+        <% else %>
+          <% if Setting["extended_feature.polls.additional_info_for_each_answer"] && has_more_info %>
+            <div class='poll-answer-more-info-link' data-open='model-question-<%= answer.id %>'>
+              More info
+            </div>
+          <% end %>
         <% end %>
+
         <% if @answers_by_question_id[question.id] == answer.title || question.poll.voted_in_booth?(current_user) %>
           <span class="button answered"
                 title="<%= t("poll_questions.show.voted", answer: answer.title) %>">
@@ -20,7 +34,10 @@
             title: t("poll_questions.show.vote_answer", answer: answer.title),
             class: "button secondary hollow js-question-answer" %>
         <% end %>
+
+        <%= render partial: 'polls/questions/answer_more_info_modal', locals: { answer: answer } %>
       </div>
+
     <% end %>
   <% elsif !user_signed_in? %>
     <% question.question_answers.order(id: :desc).each do |answer| %>
