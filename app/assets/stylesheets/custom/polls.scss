@@ -2,9 +2,16 @@
   width: 10.5rem;
 }
 
+.poll-answer-group.align-answers-top {
+  vertical-align: top;
+}
+
+.poll-answer-group.align-answers-bottom {
+  vertical-align: bottom;
+}
+
 .poll-answer-group {
   display: inline-block;
-  vertical-align: top;
 
   .poll-answer-thumbnail {
     width: 10.5rem;
@@ -60,6 +67,22 @@
 
 }
 
-.reveal button.zoom-link {
-  display: none;
+.reveal.poll-answer-modal { 
+
+  button.zoom-link {
+    display: none;
+  }
+
+  .margin {
+    display: none
+  }
+
+  .document-link,
+  .video-link {
+    margin-top: 1.5rem;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
 }

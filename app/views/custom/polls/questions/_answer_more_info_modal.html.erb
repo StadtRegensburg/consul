@@ -1,4 +1,4 @@
-<div class="reveal" id='model-question-<%= answer.id %>' data-reveal>
+<div class="reveal poll-answer-modal" id='model-question-<%= answer.id %>' data-reveal>
 
   <div class="small-12 column end answer <%= cycle("first", "") %>" id="answer_<%= answer.id %>">
     <%= render partial: 'polls/questions/answer_more_info', locals: { answer: answer } %>

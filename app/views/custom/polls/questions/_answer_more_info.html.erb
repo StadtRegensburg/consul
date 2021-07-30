@@ -3,12 +3,12 @@
 <% end %>
 
 <% if answer.images.any? %>
-  <%= render "gallery", answer: answer %>
+  <%= render "polls/gallery", answer: answer %>
 <% end %>
 
 <% if answer.description.present? %>
   <div class="margin-top">
-    <div id="answer_description_<%= answer.id %>" class="answer-description short">
+    <div id="answer_description_<%= answer.id %>" class="answer-description short" data-toggler="short">
       <%= wysiwyg(answer.description) %>
     </div>
     <div class="margin">

@@ -1,26 +1,20 @@
-<% has_more_info = question.question_answers.any? { |answer| answer.description.present? } %>
-
 <div class="poll-question-answers">
   <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
     <% question.question_answers.each do |answer| %>
-      <div class='poll-answer-group'>
+      <div class='poll-answer-group <%= 'align-answers-top' if question.show_images? && extended_feature?("polls.additional_info_for_each_answer") %>'>
 
-        <% if question.show_images? %>
-          <% image_class = (Setting["extended_feature.polls.additional_info_for_each_answer"] && has_more_info) ? "poll-answer-thumbnail poll-answer-more-info" : "poll-answer-thumbnail" %>
-          <div class='<%= image_class %>' data-open='model-question-<%= answer.id %>'>
+        <% if extended_feature?("polls.additional_info_for_each_answer") && question.show_images? %>
+          <div class='poll-answer-thumbnail <%= 'poll-answer-more-info' if answer_with_description?(answer) %>'
+               <%= "data-open=model-question-#{answer.id}" if answer_with_description?(answer) %>>
             <% if answer.images.any? %>
               <%= image_tag answer.images.first.attachment.url %>
             <% end %>
           </div>
-
-        <% else %>
-          <% if Setting["extended_feature.polls.additional_info_for_each_answer"] && has_more_info %>
-            <div class='poll-answer-more-info-link' data-open='model-question-<%= answer.id %>'>
-              More info
-            </div>
-          <% end %>
+        <% elsif extended_feature?('polls.additional_info_for_each_answer') && answer_with_description?(answer) %>
+          <div class='poll-answer-more-info-link' data-open='model-question-<%= answer.id %>'>
+            More info
+          </div>
         <% end %>
-        <%= render partial: 'polls/questions/answer_more_info_modal', locals: { answer: answer } %>
 
         <% if @answers_by_question_id[question.id] == answer.title || question.poll.voted_in_booth?(current_user) %>
           <span class="button answered"
