@@ -20,6 +20,7 @@
           <span class="button answered"
                 title="<%= t("poll_questions.show.voted", answer: answer.title) %>">
             <%= answer.title %>
+            <% open_answer = answer if answer.open_answer? %>
           </span>
         <% else %>
           <%= link_to answer.title,
@@ -33,6 +34,15 @@
       </div>
 
     <% end %>
+
+    <% if question.open_answer && @answers_by_question_id[question.id] == question.open_answer.title %>
+      <% open_answer = question.open_answer %>
+      <%= form_for open_answer, url: update_open_answer_path(question, open_answer), method: :patch, remote: true do |f| %>
+        <%= f.text_area :open_answer_text %>
+        <%= f.submit class: "button open-answer" %>
+      <% end %>
+    <% end %>
+
   <% elsif !user_signed_in? %>
     <% question.question_answers.order(id: :desc).each do |answer| %>
       <%= link_to answer.title, new_user_session_path, class: "button secondary hollow" %>

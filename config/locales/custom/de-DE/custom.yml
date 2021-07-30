@@ -86,7 +86,8 @@ de:
       polls:
         questions:
           show_images: Bilder für Antworten anzeigen
-
+          answers:
+            open_answer_html: Offene Antwort <small><em>(Nur eine erlaubt)</em></small>
 
       menu:
         projekts: Projekte

@@ -1,4 +1,4 @@
-.poll-question-answers .button {
+.poll-question-answers .button:not(.open-answer) {
   width: 10.5rem;
 }
 
