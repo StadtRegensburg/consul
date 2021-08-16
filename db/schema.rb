@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_090346) do
+ActiveRecord::Schema.define(version: 2021_08_16_133916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1794,6 +1794,7 @@ ActiveRecord::Schema.define(version: 2021_08_16_090346) do
     t.integer "cardable_id"
     t.integer "columns", default: 4
     t.string "cardable_type", default: "SiteCustomization::Page"
+    t.string "card_category", default: ""
     t.index ["cardable_id"], name: "index_widget_cards_on_cardable_id"
   end
 
