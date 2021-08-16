@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_084506) do
+ActiveRecord::Schema.define(version: 2021_08_16_090346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1130,6 +1130,7 @@ ActiveRecord::Schema.define(version: 2021_07_30_084506) do
     t.tsvector "tsv"
     t.string "video_url"
     t.boolean "show_images", default: false
+    t.boolean "multiple", default: false
     t.index ["author_id"], name: "index_poll_questions_on_author_id"
     t.index ["poll_id"], name: "index_poll_questions_on_poll_id"
     t.index ["proposal_id"], name: "index_poll_questions_on_proposal_id"

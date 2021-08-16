@@ -6,6 +6,9 @@ de:
           attributes:
             description:
               too_long: 'is too long'
+    attributes:
+      poll/question/answer:
+        open_answer_text: Offene Antwort text
   custom:
     devise_views:
       users:
@@ -252,6 +255,9 @@ de:
       show:
         results_menu: Zwischenergebnisse für Admins
         info_menu: Abstimmung
+      questions:
+        answers:
+          save_open_answer: Antwort speichern
     debates:
       form:
         tags_custom: Nutzer-Tags
