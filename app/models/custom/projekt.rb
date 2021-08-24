@@ -45,16 +45,6 @@ class Projekt < ApplicationRecord
                                            where( 'a.key': 'projekt_feature.main.activate', 'a.value': 'active' ).
                                            select('DISTINCT ON ("projekts"."order_number") "projekts".*') }
 
-  scope :top_level_active_projekt_for_page_sidebar, -> { top_level.with_order_number.
-                                           where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today).
-                                           joins(' INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
-                                           where( 'a.key': 'projekt_feature.main.activate', 'a.value': 'active' ).distinct }
-
-  scope :top_level_archived_projekt_for_page_sidebar, -> { top_level.with_order_number.
-                                           where( "total_duration_end < ?", Date.today).
-                                           joins(' INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
-                                           where( 'a.key': 'projekt_feature.main.activate', 'a.value': 'active' ).distinct }
-
   scope :top_level_active_top_menu, -> { top_level.with_order_number.
                                            where("total_duration_end IS NULL OR total_duration_end >= ?", Date.today).
                                            joins('INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
@@ -100,23 +90,16 @@ class Projekt < ApplicationRecord
   def has_active_phase?(controller_name)
     case controller_name
     when 'proposals'
-      proposal_phase.active?
+      proposal_phase.currently_active?
     when 'debates'
-      debate_phase.active?
+      debate_phase.currently_active?
     when 'polls'
       polls.any?
     end
   end
 
-  def show_in_sidebar_filter?(controller_name)
-    case controller_name
-    when 'proposals'
-      self.proposal_phase.active? || self.proposals.any?
-    when 'debates'
-      self.debate_phase.active? || self.proposals.any?
-    when 'polls'
-      self.polls.any?
-    end
+  def count_resources(controller_name)
+    self.send(controller_name).count
   end
 
   def top_level?

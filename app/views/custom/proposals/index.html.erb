@@ -195,7 +195,7 @@
         <% end %>
 
         <% if params[:retired].blank? %>
-          <%= render "shared/projekts_sidebar" %>
+          <%= render "shared/projekt_sidebar_filter/projekts_sidebar" %>
           <% if show_affiliation_filter_in_sidebar? %>
             <%= render "shared/sidebar_filter/geozone_affiliations" %>
           <% end %>
