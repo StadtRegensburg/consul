@@ -1,10 +1,9 @@
 <% projekts.each do |projekt| %>
 
-  <% projekt_has_active_phase = projekt.has_active_phase?(params[:controller]) %>
-  <% projekt_has_any_children_with_active_phase = projekt.any_children_with_active_phase?(params[:controller]) %>
+  <% projekt_has_any_children_to_show = projekt.all_children_projekts.any? { |projekt| projekt.show_in_sidebar_filter?(params[:controller]) } %>
 
 
-  <% if projekt_has_active_phase || projekt_has_any_children_with_active_phase %>
+  <% if projekt.show_in_sidebar_filter?(params[:controller]) || projekt_has_any_children_to_show %>
 
     <% label_class =  ( @selected_projekts_ids && projekt.id.to_s.in?(@selected_projekts_ids) ) ? 'label-selected' : 'label_regular' %>
     <% checkbox_checked = @selected_projekts_ids && projekt.id.to_s.in?(@selected_projekts_ids)  %>
@@ -19,13 +18,13 @@
           <span class="color-code" <%= "style=background-color: #{projekt_color}" if projekt_color.present? %> ></span>
         <% end %>
 
-        <% if projekt_has_any_children_with_active_phase %>
+        <% if projekt_has_any_children_to_show %>
           <span class='js-icon-toggle-child-projekts toggle-arrow'></span>
         <% end %>
       </li>
 
-      <% if projekt.children.any? %>
-        <%= render partial: "shared/projekts_filter", locals: { projekts: projekt.children.with_order_number } %>
+      <% if projekt_has_any_children_to_show %>
+        <%= render partial: "shared/projekts_filter", locals: { projekts: projekt.children.with_order_number.select{ |projekt| projekt.show_in_sidebar_filter?(params[:controller]) } } %>
       <% end %>
 
     </ul>

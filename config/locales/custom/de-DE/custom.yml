@@ -260,6 +260,7 @@ de:
         publish: 'Vorschlag jetzt veröffentlichen'
 
       index:
+        no_active_projekt: Aktuell kein Beteiligungsverfahren
         show_larger_map: Mehr anzeigen
         show_smaller_map: Weniger anzeigen
         max_number_reached: "Du hast die maximale Anzahl (%{max_number}) an Vorschlägen pro Nutzer erreicht. Bevor du einen weiteren Vorschlag erstellen kannst, musst du einen aktiven Vorschlag zurückziehen."
@@ -280,6 +281,7 @@ de:
       form:
         tags_custom: Nutzer-Tags
       index:
+        no_active_projekt: Aktuell kein Beteiligungsverfahren
         projekts: Projekte
     comments:
       reply_form:

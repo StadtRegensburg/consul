@@ -53,6 +53,15 @@ class PollsController < ApplicationController
     @polls = Kaminari.paginate_array(
       @polls.created_by_admin.not_budget.send(@current_filter).includes(:geozones).sort_for_list
     ).page(params[:page])
+
+    @top_level_active_projekts = Projekt.top_level_active_projekt_for_page_sidebar.select do |projekt|
+      projekt.show_in_sidebar_filter?('polls') ||
+        projekt.all_children_projekts.any? { |projekt| projekt.show_in_sidebar_filter?('polls') }
+    end
+    @top_level_archived_projekts = Projekt.top_level_archived_projekt_for_page_sidebar.select do |projekt|
+      projekt.show_in_sidebar_filter?('polls') ||
+        projekt.all_children_projekts.any? { |projekt| projekt.show_in_sidebar_filter?('polls') }
+    end
   end
 
   def set_geo_limitations

@@ -1,4 +1,4 @@
-<% projekts = Projekt.top_level_active.select{ |projekt| projekt.has_active_phase?(params[:controller]) || projekt.any_children_with_active_phase?(params[:controller]) } %>
+<% projekts = Projekt.top_level_active.select{ |projekt| projekt.has_active_phase?(params[:controller]) || projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } }%>
 <% current_model_name = model.class.name.downcase %>
 
 <% if projekts.any?  %>
@@ -25,7 +25,10 @@
          data-default-map-zoom=<%= Setting["map.zoom"] %>    >
 
       <div class="projekt-tags-column">
-        <% if projekts.any? { |projekt| projekt.children.any? } %>
+        <% if projekts.any? do |projekt|
+            projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } ||
+            projekt.all_children_projekts.any? { |projekt| projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } }
+        end %>
           <h6><%= t('custom.projekts.new.first_level') %></h6>
         <% end %>
 
@@ -33,27 +36,33 @@
       </div>
 
       <div class="projekt-tags-column">
-        <% if projekts.any? { |projekt| projekt.children.any? } %>
+        <% if projekts.any? do |projekt|
+            projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } ||
+            projekt.all_children_projekts.any? { |projekt| projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } }
+        end %>
           <h6><%= t('custom.projekts.new.second_level') %></h6>
         <% end %>
 
         <% projekts.each do |projekt| %>
-          <% if projekt.children.any? %>
-            <%= render partial: 'shared/projekt_selector/projekt_group', locals: { f:f, projekts: projekt.children.with_order_number.select{ |projekt| projekt.has_active_phase?(params[:controller]) || projekt.any_children_with_active_phase?(params[:controller]) } , parent_projekt_id: projekt.id }  %>
+          <% if projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } %>
+            <%= render partial: 'shared/projekt_selector/projekt_group', locals: { f:f, projekts: projekt.children.with_order_number.select{ |projekt| projekt.has_active_phase?(params[:controller]) || projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } } , parent_projekt_id: projekt.id }  %>
           <% end %>
         <% end %>
       </div>
 
       <div class="projekt-tags-column">
-        <% if projekts.any? { |projekt| projekt.children.any? { |projekt| projekt.children.any? } } %>
+        <% if projekts.any? do |projekt|
+            projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } ||
+            projekt.all_children_projekts.any? { |projekt| projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } }
+        end %>
           <h6><%= t('custom.projekts.new.third_level') %></h6>
         <% end %>
 
         <% projekts.each do |projekt| %>
-          <% if projekt.children.any? %>
-            <% projekt.children.each do |projekt| %>
-              <% if projekt.children.any? %>
-                <%= render partial: 'shared/projekt_selector/projekt_group', locals: { f:f, projekts: projekt.children.with_order_number.select{ |projekt| projekt.has_active_phase?(params[:controller]) || projekt.any_children_with_active_phase?(params[:controller]) } , parent_projekt_id: projekt.id }  %>
+          <% if projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } %>
+            <% projekt.all_children_projekts.each do |projekt| %>
+              <% if projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } %>
+                <%= render partial: 'shared/projekt_selector/projekt_group', locals: { f:f, projekts: projekt.children.with_order_number.select{ |projekt| projekt.has_active_phase?(params[:controller]) || projekt.all_children_projekts.any? { |projekt| projekt.has_active_phase?(params[:controller]) } } , parent_projekt_id: projekt.id }  %>
 
               <% end %>
             <% end %>

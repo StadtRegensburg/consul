@@ -86,6 +86,17 @@ class Projekt < ApplicationRecord
     all_children_ids
   end
 
+  def all_children_projekts(all_children_projekts = [])
+    if self.children.any?
+      self.children.each do |child|
+        all_children_projekts.push(child)
+        child.all_children_projekts(all_children_projekts)
+      end
+    end
+
+    all_children_projekts
+  end
+
   def has_active_phase?(controller_name)
     case controller_name
     when 'proposals'
@@ -97,15 +108,14 @@ class Projekt < ApplicationRecord
     end
   end
 
-  def any_children_with_active_phase?(controller_name)
-    return true if controller_name.include?('admin')
+  def show_in_sidebar_filter?(controller_name)
     case controller_name
     when 'proposals'
-      all_children_ids.any?{ |projekt_id| Projekt.find(projekt_id).proposal_phase.active? }
+      self.proposal_phase.active? || self.proposals.any?
     when 'debates'
-      all_children_ids.any?{ |projekt_id| Projekt.find(projekt_id).debate_phase.active? }
+      self.debate_phase.active? || self.proposals.any?
     when 'polls'
-      all_children_ids.any?{ |projekt_id| Projekt.find(projekt_id).polls.any? }
+      self.polls.any?
     end
   end
 

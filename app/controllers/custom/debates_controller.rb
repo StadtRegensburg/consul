@@ -36,6 +36,15 @@ class DebatesController < ApplicationController
     end
 
     @selected_tags = all_selected_tags
+
+    @top_level_active_projekts = Projekt.top_level_active_projekt_for_page_sidebar.select do |projekt|
+      projekt.show_in_sidebar_filter?('debates') ||
+        projekt.all_children_projekts.any? { |projekt| projekt.show_in_sidebar_filter?('debates') }
+    end
+    @top_level_archived_projekts = Projekt.top_level_archived_projekt_for_page_sidebar.select do |projekt|
+      projekt.show_in_sidebar_filter?('debates') ||
+        projekt.all_children_projekts.any? { |projekt| projekt.show_in_sidebar_filter?('debates') }
+    end
   end
 
   def show
