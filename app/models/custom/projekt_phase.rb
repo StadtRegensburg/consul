@@ -4,7 +4,7 @@ class ProjektPhase < ApplicationRecord
   has_many :geozone_restrictions, through: :projekt_phase_geozones, source: :geozone
 
   def selectable_by?(user)
-    geozone_allowed = geozone_restricted == "no_restriction" ||
+    geozone_allowed = geozone_restricted == "no_restriction" || geozone_restricted.nil? ||
                       ( geozone_restricted == "only_citizens" && user.present? && user.level_three_verified? ) ||
                       ( geozone_restricted == "only_geozones" && user.present? && user.level_three_verified? && geozone_restrictions.blank? ) ||
                       ( geozone_restricted == "only_geozones" && user.present? && user.level_three_verified? && geozone_restrictions.any? && geozone_restrictions.include?(user.geozone) )
