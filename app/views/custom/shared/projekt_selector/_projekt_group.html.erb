@@ -19,36 +19,8 @@
       <%= rb.radio_button(disabled: disable_radio_button, checked: check_radio_button?(rb.object.id)) %>
       <%= rb.text %>
 
-      <% if phase_name && projekt_phase_active?(rb.object, phase_name) %>
-        <div class='projekt-phase-details js-show-children-projekts js-select-projekt'>
-          <span class="time-icon">
-            <%= get_projekt_phase_duration(rb.object.send(phase_name)) %>
-          </span>
-
-          <br>
-          <span class="geo-affiliation-icon">
-            <%= get_projekt_affiliation_name(rb.object) %>
-          </span>
- 
-          <% unless skip_user_verification? %>
-            <br>
-            <span class="geo-restriction-icon">
-              <%= get_projekt_phase_restriction_name(rb.object.send(phase_name)) %>
-            </span>
-          <% end %>
-        </div>
-      <% elsif phase_name && !projekt_feature?(rb.object, 'general.show_not_active_phases_in_projekts_page_sidebar') %>
-        <div class='projekt-phase-details'>
-          <%= t('custom.projekt.page.sidebar.phases.debate_phase_not_active') if phase_name == 'debate_phase' %>
-          <%= t('custom.projekt.page.sidebar.phases.proposal_phase_not_active') if phase_name == 'proposal_phase' %>
-        </div>
-      <% end %>
-
-      <% if (phase_name && projekt_phase_active?(rb.object, phase_name)) || !projekt_feature?(rb.object, 'general.show_not_active_phases_in_projekts_page_sidebar') || controller.controller_name == 'polls' %>
-        <div class="checkmark-wrapper">
-          <span class="checkmark "></span>
-        </div>
-      <% end %>
+      <%= render partial: "shared/projekt_selector/shared/projekt_info", locals: { projekt: rb.object, phase_name: phase_name  } %>
+      <%= render partial: "shared/projekt_selector/shared/checkmark", locals: { projekt: rb.object, phase_name: phase_name  } %>
     <% end %>
   <% end %>
 </div>
