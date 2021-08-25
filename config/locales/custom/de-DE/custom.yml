@@ -108,6 +108,11 @@ de:
           show_images: Bilder für Antworten anzeigen
           answers:
             open_answer_html: Offene Antwort <small><em>(Nur eine erlaubt)</em></small>
+            notice:
+              delete:
+                success: Antwort erfolgreich gelöscht.
+                error: Für diese Abstimmung wurden schon Stimmen abgegeben. Sie können die Antwort deshalb nicht mehr löschen.
+                confirmation: Sind Sie sicher?
 
       menu:
         projekts: Projekte
