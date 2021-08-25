@@ -12,7 +12,7 @@
     <% unless skip_user_verification? %>
       <br>
       <span class="geo-restriction-icon">
-        <%= get_projekt_phase_restriction_name(projekt.send(phase_name)) %>
+        <%= get_projekt_phase_restriction_name(projekt.send(phase_name), 'projekt_selector') %>
       </span>
     <% end %>
   </div>

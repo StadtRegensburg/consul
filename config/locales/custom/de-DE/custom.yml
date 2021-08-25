@@ -248,8 +248,8 @@ de:
           entire_city: "Stadtweit"
           only_geozones: Zuordnung zu Stadtteil
         restrictions:
-          no_restriction: Alle Nutzer:innen der Plattform
-          only_citizens: Nur Bürger:innen der Stadt
+          no_restriction: Alle Nutzer:innen
+          only_citizens: Nur Bürger:innen
           only_geozones: Nur Bürger:innen des Stadtteils
     proposals:
       form:
