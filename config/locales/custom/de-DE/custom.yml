@@ -113,6 +113,9 @@ de:
                 success: Antwort erfolgreich gelöscht.
                 error: Für diese Abstimmung wurden schon Stimmen abgegeben. Sie können die Antwort deshalb nicht mehr löschen.
                 confirmation: Sind Sie sicher?
+        settings:
+          show_open_answer_with_username: Offene Antworten mit Nutzer:innen-Name anzeigen
+          show_open_answer_without_username: Offene Antworten anonym anzeigen
 
       menu:
         projekts: Projekte
@@ -282,6 +285,8 @@ de:
         answers:
           more_info: Mehr Infos
           save_open_answer: Antwort speichern
+      results:
+        open_answers: Offene Antworten
     debates:
       form:
         tags_custom: Nutzer-Tags
