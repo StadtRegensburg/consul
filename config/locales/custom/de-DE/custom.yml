@@ -7,7 +7,7 @@ de:
             description:
               too_long: 'is too long'
     attributes:
-      poll/question/answer:
+      poll/answer:
         open_answer_text: Offene Antwort
       widget/card:
         card_category: Kategorie
@@ -113,6 +113,7 @@ de:
                 success: Antwort erfolgreich gelöscht.
                 error: Für diese Abstimmung wurden schon Stimmen abgegeben. Sie können die Antwort deshalb nicht mehr löschen.
                 confirmation: Sind Sie sicher?
+              open_answer_saved: Vielen Dank! Ihre Antwort wurde erfolgreich gespeichert.
         settings:
           show_open_answer_with_username: Offene Antworten mit Nutzer:innen-Name anzeigen
           show_open_answer_without_username: Offene Antworten anonym anzeigen
@@ -285,6 +286,7 @@ de:
         answers:
           more_info: Mehr Infos
           save_open_answer: Antwort speichern
+          update_open_answer: Antwort editieren
       results:
         open_answers: Offene Antworten
     debates:

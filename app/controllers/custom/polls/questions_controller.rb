@@ -4,7 +4,9 @@ class Polls::QuestionsController < ApplicationController
 
   def update_open_answer
     answer = @question.answers.find_or_initialize_by(author: current_user, answer: open_answer_params[:answer])
-    answer.update(open_answer_text: open_answer_params[:open_answer_text])
+    if answer.update(open_answer_text: open_answer_params[:open_answer_text])
+      @answer_updated = true
+    end
     @answers_by_question_id = { @question.id => @question.answers.where(author: current_user).map { |answer| answer.answer } }
     render :answer
   end
