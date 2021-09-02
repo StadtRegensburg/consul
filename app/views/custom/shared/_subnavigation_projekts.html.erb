@@ -1,6 +1,6 @@
 <% accesskey = 0 %>
 <% @active_projekts.each do |active_projekt| %>
-  <li class='nav-element top-level-item'>
+  <li class='nav-element top-level-item' tabindex="0">
 
     <div class='flyout-item-name projekt-name'>
       <% accesskey += 1 %>
@@ -22,7 +22,7 @@
 <% end %>
 
 <% if show_archived_projekts_in_menu? && @archived_projekts.any? %>
-  <li class='nav-element top-level-item'>
+  <li class='nav-element top-level-item' tabindex="0">
 
     <div class='flyout-item-name projekt-name'>
       <%= t('custom.menu.archived') %>
