@@ -1,6 +1,6 @@
 <li class="nav-element top-level-item">
 
-  <%= link_to account_path, class: 'account-items-icon' do %>
+  <%= link_to account_path, class: 'account-items-icon', aria: { label: t('custom.links.menu.konto_icon') } do %>
     <%= svg_tag 'account-menu-icon', class: "account-icon" %>
   <% end %>
 

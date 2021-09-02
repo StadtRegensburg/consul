@@ -2,7 +2,7 @@
 
   <li class="nav-element top-level-item">
 
-    <%= link_to admin_root_path, class: 'admin-items-icon' do %>
+    <%= link_to admin_root_path, class: 'admin-items-icon', aria: { label: t('custom.links.menu.admin_icon') } do %>
       <%= svg_tag 'admin-menu-icon', class: "admin-icon" %>
     <% end %>
 

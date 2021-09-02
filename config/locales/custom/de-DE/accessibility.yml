@@ -1,0 +1,7 @@
+de:
+  custom:
+    links:
+      menu:
+        home_icon: "Home link icon"
+        konto_icon: "Meine konto"
+        admin_icon: "Admin menu"
