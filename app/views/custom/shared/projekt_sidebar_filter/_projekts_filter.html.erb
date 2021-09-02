@@ -12,7 +12,7 @@
         <%= projekt.name %>
         <%= "(#{projekt.count_resources(params[:controller])})" %>
         <span class="checkmark"></span>
-        <span class="color-code" <%= "style=background-color: #{projekt_color}" if projekt_color.present? %> ></span>
+        <span class="color-code" <%= "style=background-color:#{projekt_color}" if projekt_color.present? %> ></span>
       <% end %>
 
       <% if projekt.children.any? %>
