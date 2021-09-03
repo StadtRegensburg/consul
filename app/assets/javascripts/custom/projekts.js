@@ -64,6 +64,8 @@
       $label.attr('aria-expanded', function (i, attr) {
         return attr == 'true' ? 'false' : 'true'
       });
+
+      $label.children('.toggle-arrow').attr('aria-expanded', $label.attr('aria-expanded'))
     },
 
     updateProjektFilterToggleIds: function($label) {
@@ -362,6 +364,7 @@
 
         if ( window.localStorage.getItem(resourceName) && window.localStorage.getItem(resourceName).split(',').includes(projektId) ) {
           $(this).attr('aria-expanded', 'true')
+          $(this).children('.toggle-arrow').attr('aria-expanded', $(this).attr('aria-expanded'))
         }
 
       });

@@ -9,3 +9,7 @@ de:
         expand_replies: Antworten anzeigen
         hide_replies: Antworten einklappen
         comment_tree: Comment tree
+      projekts_filter:
+        arrow_label: Toogle child projekts
+        projekt_name: "Projekt Name: %{projekt_name}"
+        resource_count: "Zahl der Beitrage: %{resource_count}"
