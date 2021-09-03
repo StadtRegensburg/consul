@@ -40,7 +40,7 @@
     <%= f.invisible_captcha :subtitle %>
 
     <div class="small-12 column">
-      <%= f.text_field :video_url, hint: t("proposals.form.proposal_video_url_note") %>
+      <%= f.text_field :video_url, hint: t("proposals.form.proposal_video_url_note"), type: 'url' %>
     </div>
 
     <% if feature?(:allow_attached_documents) %>

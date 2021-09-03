@@ -48,3 +48,9 @@ form.button_to {
     color: #ef8585;
   }
 }
+
+
+// Add outline to labels
+.focusable:focus {
+  outline: 3px solid #ffbf47
+}
