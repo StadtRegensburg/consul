@@ -1,8 +1,13 @@
 <% if show_admin_menu?(current_user) %>
 
-  <li class="nav-element top-level-item">
+  <li class="nav-element top-level-item top-level-item js-access-top-level-menu js-prevent-key-scroll"
+      aria-label= <%= t('custom.links.menu.admin_icon') %>
+      aria-expanded='false'
+      aria-haspopup='true'
+      tabindex="0"
+  >
 
-    <%= link_to admin_root_path, class: 'admin-items-icon', aria: { label: t('custom.links.menu.admin_icon') } do %>
+    <%= link_to admin_root_path, class: 'admin-items-icon', tabindex: "-1", aria: { hidden: true } do %>
       <%= svg_tag 'admin-menu-icon', class: "admin-icon" %>
     <% end %>
 

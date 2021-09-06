@@ -1,17 +1,15 @@
 <% accesskey = 0 %>
 <% @active_projekts.each do |active_projekt| %>
-  <li class='nav-element top-level-item'
+  <% accesskey += 1 %>
+  <li class='nav-element top-level-item js-access-top-level-menu js-prevent-key-scroll'
       tabindex="0"
-      aria-label="<%= t('custom.links.menu.projekt_name_label') %>"
-      <%= "aria-expanded=false" if active_projekt.children.any? %> >
+      aria-label="<%= t('custom.links.menu.projekt_name_label', projekt_name: active_projekt.name) %>"
+      <%= "aria-expanded=false" if active_projekt.children.any? %>
+      <%= "aria-haspopup=true" if active_projekt.children.any? %>
+      <%= "accesskey=#{accesskey}" if accesskey < 9 %> >
 
     <div class='flyout-item-name projekt-name'>
-      <% accesskey += 1 %>
-      <% if accesskey < 9 %>
-        <%= prepare_projekt_name(active_projekt, accesskey) %>
-      <% else %>
-        <%= prepare_projekt_name(active_projekt) %>
-      <% end %>
+      <%= prepare_projekt_name(active_projekt) %>
     </div>
 
     <% if active_projekt.children.any? %>
@@ -25,10 +23,11 @@
 <% end %>
 
 <% if show_archived_projekts_in_menu? && @archived_projekts.any? %>
-  <li class='nav-element top-level-item'
+  <li class='nav-element top-level-item js-access-top-level-menu js-prevent-key-scroll'
       tabindex="0"
       aria-label="<%= t('custom.links.menu.archived_projekts_label') %>"
-      aria-expanded='false'>
+      aria-expanded='false'
+      aria-haspopup="true" >
 
     <div class='flyout-item-name projekt-name'>
       <%= t('custom.menu.archived') %>

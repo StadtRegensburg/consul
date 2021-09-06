@@ -1,6 +1,10 @@
 <ul class="nav-flyout-block">
   <% projekts.each do |projekt| %>
-    <li class='nav-element flyout-item flyout-item-projekt'>
+    <li class='nav-element flyout-item flyout-item-projekt js-access-flyout-menu-item focusable'
+        tabindex="0"
+        aria-label="<%= t('custom.links.menu.projekt_name_label', projekt_name: projekt.name) %>"
+        <%= "aria-expanded=false" if projekt.children.any? %>
+        <%= "aria-haspopup=true" if projekt.children.any? %> >
 
       <div class='projekt-name-group'>
         <div class='flyout-item-name projekt-name'>

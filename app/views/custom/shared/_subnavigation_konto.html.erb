@@ -1,6 +1,11 @@
-<li class="nav-element top-level-item">
+<li class="nav-element top-level-item js-access-top-level-menu js-prevent-key-scroll"
+    aria-label= <%= t('custom.links.menu.konto_icon') %>
+    aria-expanded='false'
+    aria-haspopup='true'
+    tabindex="0"
+  >
 
-  <%= link_to account_path, class: 'account-items-icon', aria: { label: t('custom.links.menu.konto_icon') } do %>
+  <%= link_to account_path, class: 'account-items-icon', tabindex: "-1", aria: { hidden: true } do %>
     <%= svg_tag 'account-menu-icon', class: "account-icon" %>
   <% end %>
 

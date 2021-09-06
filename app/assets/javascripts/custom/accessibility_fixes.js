@@ -41,12 +41,111 @@
 
         if ( ( event.which === 38 && arrowExpanded  ) || // up arrow and expanded
              ( event.which === 40 && !arrowExpanded ) ) { // down arrow and closed
-
           App.Projekts.toggleChildrenInSidebar($toggleArrow.closest('li'))
+        }
+      })
 
+      $('body').on('keyup', '.js-access-top-level-menu', function(event) {
+        event.preventDefault();
+        var $menuItem = $(this);
+        var menuItemExpanded = $menuItem.attr('aria-expanded') == "true"
+
+        if ( event.which === 9 && this === document.activeElement  ) { // tab button pressed
+          $('ul.nav-flyout-block').hide()
+        }
+
+        if ( event.which === 38 && menuItemExpanded && $(document.activeElement).hasClass('js-access-top-level-menu')) { // up arrow and menu expanded
+          $menuItem.attr('aria-expanded', false)
+          $menuItem.children('ul.nav-flyout-block').hide()
+        }
+
+        if ( event.which === 40 && !menuItemExpanded && $(document.activeElement).hasClass('js-access-top-level-menu')) { // down arrow and menu closed
+          $menuItem.attr('aria-expanded', true)
+          $menuItem.children('ul.nav-flyout-block').show()
+        }
+
+        if ( event.which === 40 && menuItemExpanded && $(document.activeElement).hasClass('js-access-top-level-menu')) { // down arrow and menu expanded
+          $menuItem.children('ul.nav-flyout-block').first().children('li.flyout-item').first().focus()
+        }
+
+        if ( event.which === 39 && $(document.activeElement).hasClass('js-access-top-level-menu')) { // right arrow
+          $menuItem.attr('aria-expanded', false)
+          $menuItem.children('ul.nav-flyout-block').hide()
+          $menuItem.next().focus()
+        }
+
+        if ( event.which === 37 && $(document.activeElement).hasClass('js-access-top-level-menu')) { // left arrow
+          $menuItem.attr('aria-expanded', false)
+          $menuItem.children('ul.nav-flyout-block').hide()
+          $menuItem.prev().focus()
+        }
+
+        if ( event.which === 13 && $(document.activeElement).hasClass('js-access-top-level-menu') ) {
+
+          if ( $(document.activeElement).find('.flyout-item-name > a').length ) {
+            $(document.activeElement).find('.flyout-item-name > a').first()[0].click()
+
+          } else if ( $(document.activeElement).children("a.home-items-icon").length  ) {
+            $(document.activeElement).children("a.home-items-icon").first()[0].click()
+
+          } else if ( $(document.activeElement).children("a.notifications").length  ) {
+            debugger
+            $(document.activeElement).children("a.notifications").first()[0].click()
+
+          }
         }
 
       })
+
+      $('body').on('keyup', '.js-access-flyout-menu-item', function(event) {
+        event.preventDefault();
+        var $menuItem = $(this);
+        var menuItemExpanded = $menuItem.attr('aria-expanded') == "true"
+
+        if ( event.which === 39 && !menuItemExpanded && $(document.activeElement).children("ul.nav-flyout-block").length ) { // right arrow
+          $menuItem.attr('aria-expanded', true)
+          $menuItem.children('ul.nav-flyout-block').show()
+        }
+
+        if ( event.which === 39 && menuItemExpanded ) { // right arrow
+          $menuItem.find('li.flyout-item').first().focus()
+        }
+
+        if ( event.which === 37 && menuItemExpanded ) { // left arrow
+          $menuItem.attr('aria-expanded', false)
+          $menuItem.children('ul.nav-flyout-block').hide()
+        }
+
+        if ( event.which === 37 && !menuItemExpanded ) { // left arrow
+          $menuItem.parent().closest('li.flyout-item').focus()
+          $menuItem.parent().closest('li.flyout-item').attr('aria-expanded', false)
+          $menuItem.parent().closest('li.flyout-item').children('ul.nav-flyout-block').hide()
+        }
+
+        if ( event.which === 38 && !menuItemExpanded && $(document.activeElement).hasClass('js-access-flyout-menu-item') )  { // up arrow
+          if ( $menuItem.parent().parent().hasClass('js-access-top-level-menu') && !$menuItem.prev().length ) {
+            $(document.activeElement).parent().parent().focus();
+          } else {
+            $menuItem.prev().focus()
+          }
+        }
+
+        if ( event.which === 40 && !menuItemExpanded && $(document.activeElement).hasClass('js-access-flyout-menu-item') )  { // down arrow
+          $menuItem.next().focus()
+        }
+
+        if ( event.which === 13 && $(document.activeElement).hasClass('js-access-flyout-menu-item') ) { // click on link
+
+          if ( $(document.activeElement).find('.projekt-name-group > .flyout-item-name > a').length ) {
+            $(document.activeElement).find('.projekt-name-group > .flyout-item-name > a').first()[0].click()
+          }
+        }
+
+
+
+      })
+
+
 
 
     }

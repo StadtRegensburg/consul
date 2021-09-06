@@ -283,14 +283,14 @@ span.icon-no-notification {
 
   .main-menu {
 
-    li.nav-element:hover > ul.nav-flyout-block,
-    li.nav-element:focus > ul.nav-flyout-block {
-      display: block;
+    li.nav-element:hover > ul.nav-flyout-block {
+      display: block !important;
     }
 
 
     li.nav-element:focus {
       outline: 3px solid #ffbf47;
+      z-index: 1000;
     }
 
     ul.nav-flyout-block {
