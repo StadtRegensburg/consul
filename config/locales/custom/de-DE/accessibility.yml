@@ -5,6 +5,8 @@ de:
         home_icon: "Home link icon"
         konto_icon: "Meine konto"
         admin_icon: "Admin menu"
+        projekt_name_label: Projekt Name
+        archived projekts_label: Archivierte Projekte
       comments:
         expand_replies: Antworten anzeigen
         hide_replies: Antworten einklappen
