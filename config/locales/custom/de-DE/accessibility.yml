@@ -2,9 +2,9 @@ de:
   custom:
     links:
       menu:
-        home_icon: "Home link icon"
-        konto_icon: "Meine konto"
-        admin_icon: "Admin menu"
+        home_icon: "Home page link"
+        konto_icon: "Meine konto link"
+        admin_icon: "Admin menu link"
         notification_icon: 'Notifications'
         projekt_name_label: "Projekt Name: %{projekt_name} "
         archived_projekts_label: Archivierte Projekte
