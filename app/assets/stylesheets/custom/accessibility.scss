@@ -54,3 +54,10 @@ form.button_to {
 .focusable:focus {
   outline: 3px solid #ffbf47
 }
+
+
+// Menu styling fixes
+
+#responsive-menu .subnavigation a {
+  width: initial;
+}

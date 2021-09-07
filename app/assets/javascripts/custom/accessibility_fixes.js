@@ -46,7 +46,8 @@
       })
 
       $('body').on('keyup', '.js-access-top-level-menu', function(event) {
-        event.preventDefault();
+        if ( !$(event.target).hasClass('js-access-top-level-menu') ) { return false }
+
         var $menuItem = $(this);
         var menuItemExpanded = $menuItem.attr('aria-expanded') == "true"
 

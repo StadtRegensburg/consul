@@ -8,6 +8,12 @@ de:
         notification_icon: 'Notifications'
         projekt_name_label: "Projekt Name: %{projekt_name} "
         archived_projekts_label: Archivierte Projekte
+        mobile:
+          arrow_projekts: Toggle subpprojekts flyout block
+          arrow_account: Toggle account submenu
+          arrow_admin: Toggle admin submenu
+          arrow_archived_projekts: Archived Projekts
+          menu_label: Mobile menu
       comments:
         expand_replies: Antworten anzeigen
         hide_replies: Antworten einklappen
