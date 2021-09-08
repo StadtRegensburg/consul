@@ -2,23 +2,23 @@ de:
   custom:
     links:
       menu:
-        home_icon: "Home page link"
-        konto_icon: "Meine konto link"
-        admin_icon: "Admin menu link"
-        notification_icon: 'Notifications'
+        home_icon: Startseiten Link
+        konto_icon: Mein Konto Link
+        admin_icon: Adminmenü Link"
+        notification_icon: Benachrichtigungen
         projekt_name_label: "Projekt Name: %{projekt_name} "
         archived_projekts_label: Archivierte Projekte
         mobile:
-          arrow_projekts: Toggle subpprojekts flyout block
-          arrow_account: Toggle account submenu
-          arrow_admin: Toggle admin submenu
-          arrow_archived_projekts: Archived Projekts
-          menu_label: Mobile menu
+          arrow_projekts: Untermenü umschalten
+          arrow_account: Kontomenü umschalten
+          arrow_admin: Adminmenü umschalten
+          arrow_archived_projekts: Archivierte Projekte umschalten
+          menu_label: Mobil Menü
       comments:
         expand_replies: Antworten anzeigen
         hide_replies: Antworten einklappen
-        comment_tree: Comment tree
+        comment_tree: Kommentarbaum
       projekts_filter:
-        arrow_label: Toogle child projekts
+        arrow_label: Unterprojekte unschalten
         projekt_name: "Projekt Name: %{projekt_name}"
-        resource_count: "Zahl der Beitrage: %{resource_count}"
+        resource_count: "Anzahl der Beitrage: %{resource_count}"
