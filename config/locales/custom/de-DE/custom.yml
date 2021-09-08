@@ -81,6 +81,10 @@ de:
       homepage:
         active_projekts_title: Aktive Beteiligungsprozesse
         archived_projekts_title: Abgeschlossene Beteiligungsprozesse
+      site_customization:
+        pages:
+          destroy:
+            cannot_notice: Diese Seite kann nicht gelöscht werden. Bitte löschen Sie das zugehörige Projekt zuvor.
       widget:
         card:
           category_options:
