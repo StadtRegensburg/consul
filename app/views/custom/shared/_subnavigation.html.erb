@@ -4,7 +4,8 @@
       <%= render partial: 'shared/subnavigation_home', locals: { placement: placement } %>
       <%= raw content_block("subnavigation_left", I18n.locale) %>
       <%= render partial: 'shared/subnavigation_projekts', locals: { placement: placement } %>
-      <%= raw content_block("subnavigation_right", I18n.locale) %>
+      <%= raw content_block("subnavigation_right_desktop", I18n.locale) if placement == 'desktop' %>
+      <%= raw content_block("subnavigation_right_mobile", I18n.locale) if placement == 'mobile' %>
     </div>
 
     <div class="account-admin-items">

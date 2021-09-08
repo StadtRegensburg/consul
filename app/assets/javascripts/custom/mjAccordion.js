@@ -18,6 +18,27 @@
 		//function
 		return this.each(function(){
 
+
+      // accessibility fix
+			$(this).find('.mj_accordion_item').on('keyup', function(){
+        if ( event.which !== 13 ) {
+          return false
+        }
+
+        if(!$(this).hasClass('active')){
+          $(this).addClass('active').siblings('.mj_accordion_content').stop(true, true).slideDown(mjSettings.duration, function(){
+            $(this).addClass('active').removeAttr('style');
+          });
+        }else{
+          $(this).siblings('.mj_accordion_content').stop(true, true).slideUp(mjSettings.duration, function(){
+            $(this).removeClass('active').removeAttr('style').siblings('.mj_accordion_item').removeClass('active');
+          });
+        }
+      });
+      // accessibility fix end
+
+
+
 			//on item click
 			$(this).find('.mj_accordion_item').on('click', function(){
 

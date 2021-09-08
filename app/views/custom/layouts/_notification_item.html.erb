@@ -7,7 +7,7 @@
   >
     <%= link_to notifications_path, rel: "nofollow",
                                     class: "notifications",
-                                    tabindex: "-1",
+                                    tabindex: ( placement == 'desktop' ? "-1" : 0 ),
                                     aria: { hidden: true }  do %>
 
       <% if current_user.notifications.unread.count > 0 %>

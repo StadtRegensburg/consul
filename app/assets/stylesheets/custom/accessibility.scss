@@ -52,7 +52,7 @@ form.button_to {
 
 // Add outline to labels
 .focusable:focus {
-  outline: 3px solid #ffbf47
+  outline: $outline-focus
 }
 
 

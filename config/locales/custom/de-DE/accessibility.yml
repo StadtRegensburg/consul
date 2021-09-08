@@ -22,3 +22,6 @@ de:
         arrow_label: Unterprojekte unschalten
         projekt_name: "Projekt Name: %{projekt_name}"
         resource_count: "Anzahl der Beitrage: %{resource_count}"
+      welcome:
+        feeds:
+          title: Nutzerinhalt

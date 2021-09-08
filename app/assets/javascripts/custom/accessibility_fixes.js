@@ -1,6 +1,13 @@
 (function() {
   "use strict";
   App.AccessibilityFixes = {
+
+    updateMjAccordion: function() {
+      $('.mj_accordion_item').attr('tabindex', '0')
+      $('.mj_accordion_item').attr('aria-label', 'Accordion Menü Inhaltsblock')
+      $('.mj_accordion_item').addClass('js-prevent-key-scroll focusable')
+    },
+
     clickLabelAdjasentButton: function($label) {
       var inputFileId = $label.attr('for')
       var inputFileIdString = '#' + inputFileId
@@ -8,6 +15,9 @@
     },
 
     initialize: function() {
+
+      App.AccessibilityFixes.updateMjAccordion();
+
       $('body').on('keyup', '.js-access-label-to-button', function(event) {
         if (event.which === 13) {
           event.preventDefault()
@@ -132,7 +142,6 @@
             $(document.activeElement).children("a.home-items-icon").first()[0].click()
 
           } else if ( $(document.activeElement).children("a.notifications").length  ) {
-            debugger
             $(document.activeElement).children("a.notifications").first()[0].click()
 
           }

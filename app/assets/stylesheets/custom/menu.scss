@@ -190,7 +190,7 @@ span.icon-no-notification {
     height: 100%;
 
     &:focus {
-      outline: 3px solid #ffbf47;
+      outline: $outline-focus;
     }
   }
 
@@ -289,7 +289,7 @@ span.icon-no-notification {
 
 
     li.nav-element:focus {
-      outline: 3px solid #ffbf47;
+      outline: $outline-focus;
       z-index: 1000;
     }
 
