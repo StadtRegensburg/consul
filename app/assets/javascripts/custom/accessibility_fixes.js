@@ -3,9 +3,14 @@
   App.AccessibilityFixes = {
 
     updateMjAccordion: function() {
+      $('.mj_accordion_item').addClass('js-prevent-key-scroll focusable')
       $('.mj_accordion_item').attr('tabindex', '0')
       $('.mj_accordion_item').attr('aria-label', 'Accordion Menü Inhaltsblock')
-      $('.mj_accordion_item').addClass('js-prevent-key-scroll focusable')
+      $('.mj_accordion_content').attr('aria-live', 'polite')
+
+      $('.mj_accordion_item').each( function() {
+        $(this).attr('aria-expanded', $(this).hasClass('active'))
+      })
     },
 
     clickLabelAdjasentButton: function($label) {
