@@ -4,7 +4,7 @@
 
   <ul class='projekt-navigator'>
     <li class="projekt-navigator <%= current_projekt_class %>" aria-expanded=<%= toggle_projekt %>>
-      <%= prepare_projekt_name(projekt) %>
+      <%= prepare_projekt_name(projekt, 'mobile') %>
 
       <% if projekt.children.any? %>
         <span class='js-icon-toggle-child-projekts'></span>
