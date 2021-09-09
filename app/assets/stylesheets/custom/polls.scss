@@ -31,10 +31,6 @@
     }
   }
 
-  .poll-results-open-answers-list {
-    display: none; 
-  }
-
   .poll-results-open-answer {
     background: #f8f8f8;
 
@@ -63,11 +59,6 @@
       transform: rotate(90deg);
       transition-duration: 0.5s;
     }
-  }
-
-  .poll-results-open-answers-list {
-    display: block; 
-    transition-duration: 1s;
   }
 }
 
