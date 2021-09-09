@@ -54,11 +54,13 @@
 }
 
 .poll-results-open-answers.show-open-answers {
-  .open-answers-title {
-    &::after {
+
+  .poll-results-open-answers-list {
+  }
+
+  .open-answers-title::after {
       transform: rotate(90deg);
       transition-duration: 0.5s;
-    }
   }
 }
 
