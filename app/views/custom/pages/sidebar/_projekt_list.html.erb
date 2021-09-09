@@ -7,7 +7,12 @@
       <%= prepare_projekt_name(projekt, 'mobile') %>
 
       <% if projekt.children.any? %>
-        <span class='js-icon-toggle-child-projekts'></span>
+        <span class='js-icon-toggle-child-projekts toggle-arrow focusable js-prevent-key-scroll'
+              role="button"
+              tabindex="0"
+              aria-expanded="false"
+              aria-label="<%= t('custom.links.projekts_filter.arrow_label') %>" >
+        </span>
       <% end %>
 
     </li>

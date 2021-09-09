@@ -9,7 +9,5 @@ group :development do
   gem 'pry', '~> 0.14.1'
 end
 
-group :staging, :production do
-  gem "sentry-ruby"
-  gem "sentry-rails"
-end
+gem "sentry-ruby"
+gem "sentry-rails"
