@@ -36,6 +36,10 @@ span.icon-no-notification {
   font-size: 19px;
 }
 
+.icon-notification::before {
+  font-size: 22px;
+}
+
 .subnavigation a.home-items-icon {
   display: none;
 }
@@ -90,6 +94,7 @@ span.icon-no-notification {
   .subnavigation.row {
     background-color: $responsive-menu-background-color;
     color: $responsive-menu-text-color;
+    left: 8px;
 
     a {
       color: $responsive-menu-text-color;
@@ -185,7 +190,7 @@ span.icon-no-notification {
 
   .subnavigation a.home-items-icon {
     display: inline-block;
-    width: 22px;
+    width: 20px;
     display: inline-block;
     height: 100%;
 
@@ -195,7 +200,7 @@ span.icon-no-notification {
   }
 
   .home-icon {
-    top: 12px;
+    top: 9px;
     right: 0;
     position: absolute;
   }
@@ -231,12 +236,12 @@ span.icon-no-notification {
 
     .account-items-icon,
     .admin-items-icon {
-      width: 22px;
+      width: 20px;
       height: 100%;
     }
 
     .icon-no-notification::before {
-      font-size: 22px;
+      font-size: 20px;
     }
 
     .account-items-link,
@@ -245,13 +250,13 @@ span.icon-no-notification {
     }
 
     .admin-icon {
-      top: 12px;
+      top: 9px;
       right: 0;
       padding-bottom: 14px;
     }
 
     .account-icon {
-      top: 12px;
+      top: 9px;
       right: 0;
       padding-bottom: 14px;
     }
@@ -268,16 +273,16 @@ span.icon-no-notification {
 
   //  Height of the top menu
   
-  .top-level-item > .flyout-item-name,
-  .top-level-item > .flyout-item-name > .subnavigation a {
-    line-height: 3rem;
+  #navigation_bar .top-level-item > a,
+  #navigation_bar .top-level-item > .flyout-item-name > a,
+  #navigation_bar .top-level-item > .flyout-item-name,
+  .subnavigation a {
+    line-height: 2.5rem;
   }
 
-  ul.main-menu {
-    min-height: 3rem
+  #navigation_bar .account-admin-items li.nav-element.top-level-item > ul.nav-flyout-block {
+    top: 2.5rem;
   }
-
-
 
   // Styling flyout items
 
@@ -304,11 +309,10 @@ span.icon-no-notification {
     li.nav-element.top-level-item > ul.nav-flyout-block {
       left: 0;
       top: 100%;
-  }
+    }
 
     .account-admin-items li.nav-element.top-level-item > ul.nav-flyout-block {
       left: auto;
-      top: 3em;
       right: 0;
     }
 
