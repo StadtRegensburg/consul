@@ -9,6 +9,7 @@ class PollsController < ApplicationController
   before_action :set_geo_limitations, only: [:show]
 
   helper_method :resource_model, :resource_name
+  has_filters %w[all current]
 
   def index
     @resource_name = 'poll'
