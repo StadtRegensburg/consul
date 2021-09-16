@@ -6,6 +6,8 @@
       $('.poll-results-open-answers').each( function() {
         if ( sessionStorage.getItem($(this).attr('id')) !== 'true' ) {
           $(this).addClass('hide-open-answers')
+        } else {
+          $(this).addClass('rotate-toggle-arrow')
         }
       })
     },
