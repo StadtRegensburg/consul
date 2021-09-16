@@ -30,16 +30,16 @@
           <tbody>
             <%- question.question_answers.each do |answer| %>
               <tr>
-                <td id="answer_<%= answer.id %>_result" <%= answer.total_votes == most_voted_answer_votes ? "class=win" : "" %>>
+                <td id="answer_<%= answer.id %>_result" class='results-column <%= answer.total_votes == most_voted_answer_votes ? "win" : "" %>' >
                   <%= answer.total_votes %>
                   (<%= answer.total_votes_percentage.round(2) %>%)
                 </td>
-                <td <%= answer.total_votes == most_voted_answer_votes ? "class=win" : "" %>>
+                <td class='answers-column <%= answer.total_votes == most_voted_answer_votes ? "win" : "" %>' >
                   <% if question.open_question_answer == answer %>
                     <% open_answers = answer.all_open_answers %>
-                    <div class='poll-results-open-answers show-open-answers' id='<%= dom_id(answer, :open_answers)  %>'>
+                    <div class='poll-results-open-answers' id='<%= dom_id(answer, :open_answers)  %>'>
                       <div class='open-answers-title js-show-open-answers'>
-                        <%= t('custom.polls.results.open_answers') %>
+                        <%= answer.title %>
                       </div>
                       <div class='poll-results-open-answers-list'>
                         <% page_name = ("page_a" + answer.id.to_s).to_sym %>

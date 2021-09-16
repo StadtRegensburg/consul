@@ -8,32 +8,48 @@
   }
 }
 
+td.results-column {
+  width: 20%;
+}
+
+td.results-column,
+td.answers-column  {
+  vertical-align: top;
+}
+
 .open-answers-title {
-  margin-bottom: 0.5rem;
   display: inline-block;
+  position: relative;
 
   &::after {
     font-family: "Font Awesome 5 Free";
     font-weight: bold;
     content: "\f0da";
-    right: 0;
     cursor: pointer;
     padding: 0 0.5rem;
     transition-duration: 0.5s;
+    position: absolute;
+    transform: rotate(0deg);
   }
+}
 
-  &.show-open-answers::after {
+.rotate-toggle-arrow {
+  .open-answers-title::after {
     transform: rotate(90deg);
     transition-duration: 0.5s;
   }
 }
 
+.hide-open-answers {
+  .poll-results-open-answers-list {
+    display: none;
+  }
+}
+
 .poll-results-open-answers {
 
-  margin-bottom: 1rem;
-
   .poll-results-open-answer {
-    background: #f8f8f8;
+    background: #ccedf8;
 
     .user-avatar {
       margin-right: 0.75rem;
@@ -52,6 +68,11 @@
     padding: 0.375rem 0;
     padding-right: 0.75rem;
   }
+}
+
+.poll-results-open-answers-list {
+  margin-top: 1rem;
+  display: block;
 }
 
 .open-answer-saved-notice {
@@ -175,7 +196,7 @@
   }
 
   .margin {
-    display: none
+    display: none;
   }
 
   .document-link,
