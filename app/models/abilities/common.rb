@@ -126,6 +126,12 @@ module Abilities
       can :select, ProjektPhase do |projekt_phase|
         projekt_phase.selectable_by?(user)
       end
+
+      can [:read, :create], DeficiencyReport
+      can :update, DeficiencyReport do |deficiency_report|
+        # deficiency_report.editable_by?(user)
+        true
+      end
     end
   end
 end

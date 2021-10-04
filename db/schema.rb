@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_123714) do
+ActiveRecord::Schema.define(version: 2021_10_01_142700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -399,6 +399,8 @@ ActiveRecord::Schema.define(version: 2021_08_26_123714) do
     t.text "description_informing"
     t.string "voting_style", default: "knapsack"
     t.boolean "published"
+    t.bigint "projekt_id"
+    t.index ["projekt_id"], name: "index_budgets_on_projekt_id"
   end
 
   create_table "campaigns", id: :serial, force: :cascade do |t|
@@ -551,6 +553,24 @@ ActiveRecord::Schema.define(version: 2021_08_26_123714) do
     t.index ["hot_score"], name: "index_debates_on_hot_score"
     t.index ["projekt_id"], name: "index_debates_on_projekt_id"
     t.index ["tsv"], name: "index_debates_on_tsv", using: :gin
+  end
+
+  create_table "deficiency_report_translations", force: :cascade do |t|
+    t.bigint "deficiency_report_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "description"
+    t.index ["deficiency_report_id"], name: "index_deficiency_report_translations_on_deficiency_report_id"
+    t.index ["locale"], name: "index_deficiency_report_translations_on_locale"
+  end
+
+  create_table "deficiency_reports", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
@@ -1686,6 +1706,10 @@ ActiveRecord::Schema.define(version: 2021_08_26_123714) do
     t.string "plz"
     t.string "location"
     t.integer "bam_letter_verification_code"
+    t.string "street_name"
+    t.string "house_number"
+    t.string "city_name"
+    t.datetime "bam_letter_verification_code_sent_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["geozone_id"], name: "index_users_on_geozone_id"
@@ -1812,6 +1836,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_123714) do
   add_foreign_key "budget_investments", "communities"
   add_foreign_key "budget_valuators", "budgets"
   add_foreign_key "budget_valuators", "valuators"
+  add_foreign_key "budgets", "projekts"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
