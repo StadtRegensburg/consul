@@ -1,6 +1,7 @@
 require_dependency Rails.root.join("app", "models", "map_location").to_s
 class MapLocation < ApplicationRecord
   belongs_to :projekt, touch: true
+  belongs_to :deficiency_report, touch: true
 
   def json_data
     {

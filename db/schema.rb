@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_01_142700) do
+ActiveRecord::Schema.define(version: 2021_10_04_143324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -949,6 +949,8 @@ ActiveRecord::Schema.define(version: 2021_10_01_142700) do
     t.integer "investment_id"
     t.bigint "projekt_id"
     t.string "pin_color"
+    t.bigint "deficiency_report_id"
+    t.index ["deficiency_report_id"], name: "index_map_locations_on_deficiency_report_id"
     t.index ["investment_id"], name: "index_map_locations_on_investment_id"
     t.index ["projekt_id"], name: "index_map_locations_on_projekt_id"
     t.index ["proposal_id"], name: "index_map_locations_on_proposal_id"
@@ -1854,6 +1856,7 @@ ActiveRecord::Schema.define(version: 2021_10_01_142700) do
   add_foreign_key "legislation_proposals", "legislation_processes"
   add_foreign_key "locks", "users"
   add_foreign_key "managers", "users"
+  add_foreign_key "map_locations", "deficiency_reports"
   add_foreign_key "map_locations", "projekts"
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
