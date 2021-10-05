@@ -5,7 +5,16 @@ class DeficiencyReportsController < ApplicationController
   before_action :load_categories
   load_and_authorize_resource
 
+  has_orders %w[created_at]
+
   def index
+    @valid_orders = []
+    @deficiency_reports = DeficiencyReport.all.page(params[:page]).send("sort_by_#{@current_order}")
+
+    @selected_tags = all_selected_tags
+
+    @top_level_active_projekts = Projekt.top_level_active.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.has_active_phase?('proposals') || p.proposals.any? } }
+    @top_level_archived_projekts = Projekt.top_level_archived.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.has_active_phase?('proposals') || p.proposals.any? } }
   end
 
   def new
