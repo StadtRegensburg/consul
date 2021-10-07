@@ -11,3 +11,7 @@ de:
         open_answer_text: Offene Antwort
       widget/card:
         card_category: Kategorie
+      deficiency_report:
+        deficiency_report_category_id: Kategorie
+        video_url: Externes Video URL
+

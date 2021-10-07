@@ -125,6 +125,7 @@
 //= require map_refresh
 //= require accessibility_fixes
 //= require polls_custom
+//= require deficiency_reports
 //= require leaflet.markercluster
 //= require_tree ./sdg
 //= require_tree ./sdg_management
@@ -193,6 +194,7 @@ var initialize_modules = function() {
   App.GDPRNotice.initialize();
   App.MapRefresh.initialize();
   App.PollsCustom.initialize();
+  App.DeficiencyReports.initialize();
   App.AccessibilityFixes.initialize();
 };
 

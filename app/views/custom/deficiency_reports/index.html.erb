@@ -53,7 +53,6 @@
                                            namespace: "proposals" %>
   <% end %>
 
-  <%tags = @selected_tags&.select{ |tag| tag.kind == 'category' } %>
   <%can_create = @top_level_active_projekts.blank? %>
 
   <% if feature?(:map) %>
@@ -124,7 +123,7 @@
 
       <div class="show-for-small-only margin-top">
         <% if current_user %>
-          <%= link_to t("custom.deficiency_reports.index.start_deficiency_report"), new_deficiency_report_path(tags: tags.any? ? tags.map{|t| t.name} : nil),
+          <%= link_to t("custom.deficiency_reports.index.start_deficiency_report"), new_deficiency_report_path,
             class: "button expanded js-preselect-projekt" %>
         <% end %>
       </div>
@@ -155,11 +154,11 @@
     <div class="small-12 medium-3 column">
       <aside class="margin-bottom">
         <% if current_user  %>
-          <%= link_to t("custom.deficiency_reports.index.start_deficiency_report"), new_deficiency_report_path(tags: tags.any? ? tags.map{|t| t.name} : nil),
+          <%= link_to t("custom.deficiency_reports.index.start_deficiency_report"), new_deficiency_report_path,
             class: "button expanded js-preselect-projekt" %>
         <% end %>
 
-        <%= render "shared/categories", taggable: "proposal" %>
+        <%= render "deficiency_reports/sidebar/categories" %>
 
       </aside>
     </div>

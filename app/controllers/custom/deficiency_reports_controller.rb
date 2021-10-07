@@ -16,9 +16,11 @@ class DeficiencyReportsController < ApplicationController
     @valid_orders = []
     @deficiency_reports = DeficiencyReport.all.page(params[:page]).send("sort_by_#{@current_order}")
 
-    @selected_tags = all_selected_tags
+    @categories = DeficiencyReport::Category.all
 
     @deficiency_reports_coordinates = all_deficiency_report_map_locations(@deficiency_reports)
+
+    @selected_categories_ids = params[:dr_categories] || []
   end
 
   def new
@@ -26,8 +28,7 @@ class DeficiencyReportsController < ApplicationController
   end
 
   def create
-    category = DeficiencyReport::Category.find_by(id: deficiency_report_params[:deficiency_report_category_id])
-    @deficiency_report = DeficiencyReport.new(deficiency_report_params.merge(author: current_user, category: category ))
+    @deficiency_report = DeficiencyReport.new(deficiency_report_params.merge(author: current_user))
 
     if @deficiency_report.save
       redirect_to deficiency_reports_path

@@ -1,0 +1,21 @@
+de:
+  custom:
+    deficiency_reports:
+      index:
+        sidebar:
+          categories:
+            filter_button: Kategorien filtern
+
+      new:
+        start_new: Neuen Mangel melden
+        recommendations_title: Empfehlungen zum Erstellen eines Mangels
+        recommendation_one: Verwenden Sie bitte nicht ausschließelich Großbuchstaben für die Überschrift oder für komplette Sätze. Im Internet gilt das als Schreien und niemand möchte angeschrien werden.
+        recommendation_two: Diskussionen oder Kommentare, die illegale Handlungen beinhalten, werden gelöscht sowie diejenigen, die die Diskussionen absichtlich sabotieren. Alles andere ist erlaubt.
+        recommendation_three: Genießen Sie diesen Ort und die Stimmen, die ihn füllen. Er gehört auch Ihnen.
+      form:
+        labels:
+          title: Titel des Mangels
+          summary: Zusammenfassung des Mangel
+          description: Text zum Mangel
+        new:
+          submit_button: Mangel melden
