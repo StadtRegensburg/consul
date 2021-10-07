@@ -40,7 +40,11 @@ Rails.application.routes.draw do
   resources :remote_translations, only: [:create]
 
   # Deficiency reports
-  resources :deficiency_reports, only: [:index, :new, :create]
+  resources :deficiency_reports, only: [:index, :show, :new, :create] do
+    member do
+      get :json_data
+    end
+  end
 
   # More info pages
   get "help",             to: "pages#show", id: "help/index",             as: "help"

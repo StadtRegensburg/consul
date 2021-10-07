@@ -1,0 +1,11 @@
+<% tag_filter_class = controller.action_name == 'index' ? 'js-projekt-tag-filter-link' : ''  %>
+
+<div class='tag-list'>
+  <% if taggable.category.present? %>
+    <% active_category_class = params[:deficiency_report_category] == taggable.category.name ? 'filtered-category' : '' %>
+    <div class="deficiency-report-category-chip <%= active_category_class %>">
+      <%= link_to taggable.category.name, deficiency_reports_path, class: "#{tag_filter_class} projekt-tag-chip-icon projekt-tag-chip-category" %></li>
+    </div>
+  <%end%>
+</div>
+

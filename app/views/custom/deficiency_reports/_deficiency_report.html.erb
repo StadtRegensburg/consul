@@ -1,28 +1,28 @@
 <div id="<%= dom_id(deficiency_report) %>"
      class="proposal clear"
      data-type="proposal">
-  <div class="panel <%#= "with-image" if deficiency_report.image.present? %>">
-    <div class="icon-successful"></div>
 
-    <% if false #deficiency_report.image.present? %>
+  <div class="panel <%= "with-image" if deficiency_report.image.present? %>">
+
+    <% if deficiency_report.image.present? %>
       <div class="row">
         <div class="small-12 medium-3 large-2 column text-center">
           <%= image_tag deficiency_report.image_url(:thumb),
                         alt: deficiency_report.image.title.unicode_normalize %>
         </div>
 
-        <div class="<%# = css_for_proposal_info_row(deficiency_report) %>">
+        <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>">
     <% else %>
       <div class="row">
-        <div class="<%# = css_for_proposal_info_row(deficiency_report) %>">
+        <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>">
       <% end %>
         <div class="proposal-content">
-          <% cache [locale_and_user_status(deficiency_report), "index", deficiency_report, deficiency_report.author, params[:tags], params[:projekts], params[:geozone_affiliation], params[:affiliated_geozones], params[:geozone_restriction], params[:restricted_geozones]] do %>
-            <h3><%= link_to deficiency_report.title, namespaced_deficiency_report_path(deficiency_report) %></h3>
+          <% cache [locale_and_user_status(deficiency_report), "index", deficiency_report, deficiency_report.author, params[:geozone_affiliation], params[:affiliated_geozones], params[:geozone_restriction], params[:restricted_geozones]] do %>
+            <h3><%= link_to deficiency_report.title, deficiency_report %></h3>
             <p class="proposal-info">
               <span class="icon-comments"></span>&nbsp;
               <%= link_to t("proposals.proposal.comments", count: deficiency_report.comments_count),
-                          namespaced_deficiency_report_path(deficiency_report, anchor: "comments") %>
+                          deficiency_report_path(deficiency_report, anchor: "comments") %>
 
               <span class="bullet">&nbsp;&bull;&nbsp;</span>
               <%= l deficiency_report.created_at.to_date %>
@@ -51,43 +51,20 @@
                   <%= t("shared.collective") %>
                 </span>
               <% end %>
-
-              <% if deficiency_report.projekt && deficiency_report.projekt.page.published? %>
-                  <br/>
-                  <span class='projekt-backlink'>&nbsp;
-                  </span>
-                  <%= link_to deficiency_report.projekt.page.title, deficiency_report.projekt.page.url %>
-              <% end %>
             </p>
 
             <div class="proposal-description">
               <p><%= deficiency_report.summary %></p>
             </div>
-            <%= render "shared/tags", taggable: deficiency_report, limit: 5 %>
+            <%= render "deficiency_reports/tags", taggable: deficiency_report, limit: 5 %>
           <% end %>
         </div>
       </div>
 
-      <% if show_deficiency_report_votes? %>
-        <div id="<%= dom_id(deficiency_report) %>_votes"
-             class="small-12 medium-3 column supports-container">
-          <% if deficiency_report.successful? %>
-            <div class="padding">
-              <div class="supports text-center">
-                <%= render "deficiency_reports/supports", deficiency_report: deficiency_report %>
-              </div>
-            </div>
-          <% elsif deficiency_report.archived? %>
-            <div class="padding text-center">
-              <strong><%= t("proposals.proposal.supports", count: deficiency_report.total_votes) %></strong>
-              <p><%= t("proposals.proposal.archived") %></p>
-            </div>
-          <% else %>
-            <%= render "deficiency_reports/votes",
-                      { deficiency_report: deficiency_report, vote_url: vote_deficiency_report_path(deficiency_report, value: "yes") } %>
-          <% end %>
-        </div>
-      <% end %>
+      <div id="<%= dom_id(deficiency_report) %>_votes" class="small-12 medium-3 column">
+        <%# = render "deficiency_report/votes", deficiency_report: deficiency_report %>
+        Votes go here
+      </div>
 
     </div>
   </div>

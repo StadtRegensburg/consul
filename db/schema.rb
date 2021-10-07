@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_143324) do
+ActiveRecord::Schema.define(version: 2021_10_06_095741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -555,6 +555,14 @@ ActiveRecord::Schema.define(version: 2021_10_04_143324) do
     t.index ["tsv"], name: "index_debates_on_tsv", using: :gin
   end
 
+  create_table "deficiency_report_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "deficiency_report_translations", force: :cascade do |t|
     t.bigint "deficiency_report_id", null: false
     t.string "locale", null: false
@@ -562,15 +570,19 @@ ActiveRecord::Schema.define(version: 2021_10_04_143324) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.text "description"
+    t.text "summary"
     t.index ["deficiency_report_id"], name: "index_deficiency_report_translations_on_deficiency_report_id"
     t.index ["locale"], name: "index_deficiency_report_translations_on_locale"
   end
 
   create_table "deficiency_reports", force: :cascade do |t|
     t.integer "author_id"
-    t.integer "status", default: 0
+    t.integer "comments_count", default: 0
+    t.string "video_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "deficiency_report_category_id"
+    t.index ["deficiency_report_category_id"], name: "index_deficiency_reports_on_deficiency_report_category_id"
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
@@ -1843,6 +1855,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_143324) do
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
   add_foreign_key "debates", "projekts"
+  add_foreign_key "deficiency_reports", "deficiency_report_categories"
   add_foreign_key "documents", "users"
   add_foreign_key "failed_census_calls", "poll_officers"
   add_foreign_key "failed_census_calls", "users"

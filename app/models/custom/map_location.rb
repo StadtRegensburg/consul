@@ -8,6 +8,7 @@ class MapLocation < ApplicationRecord
       investment_id: investment_id,
       proposal_id: proposal_id,
       projekt_id: projekt_id,
+      deficiency_report_id: deficiency_report_id,
       lat: latitude,
       long: longitude,
       color: get_pin_color(proposal_id)

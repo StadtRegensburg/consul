@@ -5,9 +5,27 @@
   <%= render "shared/errors", resource: @deficiency_report %>
 
   <div class="row column">
+    <div class="small-12 column">
+      <%= f.select :deficiency_report_category_id, DeficiencyReport::Category.all.collect{ |category| [category.name, category.id] }, { prompt: 'Please select' } %>
+    </div>
+
     <%= f.translatable_fields do |translations_form| %>
       <div class="small-12 column">
         <%= translations_form.text_field :title %>
+      </div>
+    <% end %>
+
+    <% if feature?(:allow_images) %>
+      <div class="images small-12 column">
+        <%= render "images/nested_image", imageable: @deficiency_report, f: f %>
+      </div>
+    <% end %>
+
+    <%= f.translatable_fields do |translations_form| %>
+      <div class="small-12 column">
+        <%= translations_form.text_area :summary,
+                                        rows: 4, maxlength: 200,
+                                        hint: t("proposals.form.proposal_summary_note") %>
       </div>
 
       <div class="small-12 column">
@@ -18,15 +36,21 @@
 
     <%= f.invisible_captcha :subtitle %>
 
-    <div class="small-12 column margin-top">
-      <%= render partial: "shared/projekt_selector/projekt_selector", locals: { f: f, model: @deficiency_report }  %>
+    <div class="small-12 column">
+      <%= f.text_field :video_url, hint: t("proposals.form.proposal_video_url_note") %>
     </div>
+
+    <% if feature?(:allow_attached_documents) %>
+      <div class="documents small-12 column">
+        <%= render "documents/nested_documents", documentable: @deficiency_report, f: f %>
+      </div>
+    <% end %>
 
     <div class="small-12 column <%= show_map_in_form?(@selected_projekt) %>" id='map-for-new-proposal'>
 
       <%= render "map_locations/form_fields",
                  form:     f,
-                 map_location: @deficiency_report.map_location || @selected_projekt&.map_location || MapLocation.new,
+                 map_location: @deficiency_report.map_location || MapLocation.new,
                  label:    t("proposals.form.map_location"),
                  help:     t("proposals.form.map_location_instructions"),
                  remove_marker_label: t("proposals.form.map_remove_marker"),
@@ -34,32 +58,6 @@
                  i18n_namespace: "proposals" %>
 
     </div>
-
-    <%if extended_feature?("modulewide.enable_categories") %>
-      <div class="small-12 column margin-bottom">
-        <%if @categories.any? %>
-          <div id="category_tags" class="tags">
-            <%= f.label :category_tag_list, t("proposals.form.tag_category_label") %>
-            <% @categories.each do |tag| %>
-              <a class="js-add-tag-link category-tag"><%= tag.name %></a>
-            <% end %>
-          </div>
-        <%end%>
-      </div>
-      <%=f.hidden_field :tag_list_predefined, value: @deficiency_report.tags.reject{|t| !['category'].include?(t.kind)}.map(&:name).join(","), class: "js-tag-list list-tags predefined"%>
-    <%end%>
-
-    <%if extended_feature?("modulewide.enable_custom_tags") %>
-      <div class="small-12 column margin-bottom">
-        <%= f.text_field :tag_list_custom, value: @deficiency_report.tags.where(kind: nil).map{|c| c.name}.join(","),
-          label: t("custom.proposals.form.tags_custom"),
-          placeholder: t("custom.proposals.form.tags_placeholder"),
-          data: { js_url: suggest_tags_path },
-          class: "tag-autocomplete list-categories" %>
-      </div>
-    <%end%>
-
-    <%= render SDG::RelatedListSelectorComponent.new(f) %>
 
     <div class="small-12 column">
       <% if @deficiency_report.new_record? %>

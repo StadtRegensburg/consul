@@ -2,13 +2,14 @@ class CreateDeficiencyReports < ActiveRecord::Migration[5.2]
   def change
     create_table :deficiency_reports do |t|
       t.integer :author_id
-      t.integer :status, default: 0
+      t.integer :comments_count, default: 0
+      t.string  :video_url
       t.timestamps
     end
 
     reversible do |dir|
       dir.up do
-        DeficiencyReport.create_translation_table! :title => :string, :description => :text
+        DeficiencyReport.create_translation_table! title: :string, description: :text, summary: :text
       end
 
       dir.down do
