@@ -46,6 +46,27 @@
       window.location.href = url;
     },
 
+    updateLabelStyle: function($li) {
+      $li.siblings('li').removeClass('label-selected')
+      $li.addClass('label-selected')
+    },
+
+    updateSelectedDeficiencyStatusParam: function($label) {
+      var url = new URL(window.location.href);
+      var selection = $('input[name="status"]:checked').val();
+
+      if ( selection == 0 ) {
+        url.searchParams.delete('dr_status')
+      } else {
+        url.searchParams.set('dr_status', selection)
+      }
+
+      url.searchParams.delete('search')
+      url.searchParams.delete('page')
+      window.history.pushState('', '', url)
+      window.location.href = url;
+    },
+
     initialize: function() {
       $("body").on("click", ".js-filter-dr-category", function() {
 				var $checkbox = $(this)
@@ -55,6 +76,13 @@
 
       $("body").on("click", ".js-reset-dr-category-filter", function() {
         App.DeficiencyReports.resetCategoryFilter()
+      });
+
+
+      $("body").on("click", ".js-filter-by-deficiency-report-status", function() {
+        var $label = $(this).closest('label');
+        App.DeficiencyReports.updateLabelStyle($label.closest('li'));
+        App.DeficiencyReports.updateSelectedDeficiencyStatusParam($label);
       });
     }
 

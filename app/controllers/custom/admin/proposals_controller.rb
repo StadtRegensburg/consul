@@ -9,6 +9,7 @@ class Admin::ProposalsController < Admin::BaseController
   before_action :load_proposal, except: :index
 
   def show
+     @affiliated_geozones = (params[:affiliated_geozones] || '').split(',').map(&:to_i)
   end
 
   def update

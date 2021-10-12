@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_06_095741) do
+ActiveRecord::Schema.define(version: 2021_10_11_142726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -556,9 +556,50 @@ ActiveRecord::Schema.define(version: 2021_10_06_095741) do
   end
 
   create_table "deficiency_report_categories", force: :cascade do |t|
-    t.string "name"
     t.string "color"
     t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deficiency_report_category_translations", force: :cascade do |t|
+    t.bigint "deficiency_report_category_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["deficiency_report_category_id"], name: "index_d61b31ba5bbffdea13be0cd92b8cb671cb6d18b5"
+    t.index ["locale"], name: "index_deficiency_report_category_translations_on_locale"
+  end
+
+  create_table "deficiency_report_officer_assignments", force: :cascade do |t|
+    t.bigint "deficiency_report_id"
+    t.bigint "deficiency_report_officer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deficiency_report_id"], name: "index_dr_officer_assignments_on_dr_id"
+    t.index ["deficiency_report_officer_id"], name: "index_dr_officer_assignments_on_dr_officer_id"
+  end
+
+  create_table "deficiency_report_officers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_deficiency_report_officers_on_user_id"
+  end
+
+  create_table "deficiency_report_status_translations", force: :cascade do |t|
+    t.bigint "deficiency_report_status_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "description"
+    t.index ["deficiency_report_status_id"], name: "index_9003f0b89e1dd7ed97cbb6fd7a245a79809763a3"
+    t.index ["locale"], name: "index_deficiency_report_status_translations_on_locale"
+  end
+
+  create_table "deficiency_report_statuses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -582,7 +623,9 @@ ActiveRecord::Schema.define(version: 2021_10_06_095741) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "deficiency_report_category_id"
+    t.bigint "deficiency_report_status_id"
     t.index ["deficiency_report_category_id"], name: "index_deficiency_reports_on_deficiency_report_category_id"
+    t.index ["deficiency_report_status_id"], name: "index_deficiency_reports_on_deficiency_report_status_id"
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
@@ -1855,7 +1898,11 @@ ActiveRecord::Schema.define(version: 2021_10_06_095741) do
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
   add_foreign_key "debates", "projekts"
+  add_foreign_key "deficiency_report_officer_assignments", "deficiency_report_officers"
+  add_foreign_key "deficiency_report_officer_assignments", "deficiency_reports"
+  add_foreign_key "deficiency_report_officers", "users"
   add_foreign_key "deficiency_reports", "deficiency_report_categories"
+  add_foreign_key "deficiency_reports", "deficiency_report_statuses"
   add_foreign_key "documents", "users"
   add_foreign_key "failed_census_calls", "poll_officers"
   add_foreign_key "failed_census_calls", "users"

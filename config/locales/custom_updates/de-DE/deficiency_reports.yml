@@ -4,7 +4,10 @@ de:
       index:
         sidebar:
           categories:
+            title: Kategorien
             filter_button: Kategorien filtern
+          statuses:
+            title: Status
 
       new:
         start_new: Neuen Mangel melden

@@ -17,10 +17,12 @@ class DeficiencyReportsController < ApplicationController
     @deficiency_reports = DeficiencyReport.all.page(params[:page]).send("sort_by_#{@current_order}")
 
     @categories = DeficiencyReport::Category.all
+    @statuses = DeficiencyReport::Status.all
 
     @deficiency_reports_coordinates = all_deficiency_report_map_locations(@deficiency_reports)
 
-    @selected_categories_ids = params[:dr_categories] || []
+    @selected_categories_ids = (params[:dr_categories] || '').split(',')
+    @selected_status_id = (params[:dr_status] || '').split(',').first
   end
 
   def new

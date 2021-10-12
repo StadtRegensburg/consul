@@ -52,3 +52,46 @@ ul#deficiency-report-categories-sidebar-filter {
     transform: rotate(45deg);
   }
 }
+
+ul#deficiency-report-statuses-sidebar-filter {
+
+  list-style-type: none;
+  margin-bottom: 0;
+
+  label {
+    cursor: pointer;
+    position: relative;
+    color: #878787;
+    margin-right: 2em;
+  }
+
+  li.label-selected label {
+    color: $brand;
+    font-weight: bold;
+  }
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    left: -19px;
+    top: 0;
+  }
+
+  .checkmark::before {
+     content: "\f111";
+     font-family: 'Font Awesome 5 Free';
+     font-weight: normal;
+  }
+
+  input:checked ~ .checkmark::before {
+     content: "\f192";
+  }
+}

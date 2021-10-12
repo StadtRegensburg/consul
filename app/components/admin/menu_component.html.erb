@@ -40,6 +40,18 @@
     <% end %>
   </li>
 
+  <li class="section-title <%= "is-active" %>">
+    <a href="#" class="booths-link"><%= t("admin.menu.title_booths") %></a>
+    <%= link_list(
+      deficiency_reports_officers,
+      deficiency_reports,
+      deficiency_reports_categories,
+      deficiency_reports_statuses,
+      deficiency_reports_settings,
+      id: "deficiency_reports_menu", class: ("is-active" if deficiency_reports?)
+    ) %>
+  </li>
+
   <li>
     <a href="#" class="booths-link"><%= t("admin.menu.title_booths") %></a>
     <%= link_list(
