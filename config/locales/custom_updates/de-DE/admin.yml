@@ -14,6 +14,15 @@ de:
           statuses: Status definieren
           settings: Funktionen
       deficiency_reports:
+        index:
+          title: Mängel zuweisen
+          no_deficiency_reports: Keine Mängelmeldungen
+          entry_name: Mangel
+        deficiency_report:
+          title: Gemeldeter Mangel
+          category: Kategorie
+          status: Status
+          officer: Sachbearbeiter*in
         officers:
           index:
             title: Sachbearbeiter*innen
@@ -52,7 +61,8 @@ de:
           form:
             submit_button: Speichern
         settings:
-          title: Funktionen
+          index:
+            title: Funktionen
 
       polls:
         questions:
