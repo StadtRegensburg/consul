@@ -6,6 +6,38 @@ de:
         archived_projekts_title: Abgeschlossene Beteiligungsprozesse
       menu:
         projekts: Projekte
+        deficiency_reports_title: Mängelmelder
+        deficiency_reports:
+          officers: Sachbearbeiter*in
+          reports: Mängel zuweisen
+          categories: Kategorien festlegen
+          statuses: Status definieren
+          settings: Funktionen
+      deficiency_reports:
+        officers:
+          index:
+            title: Sachbearbeiter*innen
+            search:
+              email_placeholder: Benutzer*in via E-Mail suchen
+          officer:
+            entry_name: Sachbearbeiter*in
+            name: Name
+            email: E-Mail
+        categories:
+          index:
+            create: Kategorie erstellen
+            title: Kategorien
+          category:
+            icon: Icon
+            color: Farbe
+            name: Name
+          new:
+            creating: Neue Mangelkategorie erstellen
+          edit:
+            editing: Mangelkategorie bearbeiten
+          form:
+            submit_button: Speichern
+
       polls:
         questions:
           answers:

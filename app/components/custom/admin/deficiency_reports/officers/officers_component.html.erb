@@ -1,8 +1,8 @@
 <%= tag.table options do %>
   <thead>
     <tr>
-      <th><%= t("admin.poll_officers.officer.name") %></th>
-      <th><%= t("admin.poll_officers.officer.email") %></th>
+      <th><%= t("custom.admin.deficiency_reports.officers.officer.name") %></th>
+      <th><%= t("custom.admin.deficiency_reports.officers.officer.email") %></th>
       <th><%= t("admin.actions.actions") %></th>
     </tr>
   </thead>
@@ -20,7 +20,7 @@
             <%= render Admin::TableActionsComponent.new(officer,
               actions: [:destroy],
               destroy_text: t("admin.poll_officers.officer.delete"),
-              destroy_path: admin_deficiency_reports_officer_path(officer),
+              destroy_path: admin_deficiency_report_officer_path(officer),
               destroy_options: { class: "destroy-officer-link" }
             ) %>
           <% else %>

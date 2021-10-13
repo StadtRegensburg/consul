@@ -22,11 +22,11 @@ class Admin::DeficiencyReports::OfficersController < Admin::BaseController
     @officer.user_id = params[:user_id]
     @officer.save!
 
-    redirect_to admin_deficiency_reports_officers_path
+    redirect_to admin_deficiency_report_officers_path
   end
 
   def destroy
     @officer.destroy!
-    redirect_to admin_deficiency_reports_officers_path
+    redirect_to admin_deficiency_report_officers_path
   end
 end

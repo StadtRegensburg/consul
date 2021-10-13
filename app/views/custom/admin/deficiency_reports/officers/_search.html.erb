@@ -1,7 +1,5 @@
-<p><%= t("admin.poll_officers.search.help") %></p>
-
 <%= render Admin::SearchComponent.new(
-  url: search_admin_deficiency_reports_officers_path,
-  label: t("admin.poll_officers.search.email_placeholder"),
+  url: search_admin_deficiency_report_officers_path,
+  label: t("custom.admin.deficiency_reports.officers.index.search.email_placeholder"),
   remote: true
 ) %>

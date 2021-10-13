@@ -5,22 +5,28 @@ class Admin::MenuComponent < ApplicationComponent
 
   private
 
-    def deficiency_reports?
-      params[:controller] == params[:controller] &&
-        (
-          action_name == "officers"
-          action_name == "reports"
-          action_name == "categories"
-          action_name == "status"
-          action_name == "settings"
-        )
+    def booths?
+      %w[officers booths shifts booth_assignments officer_assignments].include?(controller_name) && controller.class.parent == Admin::Poll ||
+        controller_name == "polls" && action_name == "booth_assignments"
     end
 
-    def deficiency_reports_officers
+    def officers_link
+      [
+        t("admin.menu.poll_officers"),
+        admin_officers_path,
+        %w[officers officer_assignments].include?(controller_name)
+      ]
+    end
+
+    def deficiency_reports?
+      %w[officers categories statuses settings].include?(controller_name) && controller.class.parent == Admin::DeficiencyReports
+    end
+
+    def deficiency_report_officers
       [
         t("custom.admin.menu.deficiency_reports.officers"),
-        admin_deficiency_reports_officers_path,
-        %w[shifts booths].include?(controller_name) && %w[available new].include?(action_name)
+        admin_deficiency_report_officers_path,
+        controller_name == "officers" && controller.class.parent == Admin::DeficiencyReports
       ]
     end
 
@@ -28,31 +34,31 @@ class Admin::MenuComponent < ApplicationComponent
       [
         t("custom.admin.menu.deficiency_reports.reports"),
         admin_deficiency_reports_path,
-        %w[shifts booths].include?(controller_name) && %w[available new].include?(action_name)
+        controller_name == "reports" && controller.class.parent == Admin::DeficiencyReports
       ]
     end
 
-    def deficiency_reports_categories
+    def deficiency_report_categories
       [
         t("custom.admin.menu.deficiency_reports.categories"),
-        admin_deficiency_reports_categories_path,
-        %w[shifts booths].include?(controller_name) && %w[available new].include?(action_name)
+        admin_deficiency_report_categories_path,
+        controller_name == "categories" && controller.class.parent == Admin::DeficiencyReports
       ]
     end
 
-    def deficiency_reports_statuses
+    def deficiency_report_statuses
       [
         t("custom.admin.menu.deficiency_reports.statuses"),
-        admin_deficiency_reports_statuses_path,
-        %w[shifts booths].include?(controller_name) && %w[available new].include?(action_name)
+        admin_deficiency_report_statuses_path,
+        controller_name == "statuses" && controller.class.parent == Admin::DeficiencyReports
       ]
     end
 
-    def deficiency_reports_settings
+    def deficiency_report_settings
       [
         t("custom.admin.menu.deficiency_reports.settings"),
-        admin_deficiency_reports_settings_path,
-        %w[shifts booths].include?(controller_name) && %w[available new].include?(action_name)
+        admin_deficiency_report_settings_path,
+        controller_name == "setings" && controller.class.parent == Admin::DeficiencyReports
       ]
     end
 end

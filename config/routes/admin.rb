@@ -23,11 +23,11 @@ namespace :admin do
   # custom deficiency reports routes
   resources :deficiency_reports, only: :index
 
-  scope module: :deficiency_reports, path: :deficiency_reports, as: :deficiency_reports do
+  scope module: :deficiency_reports, path: :deficiency_reports, as: :deficiency_report do
     resources :officers,    only: [:index, :create, :destroy] do
       get :search, on: :collection
     end
-    resources :categories,  only: :index
+    resources :categories,  only: [:index, :new, :create, :edit, :update, :destroy]
     resources :statuses,    only: :index
     resources :settings,    only: :index
 
