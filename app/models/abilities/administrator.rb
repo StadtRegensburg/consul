@@ -116,6 +116,7 @@ module Abilities
       #custom
       can [:search, :create, :index, :destroy], ::DeficiencyReport::Officer
       can [:index, :create, :edit, :update, :destroy], ::DeficiencyReport::Category
+      can [:index, :create, :edit, :update, :destroy], ::DeficiencyReport::Status
     end
   end
 end

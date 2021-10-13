@@ -600,6 +600,8 @@ ActiveRecord::Schema.define(version: 2021_10_11_142726) do
   end
 
   create_table "deficiency_report_statuses", force: :cascade do |t|
+    t.string "color"
+    t.string "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

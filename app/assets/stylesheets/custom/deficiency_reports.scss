@@ -95,3 +95,12 @@ ul#deficiency-report-statuses-sidebar-filter {
      content: "\f192";
   }
 }
+
+.admin-deficiency-report-category-icons-selector,
+.admin-deficiency-report-status-icons-selector {
+  column-count: 5;
+
+  label > [type='radio'] {
+    margin-top: 1px;
+  }
+}

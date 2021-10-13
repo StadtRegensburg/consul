@@ -27,15 +27,9 @@ namespace :admin do
     resources :officers,    only: [:index, :create, :destroy] do
       get :search, on: :collection
     end
-    resources :categories,  only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :statuses,    only: :index
+    resources :categories,  only: %i[index new create edit update destroy]
+    resources :statuses,    only: %i[index new create edit update destroy]
     resources :settings,    only: :index
-
-    # collection do
-      # post :create_officer
-      # delete :officer
-    #  get :reports
-    #end
   end
 
 

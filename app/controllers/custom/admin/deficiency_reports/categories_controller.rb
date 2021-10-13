@@ -3,7 +3,7 @@ class Admin::DeficiencyReports::CategoriesController < Admin::BaseController
   load_and_authorize_resource :category, class: "DeficiencyReport::Category", except: :show
 
   def index
-    @categories = DeficiencyReport::Category.all
+    @categories = DeficiencyReport::Category.all.order(id: :asc)
   end
 
   def new
@@ -38,6 +38,6 @@ class Admin::DeficiencyReports::CategoriesController < Admin::BaseController
   private
 
   def category_params
-    params.require(:deficiency_report_category).permit(:color, translation_params(DeficiencyReport::Category))
+    params.require(:deficiency_report_category).permit(:color, :icon, translation_params(DeficiencyReport::Category))
   end
 end

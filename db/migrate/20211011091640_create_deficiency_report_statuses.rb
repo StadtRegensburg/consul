@@ -1,6 +1,8 @@
 class CreateDeficiencyReportStatuses < ActiveRecord::Migration[5.2]
   def change
     create_table :deficiency_report_statuses do |t|
+      t.string :color
+      t.string :icon
 
       t.timestamps
     end

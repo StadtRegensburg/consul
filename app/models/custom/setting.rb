@@ -7,6 +7,8 @@ class Setting < ApplicationRecord
       prefix
     elsif %w[remote_census].include? prefix
       key.rpartition(".").first
+    elsif %w[deficiency_reports].include? prefix
+      key.rpartition(".").first
     elsif %w[extended_feature].include? prefix
       key.rpartition(".").first
     elsif %w[extended_option].include? prefix
@@ -138,6 +140,11 @@ class Setting < ApplicationRecord
         "projekts.show_module_links_in_flyout_menu": true,
         "projekts.second_level_projekts_in_active_filter": false,
         "projekts.second_level_projekts_in_archived_filter": false,
+        "deficiency_reports.admins_must_assign_officer": false,
+        "deficiency_reports.admins_must_approved_officer_answer": false,
+        "deficiency_reports.allow_voting": false,
+        "deficiency_reports.enable_comments": true,
+        "deficiency_reports.enable_notifications": true,
         # "extended_feature.general.elasticsearch": false,
         "extended_feature.general.extended_editor_for_admins": false,
         "extended_feature.general.extended_editor_for_users": false,

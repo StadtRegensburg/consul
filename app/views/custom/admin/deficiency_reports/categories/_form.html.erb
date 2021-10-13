@@ -14,6 +14,17 @@
     </div>
   </div>
 
+  <div class="clear">
+    <div class="small-12 medium-6 large-4 column">
+      <%= f.label :icon, t("custom.admin.deficiency_reports.categories.category.icon")  %>
+      <div class='admin-deficiency-report-category-icons-selector'>
+        <%= f.collection_radio_buttons :icon, DeficiencyReport::Category::AVAILABLE_ICONS, :first, :first do |rb| %>
+          <%= rb.label { rb.radio_button + "<i class=\"fas fa-#{rb.object.first}\"></i>".html_safe } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <div class="small-12 column">
     <%= f.submit(value: t("custom.admin.deficiency_reports.categories.form.submit_button"),
                 class: "button success") %>

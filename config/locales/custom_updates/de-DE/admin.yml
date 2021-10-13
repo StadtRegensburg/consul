@@ -37,6 +37,20 @@ de:
             editing: Mangelkategorie bearbeiten
           form:
             submit_button: Speichern
+        statuses:
+          index:
+            create: Status erstellen
+            title: Status
+          status:
+            icon: Icon
+            color: Farbe
+            title: Name
+          new:
+            creating: Neue Mangelstatus erstellen
+          edit:
+            editing: Mangelstatus bearbeiten
+          form:
+            submit_button: Speichern
 
       polls:
         questions:
