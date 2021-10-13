@@ -51,6 +51,8 @@ de:
             editing: Mangelstatus bearbeiten
           form:
             submit_button: Speichern
+        settings:
+          title: Funktionen
 
       polls:
         questions:

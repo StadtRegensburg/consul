@@ -140,6 +140,18 @@ de:
           show_newsfeed_in_projekt_footer: News-Feed
           show_newsfeed_in_projekt_footer_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
 
+      deficiency_reports:
+        admins_must_assign_officer: Admins müssen Sachbearbeiter*in zuweisen
+        admins_must_assign_officer_description: Missing
+        admins_must_approved_officer_answer: Admins müssen Antwort der Sachbearbeiter*innen freigeben
+        admins_must_approved_officer_answer_description: Missing
+        allow_voting: Nutzer*innen Bewertung pro Mangel
+        allow_voting_description: Missing
+        enable_comments: Kommentarfunktion
+        enable_comments_description: Missing
+        enable_notifications: Benachrichtigungen
+        enable_notifications_description: Missing
+
       projekt_newsfeed:
         id: Newsfeed ID 
         id_description:  
