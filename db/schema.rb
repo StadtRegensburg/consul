@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_142726) do
+ActiveRecord::Schema.define(version: 2021_10_14_080931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -626,7 +626,9 @@ ActiveRecord::Schema.define(version: 2021_10_11_142726) do
     t.datetime "updated_at", null: false
     t.bigint "deficiency_report_category_id"
     t.bigint "deficiency_report_status_id"
+    t.bigint "deficiency_report_officer_id"
     t.index ["deficiency_report_category_id"], name: "index_deficiency_reports_on_deficiency_report_category_id"
+    t.index ["deficiency_report_officer_id"], name: "index_deficiency_reports_on_deficiency_report_officer_id"
     t.index ["deficiency_report_status_id"], name: "index_deficiency_reports_on_deficiency_report_status_id"
   end
 
@@ -1904,6 +1906,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_142726) do
   add_foreign_key "deficiency_report_officer_assignments", "deficiency_reports"
   add_foreign_key "deficiency_report_officers", "users"
   add_foreign_key "deficiency_reports", "deficiency_report_categories"
+  add_foreign_key "deficiency_reports", "deficiency_report_officers"
   add_foreign_key "deficiency_reports", "deficiency_report_statuses"
   add_foreign_key "documents", "users"
   add_foreign_key "failed_census_calls", "poll_officers"

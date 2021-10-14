@@ -42,7 +42,10 @@ Rails.application.routes.draw do
   # Deficiency reports
   resources :deficiency_reports, only: [:index, :show, :new, :create] do
     member do
-      get :json_data
+      get     :json_data
+      patch   :update_status
+      patch   :update_category
+      patch   :update_officer
     end
   end
 

@@ -13,15 +13,13 @@
       <div class="small-12 column">
         <%= translations_form.text_field :title, label: t('custom.deficiency_reports.form.labels.title') %>
       </div>
-    <% end %>
 
-    <% if feature?(:allow_images) %>
-      <div class="images small-12 column">
-        <%= render "images/nested_image", imageable: @deficiency_report, f: f %>
-      </div>
-    <% end %>
+      <% if feature?(:allow_images) %>
+        <div class="images small-12 column">
+          <%= render "images/nested_image", imageable: @deficiency_report, f: f %>
+        </div>
+      <% end %>
 
-    <%= f.translatable_fields do |translations_form| %>
       <div class="small-12 column">
         <%= translations_form.text_area :summary,
                                         rows: 4, maxlength: 200,

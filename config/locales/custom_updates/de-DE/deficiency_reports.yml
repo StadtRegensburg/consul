@@ -8,6 +8,9 @@ de:
             filter_button: Kategorien filtern
           statuses:
             title: Status
+      show:
+        sidebar:
+          status: Status
 
       new:
         start_new: Neuen Mangel melden

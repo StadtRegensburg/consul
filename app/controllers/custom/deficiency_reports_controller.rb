@@ -10,7 +10,7 @@ class DeficiencyReportsController < ApplicationController
   before_action :destroy_map_location_association, only: :update
   load_and_authorize_resource
 
-  has_orders %w[created_at]
+  has_orders %w[newest most_voted oldest], only: :show
 
   def index
     @valid_orders = []
@@ -23,6 +23,11 @@ class DeficiencyReportsController < ApplicationController
 
     @selected_categories_ids = (params[:dr_categories] || '').split(',')
     @selected_status_id = (params[:dr_status] || '').split(',').first
+  end
+
+  def show
+    @comment_tree = CommentTree.new(@deficiency_report, params[:page], @current_order)
+    set_comment_flags(@comment_tree.comments)
   end
 
   def new
@@ -39,6 +44,21 @@ class DeficiencyReportsController < ApplicationController
     end
   end
 
+  def update_status
+    @deficiency_report.update(deficiency_report_status_id: deficiency_report_params[:deficiency_report_status_id])
+    redirect_to deficiency_report_path(@deficiency_report)
+  end
+
+  def update_category
+    @deficiency_report.update(deficiency_report_category_id: deficiency_report_params[:deficiency_report_category_id])
+    redirect_to deficiency_report_path(@deficiency_report)
+  end
+
+  def update_officer
+    @deficiency_report.update(deficiency_report_officer_id: deficiency_report_params[:deficiency_report_officer_id])
+    redirect_to deficiency_report_path(@deficiency_report)
+  end
+
   private
 
   def load_categories
@@ -46,7 +66,10 @@ class DeficiencyReportsController < ApplicationController
   end
 
   def deficiency_report_params
-    attributes = [:terms_of_service, :video_url, :deficiency_report_category_id,
+    attributes = [:terms_of_service, :video_url,
+                  :deficiency_report_status_id,
+                  :deficiency_report_category_id,
+                  :deficiency_report_officer_id,
                   map_location_attributes: map_location_attributes,
                   documents_attributes: document_attributes,
                   image_attributes: image_attributes]
