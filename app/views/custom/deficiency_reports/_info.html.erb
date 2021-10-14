@@ -4,9 +4,12 @@
   <span class="bullet">&nbsp;&bull;&nbsp;</span>
   <%= l @deficiency_report.created_at.to_date %>
 
-  <span class="bullet">&nbsp;&bull;&nbsp;</span>
-  <span class="icon-comments"></span>&nbsp;
-  <%= link_to t("proposals.show.comments", count: @deficiency_report.comments_count), "#comments" %>
+
+  <% if deficiency_reports_feature?('enable_comments') %>
+    <span class="bullet">&nbsp;&bull;&nbsp;</span>
+    <span class="icon-comments"></span>&nbsp;
+    <%= link_to t("proposals.show.comments", count: @deficiency_report.comments_count), "#comments" %>
+  <% end %>
 
   <% if current_user %>
     <span class="bullet">&nbsp;&bull;&nbsp;</span>
@@ -40,7 +43,7 @@
 
 <% if feature?(:map) && map_location_available?(@deficiency_report.map_location) %>
   <div class="margin">
-    <%= render_map(@deficiency_report.map_location, "proposal", false, nil) %>
+    <%= render_map(@deficiency_report.map_location, "deficiency_report", false, nil, MapLocation.where(deficiency_report_id: @deficiency_report.id).map(&:json_data)) %>
   </div>
 <% end %>
 

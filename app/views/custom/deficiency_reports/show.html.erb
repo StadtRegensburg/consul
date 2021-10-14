@@ -28,6 +28,29 @@
           <h1><%= @deficiency_report.title %></h1>
 
           <%= render "deficiency_reports/info", deficiency_report: @deficiency_report %>
+
+
+          <% if @deficiency_report.official_answer? %>
+            <div class="deficiency-report-official-answer">
+              <h3><%= t('custom.deficiency_reports.show.official_answer') %></h3>
+              <%= @deficiency_report.official_answer %>
+            </div>
+          <% end %>
+
+          <%= render "shared/globalize_locales", resource: @deficiency_report %>
+          <%= translatable_form_for @deficiency_report, url: update_official_answer_deficiency_report_path do |f| %>
+            <%= f.translatable_fields do |translations_form| %>
+              <div class="small-12 column" >
+                <%= translations_form.label :official_answer, t('custom.deficiency_reports.show.official_answer') %>
+                <%= translations_form.text_field :official_answer, label: false %>
+              </div>
+
+              <div class="actions small-12 column">
+                <%= f.submit(class: "button", value: 'Submit') %>
+              </div>
+            <% end %>
+
+          <% end %>
         </div>
 
         <aside class="small-12 medium-3 column">

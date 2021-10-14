@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       patch   :update_status
       patch   :update_category
       patch   :update_officer
+      patch   :update_official_answer
     end
   end
 

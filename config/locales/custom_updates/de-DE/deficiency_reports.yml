@@ -9,6 +9,7 @@ de:
           statuses:
             title: Status
       show:
+        official_answer: Offizielle Antwort
         sidebar:
           status: Status
 

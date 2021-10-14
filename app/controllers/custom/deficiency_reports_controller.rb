@@ -10,6 +10,7 @@ class DeficiencyReportsController < ApplicationController
   before_action :destroy_map_location_association, only: :update
   load_and_authorize_resource
 
+  has_orders %w[newest], only: :index
   has_orders %w[newest most_voted oldest], only: :show
 
   def index
@@ -56,6 +57,11 @@ class DeficiencyReportsController < ApplicationController
 
   def update_officer
     @deficiency_report.update(deficiency_report_officer_id: deficiency_report_params[:deficiency_report_officer_id])
+    redirect_to deficiency_report_path(@deficiency_report)
+  end
+
+  def update_official_answer
+    @deficiency_report.update(deficiency_report_params)
     redirect_to deficiency_report_path(@deficiency_report)
   end
 

@@ -7,9 +7,9 @@ class DeficiencyReport < ApplicationRecord
   translates :title, touch: true
   translates :description, touch: true
   translates :summary, touch: true
+  translates :official_answer, touch: true
   include Globalizable
 
-  has_one :map_location
   belongs_to :category, class_name: "DeficiencyReport::Category", foreign_key: :deficiency_report_category_id
   belongs_to :status, class_name: "DeficiencyReport::Status", foreign_key: :deficiency_report_status_id
   belongs_to :officer, class_name: "DeficiencyReport::Officer", foreign_key: :deficiency_report_officer_id
@@ -19,7 +19,7 @@ class DeficiencyReport < ApplicationRecord
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
   validates :author, presence: true
 
-  scope :sort_by_created_at,       -> { reorder(created_at: :desc) } 
+  scope :sort_by_newest,       -> { reorder(created_at: :desc) }
 
   def to_param
     "#{id}-#{title}".parameterize

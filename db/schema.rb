@@ -614,6 +614,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_080931) do
     t.string "title"
     t.text "description"
     t.text "summary"
+    t.text "official_answer"
     t.index ["deficiency_report_id"], name: "index_deficiency_report_translations_on_deficiency_report_id"
     t.index ["locale"], name: "index_deficiency_report_translations_on_locale"
   end
@@ -622,6 +623,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_080931) do
     t.integer "author_id"
     t.integer "comments_count", default: 0
     t.string "video_url"
+    t.boolean "official_answer_approved", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "deficiency_report_category_id"
