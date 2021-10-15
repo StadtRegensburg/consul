@@ -10,6 +10,8 @@ class DeficiencyReport < ApplicationRecord
   translates :official_answer, touch: true
   include Globalizable
 
+  acts_as_votable
+
   belongs_to :category, class_name: "DeficiencyReport::Category", foreign_key: :deficiency_report_category_id
   belongs_to :status, class_name: "DeficiencyReport::Status", foreign_key: :deficiency_report_status_id
   belongs_to :officer, class_name: "DeficiencyReport::Officer", foreign_key: :deficiency_report_officer_id
@@ -41,4 +43,31 @@ class DeficiencyReport < ApplicationRecord
     Setting['deficiency_reports.admins_must_approved_officer_answer'].present? &&
       !official_answer_approved?
   end
+
+  def total_votes
+    cached_votes_total
+  end
+
+  def likes
+    cached_votes_up
+  end
+
+  def dislikes
+    cached_votes_down
+	end
+
+  def votes_score
+    cached_votes_score
+  end
+
+  def votable_by?(user)
+    user.present? ? true : false
+  end
+
+  def register_vote(user, vote_value)
+    if votable_by?(user)
+      vote_by(voter: user, vote: vote_value)
+    end
+  end
+
 end

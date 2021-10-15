@@ -61,9 +61,13 @@
         </div>
       </div>
 
-      <div id="<%= dom_id(deficiency_report) %>_votes" class="small-12 medium-3 column">
-        <%# = render "deficiency_report/votes", deficiency_report: deficiency_report %>
-        Votes go here
+      <div class="small-12 medium-3 column">
+        <div>
+          Status
+        </div>
+        <div id="<%= dom_id(deficiency_report) %>_votes">
+        <%= render "deficiency_reports/votes", deficiency_report: deficiency_report %>
+        </div>
       </div>
 
     </div>

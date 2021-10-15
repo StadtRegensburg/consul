@@ -25,4 +25,10 @@ class User < ApplicationRecord
     self.email_digest = false
     self.email_on_direct_message = false
   end
+
+  def deficiency_report_votes(deficiency_reports)
+    voted = votes.for_deficiency_reports(Array(deficiency_reports).map(&:id))
+    voted.each_with_object({}) { |v, h| h[v.votable_id] = v.value }
+  end
+
 end

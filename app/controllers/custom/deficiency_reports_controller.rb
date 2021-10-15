@@ -24,6 +24,8 @@ class DeficiencyReportsController < ApplicationController
 
     @selected_categories_ids = (params[:dr_categories] || '').split(',')
     @selected_status_id = (params[:dr_status] || '').split(',').first
+
+    set_deficiency_report_votes(@deficiency_reports)
   end
 
   def show
@@ -69,6 +71,12 @@ class DeficiencyReportsController < ApplicationController
     @deficiency_report.update(official_answer_approved: true)
     redirect_to deficiency_report_path(@deficiency_report)
   end
+
+  def vote
+    @deficiency_report.register_vote(current_user, params[:value])
+    set_deficiency_report_votes(@deficiency_report)
+  end
+
 
   private
 

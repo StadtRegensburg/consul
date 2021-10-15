@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
     social_media_icon_twitter_path = SiteCustomization::Image.all.find_by(name: 'social_media_icon_twitter').image.url.split('?')[0]
     @social_media_icon_twitter_path = social_media_icon_twitter_path.include?('missing') ? nil : social_media_icon_twitter_path
   end
+
+  def set_deficiency_report_votes(deficiency_reports)
+    @deficiency_report_votes = current_user ? current_user.deficiency_report_votes(deficiency_reports) : {}
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_080931) do
+ActiveRecord::Schema.define(version: 2021_10_15_083059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -629,6 +629,16 @@ ActiveRecord::Schema.define(version: 2021_10_14_080931) do
     t.bigint "deficiency_report_category_id"
     t.bigint "deficiency_report_status_id"
     t.bigint "deficiency_report_officer_id"
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_anonymous_votes_total", default: 0
+    t.index ["cached_anonymous_votes_total"], name: "index_deficiency_reports_on_cached_anonymous_votes_total"
+    t.index ["cached_votes_down"], name: "index_deficiency_reports_on_cached_votes_down"
+    t.index ["cached_votes_score"], name: "index_deficiency_reports_on_cached_votes_score"
+    t.index ["cached_votes_total"], name: "index_deficiency_reports_on_cached_votes_total"
+    t.index ["cached_votes_up"], name: "index_deficiency_reports_on_cached_votes_up"
     t.index ["deficiency_report_category_id"], name: "index_deficiency_reports_on_deficiency_report_category_id"
     t.index ["deficiency_report_officer_id"], name: "index_deficiency_reports_on_deficiency_report_officer_id"
     t.index ["deficiency_report_status_id"], name: "index_deficiency_reports_on_deficiency_report_status_id"

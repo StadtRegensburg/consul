@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   resources :deficiency_reports, only: [:index, :show, :new, :create] do
     member do
       get     :json_data
+      post    :vote
       patch   :update_status
       patch   :update_category
       patch   :update_officer
