@@ -119,8 +119,17 @@ ul#deficiency-report-statuses-sidebar-filter {
 
 // Deficiency report map markers
 
-.map .map-marker .map-icon.road::after,
-.map .map-marker .map-icon.biking::after {
+.map .map-marker .map-icon.traffic-light::after,
+.map .map-marker .map-icon.map-signs::after,
+.map .map-marker .map-icon.chair::after,
+.map .map-marker .map-icon.bicycle::after,
+.map .map-marker .map-icon.child::after,
+.map .map-marker .map-icon.leaf::after,
+.map .map-marker .map-icon.lightbulb::after,
+.map .map-marker .map-icon.trash-alt::after,
+.map .map-marker .map-icon.tree::after,
+.map .map-marker .map-icon.shower::after,
+.map .map-marker .map-icon.landmark::after {
   font-family: "Font Awesome 5 Free";
   font-weight:  bold;
   color: $white;
@@ -128,16 +137,46 @@ ul#deficiency-report-statuses-sidebar-filter {
   transform: rotate(45deg);
 }
 
-.map .map-marker .map-icon.road::after {
-  content: "\f018";
+.map .map-marker .map-icon.traffic-light::after {
+  content: "\f637";
 }
 
-.map .map-marker .map-icon.biking::after {
-  content: "\f84a";
+.map .map-marker .map-icon.map-signs::after {
+  content: "\f277";
 }
 
+.map .map-marker .map-icon.chair::after {
+  content: "\f6c0";
+}
 
+.map .map-marker .map-icon.bicycle::after {
+  content: "\f206";
+}
 
+.map .map-marker .map-icon.child::after {
+  content: "\f1ae";
+}
 
+.map .map-marker .map-icon.leaf::after {
+  content: "\f06c";
+}
 
+.map .map-marker .map-icon.lightbulb::after {
+  content: "\f0eb";
+}
 
+.map .map-marker .map-icon.trash-alt::after {
+  content: "\f2ed";
+}
+
+.map .map-marker .map-icon.tree::after {
+  content: "\f1bb";
+}
+
+.map .map-marker .map-icon.shower::after {
+  content: "\f2cc";
+}
+
+.map .map-marker .map-icon.landmark::after {
+  content: "\f66f";
+}

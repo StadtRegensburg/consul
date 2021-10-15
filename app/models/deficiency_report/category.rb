@@ -1,5 +1,18 @@
 class DeficiencyReport::Category < ApplicationRecord
-  AVAILABLE_ICONS = [['road'], ['biking'], ['traffic-light']]
+  AVAILABLE_ICONS = [
+    ['traffic-light'],
+    ['map-signs'],
+    ['chair'],
+    ['bicycle'],
+    ['child'],
+    ['leaf'],
+    ['lightbulb'],
+    ['trash-alt'],
+    ['tree'],
+    ['shower'],
+    ['landmark']
+  ]
+
   translates :name, touch: true
   include Globalizable
 
