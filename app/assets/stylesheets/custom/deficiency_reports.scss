@@ -135,6 +135,9 @@ ul#deficiency-report-statuses-sidebar-filter {
   color: $white;
   background: none;
   transform: rotate(45deg);
+  left: 11%;
+  top: -5%;
+  font-size: 1rem;
 }
 
 .map .map-marker .map-icon.traffic-light::after {
@@ -151,6 +154,8 @@ ul#deficiency-report-statuses-sidebar-filter {
 
 .map .map-marker .map-icon.bicycle::after {
   content: "\f206";
+  left: 6%;
+  top: -18%;
 }
 
 .map .map-marker .map-icon.child::after {
