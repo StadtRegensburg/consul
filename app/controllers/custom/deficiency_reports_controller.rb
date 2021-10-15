@@ -5,7 +5,7 @@ class DeficiencyReportsController < ApplicationController
   include DocumentAttributes
   include DeficiencyReportsHelper
 
-  before_action :authenticate_user!, except: [:index, :json_data]
+  before_action :authenticate_user!, except: [:index, :show, :json_data]
   before_action :load_categories
   before_action :destroy_map_location_association, only: :update
   load_and_authorize_resource
@@ -62,6 +62,11 @@ class DeficiencyReportsController < ApplicationController
 
   def update_official_answer
     @deficiency_report.update(deficiency_report_params)
+    redirect_to deficiency_report_path(@deficiency_report)
+  end
+
+  def approve_official_answer
+    @deficiency_report.update(official_answer_approved: true)
     redirect_to deficiency_report_path(@deficiency_report)
   end
 

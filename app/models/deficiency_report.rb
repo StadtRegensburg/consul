@@ -28,4 +28,17 @@ class DeficiencyReport < ApplicationRecord
   def code
     "CONSUL-DF-#{created_at.strftime("%Y-%m")}-#{id}"
   end
+
+  def can_be_published?
+    if Setting['deficiency_reports.admins_must_approved_officer_answer'].present?
+      official_answer.present? && official_answer_approved?
+    else
+      official_answer.present?
+    end
+  end
+
+  def shall_be_approved?
+    Setting['deficiency_reports.admins_must_approved_officer_answer'].present? &&
+      !official_answer_approved?
+  end
 end

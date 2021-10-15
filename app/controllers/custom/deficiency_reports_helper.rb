@@ -24,4 +24,17 @@ module DeficiencyReportsHelper
       format.json { render json: data }
     end
   end
+
+  def show_official_reply_form?(deficiency_report)
+    return false unless current_user.present?
+
+    return true if current_user.administrator?
+
+    if Setting["deficiency_reports.admins_must_assign_officer"]
+      current_user.deficiency_report_officer? &&
+        current_user == deficiency_report.officer
+    else
+      current_user.deficiency_report_officer?
+    end
+  end
 end

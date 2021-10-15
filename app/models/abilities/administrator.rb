@@ -117,7 +117,7 @@ module Abilities
       can [:search, :create, :index, :destroy], ::DeficiencyReport::Officer
       can [:index, :create, :edit, :update, :destroy], ::DeficiencyReport::Category
       can [:index, :create, :edit, :update, :destroy], ::DeficiencyReport::Status
-      can [:update_status, :update_category, :update_officer, :update_official_answer], DeficiencyReport
+      can [:manage], DeficiencyReport
     end
   end
 end
