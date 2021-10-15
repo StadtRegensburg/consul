@@ -31,8 +31,12 @@ class Admin::DeficiencyReports::StatusesController < Admin::BaseController
   end
 
   def destroy
-    @status.destroy!
-    redirect_to admin_deficiency_report_statuses_path
+    if @status.safe_to_destroy?
+      @status.destroy!
+      redirect_to admin_deficiency_report_statuses_path, notice: t('custom.admin.deficiency_reports.statuses.destroy.destroyed_successfully')
+    else
+      redirect_to admin_deficiency_report_statuses_path, alert: t('custom.admin.deficiency_reports.statuses.destroy.cannot_be_destroyed')
+    end
   end
 
   private

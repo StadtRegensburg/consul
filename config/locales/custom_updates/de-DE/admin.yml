@@ -46,6 +46,10 @@ de:
             editing: Mangelkategorie bearbeiten
           form:
             submit_button: Speichern
+          destroy:
+            cannot_be_destroyed: Sie können diese Kategorie nicht löschen, da sie mindestens einem Mangel zugewiesen ist.
+            destroyed_successfully: Die Kategorie wurde erfolgreich gelöscht.
+
         statuses:
           index:
             create: Status erstellen
@@ -60,6 +64,9 @@ de:
             editing: Mangelstatus bearbeiten
           form:
             submit_button: Speichern
+          destroy:
+            cannot_be_destroyed: Sie können diesen Status nicht löschen, da er mindestens einem Mangel zugewiesen ist.
+            destroyed_successfully: Der Status wurde erfolgreich gelöscht.
         settings:
           index:
             title: Funktionen

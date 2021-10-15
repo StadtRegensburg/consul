@@ -26,6 +26,9 @@ class Admin::DeficiencyReports::OfficersController < Admin::BaseController
   end
 
   def destroy
+    @officer.deficiency_reports.each do |df|
+      df.update(officer: nil)
+    end
     @officer.destroy!
     redirect_to admin_deficiency_report_officers_path
   end

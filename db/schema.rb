@@ -572,15 +572,6 @@ ActiveRecord::Schema.define(version: 2021_10_15_083059) do
     t.index ["locale"], name: "index_deficiency_report_category_translations_on_locale"
   end
 
-  create_table "deficiency_report_officer_assignments", force: :cascade do |t|
-    t.bigint "deficiency_report_id"
-    t.bigint "deficiency_report_officer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deficiency_report_id"], name: "index_dr_officer_assignments_on_dr_id"
-    t.index ["deficiency_report_officer_id"], name: "index_dr_officer_assignments_on_dr_officer_id"
-  end
-
   create_table "deficiency_report_officers", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -1914,8 +1905,6 @@ ActiveRecord::Schema.define(version: 2021_10_15_083059) do
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
   add_foreign_key "debates", "projekts"
-  add_foreign_key "deficiency_report_officer_assignments", "deficiency_report_officers"
-  add_foreign_key "deficiency_report_officer_assignments", "deficiency_reports"
   add_foreign_key "deficiency_report_officers", "users"
   add_foreign_key "deficiency_reports", "deficiency_report_categories"
   add_foreign_key "deficiency_reports", "deficiency_report_officers"

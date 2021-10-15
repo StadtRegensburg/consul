@@ -31,8 +31,12 @@ class Admin::DeficiencyReports::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    @category.destroy!
-    redirect_to admin_deficiency_report_categories_path
+    if @category.safe_to_destroy?
+      @category.destroy!
+      redirect_to admin_deficiency_report_categories_path, notice: t('custom.admin.deficiency_reports.categories.destroy.destroyed_successfully')
+    else
+      redirect_to admin_deficiency_report_categories_path, alert: t('custom.admin.deficiency_reports.categories.destroy.cannot_be_destroyed')
+    end
   end
 
   private
