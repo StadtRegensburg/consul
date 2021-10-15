@@ -8,12 +8,14 @@
 
       <% category_selected = category.id.to_s.in?(@selected_categories_ids)  %>
       <% label_class =  category_selected ? 'label-selected' : 'label_regular' %>
+      <% related_df_count = category.deficiency_reports.count %>
 
       <li>
         <%= label_tag dom_id(category), class: label_class do %>
-          <span aria-label="<%= t('custom.links.projekts_filter.projekt_name', projekt_name: category.name) %>" ><%= category.name %></span>
+          <span aria-label="<%= t('custom.links.projekts_filter.projekt_name', projekt_name: category.name) %>" ><%= "#{category.name} (#{related_df_count})" %></span>
           <%= check_box_tag dom_id(category), category.id, category_selected, { class: 'js-filter-dr-category', tabindex: "-1" }  %>
           <span class="checkmark focusable js-prevent-key-scroll js-access-toggle-projekt-filter-checkbox" tabindex="0"></span>
+          <span class="color-code" <%= "style=background-color:#{category.color}" if category.color.present? %> ></span>
         <% end %>
       </li>
     <% end %>
