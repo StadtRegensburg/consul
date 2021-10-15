@@ -11,16 +11,27 @@ class MapLocation < ApplicationRecord
       deficiency_report_id: deficiency_report_id,
       lat: latitude,
       long: longitude,
-      color: get_pin_color(proposal_id)
+      color: get_pin_color,
+      fa_icon_class: get_fa_icon_class
     }
   end
 
   private
 
-  def get_pin_color(proposal_id)
+  def get_pin_color
     if proposal_id.present?
       proposal = Proposal.find_by(id: proposal_id)
       proposal.projekt&.map_location&.pin_color
+    elsif deficiency_report_id.present?
+      deficiency_report = DeficiencyReport.find_by(id: deficiency_report_id)
+      deficiency_report.category&.color
+    end
+  end
+
+  def get_fa_icon_class
+    if deficiency_report_id.present?
+      deficiency_report = DeficiencyReport.find_by(id: deficiency_report_id)
+      deficiency_report.category&.icon
     end
   end
 end
