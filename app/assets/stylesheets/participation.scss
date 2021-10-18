@@ -328,6 +328,7 @@
 
 .debate-show,
 .proposal-show,
+.deficiency-report-show,
 .poll-question-show,
 .budget-investment-show,
 .polls-show,
@@ -565,6 +566,7 @@
 
 .budget-investments-list .budget-investment,
 .proposals-list .proposal,
+.deficiency-reports-list .deficiency-report,
 .legislation-proposals .proposal {
 
   @include breakpoint(medium) {
@@ -641,6 +643,7 @@
 
 .debate,
 .proposal,
+.deficiency-report,
 .budget-investment,
 .legislation,
 .communities-show {
@@ -652,6 +655,7 @@
 
   .debate-content,
   .proposal-content,
+  .deficiency-report-content,
   .investment-project-content,
   .budget-investment-content {
     margin: 0;
@@ -694,6 +698,7 @@
 
   .debate-info,
   .proposal-info,
+  .deficiency-report-info,
   .investment-project-info,
   .budget-investment-info,
   .topic-info {
@@ -713,6 +718,7 @@
 
   .debate-description,
   .proposal-description,
+  .deficiency-report-description,
   .investment-project-description,
   .budget-investment-description {
     color: $text;
@@ -759,6 +765,8 @@
 
 .debate,
 .debate-show,
+.deficiency-report,
+.deficiency-report-show,
 .proposal-show,
 .legislation-proposals {
 
@@ -783,7 +791,8 @@
 }
 
 .proposal-show .votes,
-.debate-show .votes {
+.debate-show .votes,
+.deficiency-report-show .votes {
   border: 0;
   padding: $line-height / 2 0;
 }

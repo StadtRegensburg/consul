@@ -67,6 +67,22 @@
       window.location.href = url;
     },
 
+    updateSelectedDeficiencyOfficerParam: function($label) {
+      var url = new URL(window.location.href);
+      var selection = $('input[name="dr_officer"]:checked').val();
+
+      if ( selection == 'all' ) {
+        url.searchParams.delete('dr_officer')
+      } else {
+        url.searchParams.set('dr_officer', selection)
+      }
+
+      url.searchParams.delete('search')
+      url.searchParams.delete('page')
+      window.history.pushState('', '', url)
+      window.location.href = url;
+    },
+
     initialize: function() {
       $("body").on("click", ".js-filter-dr-category", function() {
 				var $checkbox = $(this)
@@ -83,6 +99,12 @@
         var $label = $(this).closest('label');
         App.DeficiencyReports.updateLabelStyle($label.closest('li'));
         App.DeficiencyReports.updateSelectedDeficiencyStatusParam($label);
+      });
+
+      $("body").on("click", ".js-filter-by-deficiency-report-officer", function() {
+        var $label = $(this).closest('label');
+        App.DeficiencyReports.updateLabelStyle($label.closest('li'));
+        App.DeficiencyReports.updateSelectedDeficiencyOfficerParam($label);
       });
     }
 

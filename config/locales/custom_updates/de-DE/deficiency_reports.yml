@@ -8,10 +8,18 @@ de:
             filter_button: Kategorien filtern
           statuses:
             title: Status
+          officer_filter:
+            title: Sachbearbeiter
+            all_reports: Alle Meldungen
+            only_current_user: Mir zugewiesene Meldungen
       show:
         official_answer: Offizielle Antwort
         sidebar:
+          vote: Unterstützer*innen
           status: Status
+          category: Kategorien
+          officer: Sachbearbeiter
+          social_share: Teilen
 
       new:
         start_new: Neuen Mangel melden

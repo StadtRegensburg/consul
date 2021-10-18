@@ -1,6 +1,6 @@
 <div id="<%= dom_id(deficiency_report) %>"
-     class="proposal clear"
-     data-type="proposal">
+     class="deficiency-report clear"
+     data-type="deficiency-report">
 
   <div class="panel <%= "with-image" if deficiency_report.image.present? %>">
 
@@ -16,10 +16,10 @@
       <div class="row">
         <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>">
       <% end %>
-        <div class="proposal-content">
+        <div class="deficiency-report-content">
           <% cache [locale_and_user_status(deficiency_report), "index", deficiency_report, deficiency_report.author, params[:geozone_affiliation], params[:affiliated_geozones], params[:geozone_restriction], params[:restricted_geozones]] do %>
             <h3><%= link_to deficiency_report.title, deficiency_report %></h3>
-            <p class="proposal-info">
+            <p class="deficiency-report-info">
               <span class="icon-comments"></span>&nbsp;
               <%= link_to t("proposals.proposal.comments", count: deficiency_report.comments_count),
                           deficiency_report_path(deficiency_report, anchor: "comments") %>
@@ -53,7 +53,7 @@
               <% end %>
             </p>
 
-            <div class="proposal-description">
+            <div class="deficiency-report-description">
               <p><%= deficiency_report.summary %></p>
             </div>
             <%= render "deficiency_reports/tags", taggable: deficiency_report, limit: 5 %>
@@ -61,13 +61,16 @@
         </div>
       </div>
 
-      <div class="small-12 medium-3 column">
+      <div class="small-12 medium-3 column deficiency-report-additional-info">
         <div>
-          Status
+          <%= render "deficiency_reports/status", deficiency_report: deficiency_report %>
         </div>
-        <div id="<%= dom_id(deficiency_report) %>_votes">
-        <%= render "deficiency_reports/votes", deficiency_report: deficiency_report %>
-        </div>
+
+        <% if deficiency_reports_feature?('allow_voting') %>
+          <div id="<%= dom_id(deficiency_report) %>_votes">
+            <%= render "deficiency_reports/votes", deficiency_report: deficiency_report %>
+          </div>
+        <% end %>
       </div>
 
     </div>

@@ -1,26 +1,26 @@
-<%= content_for :body_class, "deficiency-report-show" %>
+<%= content_for :body_class, "" %>
 <% provide :title do %><%= @deficiency_report.title %><% end %>
 <% content_for :meta_description do %><%= @deficiency_report.summary %><% end %>
 <% provide :social_media_meta_tags do %>
   <%= render "shared/social_media_meta_tags",
-              social_url: proposal_url(@deficiency_report),
+              social_url: deficiency_report_url(@deficiency_report),
               social_title: @deficiency_report.title,
               social_description: @deficiency_report.summary,
               twitter_image_url: (@deficiency_report.image.present? ? @deficiency_report.image_url(:thumb) : nil),
               og_image_url: (@deficiency_report.image.present? ? @deficiency_report.image_url(:thumb) : nil) %>
 <% end %>
 <% content_for :canonical do %>
-  <%= render "shared/canonical", href: proposal_url(@deficiency_report) %>
+  <%= render "shared/canonical", href: deficiency_report_url(@deficiency_report) %>
 <% end %>
 
 <main>
   <% cache [locale_and_user_status(@deficiency_report),
             @deficiency_report,
             @deficiency_report.author,
-            Flag.flagged?(current_user, @deficiency_report),
             @deficiency_report.status,
-            @deficiency_report.category ] do %>
-    <div class="proposal-show">
+            @deficiency_report.category,
+            @deficiency_report.officer  ] do %>
+    <div class="deficiency-report-show">
       <div id="<%= dom_id(@deficiency_report) %>" class="row">
         <div class="small-12 medium-9 column">
           <%= back_link_to deficiency_reports_path %>
@@ -59,14 +59,18 @@
         </div>
 
         <aside class="small-12 medium-3 column">
-          <div class="sidebar-divider"></div>
-          <h2><%= t("custom.deficiency_reports.show.sidebar.status") %></h2>
-          <% if @deficiency_report.status.present? %>
-            <div class="deficiency-report-status" style=<%= "color:#{@deficiency_report.status.color}" %> >
-              <i class="fas fa-<%= "#{@deficiency_report.status.icon}" %>"></i>
-              <%= @deficiency_report.status.title %>
+
+          <% if deficiency_reports_feature?('allow_voting') %>
+            <div class="sidebar-divider"></div>
+            <h2><%= t("custom.deficiency_reports.show.sidebar.vote") %></h2>
+            <div id="<%= dom_id(@deficiency_report) %>_votes">
+              <%= render "deficiency_reports/votes", deficiency_report: @deficiency_report %>
             </div>
           <% end %>
+
+          <div class="sidebar-divider"></div>
+          <h2><%= t("custom.deficiency_reports.show.sidebar.status") %></h2>
+          <%= render "deficiency_reports/status", deficiency_report: @deficiency_report %>
 
           <%= form_for @deficiency_report, url: update_status_deficiency_report_path do |f| %>
             <%= f.select :deficiency_report_status_id, DeficiencyReport::Status.all.collect{ |df| [df.title, df.id] }, { label: false , prompt: 'Please select to update'}, {onchange: "this.form.submit();" } %>
@@ -75,9 +79,8 @@
           <div class="sidebar-divider"></div>
           <h2><%= t("custom.deficiency_reports.show.sidebar.category") %></h2>
           <% if @deficiency_report.category.present? %>
-            <div class="deficiency-report-category" style=<%= "color:#{@deficiency_report.category.color}" %> >
+            <div class="deficiency-report-category">
               <%= @deficiency_report.category.name %>
-              <i class="fas fa-<%= "#{@deficiency_report.category.icon}" %>"></i>
             </div>
           <% end %>
 
@@ -97,7 +100,13 @@
             <%= f.select :deficiency_report_officer_id, DeficiencyReport::Officer.all.collect{ |df| [df.name, df.id] }, { label: false, prompt: 'Please select to update' }, { onchange: "this.form.submit();" } %>
           <% end %>
 
-          <%= render "proposals/social_share", proposal: @deficiency_report, share_title: t("proposals.show.share") %>
+					<%= render "shared/social_share",
+						share_title: t("custom.deficiency_reports.show.sidebar.share"),
+						title: @deficiency_report.title,
+						url: deficiency_report_url(@deficiency_report),
+						description: @deficiency_report.title,
+						mobile: @deficiency_report.title
+					%>
         </aside>
 
       </div>
@@ -115,7 +124,7 @@
       </div>
     </div>
 
-    <div class="tabs-content" data-tabs-content="proposals_tabs">
+    <div class="tabs-content" data-tabs-content="deficiency_reports_tabs">
       <div class="tabs-panel is-active" id="tab-comments">
         <%= render "deficiency_reports/comments" %>
       </div>

@@ -14,7 +14,6 @@ class DeficiencyReportsController < ApplicationController
   has_orders %w[newest most_voted oldest], only: :show
 
   def index
-    @valid_orders = []
     @deficiency_reports = DeficiencyReport.all.page(params[:page]).send("sort_by_#{@current_order}")
 
     @categories = DeficiencyReport::Category.all
@@ -24,13 +23,21 @@ class DeficiencyReportsController < ApplicationController
 
     @selected_categories_ids = (params[:dr_categories] || '').split(',')
     @selected_status_id = (params[:dr_status] || '').split(',').first
+    @selected_officer = params[:dr_officer]
+
+
+    filter_by_categories if @selected_categories_ids
+    filter_by_selected_status if @selected_status_id
+    filter_by_selected_officer if @selected_officer
 
     set_deficiency_report_votes(@deficiency_reports)
   end
 
   def show
+    @commentable = @deficiency_report
     @comment_tree = CommentTree.new(@deficiency_report, params[:page], @current_order)
     set_comment_flags(@comment_tree.comments)
+    set_deficiency_report_votes(@deficiency_reports)
   end
 
   def new
@@ -106,4 +113,19 @@ class DeficiencyReportsController < ApplicationController
     end
   end
 
+  def filter_by_categories
+    @deficiency_reports = @deficiency_reports.where(category: @selected_categories_ids)
+  end
+
+  def filter_by_selected_status
+    @deficiency_reports = @deficiency_reports.where(status: @selected_status_id)
+  end
+
+  def filter_by_selected_officer
+    if @selected_officer == 'current_user'
+      @deficiency_reports = @deficiency_reports.where(officer: current_user)
+    else
+      @deficiency_reports
+    end
+  end
 end

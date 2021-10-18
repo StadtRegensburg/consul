@@ -11,6 +11,8 @@ class DeficiencyReport < ApplicationRecord
   include Globalizable
 
   acts_as_votable
+  acts_as_paranoid column: :hidden_at
+  include ActsAsParanoidAliases
 
   belongs_to :category, class_name: "DeficiencyReport::Category", foreign_key: :deficiency_report_category_id
   belongs_to :status, class_name: "DeficiencyReport::Status", foreign_key: :deficiency_report_status_id
