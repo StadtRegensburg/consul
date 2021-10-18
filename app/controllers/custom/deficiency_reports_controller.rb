@@ -41,6 +41,7 @@ class DeficiencyReportsController < ApplicationController
     @deficiency_report = DeficiencyReport.new(deficiency_report_params.merge(author: current_user))
 
     if @deficiency_report.save
+      DeficiencyReportMailer.notify_administrators(@deficiency_report).deliver_later
       redirect_to deficiency_reports_path
     else
       render :new
@@ -58,7 +59,9 @@ class DeficiencyReportsController < ApplicationController
   end
 
   def update_officer
-    @deficiency_report.update(deficiency_report_officer_id: deficiency_report_params[:deficiency_report_officer_id])
+    if @deficiency_report.update(deficiency_report_officer_id: deficiency_report_params[:deficiency_report_officer_id])
+      DeficiencyReportMailer.notify_officer(@deficiency_report).deliver_later
+    end
     redirect_to deficiency_report_path(@deficiency_report)
   end
 

@@ -26,3 +26,14 @@ de:
           description: Text zum Mangel
         new:
           submit_button: Mangel melden
+      mailers:
+        notify_administrators:
+          subject: Neue Mangelmeldung
+          hi: Lieber Admin,
+          p1: es wurde ein neuer Mangel gemeldet.
+          signature_html: Viele Grüße</br>Consul
+        notify_officer:
+          subject: Neue Mangelmeldung
+          hi: Liebe/r Sachbearbeiter*in,
+          p1: Ihnen wurde ein Mangel vom Admin zugewiesen.
+          signature_html: Viele Grüße</br>Consul
