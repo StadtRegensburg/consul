@@ -37,4 +37,20 @@ module DeficiencyReportsHelper
       current_user.deficiency_report_officer?
     end
   end
+
+  def deficiency_reports_default_view?
+    @view == "default"
+  end
+
+  def deficiency_reports_minimal_view_path
+    deficiency_reports_path(view: deficiency_reports_secondary_view)
+  end
+
+  def deficiency_reports_current_view
+    @view
+	end
+
+  def deficiency_reports_secondary_view
+    deficiency_reports_current_view == "default" ? "minimal" : "default"
+  end
 end

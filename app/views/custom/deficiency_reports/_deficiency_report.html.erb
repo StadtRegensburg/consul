@@ -5,19 +5,19 @@
   <div class="panel <%= "with-image" if deficiency_report.image.present? %>">
 
     <% if deficiency_report.image.present? %>
-      <div class="row">
-        <div class="small-12 medium-3 large-2 column text-center">
+      <div class="row" data-equalizer data-equalizer-mq="medium-up">
+        <div class="small-12 medium-3 large-2 column text-center" data-equalizer-watch>
           <%= image_tag deficiency_report.image_url(:thumb),
                         alt: deficiency_report.image.title.unicode_normalize %>
         </div>
 
-        <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>">
+        <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>" data-equalizer-watch>
     <% else %>
-      <div class="row">
-        <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>">
+      <div class="row" data-equalizer data-equalizer-mq="medium-up">
+        <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>" data-equalizer-watch>
       <% end %>
         <div class="deficiency-report-content">
-          <% cache [locale_and_user_status(deficiency_report), "index", deficiency_report, deficiency_report.author, params[:geozone_affiliation], params[:affiliated_geozones], params[:geozone_restriction], params[:restricted_geozones]] do %>
+          <% cache [locale_and_user_status(deficiency_report), "index", deficiency_report, deficiency_report.author, params[:dr_categories]] do %>
             <h3><%= link_to deficiency_report.title, deficiency_report %></h3>
             <p class="deficiency-report-info">
               <span class="icon-comments"></span>&nbsp;
@@ -61,10 +61,8 @@
         </div>
       </div>
 
-      <div class="small-12 medium-3 column deficiency-report-additional-info">
-        <div>
-          <%= render "deficiency_reports/status", deficiency_report: deficiency_report %>
-        </div>
+      <div class="small-12 medium-3 column deficiency-report-additional-info" data-equalizer-watch>
+        <%= render "deficiency_reports/status", deficiency_report: deficiency_report %>
 
         <% if deficiency_reports_feature?('allow_voting') %>
           <div id="<%= dom_id(deficiency_report) %>_votes">

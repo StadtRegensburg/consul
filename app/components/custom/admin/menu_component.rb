@@ -53,4 +53,21 @@ class Admin::MenuComponent < ApplicationComponent
         controller_name == "settings" && controller.class.parent == Admin::DeficiencyReports
       ]
     end
+
+    def settings?
+      controllers_names = ["settings", "tags", "geozones", "images", "content_blocks",
+                           "local_census_records", "imports"]
+      controllers_names.include?(controller_name) &&
+        controller.class.parent != Admin::Poll::Questions::Answers &&
+        controller.class != Admin::DeficiencyReports::SettingsController
+    end
+
+    def settings_link
+      [
+        t("admin.menu.settings"),
+        admin_settings_path,
+        controller_name == "settings" &&
+          controller.class != Admin::DeficiencyReports::SettingsController
+      ]
+    end
 end

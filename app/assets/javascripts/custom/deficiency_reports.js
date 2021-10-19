@@ -2,6 +2,38 @@
   "use strict";
   App.DeficiencyReports = {
 
+    updateSelectedDeficiencyCategoriesParamFromTag: function() {
+      event.preventDefault();
+      var url = new URL(window.location.href);
+      var selectedCategoriesIds;
+      var clickedCategoryId;
+
+      if (url.searchParams.get('dr_categories')) {
+        selectedCategoriesIds = url.searchParams.get('dr_categories').split(',');
+      } else {
+        selectedCategoriesIds = [];
+      }
+
+      clickedCategoryId = event.target.dataset['categoryId'];
+
+      var index = selectedCategoriesIds.indexOf(clickedCategoryId);
+      if (index > -1) {
+        selectedCategoriesIds.splice(index, 1);
+      } else {
+        selectedCategoriesIds.push( event.target.dataset['categoryId'] );
+      }
+
+      if ( selectedCategoriesIds.length > 0 ) {
+        url.searchParams.set('dr_categories', selectedCategoriesIds.join(','))
+      } else {
+        url.searchParams.delete('dr_categories')
+      }
+
+      window.history.pushState('', '', url)
+      window.location.href = url;
+
+    },
+
     updateDeficiencyReportsParams: function($checkbox) {
       var url = new URL(window.location.href);
       var selectedCategoriesIds;
@@ -105,6 +137,10 @@
         var $label = $(this).closest('label');
         App.DeficiencyReports.updateLabelStyle($label.closest('li'));
         App.DeficiencyReports.updateSelectedDeficiencyOfficerParam($label);
+      });
+
+      $("body").on("click", ".js-update-dr-categories", function() {
+        App.DeficiencyReports.updateSelectedDeficiencyCategoriesParamFromTag();
       });
     }
 

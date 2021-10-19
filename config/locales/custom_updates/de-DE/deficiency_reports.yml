@@ -2,6 +2,15 @@ de:
   custom:
     deficiency_reports:
       index:
+        start_deficiency_report: Mangel melden
+        seo:
+          title: Mängelmelder
+        search_form:
+          title: Suche Mängelmeldungen
+          placeholder: Suche Mängelmeldungen...
+          button: search
+        section_header:
+          help: Hilfe zu Mängelmeldungen
         sidebar:
           categories:
             title: Kategorien
@@ -12,6 +21,13 @@ de:
             title: Sachbearbeiter
             all_reports: Alle Meldungen
             only_current_user: Mir zugewiesene Meldungen
+        orders:
+          most_commented: Am meisten kommentiert
+          hot_score: Aktivste
+          newest: Neuste
+        section_footer:
+          title: Hilfe zu Mängelmeldungen
+          description: Mängel können, abhängig vom eingestellten Verifizierungsverfahren, von jeder Benutzerin und jedem Benutzer eingebracht werden. Sie bieten eine einfache Möglichkeit auf Mängel in der Stadt hinzuweisen. Wir danken für Ihre Unterstützung!
       show:
         official_answer: Offizielle Antwort
         sidebar:

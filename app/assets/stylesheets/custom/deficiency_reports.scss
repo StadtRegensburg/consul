@@ -106,9 +106,18 @@ ul#deficiency-report-statuses-sidebar-filter {
 }
 
 
+.deficiency-reports-list .deficiency-report .column:last-child:not(:first-child),
+.deficiency-reports-list .deficiency-report .columns:last-child:not(:first-child) {
+  padding-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid #dee0e3;
+}
+
+
 .deficiency-report {
   .deficiency-report-additional-info {
-    border-left: 1px solid #dee0e3;
 
     .votes {
       border-left: none;
@@ -118,7 +127,7 @@ ul#deficiency-report-statuses-sidebar-filter {
   .deficiency-report-status {
     font-size: 20px;
     text-align: center;
-    margin-bottom: 1rem;
+    padding: 0.75rem 0;
 
     .fas {
       display: block;

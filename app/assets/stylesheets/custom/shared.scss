@@ -5,6 +5,44 @@
   flex-wrap: wrap;
 }
 
+.tag-chip {
+  display: inline-block;
+  font-size: 0.875em;
+  background: #ececec;
+  color: #222;
+  padding: 5px 1em;
+  margin-bottom: .5em;
+  margin-right: .3em;
+
+  a {
+    color: #222;
+  }
+  
+  &.filtered {
+    background: $brand;
+
+    a {
+      color: $white;
+    }
+  }
+}
+
+%tag-chip-icon {
+  font-weight: bold;
+  font-family: "Font Awesome 5 Free";
+  color: inherit;
+  margin-right: 0.5em;
+}
+
+.tag-chip-icon-projekt:before {
+  content: "\f126";
+  @extend %tag-chip-icon;
+}
+
+
+
+
+// eventually replace projekt-tag-chip with tag-chip everywhere
 .projekt-tag-chip {
   display: inline-block;
   font-size: 0.875em;

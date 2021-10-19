@@ -4,13 +4,15 @@ class DeficiencyReportsController < ApplicationController
   include ImageAttributes
   include DocumentAttributes
   include DeficiencyReportsHelper
+  include Search
 
   before_action :authenticate_user!, except: [:index, :show, :json_data]
   before_action :load_categories
+  before_action :set_view, only: :index
   before_action :destroy_map_location_association, only: :update
   load_and_authorize_resource
 
-  has_orders %w[newest], only: :index
+  has_orders ->(c) { DeficiencyReport.deficiency_report_orders }, only: :index
   has_orders %w[newest most_voted oldest], only: :show
 
   def index
@@ -25,10 +27,12 @@ class DeficiencyReportsController < ApplicationController
     @selected_status_id = (params[:dr_status] || '').split(',').first
     @selected_officer = params[:dr_officer]
 
+    @deficiency_reports = @deficiency_reports.search(@search_terms) if @search_terms.present?
 
-    filter_by_categories if @selected_categories_ids
-    filter_by_selected_status if @selected_status_id
-    filter_by_selected_officer if @selected_officer
+
+    filter_by_categories if @selected_categories_ids.present?
+    filter_by_selected_status if @selected_status_id.present?
+    filter_by_selected_officer if @selected_officer.present?
 
     set_deficiency_report_votes(@deficiency_reports)
   end
@@ -45,7 +49,8 @@ class DeficiencyReportsController < ApplicationController
   end
 
   def create
-    @deficiency_report = DeficiencyReport.new(deficiency_report_params.merge(author: current_user))
+    status = DeficiencyReport::Status.first
+    @deficiency_report = DeficiencyReport.new(deficiency_report_params.merge(author: current_user, status: status))
 
     if @deficiency_report.save
       DeficiencyReportMailer.notify_administrators(@deficiency_report).deliver_later
@@ -123,9 +128,14 @@ class DeficiencyReportsController < ApplicationController
 
   def filter_by_selected_officer
     if @selected_officer == 'current_user'
-      @deficiency_reports = @deficiency_reports.where(officer: current_user)
+      @deficiency_reports = @deficiency_reports.joins(:officer).where(deficiency_report_officers: { user_id: current_user.id })
     else
       @deficiency_reports
     end
   end
+
+  def set_view
+    @view = (params[:view] == "minimal") ? "minimal" : "default"
+  end
+
 end

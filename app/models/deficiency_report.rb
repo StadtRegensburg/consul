@@ -4,6 +4,7 @@ class DeficiencyReport < ApplicationRecord
   include Mappable
   include Imageable
   include Documentable
+  include Searchable
   translates :title, touch: true
   translates :description, touch: true
   translates :summary, touch: true
@@ -23,7 +24,28 @@ class DeficiencyReport < ApplicationRecord
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
   validates :author, presence: true
 
-  scope :sort_by_newest,       -> { reorder(created_at: :desc) }
+  before_save :calculate_hot_score
+
+  scope :sort_by_most_commented,       -> { reorder(comments_count: :desc) }
+  scope :sort_by_hot_score,            -> { reorder(hot_score: :desc) }
+  scope :sort_by_newest,               -> { reorder(created_at: :desc) }
+
+  def self.search(terms)
+    pg_search(terms)
+  end
+
+  def searchable_values
+    {
+      author.username       => "B",
+      tag_list.join(" ")    => "B"
+    }.merge!(searchable_globalized_values)
+  end
+
+  def searchable_translations_definitions
+    { title       => "A",
+      summary     => "C",
+      description => "D" }
+  end
 
   def to_param
     "#{id}-#{title}".parameterize
@@ -66,10 +88,21 @@ class DeficiencyReport < ApplicationRecord
     user.present? ? true : false
   end
 
+  def self.deficiency_report_orders
+    orders = %w[most_commented hot_score newest]
+    orders.delete("hot_score") unless Setting["deficiency_reports.allow_voting"]
+    orders
+  end
+
   def register_vote(user, vote_value)
     if votable_by?(user)
       vote_by(voter: user, vote: vote_value)
     end
   end
+
+  def calculate_hot_score
+    self.hot_score = ScoreCalculator.hot_score(self)
+  end
+
 
 end

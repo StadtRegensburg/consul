@@ -1005,6 +1005,7 @@
 
 .debate,
 .proposal,
+.deficiency-report,
 .budget-investment {
 
   &.minimal {
@@ -1012,6 +1013,7 @@
     .panel,
     .debate-content,
     .proposal-content,
+    .deficiency-report-content,
     .budget-investment-content {
       min-height: 0;
     }

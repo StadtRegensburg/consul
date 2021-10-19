@@ -1,5 +1,23 @@
 class DeficiencyReport::Status < ApplicationRecord
-  AVAILABLE_ICONS = [['hourglass-start'], ['hourglass-half'], ['hourglass-end']]
+  AVAILABLE_ICONS = [
+    ['ban'],
+    ['bell'],
+    ['check-circle'],
+    ['clock'],
+    ['edit'],
+    ['comments'],
+    ['envelope-open-text'],
+    ['euro-sign'],
+    ['exclamation'],
+    ['exchange-alt'],
+    ['grin'],
+    ['frown'],
+    ['hourglass-half'],
+    ['info'],
+    ['lightbulb'],
+    ['lock'],
+    ['lock-open']
+  ]
   translates :title, touch: true
   translates :description, touch: true
   include Globalizable
