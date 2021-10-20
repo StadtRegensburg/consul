@@ -128,9 +128,8 @@ module Abilities
       end
 
       can [:read, :create], DeficiencyReport
-      can :update, DeficiencyReport do |deficiency_report|
-        # deficiency_report.editable_by?(user)
-        true
+      can [:update_status, :update_category, :update_official_answer], DeficiencyReport do |deficiency_report|
+        deficiency_report.updateable_by_user?(user)
       end
     end
   end

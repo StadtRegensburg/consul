@@ -6,7 +6,7 @@
 
   <div class="row">
     <div class="small-12 column">
-      <%= f.select :deficiency_report_category_id, DeficiencyReport::Category.all.collect{ |category| [category.name, category.id] }, { prompt: 'Please select' } %>
+      <%= f.select :deficiency_report_category_id, DeficiencyReport::Category.all.collect{ |category| [category.name, category.id] }, { prompt: t('custom.deficiency_reports.form.category.placeholder') } %>
     </div>
 
     <%= f.translatable_fields do |translations_form| %>

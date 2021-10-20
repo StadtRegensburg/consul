@@ -194,6 +194,7 @@ de:
     local_census_records/import: Import von Datensätzen aus dem lokalen Register
     site_customization/content_block: Inhaltsblöcke
     site_customization/page: Seite
+    deficiency_report: Mangelmeldung
   geozones:
     none: Alle Bereiche
   layouts:

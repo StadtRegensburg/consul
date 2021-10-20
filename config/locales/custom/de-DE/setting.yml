@@ -141,6 +141,8 @@ de:
           show_newsfeed_in_projekt_footer_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
 
       deficiency_reports:
+        show_in_main_menu: Mängelmelder in Navigation anzeigen
+        show_in_main_menu_description: Zeigt den Mängelmelder in der Hauptnavigation an
         admins_must_assign_officer: Admins müssen Sachbearbeiter*in zuweisen
         admins_must_assign_officer_description: Administratoren weisen Mangel an Sachbearbeiter*in zu
         admins_must_approved_officer_answer: Admins müssen Antwort der Sachbearbeiter*innen freigeben

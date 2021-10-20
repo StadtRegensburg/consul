@@ -21,6 +21,7 @@ class DeficiencyReport < ApplicationRecord
   belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :deficiency_reports
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :destroy
 
+  validates :deficiency_report_category_id, presence: true
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
   validates :author, presence: true
 
@@ -63,9 +64,15 @@ class DeficiencyReport < ApplicationRecord
     end
   end
 
-  def shall_be_approved?
-    Setting['deficiency_reports.admins_must_approved_officer_answer'].present? &&
-      !official_answer_approved?
+  def updateable_by_user?(user)
+    return false if user.nil?
+    return true if user.administrator?
+
+    unless Setting['deficiency_reports.admins_must_assign_officer'].present?
+      return true if user.deficiency_report_officer?
+    end
+
+    false
   end
 
   def total_votes
@@ -89,7 +96,7 @@ class DeficiencyReport < ApplicationRecord
   end
 
   def self.deficiency_report_orders
-    orders = %w[most_commented hot_score newest]
+    orders = %w[hot_score newest most_commented]
     orders.delete("hot_score") unless Setting["deficiency_reports.allow_voting"]
     orders
   end

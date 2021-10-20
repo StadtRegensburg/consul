@@ -1,5 +1,7 @@
 de:
   activerecord:
+    models:
+      deficiency_report: Mangelmeldung
     errors:
       models:
         proposal:

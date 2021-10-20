@@ -10,7 +10,7 @@
     <li <%= "class=label-selected" if @selected_status_id.nil? %> >
       <%= label_tag "status_0", class: '' do %>
         <%= radio_button_tag(:status, 0, @selected_status_id.nil?, { class: 'js-filter-by-deficiency-report-status' } ) %>
-        All statuses
+        <%= t('custom.deficiency_reports.index.sidebar.statuses.all_statuses') %>
         <span class="checkmark"></span>
       <% end %>
     </li>

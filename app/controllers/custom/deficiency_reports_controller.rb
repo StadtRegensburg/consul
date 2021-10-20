@@ -18,8 +18,8 @@ class DeficiencyReportsController < ApplicationController
   def index
     @deficiency_reports = DeficiencyReport.all.page(params[:page]).send("sort_by_#{@current_order}")
 
-    @categories = DeficiencyReport::Category.all
-    @statuses = DeficiencyReport::Status.all
+    @categories = DeficiencyReport::Category.all.order(created_at: :asc)
+    @statuses = DeficiencyReport::Status.all.order(created_at: :asc)
 
     @deficiency_reports_coordinates = all_deficiency_report_map_locations(@deficiency_reports)
 
@@ -54,7 +54,7 @@ class DeficiencyReportsController < ApplicationController
 
     if @deficiency_report.save
       DeficiencyReportMailer.notify_administrators(@deficiency_report).deliver_later
-      redirect_to deficiency_reports_path
+      redirect_to deficiency_report_path(@deficiency_report)
     else
       render :new
     end

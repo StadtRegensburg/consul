@@ -8,6 +8,7 @@ de:
         notification_icon: Benachrichtigungen
         projekt_name_label: "Projekt Name: %{projekt_name} "
         archived_projekts_label: Archivierte Projekte
+        deficiency_reports: Mängelmelder
         mobile:
           arrow_projekts: Untermenü umschalten
           arrow_account: Kontomenü umschalten

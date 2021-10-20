@@ -38,6 +38,12 @@ module DeficiencyReportsHelper
     end
   end
 
+  def shall_be_approved?(deficiency_report)
+    Setting['deficiency_reports.admins_must_approved_officer_answer'].present? &&
+      !deficiency_report.official_answer_approved? &&
+      current_user.administrator?
+  end
+
   def deficiency_reports_default_view?
     @view == "default"
   end
