@@ -150,7 +150,7 @@
       if (addMarker) {
         addMarker.forEach(function(coordinates) {
           if (App.Map.validCoordinates(coordinates)) {
-            marker = createMarker(coordinates.lat, coordinates.long, coordinates.color, coordinates.fa-icon-class);
+            marker = createMarker(coordinates.lat, coordinates.long, coordinates.color, coordinates.fa_icon_class);
             marker.options.id = (process == "proposals" ? coordinates.proposal_id : coordinates.investment_id);
             marker.on("click", openMarkerPopup);
           }

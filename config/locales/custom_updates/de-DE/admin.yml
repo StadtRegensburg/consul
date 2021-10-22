@@ -81,8 +81,6 @@ de:
           show_in_navigation_checkbox: Projekt in Navigation anzeigen
           update: Projekteinstellungen aktualisieren
           design:
-            color: Color
-            color_placeholder: Color placeholder
             icon: Icon
             submit_button: Submit
 
