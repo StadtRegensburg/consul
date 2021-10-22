@@ -1,0 +1,16 @@
+.map .map-marker .map-icon.road::after,
+.map .map-marker .map-icon.biking::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight:  bold;
+  color: $white;
+  background: none;
+  transform: rotate(45deg);
+}
+
+.map .map-marker .map-icon.road::after {
+  content: "\f018";
+}
+
+.map .map-marker .map-icon.biking::after {
+  content: "\f84a";
+}
