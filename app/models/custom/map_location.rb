@@ -19,8 +19,7 @@ class MapLocation < ApplicationRecord
   def get_pin_color
     set_object
     if @proposal.present? && @proposal.projekt.present?
-      @proposal.projekt.color ||
-      @proposal.projekt.map_location&.pin_color
+      @proposal.projekt.color
     elsif @projekt.present?
       @projekt.color
     end

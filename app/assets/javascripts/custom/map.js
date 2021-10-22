@@ -43,7 +43,9 @@
 
       createMarker = function(latitude, longitude, color, iconClass) {
         if ( !iconClass ) {
-          iconClass = "";
+          iconClass = '';
+        } else {
+          iconClass = ' ' + 'custom-icon' + ' ' + iconClass
         };
 
         var markerLatLng;
@@ -56,9 +58,9 @@
         });
 
         if ( color ) {
-          markerIcon.options.html = '<div class="map-icon ' + iconClass + '" style="background-color: ' + color + '"></div>'
+          markerIcon.options.html = '<div class="map-icon' + iconClass + '" style="background-color: ' + color + '"></div>'
         } else {
-          markerIcon.options.html = '<div class="map-icon ' + iconClass + '"></div>'
+          markerIcon.options.html = '<div class="map-icon' + iconClass + '"></div>'
         }
 
         marker = L.marker(markerLatLng, {
