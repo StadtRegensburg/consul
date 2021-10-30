@@ -81,6 +81,12 @@ class PollsController < ApplicationController
     @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
   end
 
+  def confirm_participation
+    respond_to do |format|
+      format.js { flash.now[:notice] = t('custom.polls.show.confirm_participation_notice') }
+    end
+  end
+
   private
 
     def section(resource_name)

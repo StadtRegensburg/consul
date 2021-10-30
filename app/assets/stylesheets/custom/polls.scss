@@ -90,6 +90,15 @@ td.answers-column  {
   to {opacity:0;}
 }
 
+.answer-counted {
+  color: #92ba48;
+  display: inline-block;
+  animation-name: fadeOut;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
 
 .poll-answer-group.align-answers-top {
   vertical-align: top;
