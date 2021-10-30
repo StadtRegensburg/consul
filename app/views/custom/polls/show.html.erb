@@ -45,8 +45,10 @@
     </div>
 
     <div class='row margin'>
-      <div class='column'>
-        <%= button_to t('custom.polls.show.confirm_participation_button'), poll_confirm_participation_path(@poll), method: :post, remote: true, class: 'button success' %>
+      <div class='column small-12 medium-9'>
+        <div id="confirm-poll-participation">
+          <%= button_to t('custom.polls.show.confirm_participation_button'), poll_confirm_participation_path(@poll), method: :post, remote: true, class: 'button success' %>
+        </div>
       </div>
     </div>
 

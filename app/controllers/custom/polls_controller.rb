@@ -82,12 +82,18 @@ class PollsController < ApplicationController
   end
 
   def confirm_participation
-    respond_to do |format|
-      format.js { flash.now[:notice] = t('custom.polls.show.confirm_participation_notice') }
-    end
+    remove_answers_to_open_questions_with_blank_body
   end
 
   private
+
+    def remove_answers_to_open_questions_with_blank_body
+      questions = @poll.questions.each do |question|
+        open_question_answers_names = Poll::Question::Answer.where(question: question).select(&:open_answer).pluck(:title)
+        open_answers_with_blank_text = Poll::Answer.where(question: question, author: current_user, answer: open_question_answers_names, open_answer_text: nil)
+        open_answers_with_blank_text.destroy_all
+      end
+    end
 
     def section(resource_name)
       "polls"
