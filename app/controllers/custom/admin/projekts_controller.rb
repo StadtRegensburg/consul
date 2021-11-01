@@ -25,6 +25,11 @@ class Admin::ProjektsController < Admin::BaseController
   def edit
     @projekt = Projekt.find(params[:id])
 
+    if @projekt.map_location.nil?
+      @projekt.send(:create_map_location)
+      @projekt.reload
+    end
+
     @projekt.build_debate_phase if @projekt.debate_phase.blank?
     @projekt.debate_phase.geozone_restrictions.build
 
