@@ -136,6 +136,19 @@
       L.tileLayer(mapTilesProvider, {
         attribution: mapAttribution
       }).addTo(map);
+
+
+
+      var search = new GeoSearch.GeoSearchControl({
+        provider: new GeoSearch.OpenStreetMapProvider(),
+        style: 'bar',
+        showMarker: false,
+      });
+
+      map.addControl(search);
+
+
+
       if (markerLatitude && markerLongitude && !addMarker) {
         marker = createMarker(markerLatitude, markerLongitude, markerColor, markerIconClass);
       }
