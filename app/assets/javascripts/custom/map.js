@@ -124,7 +124,13 @@
         }
       };
       mapCenterLatLng = new L.LatLng(mapCenterLatitude, mapCenterLongitude);
-      map = L.map(element.id).setView(mapCenterLatLng, zoom);
+
+
+      map = L.map(element.id, {
+        gestureHandling: true
+      }).setView(mapCenterLatLng, zoom);
+
+
 
       if ( !editable ) {
         map._layersMaxZoom = 19;
