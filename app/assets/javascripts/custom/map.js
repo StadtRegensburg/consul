@@ -144,7 +144,6 @@
       }).addTo(map);
 
 
-
       var search = new GeoSearch.GeoSearchControl({
         provider: new GeoSearch.OpenStreetMapProvider(),
         style: 'bar',
@@ -153,6 +152,8 @@
 
       map.addControl(search);
 
+
+      L.control.locate().addTo(map);
 
 
       if (markerLatitude && markerLongitude && !addMarker) {
