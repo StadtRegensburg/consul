@@ -56,12 +56,14 @@ class Admin::ProjektsController < Admin::BaseController
 
   def quick_update
     @projekt.update_attributes(projekt_params)
+    @projekt.send(:set_order)
+    Projekt.ensure_order_integrity
+
     redirect_back(fallback_location: admin_projekts_path)
   end
 
   def update
     if @projekt.update_attributes(projekt_params)
-      @projekt.update_order
       redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
     else
       render action: :edit
