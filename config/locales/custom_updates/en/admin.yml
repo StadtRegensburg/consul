@@ -20,6 +20,7 @@ en:
         settings:
           show_open_answer_with_username: Show open answers with user name
           show_open_answer_without_username: Show open answers anonymously
+          show_summary_instead_of_questions: Show summary instead of list of questions
       progress_bars:
         index:
           progress_bar: Progress bar
