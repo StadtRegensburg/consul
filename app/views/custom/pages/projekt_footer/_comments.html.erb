@@ -3,26 +3,25 @@
     <div id="comments" class="small-12 column">
       <%= render "shared/wide_order_selector", i18n_namespace: "comments", current_tab: '#tab-comments' %>
 
-      <% if user_signed_in? && @projekt && can?(:select, @projekt.proposal_phase) %>
+      <% if user_signed_in? && @projekt.present? %>
         <%= render "comments/form", { commentable: projekt, parent_id: nil } %>
 
-      <% elsif user_signed_in? && @projekt %>
+      <% elsif user_signed_in? && @projekt.present? %>
 
-        <div class='commenting-not-allowed'>
-          <ul>
-            <% if current_user.geozone && @projekt.proposal_phase.geozone_restrictions.any? && !@projekt.proposal_phase.geozone_restriction_ids.include?(current_user.geozone.id) %>
-              <li><%= t('custom.comments.restricted.geo_limitation', geozones: @projekt.proposal_phase.geozone_restrictions.names.join(', ')) %></li>
-            <% end %>
+        <div class='callout alert'>
 
-            <% if @projekt.proposal_phase.active && @projekt.proposal_phase.end_date && @projekt.proposal_phase.end_date < Date.today %>
-              <li><%= t('custom.comments.restricted.proposal_phase_expired')%></li>
-            <% end %>
+          <% if current_user.geozone && @projekt.proposal_phase.geozone_restrictions.any? && !@projekt.proposal_phase.geozone_restriction_ids.include?(current_user.geozone.id) %>
+            <%= t('custom.comments.restricted.geo_limitation', geozones: @projekt.proposal_phase.geozone_restrictions.names.join(', ')) %>
+          <% end %>
 
-            <% if !@projekt.proposal_phase.active %>
-              <li><%= t('custom.comments.restricted.proposal_phase_expired')%></li>
-            <% end %>
+          <% if @projekt.proposal_phase.active && @projekt.proposal_phase.end_date && @projekt.proposal_phase.end_date < Date.today %>
+            <%= t('custom.comments.restricted.proposal_phase_expired')%>
+          <% end %>
 
-          </ul>
+          <% if !@projekt.proposal_phase.active %>
+            <%= t('custom.comments.restricted.proposal_phase_expired')%>
+          <% end %>
+
         </div>
 
       <% elsif user_signed_in? && @projekt.nil? %>

@@ -11,7 +11,7 @@ class Polls::QuestionsController < ApplicationController
     end
 
     unless providing_an_open_answer?(answer)
-      @answer_updated = true
+      @answer_updated = 'answered'
     end
 
     @answers_by_question_id = { @question.id => @question.answers.where(author: current_user).map { |answer| answer.answer } }
@@ -25,7 +25,7 @@ class Polls::QuestionsController < ApplicationController
     end
 
     unless providing_an_open_answer?(answer)
-      @answer_updated = true
+      @answer_updated = 'unanswered'
     end
 
     @answers_by_question_id = { @question.id => @question.answers.where(author: current_user).map { |answer| answer.answer } }

@@ -74,8 +74,10 @@
   <% end %>
 </div>
 
-<% if @answer_updated %>
-  <div class="answer-counted">
+<div class="answer-counted" <%= "style=color:#a94442" if @answer_updated == 'unanswered' %> >
+  <% if @answer_updated == 'answered' %>
     <%= t('custom.polls.show.vote_counted') %>
-  </div>
-<% end %>
+  <% elsif @answer_updated == 'unanswered' %>
+    <%= t('custom.polls.show.vote_uncounted') %>
+  <% end %>
+</div>
