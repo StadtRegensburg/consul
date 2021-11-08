@@ -1,7 +1,7 @@
 class AdminWYSIWYGSanitizer < WYSIWYGSanitizer
   def allowed_tags
     super + %w[
-      img table caption thead tbody tr th td iframe i h1
+      table caption thead tbody tr th td i
       input label form button figure figcaption nav
     ]
   end
