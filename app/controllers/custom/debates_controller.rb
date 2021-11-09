@@ -27,6 +27,8 @@ class DebatesController < ApplicationController
 
     @featured_debates = @debates.featured
 
+    remove_where_projekt_not_active
+
     unless params[:search].present?
       take_only_by_tag_names
       take_by_projekts
@@ -59,6 +61,11 @@ class DebatesController < ApplicationController
   end
 
   private
+
+    def remove_where_projekt_not_active
+      active_projekts_ids = Projekt.all.joins(:projekt_settings).where(projekt_settings: { key: 'projekt_feature.main.activate', value: 'active' }).pluck(:id)
+      @resources = @resources.joins(:projekt).where(projekts: { id: active_projekts_ids })
+    end
 
   def debate_params
     attributes = [:tag_list, :terms_of_service, :projekt_id, :related_sdg_list,

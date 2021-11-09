@@ -31,6 +31,7 @@ class ProposalsController
     load_selected
     load_featured
     remove_archived_from_order_links
+    remove_where_projekt_not_active
 
     unless params[:search].present?
       take_only_by_tag_names
@@ -92,6 +93,11 @@ class ProposalsController
   end
 
   private
+
+    def remove_where_projekt_not_active
+      active_projekts_ids = Projekt.all.joins(:projekt_settings).where(projekt_settings: { key: 'projekt_feature.main.activate', value: 'active' }).pluck(:id)
+      @resources = @resources.joins(:projekt).where(projekts: { id: active_projekts_ids })
+    end
 
     def process_tags
       if params[:proposal][:tags]
