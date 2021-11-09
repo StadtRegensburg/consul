@@ -34,6 +34,8 @@ class PollsController < ApplicationController
 
     @polls = @polls.created_by_admin.not_budget.send(@current_filter).includes(:geozones)
 
+    remove_where_projekt_not_active
+
     unless params[:search].present?
       take_only_by_tag_names
       take_by_projekts
@@ -86,6 +88,11 @@ class PollsController < ApplicationController
   end
 
   private
+
+    def remove_where_projekt_not_active
+      active_projekts_ids = Projekt.all.joins(:projekt_settings).where(projekt_settings: { key: 'projekt_feature.main.activate', value: 'active' }).pluck(:id)
+      @polls = @polls.joins(:projekt).where(projekts: { id: active_projekts_ids })
+    end
 
     def remove_answers_to_open_questions_with_blank_body
       questions = @poll.questions.each do |question|

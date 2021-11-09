@@ -99,6 +99,21 @@ class Projekt < ApplicationRecord
     all_children_projekts
   end
 
+  def active_children
+    children.joins(:projekt_settings).where( projekt_settings: { key: 'projekt_feature.main.activate', value: 'active'  } )
+  end
+
+  def all_active_children_projekts_in_tree(all_active_children_projekts = [])
+    if self.active_children.any?
+      self.active_children.each do |child|
+        all_active_children_projekts.push(child)
+        child.all_children_projekts(all_active_children_projekts)
+      end
+    end
+
+    all_active_children_projekts
+  end
+
   def has_active_phase?(controller_name)
     case controller_name
     when 'proposals'
@@ -111,9 +126,9 @@ class Projekt < ApplicationRecord
   end
 
   def count_resources(controller_name)
-    return self.all_children_projekts.unshift(self).map{ |p| p.send(controller_name).published.count }.reduce(:+) if controller_name == 'proposals'
-    return self.all_children_projekts.unshift(self).map{ |p| p.send(controller_name).created_by_admin.not_budget.count }.reduce(:+) if controller_name == 'polls'
-    self.all_children_projekts.unshift(self).map{ |p| p.send(controller_name).count }.reduce(:+)
+    return self.all_active_children_projekts_in_tree.unshift(self).map{ |p| p.send(controller_name).published.count }.reduce(:+) if controller_name == 'proposals'
+    return self.all_active_children_projekts_in_tree.unshift(self).map{ |p| p.send(controller_name).created_by_admin.not_budget.count }.reduce(:+) if controller_name == 'polls'
+    self.all_active_children_projekts_in_tree.unshift(self).map{ |p| p.send(controller_name).count }.reduce(:+)
   end
 
   def top_level?
