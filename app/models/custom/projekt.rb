@@ -30,26 +30,20 @@ class Projekt < ApplicationRecord
   after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location
   after_destroy :ensure_projekt_order_integrity
 
-  scope :top_level, -> { where(parent: nil) }
+  scope :top_level, -> { where(parent: nil).with_order_number }
+
   scope :with_order_number, -> { where.not(order_number: nil).order(order_number: :asc) }
 
-  scope :top_level_active, -> { top_level.with_order_number.
-                                           where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today).
-                                           joins(' INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
-                                           where( 'a.key': 'projekt_feature.main.activate', 'a.value': 'active' ).
-                                           select('DISTINCT ON ("projekts"."order_number") "projekts".*') }
+  scope :active, -> { where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today).
+                      joins( :projekt_settings).
+                      where( projekt_settings: { key: 'projekt_feature.main.activate', value: 'active' } ) }
 
-  scope :top_level_archived, -> { top_level.with_order_number.
-                                           where( "total_duration_end < ?", Date.today).
-                                           joins(' INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
-                                           where( 'a.key': 'projekt_feature.main.activate', 'a.value': 'active' ).
-                                           select('DISTINCT ON ("projekts"."order_number") "projekts".*') }
+  scope :archived, -> { where( "total_duration_end < ?", Date.today).
+                        joins( :projekt_settings ).
+                        where( projekt_settings: { key: 'projekt_feature.main.activate', value: 'active' } ) }
 
-  scope :top_level_active_top_menu, -> { top_level.with_order_number.
-                                           where("total_duration_end IS NULL OR total_duration_end >= ?", Date.today).
-                                           joins('INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
-                                           joins('INNER JOIN projekt_settings b ON projekts.id = b.projekt_id').
-                                           where("a.key": "projekt_feature.main.activate", "a.value": "active", "b.key": "projekt_feature.general.show_in_navigation", "b.value": "active").distinct }
+  scope :visible_in_menu, -> { joins(' INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
+                            where( 'a.key': 'projekt_feature.general.show_in_navigation', 'a.value': 'active' ) }
 
 
   def current?(timestamp = Date.current.beginning_of_day)
@@ -103,11 +97,15 @@ class Projekt < ApplicationRecord
     children.joins(:projekt_settings).where( projekt_settings: { key: 'projekt_feature.main.activate', value: 'active'  } )
   end
 
+  def children_with_active_feature(projekt_feature_key)
+    children.joins(:projekt_settings).where( projekt_settings: { key: "projekt_feature.#{projekt_feature_key}", value: 'active'  } )
+  end
+
   def all_active_children_projekts_in_tree(all_active_children_projekts = [])
-    if self.active_children.any?
-      self.active_children.each do |child|
+    if self.children_with_active_feature('main.activate').any?
+      self.children_with_active_feature('main.activate').each do |child|
         all_active_children_projekts.push(child)
-        child.all_children_projekts(all_active_children_projekts)
+        child.all_active_children_projekts_in_tree(all_active_children_projekts)
       end
     end
 
