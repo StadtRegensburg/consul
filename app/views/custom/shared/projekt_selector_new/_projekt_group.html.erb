@@ -1,0 +1,5 @@
+<div class='projekt_group' id="group-for-<%= parent_id %>" >
+  <% projekts.each do |projekt| %>
+    <%= render partial: 'shared/projekt_selector_new/projekt', locals: { projekt: projekt } %>
+  <% end %>
+</div>

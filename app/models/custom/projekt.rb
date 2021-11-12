@@ -45,6 +45,8 @@ class Projekt < ApplicationRecord
   scope :visible_in_menu, -> { joins(' INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
                             where( 'a.key': 'projekt_feature.general.show_in_navigation', 'a.value': 'active' ) }
 
+  scope :selectable, ->(controller_name) { active.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.has_active_phase?(controller_name) } } }
+
 
   def current?(timestamp = Date.current.beginning_of_day)
     ( total_duration_start.nil? || total_duration_start <= timestamp ) &&

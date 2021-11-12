@@ -1,0 +1,81 @@
+#projekt-selector-fields {
+  display: flex;
+  margin-bottom: 1em;
+
+  .projekt-selector, .spacer {
+    display: inline-block;
+  }
+
+  .projekt-selector {
+    flex-grow: 1;
+    flex-basis: 0;
+    position: relative;
+
+    &:not(:first-child) {
+      visibility: hidden;
+    }
+
+    &:after {
+      content: "\f0d7";
+      font-family: "Font Awesome 5 Free";
+      font-weight: bold;
+      position: absolute;
+      right: 7px;
+      transition: 0.25s;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+
+  .projekt-selector > .projekt {
+     border-bottom: none;
+  }
+  
+  .spacer {
+    margin: 15px 20px;
+    visibility: hidden;
+  }
+
+  .projekt_group {
+    position: absolute;
+    z-index: 1;
+    top: 90px;
+    border: 1px solid $dark;    
+    display: none;
+    width: 100%;
+    color: #0a0a0a;
+  }
+
+  .selected-projekt,
+  .projekt {
+    min-height: 80px;
+		background-color: #DADADA;
+    border: 1px solid #D6DBDF;
+
+  }
+
+  .projekt {
+    display: flex;
+    border-bottom: 1px solid $dark;
+    padding: 8px 0;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .projekt-icon {
+      margin: 3px 7px;
+      font-size: 0.9rem;
+    }
+
+    .projekt-details {
+
+      .projekt-phase-duration,
+      .projekt-phase-restriction {
+        font-size: 0.75rem;
+      }
+
+    }
+  }
+
+}

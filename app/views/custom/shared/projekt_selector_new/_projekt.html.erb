@@ -1,3 +1,22 @@
-<div class='projekt'>
-  <%= projekt.name %>
+<% projekt_phase = projekt.send("#{@resource.class.name.downcase}_phase") %>
+
+<div class='projekt js-select-projekt' id=<%= dom_id(projekt) %> data-projekt-id="<%= projekt.id %>" <%= "data-projekt-selectable=true" if projekt.has_active_phase?(controller_name) %> >
+  <div class='projekt-icon'>
+    <i class="fas fa-<%= projekt.icon || "circle" %>" style="color:<%= projekt.color %>"></i>
+  </div>
+ 
+  <div class='projekt-details'>
+    <div class='projekt-name'>
+      <%= projekt.name %>
+    </div>
+
+    <% if projekt.has_active_phase?(controller_name) %>
+      <div class='projekt-phase-duration'>
+        <%= get_projekt_phase_duration(projekt_phase) %>
+      </div>
+      <div class='projekt-phase-restriction'>
+        <%= get_projekt_phase_restriction_name(projekt_phase) %>
+      </div>
+    <% end %>
+  </div>
 </div>

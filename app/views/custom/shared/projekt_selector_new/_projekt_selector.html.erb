@@ -1,34 +1,41 @@
 <%= f.hidden_field :projekt_id %>
 
-<div class='selector-fields'>
-  <div class='first-column'>
+<div id='projekt-selector-fields' class=''>
+  <div class='projekt-selector js-toggle-projekt-group' data-target='#group-for-0'>
+
+    <div id='' class='selected-projekt'>
+      Please select a projekt
+    </div>
+
+    <%= render partial: 'shared/projekt_selector_new/projekt_group', locals: { projekts: @projekts.selectable(controller_name), parent_id: 0 } %>
+  </div>
+
+  <div class='spacer'>
+    <i class="fas fa-chevron-right"></i>
+  </div>
+
+  <div class='projekt-selector js-toggle-projekt-group'>
+
+    <div id='' class='selected-projekt'>
+    </div>
+
     <% @projekts.each do |projekt|  %>
-      <%= render partial: 'shared/projekt_selector_new/projekt', locals: { projekt: projekt } %>
+      <%= render partial: 'shared/projekt_selector_new/projekt_group', locals: { projekts: projekt.children.selectable(controller_name), parent_id: projekt.id } if projekt.children.any? %>
     <% end %>
   </div>
 
-  <i class="fas fa-chevron-right"></i>
-
-  <div class='second-column'>
-    <% @projekts.each do |projekt|  %>
-      <div class='projekt_group'>
-        <% projekt.children.each do |projekt| %>
-          <%= render partial: 'shared/projekt_selector_new/projekt', locals: { projekt: projekt } %>
-        <% end %>
-      </div>
-    <% end %>
+  <div class='spacer'>
+    <i class="fas fa-chevron-right"></i>
   </div>
 
-  <i class="fas fa-chevron-right"></i>
+  <div class='projekt-selector js-toggle-projekt-group'>
 
-  <div class='second-column'>
+    <div id='' class='selected-projekt'>
+    </div>
+
     <% @projekts.each do |projekt|  %>
       <% projekt.children.each do |projekt| %>
-        <% projekt.children.each do |projekt| %>
-          <div class='projekt_group'>
-            <%= render partial: 'shared/projekt_selector_new/projekt', locals: { projekt: projekt } %>
-          </div>
-        <% end %>
+        <%= render partial: 'shared/projekt_selector_new/projekt_group', locals: { projekts: projekt.children.selectable(controller_name), parent_id: projekt.id  } if projekt.children.any? %>
       <% end %>
     <% end %>
   </div>
