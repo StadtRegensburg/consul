@@ -25,10 +25,12 @@
       $currentProjektSelector.prepend( $selectedProjekt )
 
       // show next selector
-      $nextSpacer.css('visibility', 'visible')
-      $nextProejektSelector.css('visibility', 'visible')
-      $nextProejektSelector.attr('data-target', '#group-for-' + projektId)
-      $('#group-for-' + projektId).show();
+      if ( $selectedProjekt.data('projektSelectableChildren') ) {
+        $nextSpacer.css('visibility', 'visible')
+        $nextProejektSelector.css('visibility', 'visible')
+        $nextProejektSelector.attr('data-target', '#group-for-' + projektId)
+        $('#group-for-' + projektId).show();
+      }
 
       // update selected projekt
       if ( $selectedProjekt.data('projektSelectable') ) {
@@ -39,10 +41,12 @@
         $selectedProjekt.css('background-color', '#004A83')
         $selectedProjekt.css('color', '#FFF')
         $selectedProjekt.closest('.projekt-selector').css('color', '#FFF')
+        $nextProejektSelector.find('.selected-projekt-placeholder').html("Wähle Kategorie (optional)")
       } else {
         App.ProjektSelector.resetSelectedProjectStyles();
         $('#proposal_projekt_id').val('')
         $selectedProjekt.css('background-color', '#CEE9F9')
+        $nextProejektSelector.find('.selected-projekt-placeholder').html("Wähle Kategorie (verpflichtend)")
       }
     },
 
