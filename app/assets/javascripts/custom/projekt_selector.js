@@ -42,6 +42,8 @@
         $selectedProjekt.css('color', '#FFF')
         $selectedProjekt.closest('.projekt-selector').css('color', '#FFF')
         $nextProejektSelector.find('.selected-projekt-placeholder').html("Wähle Kategorie (optional)")
+        App.ProjektSelector.replaceProjektMapOnProposalCreation($selectedProjekt)
+
       } else {
         App.ProjektSelector.resetSelectedProjectStyles();
         $('#proposal_projekt_id').val('')
@@ -62,6 +64,12 @@
         $(this).find('.selected-projekt').show();
         $(this).children('.projekt').remove();
       })
+    },
+
+    replaceProjektMapOnProposalCreation: function($projekt) {
+      if ( $projekt.data('showMap') ) {
+        App.Map.maps[0].setView([$projekt.data('latitude'), $projekt.data('longitude')], $projekt.data('zoom')).invalidateSize()
+      }
     },
 
 

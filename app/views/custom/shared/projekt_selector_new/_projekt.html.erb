@@ -4,7 +4,12 @@
      id=<%= dom_id(projekt) %>
      data-projekt-id="<%= projekt.id %>"
      <%= "data-projekt-selectable=true" if projekt.has_active_phase?(controller_name) %>
-     <%= "data-projekt-selectable-children=true" if projekt.children.selectable(controller_name).any? %> >
+     <%= "data-projekt-selectable-children=true" if projekt.children.selectable(controller_name).any? %> 
+     <%= "data-latitude=#{projekt.map_location.latitude}" if projekt.map_location.latitude.present? %>
+     <%= "data-longitude=#{projekt.map_location.longitude}" if projekt.map_location.longitude.present? %>
+     <%= "data-zoom=#{projekt.map_location.zoom}" if projekt.map_location.zoom.present? %>
+     <%= "data-show-map=true" if feature?('map').present? && controller_name == 'proposals'  %> >
+
   <div class='projekt-icon'>
     <i class="fas fa-<%= projekt.icon || "circle" %>" style="color:<%= projekt.color %>"></i>
   </div>

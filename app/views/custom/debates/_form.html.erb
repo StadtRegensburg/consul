@@ -5,6 +5,10 @@
   <%= render "shared/errors", resource: @debate %>
 
   <div class="row column">
+    <div class="small-12 column margin-top">
+      <%= render partial: "shared/projekt_selector_new/projekt_selector", locals: { f: f, model: @proposal }  %>
+    </div>
+
     <%= f.translatable_fields do |translations_form| %>
       <div class="small-12 column">
         <%= translations_form.text_field :title,
@@ -28,11 +32,6 @@
     <% end %>
 
     <%= f.invisible_captcha :subtitle %>
-
-    <div class="small-12 column">
-
-      <%= render partial: "shared/projekt_selector/projekt_selector", locals: { f: f, model: @debate }  %>
-    </div>
 
     <%if extended_feature?("modulewide.enable_categories") %>
       <div class="small-12 column margin-bottom">

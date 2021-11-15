@@ -60,10 +60,6 @@
       </div>
     -->
 
-    <div class="small-12 column margin-top">
-      <%= render partial: "shared/projekt_selector/projekt_selector", locals: { f: f, model: @proposal }  %>
-    </div>
-
     <div class="small-12 column <%= show_map_in_form?(@selected_projekt) %>" id='map-for-new-proposal'>
 
       <%= render "map_locations/form_fields",

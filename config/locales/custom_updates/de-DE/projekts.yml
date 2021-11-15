@@ -4,11 +4,6 @@ de:
       backlink: Zur Projektübersicht
       errors:
         presence: Bitte wählen Sie ein Projekt
-      new:
-        first_level: Erste Projektebene
-        fourth_level: Vierte Projektebene
-        second_level: Zweite Projektebene
-        third_level: Dritte Projektebene
       selector:
         select_placeholder_mandatory: Wähle Projekt (verpflichtend)
         connected_resources:

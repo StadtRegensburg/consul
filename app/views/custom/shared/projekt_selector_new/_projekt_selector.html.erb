@@ -1,5 +1,12 @@
 <%= f.hidden_field :projekt_id %>
 
+<% if model.errors.full_messages.any? { |error| error.include? 'Projekt' } %>
+  <br>
+  <small class='form-error is-visible'>
+    <%= t('custom.projekts.errors.presence') %>
+  </small>
+<% end %>
+
 <div id='projekt-selector-fields' class=''>
   <div class='projekt-selector js-toggle-projekt-group' data-target='#group-for-0'>
 
