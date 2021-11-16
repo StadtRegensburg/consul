@@ -16,7 +16,15 @@
 
   <div class="row">
     <div class="column medium-8 small-centered">
-      <%= render "polls" %>
+      <h3 class='title card-title'>Polls</h3>
+      <%= render partial: "polls/poll_group", locals: { poll_group: @latest_polls } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column medium-8 small-centered">
+      <h3 class='title card-title'>Entrier by users</h3>
+      <%= render "latest_resources" %>
     </div>
   </div>
 

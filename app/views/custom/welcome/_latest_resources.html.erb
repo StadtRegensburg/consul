@@ -1,0 +1,5 @@
+<% @latest_resources.each do |resource| %>
+  <%= render "debates/debate", debate: resource if resource.class.name == 'Debate'  %>
+  <%= render "proposals/proposal", proposal: resource if resource.class.name == 'Proposal'  %>
+<% end %>
+
