@@ -12,11 +12,11 @@
 
     <div id='' class='selected-projekt'>
       <div class='selected-projekt-placeholder'>
-        <%= t('custom.projekts.selector.select_placeholder_mandatory') %>
+        <%= t('custom.projekts.selector.select_placeholder_mandatory_html') %>
       </div>
     </div>
 
-    <%= render partial: 'shared/projekt_selector_new/projekt_group', locals: { projekts: @projekts.selectable(controller_name), parent_id: 0 } %>
+    <%= render partial: 'shared/projekt_selector/projekt_group', locals: { projekts: @projekts.selectable(controller_name, current_user), parent_id: 0 } %>
   </div>
 
   <div class='spacer'>
@@ -31,7 +31,7 @@
     </div>
 
     <% @projekts.each do |projekt|  %>
-      <%= render partial: 'shared/projekt_selector_new/projekt_group', locals: { projekts: projekt.children.selectable(controller_name), parent_id: projekt.id } if projekt.children.selectable(controller_name) %>
+      <%= render partial: 'shared/projekt_selector/projekt_group', locals: { projekts: projekt.children.selectable(controller_name, current_user), parent_id: projekt.id } if projekt.children.selectable(controller_name, current_user) %>
     <% end %>
   </div>
 
@@ -48,7 +48,7 @@
 
     <% @projekts.each do |projekt|  %>
       <% projekt.children.each do |projekt| %>
-        <%= render partial: 'shared/projekt_selector_new/projekt_group', locals: { projekts: projekt.children.selectable(controller_name), parent_id: projekt.id  } if projekt.children.selectable(controller_name).any? %>
+        <%= render partial: 'shared/projekt_selector/projekt_group', locals: { projekts: projekt.children.selectable(controller_name, current_user), parent_id: projekt.id  } if projekt.children.selectable(controller_name, current_user).any? %>
       <% end %>
     <% end %>
   </div>

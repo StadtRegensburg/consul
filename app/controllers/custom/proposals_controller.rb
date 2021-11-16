@@ -93,11 +93,6 @@ class ProposalsController
 
   private
 
-    def set_projets_for_selector
-      @projekts = Projekt.top_level
-      @resource = resource_model.new
-    end
-
     def remove_where_projekt_not_active
       active_projekts_ids = Projekt.all.joins(:projekt_settings).where(projekt_settings: { key: 'projekt_feature.main.activate', value: 'active' }).pluck(:id)
       @resources = @resources.joins(:projekt).where(projekts: { id: active_projekts_ids })

@@ -1,10 +1,10 @@
-<% projekt_phase = projekt.send("#{@resource.class.name.downcase}_phase") %>
+<% projekt_phase = @resource.class.name == "Poll" ? nil : projekt.send("#{@resource.class.name.downcase}_phase") %>
 
 <div class='projekt js-select-projekt <%= 'vertical-align' unless projekt.has_active_phase?(controller_name) %>'
      id=<%= dom_id(projekt) %>
      data-projekt-id="<%= projekt.id %>"
-     <%= "data-projekt-selectable=true" if projekt.has_active_phase?(controller_name) %>
-     <%= "data-projekt-selectable-children=true" if projekt.children.selectable(controller_name).any? %> 
+     <%= "data-projekt-selectable=true" if projekt.selectable?(controller_name, current_user) %>
+     <%= "data-projekt-selectable-children=true" if projekt.children.selectable(controller_name, current_user).any? %> 
      <%= "data-latitude=#{projekt.map_location.latitude}" if projekt.map_location.latitude.present? %>
      <%= "data-longitude=#{projekt.map_location.longitude}" if projekt.map_location.longitude.present? %>
      <%= "data-zoom=#{projekt.map_location.zoom}" if projekt.map_location.zoom.present? %>
@@ -16,10 +16,10 @@
  
   <div class='projekt-details'>
     <div class='projekt-name'>
-      <%= projekt.name %>
+      <%= projekt.page.title %>
     </div>
 
-    <% if projekt.has_active_phase?(controller_name) %>
+    <% if projekt_phase.present? && projekt.has_active_phase?(controller_name) %>
       <div class='projekt-phase-duration'>
         <%= get_projekt_phase_duration(projekt_phase) %>
       </div>

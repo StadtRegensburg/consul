@@ -6,7 +6,7 @@
 
   <div class="row column">
     <div class="small-12 column margin-top">
-      <%= render partial: "shared/projekt_selector_new/projekt_selector", locals: { f: f, model: @proposal }  %>
+      <%= render partial: "shared/projekt_selector/projekt_selector", locals: { f: f, model: @debate }  %>
     </div>
 
     <%= f.translatable_fields do |translations_form| %>
@@ -14,7 +14,8 @@
         <%= translations_form.text_field :title,
               maxlength: Debate.title_max_length,
               placeholder: t("debates.form.debate_title"),
-              data: suggest_data(@debate) %>
+              data: suggest_data(@debate),
+              autocomplete: "off" %>
       </div>
       <div class="js-suggest" data-locale="<%= translations_form.locale %>"></div>
 

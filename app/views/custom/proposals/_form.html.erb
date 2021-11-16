@@ -6,14 +6,15 @@
 
   <div class="row column">
     <div class="small-12 column margin-top">
-      <%= render partial: "shared/projekt_selector_new/projekt_selector", locals: { f: f, model: @proposal }  %>
+      <%= render partial: "shared/projekt_selector/projekt_selector", locals: { f: f, model: @proposal }  %>
     </div>
 
     <%= f.translatable_fields do |translations_form| %>
       <div class="small-12 column">
         <%= translations_form.text_field :title,
               maxlength: Proposal.title_max_length,
-              data: suggest_data(@proposal) %>
+              data: suggest_data(@proposal),
+              autocomplete: "off" %>
       </div>
       <div class="js-suggest" data-locale="<%= translations_form.locale %>" role="alert" aria-live="assertive"></div>
 

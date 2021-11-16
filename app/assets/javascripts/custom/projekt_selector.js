@@ -29,6 +29,7 @@
         $nextSpacer.css('visibility', 'visible')
         $nextProejektSelector.css('visibility', 'visible')
         $nextProejektSelector.attr('data-target', '#group-for-' + projektId)
+        $nextProejektSelector.children('.projekt_group').hide()
         $('#group-for-' + projektId).show();
       }
 
@@ -36,19 +37,30 @@
       if ( $selectedProjekt.data('projektSelectable') ) {
         App.ProjektSelector.resetSelectedProjectStyles();
 
-        $('#proposal_projekt_id').val(projektId)
+        $('[id$="projekt_id"]').val(projektId)
 
         $selectedProjekt.css('background-color', '#004A83')
         $selectedProjekt.css('color', '#FFF')
+        $selectedProjekt.find('.projekt-icon .fas').css('color', '#FFF')
         $selectedProjekt.closest('.projekt-selector').css('color', '#FFF')
-        $nextProejektSelector.find('.selected-projekt-placeholder').html("Wähle Kategorie (optional)")
+        App.ProjektSelector.addNextProjektPlaceholder($nextProejektSelector, "(optional)")
         App.ProjektSelector.replaceProjektMapOnProposalCreation($selectedProjekt)
 
       } else {
         App.ProjektSelector.resetSelectedProjectStyles();
-        $('#proposal_projekt_id').val('')
+        $('[id$="projekt_id"]').val('')
         $selectedProjekt.css('background-color', '#CEE9F9')
-        $nextProejektSelector.find('.selected-projekt-placeholder').html("Wähle Kategorie (verpflichtend)")
+        App.ProjektSelector.addNextProjektPlaceholder($nextProejektSelector, "(verpflichtend)")
+      }
+    },
+
+    addNextProjektPlaceholder: function( $nextProejektSelector, text ) {
+      var indexOfProjektSelector = $('.projekt-selector').index($nextProejektSelector)
+
+      if (indexOfProjektSelector == 1) {
+        $nextProejektSelector.find('.selected-projekt-placeholder').html("Wähle Kategorie<br>" + text)
+      } else if (indexOfProjektSelector == 2) {
+        $nextProejektSelector.find('.selected-projekt-placeholder').html("Wähle Unterkategorie<br>" + text)
       }
     },
 
@@ -56,6 +68,7 @@
       $('.projekt-selector > .projekt').css('background-color', '#CEE9F9')
       $('.projekt-selector > .projekt').css('color', '#0a0a0a')
       $('.projekt-selector').css('color', '#0a0a0a')
+      $('.projekt-selector').children('.projekt').find('.projekt-icon .fas').css('color', '#222')
     },
 
     resetNextSelectors: function($selector) {
