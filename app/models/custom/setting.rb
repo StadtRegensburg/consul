@@ -27,7 +27,7 @@ class Setting < ApplicationRecord
         "feature.wordpress_login": false,
         "feature.public_stats": true,
         "feature.signature_sheets": true,
-        "feature.user.recommendations": true,
+        "feature.user.recommendations": false,
         "feature.user.recommendations_on_debates": true,
         "feature.user.recommendations_on_proposals": true,
         "feature.user.skip_verification": "true",
@@ -43,7 +43,7 @@ class Setting < ApplicationRecord
         "feature.graphql_api": true,
         "feature.sdg": false, 
         "homepage.widgets.feeds.debates": true,
-        "homepage.widgets.feeds.processes": true,
+        "homepage.widgets.feeds.processes": false,
         "homepage.widgets.feeds.proposals": true,
         # Code to be included at the top (inside <body>) of every page
         "html.per_page_code_body": "",
