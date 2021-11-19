@@ -1,4 +1,35 @@
 <% poll_group.each do |poll| %>
+  <div class='row collapse poll-n margin-bottom' data-equalizer='main' data-equalize-on="medium">
+
+    <div class='columns small-3 image' data-equalizer-watch='main' style="background-color:red">
+      <% if poll.image.present? %>
+        <%= image_tag poll.image_url(:large), alt: poll.image.title.unicode_normalize %>
+      <% end %>
+    </div>
+
+    <div class='columns small-9 details' data-equalizer-watch='main' style="background-color:pink">
+      <div class='projekt-info' style="background-color:purple">
+        Projekt info
+      </div>
+      <div class='poll-info' data-equalizer='details' style="background-color:green">
+        <div class='column small-9 poll-details' data-equalizer-watch='details' style="background-color:blue">
+          Poll details
+          <br>
+          Poll details
+          <br>
+          Poll details
+        </div>
+        <div class='column small-3 poll-participate' data-equalizer-watch='details' style="background-color:yellow">
+          Participate link
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
   <div class="poll with-image">
     <% if !user_signed_in? %>
       <div class="icon-poll-answer not-logged-in" title="<%= t("polls.index.not_logged_in") %>">
