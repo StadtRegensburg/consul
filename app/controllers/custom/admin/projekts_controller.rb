@@ -56,7 +56,6 @@ class Admin::ProjektsController < Admin::BaseController
 
   def quick_update
     @projekt.update_attributes(projekt_params)
-    @projekt.send(:set_order)
     Projekt.ensure_order_integrity
 
     redirect_back(fallback_location: admin_projekts_path)
