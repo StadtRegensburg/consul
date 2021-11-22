@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     @social_media_icon_twitter_path = social_media_icon_twitter_path.include?('missing') ? nil : social_media_icon_twitter_path
   end
 
-  def set_projets_for_selector
+  def set_projekts_for_selector
     @projekts = Projekt.top_level
     @resource = @poll || resource_model.new
   end
