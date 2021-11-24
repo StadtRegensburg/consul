@@ -8,6 +8,7 @@ en:
     polls:
       index:
         projekts: Projects
+        participate_button: Participate now!
       questions:
         answers:
           more_info: More info
