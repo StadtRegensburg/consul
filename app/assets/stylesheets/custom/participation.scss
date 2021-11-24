@@ -1,11 +1,29 @@
 // Customization of resource partials for index
 
+.poll-n {
+  border: 1px solid $border;
+}
+
 .projekt-info {
   display: flex;
   justify-content: space-between;
   color: white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 0.9rem;
 }
 
+.poll-details {
+  .poll-name {
+    margin-top: 1rem;
+
+    a {
+      color: $black;
+    }
+  }
+}
+
+// Customization of resource partials for index //
 
 
 .whatsapp::before {

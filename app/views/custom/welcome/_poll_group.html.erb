@@ -1,13 +1,13 @@
 <% poll_group.each do |poll| %>
   <div class='row collapse poll-n margin-bottom' data-equalizer='main' data-equalize-on="medium">
 
-    <div class='columns small-12 medium-3 large-2 image' data-equalizer-watch='main'>
+    <div class='columns small-12 medium-3 large-2 image-container' data-equalizer-watch='main'>
       <% if poll.image.present? %>
         <%= image_tag poll.image_url(:thumb_wider), alt: poll.image.title.unicode_normalize %>
       <% end %>
     </div>
 
-    <div class='columns small-12 medium-9 large-10 details' data-equalizer-watch='main' style="background-color:pink">
+    <div class='columns small-12 medium-9 large-10 details' data-equalizer-watch='main'>
       <div class='column projekt-info' style="background-color:<%= poll.projekt.color %>" >
         <div class='projekt-name'>
           <i class="fas fa-<%= poll.projekt.icon || "circle" %>" ></i>
@@ -15,14 +15,14 @@
         </div>
 
         <div class='poll-dates'>
-          Von
-          <%= format_date_range(poll.starts_at, poll.ends_at, 'bis') %>
+          Abstimmung
+          <%= format_date_range(poll.starts_at, poll.ends_at, prefix: 'von', separator: 'bis') %>
         </div>
       </div>
-      <div class='poll-info' data-equalizer='details' style="background-color:green">
-        <div class='column small-8 poll-details' data-equalizer-watch='details' style="background-color:white">
+      <div class='poll-info' data-equalizer='details'>
+        <div class='column small-8 poll-details' data-equalizer-watch='details'>
 
-          <h4 class='margin-top'><%= link_to_poll poll.name, poll %></h4>
+          <h4 class='poll-name'><%= link_to_poll poll.name, poll %></h4>
           <div class="poll-summary margin-bottom">
             <%= auto_link_already_sanitized_html simple_format(poll.summary) %>
             <div class="truncate"></div>
@@ -30,7 +30,7 @@
           <%= render "shared/tags", taggable: poll, limit: 5 %>
 
         </div>
-        <div class='column small-4 poll-participate table' data-equalizer-watch='details' style="background-color:yellow">
+        <div class='column small-4 poll-participate table' data-equalizer-watch='details'>
           <div class='table-cell align-middle'>
             <%= link_to poll_path(id: poll.slug || poll.id), class: "button hollow expanded" do %>
               <% if poll.expired? %>
@@ -43,7 +43,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
 

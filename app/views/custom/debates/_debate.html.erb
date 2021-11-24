@@ -1,5 +1,47 @@
+<div id="<%= dom_id(debate) %>" class='row collapse debate margin-bottom' data-equalizer='main' data-equalize-on="medium">
+
+  <div class='columns small-12 medium-3 large-2 image-container' data-equalizer-watch='main'>
+    <% if debate.image.present? %>
+      <%= image_tag debate.image_url(:thumb_wider), alt: debate.image.title.unicode_normalize %>
+    <% end %>
+  </div>
+
+  <div class='columns small-12 medium-9 large-10 details' data-equalizer-watch='main'>
+    <div class='column projekt-info' style="background-color:<%= debate.projekt.color %>;color:<%= pick_text_color(debate.projekt.color) %>" >
+      <div class='projekt-name'>
+        <i class="fas fa-<%= debate.projekt.icon || "circle" %>" ></i>
+        <%= debate.projekt.name %>
+      </div>
+
+      <div class='poll-dates'>
+        Debate created by
+        <%= debate.author.name %>
+      </div>
+    </div>
+    <div class='poll-info' data-equalizer='details'>
+      <div class='column small-8 poll-details' data-equalizer-watch='details'>
+
+        <h4 class='poll-name'><%= link_to debate.title, debate %></h4>
+        <div class="poll-summary margin-bottom">
+          <%= wysiwyg(debate.description) %>
+          <div class="truncate"></div>
+        </div>
+        <%= render "shared/tags", taggable: debate, limit: 5 %>
+
+      </div>
+      <div class='column small-4 poll-participate table' data-equalizer-watch='details'>
+        <div class='table-cell align-middle'>
+          <%= render "debates/votes", debate: debate %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <% cache [locale_and_user_status, debate, @debate_votes[debate.id], params[:tags], params[:projekts], params[:geozone_affiliation], params[:affiliated_geozones], params[:geozone_restriction], params[:restricted_geozones]] do %>
-  <div id="<%= dom_id(debate) %>" class="debate clear" data-type="debate">
+  <div "<%= dom_id(debate) %>" class="debate clear" data-type="debate">
     <div class="panel">
       <div class="row">
 
