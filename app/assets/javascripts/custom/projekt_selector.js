@@ -116,6 +116,12 @@
         App.ProjektSelector.selectProjekt($(this));
       });
 
+      $(".js-new-resource").on("click", function(event) {
+        if ( $(event.target).closest('.js-toggle-projekt-group').length == 0 ) {
+          $('.projekt_group').hide();
+        }
+      });
+
       App.ProjektSelector.preselectProjekt();
     }
   };

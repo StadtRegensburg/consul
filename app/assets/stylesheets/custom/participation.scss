@@ -54,7 +54,8 @@
 
   label:not([for$='_terms_of_service']),
   fieldset.nested-image > legend,
-  fieldset.documents-list > legend {
+  fieldset.documents-list > legend,
+  fieldset.sdg-related-list-selector > legend {
     color: #227CB1;
   }
 
