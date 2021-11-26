@@ -6,6 +6,10 @@ de:
           attributes:
             description:
               too_long: 'ist zu lange'
+        projekt:
+          attributes:
+            color:
+              invalid: Bitte den Farbwert als HEX-code eingeben
     attributes:
       poll/answer:
         open_answer_text: Offene Antwort

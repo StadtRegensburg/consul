@@ -32,6 +32,8 @@ class Projekt < ApplicationRecord
   around_update :update_page
   after_destroy :ensure_projekt_order_integrity
 
+  validates :color, format: { with: /\A#[\d, a-f, A-F]{6}\Z/ }
+
   scope :top_level, -> { where(parent: nil).with_order_number }
 
   scope :with_order_number, -> { where.not(order_number: nil).order(order_number: :asc) }
