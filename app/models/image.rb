@@ -6,7 +6,7 @@ class Image < ApplicationRecord
                                    large: "x#{Setting["uploads.images.min_height"]}",
                                    medium: "300x300#",
                                    thumb: "140x245#",
-                                   thumb_wider: "185x245#"
+                                   thumb_wider: "185x280#"
                                  },
                                  url: "/system/:class/:prefix/:style/:hash.:extension",
                                  hash_data: ":class/:style",

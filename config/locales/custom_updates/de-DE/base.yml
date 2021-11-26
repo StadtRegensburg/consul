@@ -105,6 +105,13 @@ de:
       proposal_phase_expired: Die Phase ist bereits abgeschlossen. Diese Diskussion kann nicht mehr unterschtützt werden
       debate_phase_expired: Die Phase ist bereits abgeschlossen. Diese Diskussion kann nicht mehr unterschtützt werden
     welcome:
+      current_polls: Laufende Abstimmungen
+      user_entries: Neueste Beiträge
+      all_debates: Alle Diskussionen
+      all_proposals: Alle Vorschläge
+      start_entry: + Beitrag erstellen
+      start_debate: Diskussion starten
+      start_proposal: Vorschlag erstellen
       active_projekt_cards:
         title: Aktive Beteiligungsprozesse
       archived_projekt_cards:

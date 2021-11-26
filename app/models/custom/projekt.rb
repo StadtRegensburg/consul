@@ -30,6 +30,8 @@ class Projekt < ApplicationRecord
   after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location
   after_destroy :ensure_projekt_order_integrity
 
+  validates :color, format: { with: /\A#[\d, a-f, A-F]{6}\Z/ }
+
   scope :top_level, -> { where(parent: nil).with_order_number }
 
   scope :with_order_number, -> { where.not(order_number: nil).order(order_number: :asc) }

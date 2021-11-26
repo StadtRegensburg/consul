@@ -66,7 +66,7 @@ class Admin::ProjektsController < Admin::BaseController
     if @projekt.update_attributes(projekt_params)
       redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
     else
-      render action: :edit
+      redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, alert: @projekt.errors.messages.values.flatten.join('; ')
     end
   end
 
@@ -79,7 +79,7 @@ class Admin::ProjektsController < Admin::BaseController
 
   def create
     @projekts = Projekt.top_level.page(params[:page])
-    @projekt = Projekt.new(projekt_params)
+    @projekt = Projekt.new(projekt_params.merge(color: "#073E8E"))
     
     if @projekt.save
       redirect_to admin_projekts_path
