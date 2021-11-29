@@ -1,3 +1,11 @@
+// Updates to poll object in index
+
+.poll-summary {
+  height: 4.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
 // Open answers in results
 
 .show-user-name-with-open-answers {
@@ -37,6 +45,10 @@ td.answers-column  {
   }
 }
 
+.open-answers-title.no-open-answers::after {
+  display: none;
+}
+
 .rotate-toggle-arrow {
   .open-answers-title::after {
     transform: rotate(90deg);
@@ -69,6 +81,7 @@ td.answers-column  {
     margin-top: 0.375rem;
     padding: 0.375rem 0;
     padding-right: 0.75rem;
+    font-weight: normal;
   }
 }
 
@@ -88,6 +101,16 @@ td.answers-column  {
 @keyframes fadeOut {
   from {opacity:1;}
   to {opacity:0;}
+}
+
+.answer-counted {
+  color: #92ba48;
+  display: block;
+  animation-name: fadeOut;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  height: 24px;
 }
 
 
@@ -214,4 +237,24 @@ td.answers-column  {
 .poll.with-image .image-container img {
   height: auto;
   max-width: 100%;
+}
+
+
+.multiple-answers-hint {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+
+#confirm-poll-participation-outer-wrapper {
+  padding: 0 25px;
+}
+
+.confirm-poll-participation-inner-wrapper {
+  width: 85%;
+}
+
+#confirm-poll-participation {
+  width: 250px;
+  margin: 0 auto;
 }

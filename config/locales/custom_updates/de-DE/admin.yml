@@ -86,6 +86,7 @@ de:
         settings:
           show_open_answer_with_username: Offene Antworten mit Nutzer:innen-Name anzeigen
           show_open_answer_without_username: Offene Antworten anonym anzeigen
+          show_summary_instead_of_questions: Zusammenfassung statt Liste aller Fragen in der Abstimmungsübersicht anzeigen
       progress_bars:
         index:
           progress_bar: Fortschrittsbalken
@@ -146,6 +147,9 @@ de:
           show_in_navigation: null
           show_in_navigation_checkbox: Projekt in Navigation anzeigen
           update: Projekteinstellungen aktualisieren
+          design:
+            icon: Icon
+            submit_button: Submit
         edit_projekt: Editieren
         index:
           add_cards: Kacheln erstellen/bearbeiten
@@ -196,6 +200,11 @@ de:
         pages:
           destroy:
             cannot_notice: Diese Seite kann nicht gelöscht werden. Bitte löschen Sie das zugehörige Projekt zuvor.
+          images:
+            form:
+              title: Seitenbanner
+              note: "Der Banner sollte mindestens 200 Pixel hoch und 1920 Pixel breit sein. Sie können ein Bild des folgenden Formats hochladen: %{accepted_content_types}, bis zu %{max_file_size} MB."
+              add_new_image: Banner hinzufügen
       widget:
         card:
           category_options:

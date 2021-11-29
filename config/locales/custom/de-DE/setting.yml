@@ -7,8 +7,8 @@ de:
       map_longitude_description: Längengrad, um die Position der Karte zu zeigen
       map_zoom: Zoom
       map_zoom_description: Zoomen, um die Kartenposition anzuzeigen
-      map_pin_color: Farbe der Kartenmarkierung ändern
-      map_pin_color_description: Bitte den Farbwert als HEX-code eingeben
+      map_color: Farbe der Kartenmarkierung ändern
+      map_color_description: Bitte den Farbwert als HEX-code eingeben
       feature:
         map: Karten anzeigen
         map_description: Zeigt die Standardkarte oder die individuellen Karten in der Projektfußzeile und der Vorschlagsübersicht
@@ -113,6 +113,8 @@ de:
         general:
           show_in_navigation: Projekt in Navigation anzeigen
           show_in_navigation_description: Zeigt das Projekt in der Top-Navigation der Webseite an (nur für Top-Level-Projekte)
+          hide_additional_info_in_projekt_selector: Zusätzliche Projektinformationen im Projekt-Selektor ausblenden
+          hide_additional_info_in_projekt_selector_description: Verbirgt die zusätzlichen Projektinformationen wie Gebiet, Dauer und Partizipationsberechtigung im Projekt-Selektor
           show_not_active_phases_in_projekts_page_sidebar: Nicht aktive Teilnahmephasen verbergen
           show_not_active_phases_in_projekts_page_sidebar_description: Verbirgt die Teilnahmephasen in der rechten Seitenleiste der Projektseite und in der Projektauswahl
           show_map: Karte einblenden

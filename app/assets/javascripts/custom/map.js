@@ -28,7 +28,7 @@
       markerLatitude = $(element).data("marker-latitude");
       markerLongitude = $(element).data("marker-longitude");
       markerColor = $(element).data("marker-color");
-      markerIconClass = $(element).data("fa_icon_class")
+      markerIconClass = $(element).data("marker-fa-icon-class")
       zoom = $(element).data("map-zoom");
       mapTilesProvider = $(element).data("map-tiles-provider");
       mapAttribution = $(element).data("map-tiles-provider-attribution");
@@ -43,7 +43,9 @@
 
       createMarker = function(latitude, longitude, color, iconClass) {
         if ( !iconClass ) {
-          iconClass = "";
+          iconClass = '';
+        } else {
+          iconClass = ' ' + 'custom-icon' + ' ' + iconClass
         };
 
         var markerLatLng;
@@ -55,10 +57,10 @@
           iconAnchor: [15, 40]
         });
 
-        if (color) {
-          markerIcon.options.html = '<div class="map-icon ' + iconClass + '" style="background-color: ' + color + '"></div>'
+        if ( color ) {
+          markerIcon.options.html = '<div class="map-icon' + iconClass + '" style="background-color: ' + color + '"></div>'
         } else {
-          markerIcon.options.html = '<div class="map-icon ' + iconClass + '"></div>'
+          markerIcon.options.html = '<div class="map-icon' + iconClass + '"></div>'
         }
 
         marker = L.marker(markerLatLng, {
@@ -134,7 +136,13 @@
       };
 
       mapCenterLatLng = new L.LatLng(mapCenterLatitude, mapCenterLongitude);
-      map = L.map(element.id).setView(mapCenterLatLng, zoom);
+
+
+      map = L.map(element.id, {
+        gestureHandling: true
+      }).setView(mapCenterLatLng, zoom);
+
+
 
       if ( !editable ) {
         map._layersMaxZoom = 19;
@@ -146,6 +154,22 @@
       L.tileLayer(mapTilesProvider, {
         attribution: mapAttribution
       }).addTo(map);
+
+
+      var search = new GeoSearch.GeoSearchControl({
+        provider: new GeoSearch.OpenStreetMapProvider(),
+        style: 'bar',
+        showMarker: false,
+        searchLabel: 'Nach Adresse suchen',
+        notFoundMessage: 'Entschuldigung! Die Adresse wurde nicht gefunden.',
+      });
+
+      map.addControl(search);
+
+
+      L.control.locate().addTo(map);
+
+
       if (markerLatitude && markerLongitude && !addMarker) {
         marker = createMarker(markerLatitude, markerLongitude, markerColor, markerIconClass);
       }

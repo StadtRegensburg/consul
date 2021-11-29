@@ -1,18 +1,34 @@
 en:
   custom:
+    shared:
+      form:
+        projekt_assignment: Project
+        star_message: All Fields marked with a (*) are required
     account:
+      settings:
+        email_digest: "Receive a summary of proposal notifications"
+        email_on_comment: "Notify me by email when someone comments on my proposals or debates"
+        email_on_comment_reply: "Notify me by email when someone replies to my comments"
+        email_on_direct_message: "Receive emails about direct messages"
+        newsletter: "Receive by email website relevant information"
+        public_activity: "Keep my list of activities public"
+        public_interests: "Keep the labels of the elements I follow public"
       show:
         user_permission_votes: Participate in polls
     comments:
       reply_form:
         leave_comment: Write a reply
       restricted:
-        debate_phase_expired: The discussion phase has already expired. New comments can no longer be added.
         geo_limitation: 'This project is limited to the following areas: %{geozones}'
         not_verified: Please %{verify_account} to participate
         other: The comment function is not available
-        poll_phase_expired: The voting period has already expired. New comments can no longer be added.
+        debate_phase_expired: The discussion phase has already expired. New comments can no longer be added.
         proposal_phase_expired: The proposal phase has already expired. New comments can no longer be added.
+        poll_phase_expired: The voting period has already expired. New comments can no longer be added.
+        debate_phase_not_active: The discussion phase is not active
+        proposal_phase_not_active: The proposal phase is not active
+        projekt_not_active: Project is not active
+
     devise_views:
       users:
         registrations:
@@ -92,6 +108,13 @@ en:
       not_verified: You must %{verify_account} to be able to participate
       phase_expired: The phase is already completed. This proposal can no longer be supported.
     welcome:
+      current_polls: Current polls
+      user_entries: Latest submissions
+      all_debates: All debates
+      all_proposals: All proposals
+      start_entry: + Create a post
+      start_debate: Create a debate
+      start_proposal: Create a proposal
       active_projekt_cards:
         title: Active participation processes
       archived_projekt_cards:

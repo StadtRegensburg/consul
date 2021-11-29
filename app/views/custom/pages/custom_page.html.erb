@@ -1,7 +1,21 @@
 <%= content_for :body_class, "custom-page" %>
 <% provide :title do %><%= @custom_page.title %><% end %>
 
+<style>
+  <% if @custom_page.image.present? %>
+    .custom-page-banner {
+      background-image: url("<%=@custom_page.image.attachment.url%>");
+      background-size: cover;
+      background-position: center center;
+    }
+  <% end %>
+</style>
+
 <main>
+  <% if @custom_page.image.present? %>
+    <div class="custom-page-banner">
+    </div>
+  <% end %>
   <div class="row">
     <div class="column">
       <% if @custom_page.projekt.present? %>
@@ -22,7 +36,7 @@
 
       <% if @custom_page.projekt.present? %>
         <div class="row">
-          <div class="small-12 medium-9 column">
+          <div class="small-12 medium-9 column margin-bottom">
             <%= render 'custom_page_content' %>
           </div>
 

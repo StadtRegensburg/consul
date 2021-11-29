@@ -34,6 +34,8 @@ class PollsController < ApplicationController
 
     @polls = @polls.created_by_admin.not_budget.send(@current_filter).includes(:geozones)
 
+    remove_where_projekt_not_active
+
     unless params[:search].present?
       take_only_by_tag_names
       take_by_projekts
@@ -48,8 +50,8 @@ class PollsController < ApplicationController
       @polls.created_by_admin.not_budget.send(@current_filter).includes(:geozones).sort_for_list
     ).page(params[:page])
 
-    @top_level_active_projekts = Projekt.top_level_active.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.polls.any? } }
-    @top_level_archived_projekts = Projekt.top_level_archived.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.polls.any? } }
+    @top_level_active_projekts = Projekt.top_level.active.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.polls.any? } }
+    @top_level_archived_projekts = Projekt.top_level.archived.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.polls.any? } }
   end
 
   def set_geo_limitations
@@ -81,7 +83,24 @@ class PollsController < ApplicationController
     @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
   end
 
+  def confirm_participation
+    remove_answers_to_open_questions_with_blank_body
+  end
+
   private
+
+    def remove_where_projekt_not_active
+      active_projekts_ids = Projekt.all.joins(:projekt_settings).where(projekt_settings: { key: 'projekt_feature.main.activate', value: 'active' }).pluck(:id)
+      @polls = @polls.joins(:projekt).where(projekts: { id: active_projekts_ids })
+    end
+
+    def remove_answers_to_open_questions_with_blank_body
+      questions = @poll.questions.each do |question|
+        open_question_answers_names = Poll::Question::Answer.where(question: question).select(&:open_answer).pluck(:title)
+        open_answers_with_blank_text = Poll::Answer.where(question: question, author: current_user, answer: open_question_answers_names, open_answer_text: nil)
+        open_answers_with_blank_text.destroy_all
+      end
+    end
 
     def section(resource_name)
       "polls"

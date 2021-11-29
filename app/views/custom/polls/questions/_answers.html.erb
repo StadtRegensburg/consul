@@ -5,20 +5,18 @@
 
         <%= render partial: 'polls/questions/answer_more_info_sign', locals: { question: question, answer: answer } %>
 
-        <% if @answers_by_question_id[question.id].include?(answer.title) || question.poll.voted_in_booth?(current_user) %>
-          <% if question.multiple %>
+        <% if @answers_by_question_id[question.id].include?(answer.title) %>
               <%= link_to answer.title,
                           unanswer_question_path(question, answer: answer.title, token: token),
                           method: :post,
                           remote: true,
                           title: t("poll_questions.show.vote_unanswer", answer: answer.title),
                           class: "button take-back hollow js-question-answer" %>
-            <% else %>
-              <span class="button answered"
-                    title="<%= t("poll_questions.show.voted", answer: answer.title) %>">
-                <%= answer.title %>
-              </span>
-          <% end %>
+        <% elsif question.poll.voted_in_booth?(current_user) %>
+            <span class="button answered"
+                  title="<%= t("poll_questions.show.voted", answer: answer.title) %>">
+              <%= answer.title %>
+            </span>
         <% else %>
           <%= link_to answer.title,
             answer_question_path(question, answer: answer.title, token: token),
@@ -39,7 +37,7 @@
         <%= f.hidden_field :answer %>
         <% if open_answer.open_answer_text.present? %>
           <%= f.submit t('custom.polls.questions.answers.update_open_answer'), class: "button open-answer" %>
-          <% if @answer_updated %>
+          <% if @open_answer_updated %>
             <div class='open-answer-saved-notice'>
               <%= t('custom.admin.polls.questions.answers.notice.open_answer_saved')  %>
             </div>
@@ -71,5 +69,13 @@
       <span class="button secondary hollow disabled"><%= answer.title %></span>
       </div>
     <% end %>
+  <% end %>
+</div>
+
+<div class="answer-counted" <%= "style=color:#a94442" if @answer_updated == 'unanswered' %> >
+  <% if @answer_updated == 'answered' %>
+    <%= t('custom.polls.show.vote_counted') %>
+  <% elsif @answer_updated == 'unanswered' %>
+    <%= t('custom.polls.show.vote_uncounted') %>
   <% end %>
 </div>
