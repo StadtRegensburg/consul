@@ -1,4 +1,11 @@
 <% provide :title do %><%= t("custom.deficiency_reports.new.seo.title") %><% end %>
+
+<div class='row'>
+  <%= render DeficiencyReports::NewComponent.new(@deficiency_report) %>
+</div>
+
+
+
 <div class="proposal-form row">
 
   <div class="small-12 medium-9 column">
