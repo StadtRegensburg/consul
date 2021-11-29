@@ -69,6 +69,11 @@ de:
           hi: Lieber Admin,
           p1: es wurde ein neuer Mangel gemeldet.
           signature_html: Viele Grüße</br>Consul
+        notify_author_about_status_change:
+          subject: Statusänderung Ihres Mangels
+          hi: Hallo
+          p1: der Status des von Ihnen eingereichten Mangels wurde geändert.
+          signature_html: Viele Grüße</br>Consul
         notify_officer:
           subject: Neue Mangelmeldung
           hi: Liebe/r Sachbearbeiter*in,

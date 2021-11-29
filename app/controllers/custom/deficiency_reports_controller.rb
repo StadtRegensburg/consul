@@ -61,7 +61,9 @@ class DeficiencyReportsController < ApplicationController
   end
 
   def update_status
-    @deficiency_report.update(deficiency_report_status_id: deficiency_report_params[:deficiency_report_status_id])
+    if @deficiency_report.update(deficiency_report_status_id: deficiency_report_params[:deficiency_report_status_id])
+      DeficiencyReportMailer.notify_author_about_status_change(@deficiency_report).deliver_later
+    end
     redirect_to deficiency_report_path(@deficiency_report)
   end
 

@@ -10,6 +10,16 @@ class DeficiencyReportMailer < ApplicationMailer
     end
   end
 
+  def notify_author_about_status_change(deficiency_report)
+    @deficiency_report = deficiency_report
+    subject = t("custom.deficiency_reports.mailers.notify_author_about_status_change.subject")
+    @email_to = @deficiency_report.author.email
+
+    with_user(@deficiency_report.author) do
+      mail(to: @email_to, subject: subject)
+    end
+  end
+
   def notify_officer(deficiency_report)
     @deficiency_report = deficiency_report
     subject = t("custom.deficiency_reports.mailers.notify_officer.subject")
