@@ -1,37 +1,7 @@
 <% provide :title do %><%= t("custom.deficiency_reports.new.seo.title") %><% end %>
 
 <div class='row'>
-  <%= render DeficiencyReports::NewComponent.new(@deficiency_report) %>
-</div>
-
-
-
-<div class="proposal-form row">
-
-  <div class="small-12 medium-9 column">
-    <%= back_link_to %>
-
-    <h1>
-      <%= t("custom.deficiency_reports.new.start_new") %>
-    </h1>
-
-    <% if feature?("help_page")  %>
-      <div data-alert class="callout primary">
-        <%= link_to help_path(anchor: "deficiency_report"), title: t("shared.target_blank"), target: "_blank" do %>
-          <%= t("custom.deficiency_reports.new.more_info") %>
-        <% end %>
-      </div>
-    <% end %>
-
-    <%= render "deficiency_reports/form", form_url: deficiency_reports_path %>
-  </div>
-
-  <div class="small-12 medium-3 column">
-    <h2><%= t("custom.deficiency_reports.new.recommendations_title") %></h2>
-    <ul class="recommendations">
-      <li><%= t("custom.deficiency_reports.new.recommendation_one") %></li>
-      <li><%= t("custom.deficiency_reports.new.recommendation_two") %></li>
-      <li><%= t("custom.deficiency_reports.new.recommendation_three") %></li>
-    </ul>
+  <div class='column'>
+    <%= render DeficiencyReports::NewComponent.new(@deficiency_report) %>
   </div>
 </div>

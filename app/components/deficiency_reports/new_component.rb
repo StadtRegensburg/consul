@@ -7,6 +7,6 @@ class DeficiencyReports::NewComponent < ApplicationComponent
   end
 
   def title
-    t("custom.deficiency_report.new.start_new")
+    t("custom.deficiency_reports.new.start_new")
   end
 end
