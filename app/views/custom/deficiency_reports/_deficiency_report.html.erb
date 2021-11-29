@@ -1,76 +1,51 @@
-<div id="<%= dom_id(deficiency_report) %>"
-     class="deficiency-report clear"
-     data-type="deficiency-report">
+<% cache [locale_and_user_status, deficiency_report, params[:dr_categories], params[:dr_status], params[:dr_officer]] do %>
+  <div id="<%= dom_id(deficiency_report) %>" class='row collapse resource-n deficiency-report margin-bottom' data-equalizer='main' data-equalize-on="medium">
 
-  <div class="panel <%= "with-image" if deficiency_report.image.present? %>">
+    <div class='columns'>
+      <div class='column projekt-info show-for-small-only' style="background-color:<%= deficiency_report.category.color %>;color:<%= pick_text_color(deficiency_report.category.color) %>" >
+        <%= render partial: 'deficiency_reports/deficiency_report/projekt_bar', locals: { deficiency_report: deficiency_report } %>
+      </div>
+    </div>
 
-    <% if deficiency_report.image.present? %>
-      <div class="row" data-equalizer data-equalizer-mq="medium-up">
-        <div class="small-12 medium-3 large-2 column text-center" data-equalizer-watch>
-          <%= image_tag deficiency_report.image_url(:thumb),
-                        alt: deficiency_report.image.title.unicode_normalize %>
-        </div>
-
-        <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>" data-equalizer-watch>
-    <% else %>
-      <div class="row" data-equalizer data-equalizer-mq="medium-up">
-        <div class="<%= css_for_deficiency_report_info_row(deficiency_report) %>" data-equalizer-watch>
+    <div class='columns small-12 medium-3 large-2 image-container show-for-small-only'>
+      <% if deficiency_report.image.present? %>
+        <%= image_tag deficiency_report.image_url(:large), alt: deficiency_report.image.title.unicode_normalize %>
       <% end %>
-        <div class="deficiency-report-content">
-          <% cache [locale_and_user_status(deficiency_report), "index", deficiency_report, deficiency_report.author, params[:dr_categories]] do %>
-            <h3><%= link_to deficiency_report.title, deficiency_report %></h3>
-            <p class="deficiency-report-info">
-              <span class="icon-comments"></span>&nbsp;
-              <%= link_to t("proposals.proposal.comments", count: deficiency_report.comments_count),
-                          deficiency_report_path(deficiency_report, anchor: "comments") %>
+    </div>
 
-              <span class="bullet">&nbsp;&bull;&nbsp;</span>
-              <%= l deficiency_report.created_at.to_date %>
+    <div class='columns small-12 medium-3 large-2 image-container show-for-medium' data-equalizer-watch='main'>
+      <% if deficiency_report.image.present? %>
+        <%= image_tag deficiency_report.image_url(:thumb_wider), alt: deficiency_report.image.title.unicode_normalize %>
+      <% end %>
+    </div>
 
-              <% if deficiency_report.author.hidden? || deficiency_report.author.erased? %>
-                <span class="bullet">&nbsp;&bull;&nbsp;</span>
-                <span class="author">
-                  <%= t("proposals.show.author_deleted") %>
-                </span>
-              <% else %>
-                <span class="bullet">&nbsp;&bull;&nbsp;</span>
-                <span class="author">
-                  <%= deficiency_report.author.name %>
-                </span>
-                <% if deficiency_report.author.display_official_position_badge? %>
-                  <span class="bullet">&nbsp;&bull;&nbsp;</span>
-                  <span class="label round level-<%= deficiency_report.author.official_level %>">
-                    <%= deficiency_report.author.official_position %>
-                  </span>
-                <% end %>
-              <% end %>
+    <div class='columns small-12 medium-9 large-10 details' data-equalizer-watch='main'>
+      <div class='column projekt-info show-for-medium' style="background-color:<%= deficiency_report.category.color %>;color:<%= pick_text_color(deficiency_report.category.color) %>" >
+        <%= render partial: 'deficiency_reports/deficiency_report/projekt_bar', locals: { deficiency_report: deficiency_report } %>
+      </div>
 
-              <% if deficiency_report.author.verified_organization? %>
-                <span class="bullet">&nbsp;&bull;&nbsp;</span>
-                <span class="label round is-association">
-                  <%= t("shared.collective") %>
-                </span>
-              <% end %>
-            </p>
+      <div class='resource-info' data-equalizer='details'>
+        <div class='column small-12 medium-6 large-8 resource-details' data-equalizer-watch='details'>
 
-            <div class="deficiency-report-description">
-              <p><%= deficiency_report.summary %></p>
-            </div>
-            <%= render "deficiency_reports/tags", taggable: deficiency_report, limit: 5 %>
-          <% end %>
+          <h4 class='resource-name'><%= link_to deficiency_report.title, deficiency_report %></h4>
+          <div class="resource-summary margin-bottom">
+            <%= wysiwyg(deficiency_report.summary) %>
+            <div class="truncate"></div>
+          </div>
+          <%= render "deficiency_reports/tags", taggable: deficiency_report, limit: 5 %>
+        </div>
+        <div class='column small-12 medium-6 large-4 resource-participate table' data-equalizer-watch='details'>
+          <div class='table-cell align-middle'>
+            <%= render "deficiency_reports/status", deficiency_report: deficiency_report %>
+
+            <% if deficiency_reports_feature?('allow_voting') %>
+              <div id="<%= dom_id(deficiency_report) %>_votes">
+                <%= render "deficiency_reports/votes", deficiency_report: deficiency_report %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
-
-      <div class="small-12 medium-3 column deficiency-report-additional-info" data-equalizer-watch>
-        <%= render "deficiency_reports/status", deficiency_report: deficiency_report %>
-
-        <% if deficiency_reports_feature?('allow_voting') %>
-          <div id="<%= dom_id(deficiency_report) %>_votes">
-            <%= render "deficiency_reports/votes", deficiency_report: deficiency_report %>
-          </div>
-        <% end %>
-      </div>
-
     </div>
   </div>
-</div>
+<% end %>

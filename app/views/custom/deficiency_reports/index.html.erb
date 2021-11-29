@@ -68,7 +68,9 @@
 
       <div class='row'>
         <div class='small-6 column small'>
-          <%= link_to t('custom.deficiency_reports.index.section_header.help'), '#section_help' %>
+          <% if extended_feature?('modulewide.custom_help_text_in_modules') %>
+            <%= link_to t('custom.deficiency_reports.index.section_header.help'), '#section_help' %>
+          <% end %>
         </div>
 
         <div class='small-6 column small'>
@@ -88,7 +90,7 @@
         <% end %>
       </div>
 
-      <div id="deficiency0reports-list">
+      <div id="deficiency-reports-list">
         <% if @deficiency_reports.any? || current_user.blank? %>
           <% if deficiency_reports_default_view? %>
             <%= render partial: "deficiency_reports/deficiency_report", collection: @deficiency_reports %>
@@ -103,16 +105,11 @@
         <%= paginate @deficiency_reports%>
 
         <% unless @search_terms || @advanced_search_terms %>
-          <div id="section_help" class="margin" data-magellan-target="section_help">
-            <% if extended_feature?('modulewide.custom_help_text_in_modules') %>
+          <% if extended_feature?('modulewide.custom_help_text_in_modules') %>
+            <div id="section_help" class="margin" data-magellan-target="section_help">
               <%=render_custom_block 'deficiency_reports_help' %>
-            <% else %>
-              <p class="lead">
-                <strong><%= t("custom.deficiency_reports.index.section_footer.title") %></strong>
-              </p>
-              <p><%= t("custom.deficiency_reports.index.section_footer.description") %></p>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

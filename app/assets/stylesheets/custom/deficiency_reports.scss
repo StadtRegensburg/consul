@@ -96,16 +96,6 @@ ul#deficiency-report-statuses-sidebar-filter {
 }
 
 
-.deficiency-reports-list .deficiency-report .column:last-child:not(:first-child),
-.deficiency-reports-list .deficiency-report .columns:last-child:not(:first-child) {
-  padding-bottom: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-left: 1px solid #dee0e3;
-}
-
-
 .deficiency-report {
   .deficiency-report-additional-info {
 
@@ -179,72 +169,18 @@ ul#deficiency-report-statuses-sidebar-filter {
   margin-top: 1rem;
 }
 
+.deficiency-report-new {
+  @extend %public-form-header;
 
-// Deficiency report map markers
+  h1 {
+    @include has-fa-icon(box, solid, after);
+  }
 
-.map .map-marker .map-icon.traffic-light::after,
-.map .map-marker .map-icon.map-signs::after,
-.map .map-marker .map-icon.chair::after,
-.map .map-marker .map-icon.bicycle::after,
-.map .map-marker .map-icon.child::after,
-.map .map-marker .map-icon.leaf::after,
-.map .map-marker .map-icon.lightbulb::after,
-.map .map-marker .map-icon.trash-alt::after,
-.map .map-marker .map-icon.tree::after,
-.map .map-marker .map-icon.shower::after,
-.map .map-marker .map-icon.landmark::after {
-  font-family: "Font Awesome 5 Free";
-  font-weight:  bold;
-  color: $white;
-  background: none;
-  transform: rotate(45deg);
-  left: 11%;
-  top: -5%;
-  font-size: 1rem;
-}
+  aside {
+    margin-top: $line-height;
+  }
 
-.map .map-marker .map-icon.traffic-light::after {
-  content: "\f637";
-}
-
-.map .map-marker .map-icon.map-signs::after {
-  content: "\f277";
-}
-
-.map .map-marker .map-icon.chair::after {
-  content: "\f6c0";
-}
-
-.map .map-marker .map-icon.bicycle::after {
-  content: "\f206";
-  left: 6%;
-  top: -18%;
-}
-
-.map .map-marker .map-icon.child::after {
-  content: "\f1ae";
-}
-
-.map .map-marker .map-icon.leaf::after {
-  content: "\f06c";
-}
-
-.map .map-marker .map-icon.lightbulb::after {
-  content: "\f0eb";
-}
-
-.map .map-marker .map-icon.trash-alt::after {
-  content: "\f2ed";
-}
-
-.map .map-marker .map-icon.tree::after {
-  content: "\f1bb";
-}
-
-.map .map-marker .map-icon.shower::after {
-  content: "\f2cc";
-}
-
-.map .map-marker .map-icon.landmark::after {
-  content: "\f66f";
+  .recommendations li::before {
+    color: $debates;
+  }
 }

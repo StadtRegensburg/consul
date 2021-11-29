@@ -2,6 +2,8 @@ de:
   custom:
     deficiency_reports:
       index:
+        deficiency_report:
+          by: von
         start_deficiency_report: Mangel melden
         seo:
           title: Mängelmelder
