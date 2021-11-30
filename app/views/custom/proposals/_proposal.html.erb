@@ -8,13 +8,13 @@
     </div>
 
     <div class='columns small-12 medium-3 large-2 image-container show-for-small-only'>
-      <% if proposal.image.present? %>
+      <% if proposal.image.present? && !proposal.image.concealed? %>
         <%= image_tag proposal.image_url(:large), alt: proposal.image.title.unicode_normalize %>
       <% end %>
     </div>
 
     <div class='columns small-12 medium-3 large-2 image-container show-for-medium' data-equalizer-watch='main'>
-      <% if proposal.image.present? %>
+      <% if proposal.image.present? && !proposal.image.concealed? %>
         <%= image_tag proposal.image_url(:thumb_wider), alt: proposal.image.title.unicode_normalize %>
       <% end %>
     </div>
