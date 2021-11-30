@@ -64,4 +64,8 @@ Rails.application.routes.draw do
   post "polls/questions/:id/answers/update_open_answer",   to: "polls/questions#update_open_answer", as: :update_open_answer
   # Confirm poll participation
   post "polls/:id/confirm_participation",                  to: "polls#confirm_participation",        as: :poll_confirm_participation
+
+  # Toggle user generateg images
+  patch  "admin/proposals/:id/toggle_image",               to: "admin/proposals#toggle_image",       as: :admin_proposal_toggle_image
+  patch  "admin/debates/:id/toggle_image",                 to: "admin/debates#toggle_image",         as: :admin_debate_toggle_image
 end
