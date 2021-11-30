@@ -153,12 +153,16 @@
 
   .supports .supported {
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 
   .total-supports {
     font-weight: normal;
     font-size: 0.8rem;
+  }
+
+  .supports .button-support {
+    margin-top: 0;
   }
 }
 
