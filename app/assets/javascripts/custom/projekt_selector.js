@@ -30,6 +30,10 @@
         $nextProejektSelector.css('visibility', 'visible')
         $nextProejektSelector.attr('data-target', '#group-for-' + projektId)
         $nextProejektSelector.children('.projekt_group').hide()
+      }
+
+      // conditionally toggle next group to select
+      if ( !$selectedProjekt.data('projektSelectable') ) {
         $('#group-for-' + projektId).show();
       }
 
@@ -45,7 +49,6 @@
         $selectedProjekt.closest('.projekt-selector').css('color', '#FFF')
         App.ProjektSelector.addNextProjektPlaceholder($nextProejektSelector, "(optional)")
         App.ProjektSelector.replaceProjektMapOnProposalCreation($selectedProjekt)
-
       } else {
         App.ProjektSelector.resetSelectedProjectStyles();
         $('[id$="projekt_id"]').val('')
