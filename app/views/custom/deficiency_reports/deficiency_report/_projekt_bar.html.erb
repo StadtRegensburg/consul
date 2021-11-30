@@ -4,6 +4,8 @@
 </div>
 
 <div class='show-for-large'>
-  <%= t('custom.deficiency_reports.index.deficiency_report.by') %>
-  <%= deficiency_report.author.name %>
+  <% unless deficiency_report.author.name.blank? %>
+    <%= t('custom.deficiency_reports.index.deficiency_report.by') %>
+    <%= deficiency_report.author.name %>
+  <% end %>
 </div>
