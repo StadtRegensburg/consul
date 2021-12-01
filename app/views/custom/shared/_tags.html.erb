@@ -1,5 +1,5 @@
 <% limit ||= nil %>
-<% tag_filter_class = controller.action_name == 'index' ? 'js-projekt-tag-filter-link' : ''  %>
+<% tag_filter_class = (action_name == 'index' && controller_name != 'welcome'  ) ? 'js-projekt-tag-filter-link' : ''  %>
 <% resource_name = (@resource_name || taggable.class.name.downcase) %>
 
 <%= render SDG::TagListComponent.new(taggable, limit: limit) %>
