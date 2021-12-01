@@ -6,6 +6,6 @@
 <div class='show-for-large'>
   <% unless deficiency_report.author.name.blank? %>
     <%= t('custom.deficiency_reports.index.deficiency_report.by') %>
-    <%= deficiency_report.author.name %>
+    <%= link_to deficiency_report.author.name, deficiency_report.author %>
   <% end %>
 </div>

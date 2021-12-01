@@ -6,6 +6,6 @@
 <div class='show-for-large'>
   <% unless proposal.author.name.blank? %>
     <%= t('custom.proposals.index.proposal.by') %>
-    <%= proposal.author.name %>
+    <%= link_to proposal.author.name, proposal.author %>
   <% end%>
 </div>

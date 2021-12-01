@@ -20,14 +20,14 @@
     position: relative;
   }
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   .projekt-name {
     .fas {
       padding-right: 2px;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
     }
   }
 
