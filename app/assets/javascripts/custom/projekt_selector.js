@@ -90,8 +90,14 @@
 
     preselectProjekt: function(projektId) {
       // get preselcted projekt id
+      var selectedProjektId;
       var url = new URL(window.location.href);
-      var selectedProjektId = url.searchParams.get('projekt');
+      if (url.searchParams.get('projekt')) {
+        selectedProjektId = url.searchParams.get('projekt');
+      } else {
+        selectedProjektId = $('[id$="projekt_id"]').val();
+      }
+
 
       // get ordered array of parent projekts
       var projektIdsToShow = [selectedProjektId]
