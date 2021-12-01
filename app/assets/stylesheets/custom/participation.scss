@@ -205,16 +205,15 @@
 
 // Imageplaceholder
 
-.image-container {
+.image-placeholder {
   position: relative;
 
-  &:after {
+  &:before {
     position: absolute;
     content: "\f03e";
     font-family: 'Font Awesome 5 Free';
     font-weight: 400;
     color: white;
-    z-index: 1000;
     left: 50%;
     top: 50%;
     font-size: 70px;
