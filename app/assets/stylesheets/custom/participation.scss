@@ -202,6 +202,27 @@
   vertical-align: top;
   width: rem-calc(48);
 }
+
+// Imageplaceholder
+
+.image-container {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: "\f03e";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+    color: white;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    font-size: 70px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
 // setup_project
 // Polls
 .poll {
