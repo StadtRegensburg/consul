@@ -10,9 +10,21 @@ module ProjektsHelper
   end
 
   def projekt_bar_background_color(projekt)
+    if projekt.page.published?
+      projekt.color
+    elsif projekt.parent.present? && projekt.parent.page.published?
+      projekt.parent.color
+    end
   end
 
-  def projekt_bar_background_text(projekt)
+  def projekt_bar_text_color(projekt)
+    if projekt.page.published?
+      pick_text_color(projekt.color)
+    elsif projekt.parent.present? && projekt.parent.page.published?
+      pick_text_color(projekt.parent.color)
+    else
+      pick_text_color(projekt.parent.color)
+    end
   end
 
   def show_archived_projekts_in_sidebar?
