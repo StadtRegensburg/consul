@@ -14,6 +14,8 @@ module ProjektsHelper
       projekt.color
     elsif projekt.parent.present? && projekt.parent.page.published?
       projekt.parent.color
+    else
+      '#FFFFFF'
     end
   end
 
@@ -23,7 +25,7 @@ module ProjektsHelper
     elsif projekt.parent.present? && projekt.parent.page.published?
       pick_text_color(projekt.parent.color)
     else
-      pick_text_color(projekt.parent.color)
+      '#000000'
     end
   end
 

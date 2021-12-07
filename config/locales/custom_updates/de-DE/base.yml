@@ -6,6 +6,14 @@ de:
         star_message: Alle mit (*) gekennzeichneten Felder sind Pflichtfelder
       show:
         back_link: "Zur Übersicht aller %{resources}"
+        admin: Admin
+        comments: "%{count} Kommentare"
+        report_title: Melden
+        report_text: Sollte der Vorschlag unangebrachten Inhalt enthalten oder Urhebberrecht verletzen, dann zögern Sie bitte nicht und melden Sie uns diesen Vorschlag. 
+        report_button: Melden
+        related_title: Verwandte inhalte
+        related_text: Sie können Links von anderen Vorschlägen und Diskussionen hinzufügen.
+        related_button: Hinzufügen
     account:
       settings:
         email_digest: Erhalten Sie eine Zusammenfassung der Benachrichtigungen zu Vorschlägen

@@ -22,3 +22,7 @@ de:
         supports:
           one: "%{count} Unterstützer*in"
           other: "%{count} Unterstützer*innen"
+      show:
+        description: Vorschlagstext
+        admin: Admin
+        information: Information
