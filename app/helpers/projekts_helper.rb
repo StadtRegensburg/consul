@@ -9,6 +9,12 @@ module ProjektsHelper
     end
   end
 
+  def projekt_bar_background_color(projekt)
+  end
+
+  def projekt_bar_background_text(projekt)
+  end
+
   def show_archived_projekts_in_sidebar?
     Setting["projekts.show_archived.sidebar"].present? ? true : false
   end

@@ -1,12 +1,18 @@
-<div class='projekt-name'>
-  <%= link_to_projekt_page(proposal.projekt) %>
+<div class='projekt-bar column' style="background-color:<%= proposal.projekt.color %>;color:<%= pick_text_color(proposal.projekt.color) %>" >
+  <div class='projekt-name'>
+    <%= link_to_projekt_page(proposal.projekt) %>
+  </div>
+
+  <div class='show-for-large'>
+    <% if action_name == 'index'%>
+      <% unless proposal.author.name.blank? %>
+        <%= t('custom.proposals.index.proposal.by') %>
+        <%= link_to proposal.author.name, proposal.author %>
+      <% end%>
+      <%= render partial: "proposals/proposal/participation_label", locals: { proposal: proposal } %>
+    <% elsif action_name == 'show' %>
+      <%= link_to t("custom.shared.show.back_link", resources: proposal.model_name.human(count: 2)), proposals_path %>
+    <% end%>
+  </div>
 </div>
 
-<div class='show-for-large'>
-  <% unless proposal.author.name.blank? %>
-    <%= t('custom.proposals.index.proposal.by') %>
-    <%= link_to proposal.author.name, proposal.author %>
-  <% end%>
-</div>
-
-<%= render partial: "proposals/proposal/participation_label", locals: { proposal: proposal } %>

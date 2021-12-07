@@ -1,6 +1,6 @@
 <%= content_for :body_class, "proposals-show" %>
 <% preview = false unless local_assigns.has_key? :preview %>
-<% provide :title do %><%= @proposal.title %><% end %>
+<% provide :title do @proposal.title end %>
 <% content_for :meta_description do %><%= @proposal.summary %><% end %>
 <% provide :social_media_meta_tags do %>
   <%= render "shared/social_media_meta_tags",
@@ -21,12 +21,20 @@
             Flag.flagged?(current_user, @proposal),
             @proposal_votes,
             @proposal.projekt,
+            @proposal.proposal_phase,
             @proposal.image] do %>
     <div class="proposal-show">
+
+      <% unless action_name == 'created' %>
+        <div class="row">
+          <div class="column margin-bottom">
+            <%= render partial: "proposals/proposal/projekt_bar", locals: { proposal: @proposal } %>
+          </div>
+        </div>
+      <% end %>
+
       <div id="<%= dom_id(@proposal) %>" class="row">
         <div class="small-12 medium-9 column">
-          <%= back_link_to proposals_path unless preview %>
-
           <h1><%= @proposal.title %></h1>
           <% if @proposal.retired? %>
             <div data-alert class="callout alert margin-top proposal-retired">
