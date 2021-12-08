@@ -5,12 +5,13 @@ de:
         projekt_assignment: Projektzuordnung
         star_message: Alle mit (*) gekennzeichneten Felder sind Pflichtfelder
       show:
-        back_link: "Zur Übersicht aller %{resources}"
+        back_link: "Weitere %{resources} zu diesem Projekt"
         admin: Admin
         comments: "%{count} Kommentare"
         report_title: Melden
         report_text: Sollte der Vorschlag unangebrachten Inhalt enthalten oder Urhebberrecht verletzen, dann zögern Sie bitte nicht und melden Sie uns diesen Vorschlag. 
         report_button: Melden
+        follow_text: Folgen Sie diesem Vorschlag, um Neuigkeiten informiert zu werden.
         related_title: Verwandte inhalte
         related_text: Sie können Links von anderen Vorschlägen und Diskussionen hinzufügen.
         related_button: Hinzufügen

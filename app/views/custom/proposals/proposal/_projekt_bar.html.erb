@@ -11,7 +11,7 @@
       <% end%>
       <%= render partial: "proposals/proposal/participation_label", locals: { proposal: proposal } %>
     <% elsif action_name == 'show' %>
-      <%= link_to t("custom.shared.show.back_link", resources: proposal.model_name.human(count: 2)), proposals_path %>
+      <%= link_to t("custom.shared.show.back_link", resources: proposal.model_name.human(count: 2)), (taggables_path(proposal.class.name.underscore, '') + "&projekts=#{proposal.projekt.id}") %>
     <% end%>
   </div>
 </div>

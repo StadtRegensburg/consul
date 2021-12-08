@@ -33,11 +33,15 @@
         </div>
       <% end %>
 
-      <div id="<%= dom_id(@proposal) %>" class="row">
+      <div class="row">
         <div class="small-12 medium-9 column">
           <h1><%= @proposal.title %></h1>
+        </div>
+      </div>
+      <div id="<%= dom_id(@proposal) %>" class="row">
+        <div class="small-12 medium-9 column">
           <% if @proposal.retired? %>
-            <div data-alert class="callout alert margin-top proposal-retired">
+            <div data-alert class="callout alert margin-bottom proposal-retired">
               <strong>
                 <%= t("proposals.show.retired_warning") %><br>
                 <%= link_to t("proposals.show.retired_warning_link_to_explanation"),
@@ -45,14 +49,14 @@
               </strong>
             </div>
           <% elsif @proposal.conflictive? %>
-            <div data-alert class="callout alert margin-top">
+            <div data-alert class="callout alert margin-bottom">
               <strong><%= t("proposals.show.flag") %></strong>
             </div>
           <% end %>
 
           <%= render "proposals/info", proposal: @proposal %>
 
-          <% unless @proposal.selected? %>
+          <% if !@proposal.selected? && extended_feature?('proposals.show_related_content') %>
             <%= render "relationable/related_content", relationable: @proposal %>
           <% end %>
         </div>
@@ -88,7 +92,7 @@
                           method: :patch %>
             <% end %>
 
-            <% if current_user.administrator? %>
+            <% if current_user.present? && current_user.administrator? %>
               <div class="sidebar-divider"></div>
               <h2><%= t("custom.shared.show.admin") %></h2>
 
@@ -101,27 +105,33 @@
 
             <%= render "proposals/proposal_info", proposal: @proposal %>
 
-            <%= render "proposals/flag", proposal: @proposal %>
+            <% if extended_feature?('proposals.show_report_button_in_proposal_sidebar') %>
+              <%= render "proposals/flag", proposal: @proposal %>
+            <% end %>
 
             <%= render "proposals/social_share", proposal: @proposal, share_title: t("proposals.show.share") %>
 
-            <% if current_user %>
+            <% if current_user && extended_feature?('proposals.show_follow_button_in_proposal_sidebar') %>
               <div class="sidebar-divider"></div>
-              <p class="sidebar-title"><%= t("shared.follow") %></p>
+              <h2><%= t("shared.follow") %></h2>
+              <P><%= t("custom.shared.show.follow_text") %></p>
               <%= render "follows/follow_button", follow: find_or_build_follow(current_user, @proposal) %>
             <% end %>
 
-            <%= render "communities/access_button", community: @proposal.community %>
+            <% if extended_feature?('proposals.show_community_button_in_proposal_sidebar') %>
+              <%= render "communities/access_button", community: @proposal.community %>
+            <% end %>
 
-            <div class="sidebar-divider"></div>
-            <h2><%= t("custom.shared.show.related_title") %></h2>
-            <p><%= t("custom.shared.show.related_text") %></p>
-
-            <div class="">
-              <%= link_to '#', class: "button hollow expanded" do %>
-                <%= t("custom.shared.show.related_button") %>
-              <% end %>
-            </div>
+            <% if current_user && extended_feature?('proposals.show_related_content') %>
+              <div class="sidebar-divider"></div>
+              <h2><%= t("custom.shared.show.related_title") %></h2>
+              <p><%= t("custom.shared.show.related_text") %></p>
+              <div class="">
+                <%= link_to '#related_content', data: {toggle: "related_content"}, id: "add-related-content", class: "button hollow expanded" do %>
+                  <%= t("custom.shared.show.related_button") %>
+                <% end %>
+              </div>
+            <% end %>
 
           </aside>
         <% end %>
