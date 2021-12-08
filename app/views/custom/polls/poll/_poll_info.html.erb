@@ -1,0 +1,14 @@
+<div class="sidebar-divider"></div>
+<h2><%= t("custom.shared.show.information") %></h2>
+
+<div class='resource-info'>
+  <div class='resource-info-date'>
+		<%= t("custom.polls.poll.days_left", count: (@poll.ends_at.to_date - Date.today).to_i ) %> 
+  </div>
+
+  <div class='resource-info-comments'>
+    <%= link_to "#comments" do %>
+      <%= t("custom.shared.show.comments", count: @poll.comments.count) %>
+    <% end %>
+  </div>
+</div>
