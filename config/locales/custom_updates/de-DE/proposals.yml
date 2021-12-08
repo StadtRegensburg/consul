@@ -24,5 +24,4 @@ de:
           other: "%{count} Unterstützer*innen"
       show:
         description: Vorschlagstext
-        admin: Admin
-        information: Information
+        report_text: Sollte der Vorschlag unangebrachten Inhalt enthalten oder Urhebberrecht verletzen, dann zögern Sie bitte nicht und melden Sie uns diesen Vorschlag. 

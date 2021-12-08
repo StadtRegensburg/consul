@@ -3,7 +3,7 @@
   <div id="<%= dom_id(proposal) %>" class='row collapse resource-n proposal margin-bottom' data-equalizer='main' data-equalize-on="medium">
     <div class='columns'>
       <div class='show-for-small-only'>
-        <%= render partial: 'proposals/proposal/projekt_bar', locals: {proposal: proposal} %>
+        <%= render partial: 'shared/participation/projekt_bar', locals: { resource: proposal } %>
       </div>
     </div>
 
@@ -21,7 +21,7 @@
 
     <div class='columns small-12 medium-9 large-10 details' data-equalizer-watch='main'>
       <div class='show-for-medium'>
-        <%= render partial: 'proposals/proposal/projekt_bar', locals: {proposal: proposal} %>
+        <%= render partial: 'shared/participation/projekt_bar', locals: { resource: proposal } %>
       </div>
       <div class='resource-info' data-equalizer='details'>
         <div class='column small-12 medium-6 large-8 resource-details' data-equalizer-watch='details'>

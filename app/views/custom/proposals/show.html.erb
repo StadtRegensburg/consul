@@ -1,6 +1,6 @@
 <%= content_for :body_class, "proposals-show" %>
 <% preview = false unless local_assigns.has_key? :preview %>
-<% provide :title do @proposal.title end %>
+<% provide :title do %><%= @proposal.title %><% end %>
 <% content_for :meta_description do %><%= @proposal.summary %><% end %>
 <% provide :social_media_meta_tags do %>
   <%= render "shared/social_media_meta_tags",
@@ -28,7 +28,7 @@
       <% unless action_name == 'created' %>
         <div class="row">
           <div class="column margin-bottom">
-            <%= render partial: "proposals/proposal/projekt_bar", locals: { proposal: @proposal } %>
+          <%= render partial: "shared/participation/projekt_bar", locals: { resource: @proposal } %>
           </div>
         </div>
       <% end %>
@@ -38,6 +38,7 @@
           <h1><%= @proposal.title %></h1>
         </div>
       </div>
+
       <div id="<%= dom_id(@proposal) %>" class="row">
         <div class="small-12 medium-9 column">
           <% if @proposal.retired? %>
@@ -103,10 +104,10 @@
 
             <%= render "proposals/support_status", proposal: @proposal %>
 
-            <%= render "proposals/proposal_info", proposal: @proposal %>
+            <%= render "shared/participation/resource_info", resource: @proposal %>
 
             <% if extended_feature?('proposals.show_report_button_in_proposal_sidebar') %>
-              <%= render "proposals/flag", proposal: @proposal %>
+              <%= render "shared/participation/flag", resource: @proposal %>
             <% end %>
 
             <%= render "proposals/social_share", proposal: @proposal, share_title: t("proposals.show.share") %>

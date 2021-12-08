@@ -1,0 +1,26 @@
+<div class="sidebar-divider"></div>
+<h2><%= t("custom.shared.show.information") %></h2>
+
+<div class='resource-info'>
+  <div class='resource-info-author'>
+    <%= link_to resource.author.username, resource.author %>
+  </div>
+
+  <div class='resource-info-date'>
+    <%= resource.created_at.strftime("%d. %B %Y") %>
+  </div>
+
+  <div class='resource-info-comments'>
+    <%= link_to "#comments" do %>
+      <%= t("custom.shared.show.comments", count: resource.comments.count) %>
+    <% end %>
+  </div>
+
+  <% if resource.class.name == 'Proposal' %>
+    <div class='resource-info-entry-code'>
+      <%= t("proposals.show.code") %>
+      <br>
+      <%= resource.code %>
+    </div>
+  <% end %>
+</div>
