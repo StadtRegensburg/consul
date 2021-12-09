@@ -44,9 +44,11 @@
           <% end %>
         <% end %>
 
-        <div class="callout primary">
-          <%= t("poll_questions.show.withdraw_answers_hint") %>
-        </div>
+        <% if can?(:answer, @poll) %>
+          <div class="callout primary">
+            <%= t("poll_questions.show.withdraw_answers_hint") %>
+          </div>
+        <% end %>
 
         <% @questions.each do |question| %>
           <%= render "polls/questions/question", question: question, token: @token %>
