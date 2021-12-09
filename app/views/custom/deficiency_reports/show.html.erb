@@ -83,6 +83,8 @@
           </div>
         <% end %>
 
+        <%= render "shared/participation/resource_info", resource: @deficiency_report %>
+
         <% if deficiency_reports_feature?('allow_voting') %>
           <div class="sidebar-divider"></div>
           <h2><%= t("custom.deficiency_reports.show.sidebar.vote") %></h2>

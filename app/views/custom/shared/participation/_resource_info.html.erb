@@ -16,7 +16,19 @@
     <%= resource.created_at.strftime("%d. %B %Y") %>
   </div>
 
-  <% if resource.class.name == 'Proposal' %>
+  <% if resource.respond_to?(:projekt) && geo_affiliation_name = prepare_geo_affiliation_name(resource) %>
+    <div class='resource-info-geo-affiliation'>
+      <%= geo_affiliation_name %>
+    </div>
+  <% end %>
+
+  <% if resource.respond_to?(:projekt) && geo_restriction_tag = prepare_geo_restriction_name(resource) %>
+    <div class='resource-info-geo-restriction'>
+      <%= geo_restriction_tag %>
+    </div>
+  <% end %>
+
+  <% if resource.class.name.in? ['Proposal', "DeficiencyReport"] %>
     <div class='resource-info-entry-code'>
       <%= t("proposals.show.code") %>
       <br>

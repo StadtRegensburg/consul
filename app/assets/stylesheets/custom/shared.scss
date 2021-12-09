@@ -1,14 +1,18 @@
 // Resource info on show
 
 .proposal-show .resource-info,
-.debate-show .resource-info {
+.debate-show .resource-info,
+.polls-show .resource-info,
+.deficiency-report-show .resource-info {
   padding-left: 23px;
 
   .resource-info-author,
   .resource-info-date,
   .resource-info-comments,
   .resource-info-notifications,
-  .resource-info-entry-code {
+  .resource-info-entry-code,
+  .resource-info-geo-affiliation,
+  .resource-info-geo-restriction {
     position: relative;
 
     &:before {
@@ -34,6 +38,14 @@
 
   .resource-info-entry-code:before {
     content: "\f15b";
+  }
+
+  .resource-info-geo-affiliation:before {
+    content: "\f3c5";
+  }
+
+  .resource-info-geo-restriction:before {
+    content: "\f4fc";
   }
 }
 
