@@ -82,7 +82,9 @@
 
             <%= render "shared/participation/resource_info", resource: @debate %> 
 
-            <%= render "shared/participation/flag", resource: @debate %>
+            <% if extended_feature?('debates.show_report_button_in_debate_sidebar') %>
+              <%= render "shared/participation/flag", resource: @debate %>
+            <% end %>
 
             <%= render "shared/social_share",
               share_title: t("debates.show.share"),
@@ -92,7 +94,7 @@
               mobile: @debate.title
             %>
 
-            <% if current_user %>
+            <% if current_user && extended_feature?('debates.show_related_content') %>
               <div class="sidebar-divider"></div>
               <h2><%= t("custom.shared.show.related_title") %></h2>
               <p><%= t("custom.shared.show.related_text") %></p>
