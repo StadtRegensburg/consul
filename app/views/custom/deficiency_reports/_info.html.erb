@@ -1,5 +1,5 @@
 <% if feature?(:map) && map_location_available?(@deficiency_report.map_location) %>
-  <div class="margin">
+  <div class="margin-bottom">
     <%= render_map(@deficiency_report.map_location, "deficiency_report", false, nil, MapLocation.where(deficiency_report_id: @deficiency_report.id).map(&:json_data)) %>
   </div>
 <% end %>
