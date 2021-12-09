@@ -6,14 +6,14 @@
     <%= link_to resource.author.username, resource.author %>
   </div>
 
-  <div class='resource-info-date'>
-    <%= resource.created_at.strftime("%d. %B %Y") %>
-  </div>
-
   <div class='resource-info-comments'>
     <%= link_to "#comments" do %>
       <%= t("custom.shared.show.comments", count: resource.comments.count) %>
     <% end %>
+  </div>
+
+  <div class='resource-info-date'>
+    <%= resource.created_at.strftime("%d. %B %Y") %>
   </div>
 
   <% if resource.class.name == 'Proposal' %>
