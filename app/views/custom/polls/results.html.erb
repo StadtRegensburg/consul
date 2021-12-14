@@ -13,7 +13,7 @@
     <div class="small-12 medium-3 column sidebar" data-equalizer-watch>
       <p><strong><%= t("polls.show.results.title") %></strong></p>
       <ul class="menu vertical">
-        <%- @poll.questions.each do |question| %>
+        <%- @poll.questions.joins(:translations).order("poll_question_translations.title": :asc).each do |question| %>
           <li><%= link_to question.title, "##{question.title.parameterize}" %></li>
         <% end %>
       </ul>
