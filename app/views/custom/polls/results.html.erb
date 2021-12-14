@@ -13,14 +13,14 @@
     <div class="small-12 medium-3 column sidebar" data-equalizer-watch>
       <p><strong><%= t("polls.show.results.title") %></strong></p>
       <ul class="menu vertical">
-        <%- @poll.questions.joins(:translations).order("poll_question_translations.title": :asc).each do |question| %>
+        <%- @poll.questions.each do |question| %>
           <li><%= link_to question.title, "##{question.title.parameterize}" %></li>
         <% end %>
       </ul>
     </div>
 
     <div class="small-12 medium-9 column" data-equalizer-watch>
-      <%- @poll.questions.joins(:translations).order("poll_question_translations.title": :asc).each do |question| %>
+      <%- @poll.questions.each do |question| %>
         <% most_voted_answer_votes = question.most_voted_answer_votes %>
         <h3 id="<%= question.title.parameterize %>">
           <%= question.title %>
