@@ -1,3 +1,7 @@
+Ahoy.geocode = false
+Ahoy.api = true
+Ahoy.server_side_visits = :when_needed
+
 class Ahoy::Store < Ahoy::DatabaseStore
 
   def visit_model
@@ -8,10 +12,3 @@ class Ahoy::Store < Ahoy::DatabaseStore
     # disables automatic linking of visits and users
   end
 end
-
-# set to true for JavaScript tracking
-Ahoy.api = true
-Ahoy.server_side_visits = :when_needed
-
-# better user agent parsing
-Ahoy.user_agent_parser = :device_detector
