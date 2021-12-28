@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_14_155147) do
+ActiveRecord::Schema.define(version: 2021_12_16_090300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1379,8 +1379,8 @@ ActiveRecord::Schema.define(version: 2021_12_14_155147) do
     t.boolean "show_open_answer_author_name"
     t.boolean "show_summary_instead_of_questions", default: false
     t.index ["budget_id"], name: "index_polls_on_budget_id", unique: true
-    t.index ["projekt_id"], name: "index_polls_on_projekt_id"
     t.index ["geozone_restricted"], name: "index_polls_on_geozone_restricted"
+    t.index ["projekt_id"], name: "index_polls_on_projekt_id"
     t.index ["related_type", "related_id"], name: "index_polls_on_related_type_and_related_id"
     t.index ["starts_at", "ends_at"], name: "index_polls_on_starts_at_and_ends_at"
   end
@@ -1850,6 +1850,7 @@ ActiveRecord::Schema.define(version: 2021_12_14_155147) do
     t.string "house_number"
     t.string "city_name"
     t.datetime "bam_letter_verification_code_sent_at"
+    t.string "bam_unique_stamp"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
