@@ -1,5 +1,7 @@
 .custom-page-banner {
   display: none;
+  background-clip: content-box;
+  @include grid-column-gutter;
 
   @media screen and (min-width: 40em) {
     display: block;
