@@ -43,6 +43,10 @@
       @include icon(chart-pie, solid);
     }
 
+    &.projekts-link {
+      @include icon(code-branch, solid);
+    }
+
     &.comments-link {
       @include icon(comments, regular);
     }
