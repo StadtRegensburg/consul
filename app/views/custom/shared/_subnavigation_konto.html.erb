@@ -6,7 +6,9 @@
   >
 
   <%= link_to account_path, class: 'account-items-icon', tabindex: "-1", aria: { hidden: true } do %>
-    <%= svg_tag 'account-menu-icon', class: "account-icon" %>
+    <span class="icon-account" aria-hidden="true"
+          title="<%= t("layouts.header.notification_item.no_notifications") %>">
+    </span>
   <% end %>
 
   <% if placement == 'mobile' %>

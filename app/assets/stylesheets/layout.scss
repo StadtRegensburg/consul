@@ -534,7 +534,7 @@ button,
 body > header,
 .wrapper > header {
   @include grid-column-gutter;
-  margin-bottom: $line-height;
+  margin-bottom: 24px;
 
   @include breakpoint(small down) {
     position: relative;
