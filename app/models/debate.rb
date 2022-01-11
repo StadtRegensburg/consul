@@ -49,7 +49,8 @@ class Debate < ApplicationRecord
   scope :featured,                 -> { where.not(featured_at: nil) }
   scope :public_for_api,           -> { all }
 
-  visitable class_name: "Visit"
+  # visitable class_name: "Visit"
+  visitable #stick to the Ahoy way of naming models (Ahoy::Visit instead of Visit)
 
   attr_accessor :link_required
 
