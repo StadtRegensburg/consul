@@ -1,4 +1,8 @@
 de:
+  admin:
+    homepage:
+      feeds:
+        polls: Abstimmungen
   custom:
     admin:
       homepage:

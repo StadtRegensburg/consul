@@ -24,3 +24,16 @@
 .leaflet-control-geosearch a.reset {
   height: 26px !important;
 }
+
+// Map full page width
+
+.map.proposals-map,
+.map.deficiency-reports-map {
+  margin-left: calc(-50vw + 37.5rem);
+  margin-right: calc(-50vw + 37.5rem);
+  width: auto;
+}
+
+.map_location {
+  height: 350px;
+}

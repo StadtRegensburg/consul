@@ -1,6 +1,8 @@
 require_dependency Rails.root.join("app", "models", "widget", "feed").to_s
 
 class Widget::Feed < ApplicationRecord
+  KINDS = %w[polls proposals debates].freeze
+
   def polls
     Poll.current.order(created_at: :asc).limit(limit)
   end

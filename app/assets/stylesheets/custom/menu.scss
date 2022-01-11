@@ -88,16 +88,34 @@ span.icon-circle {
 }
 
 span.icon-notification,
-span.icon-no-notification {
-  font-size: 19px;
+span.icon-no-notification,
+span.icon-home,
+span.icon-admin,
+span.icon-account {
+
+  &:before {
+    font-size: 20px;
+  }
 }
 
-.icon-notification::before {
-  font-size: 22px;
+.icon-home::before {
+  content: "\f015"
+}
+
+.icon-admin::before {
+  content: "\f013";
+}
+
+.icon-account::before {
+  content: "\f2bd";
 }
 
 .subnavigation a.home-items-icon {
   display: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .account-admin-items {
@@ -252,12 +270,6 @@ span.icon-no-notification {
     }
   }
 
-  .home-icon {
-    top: 14px;
-    right: 0;
-    position: absolute;
-  }
-
   .subnavigation ul.main-menu {
     display: flex;
     margin-left: 0;
@@ -295,27 +307,15 @@ span.icon-no-notification {
     .admin-items-icon {
       width: 20px;
       height: 100%;
-    }
 
-    .icon-no-notification::before {
-      font-size: 20px;
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     .account-items-link,
     .admin-items-link {
       display: none;
-    }
-
-    .admin-icon {
-      top: 14px;
-      right: 0;
-      padding-bottom: 14px;
-    }
-
-    .account-icon {
-      top: 14px;
-      right: 0;
-      padding-bottom: 14px;
     }
 
     .top-level-item {
