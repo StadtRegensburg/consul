@@ -9,13 +9,5 @@ FactoryBot.define do
 
     color { "#00AA02" }
     icon { "biking" }
-
-    factory :active_projekt do
-      after(:create) do |projekt|
-        projekt.projekt_settings.find_by(key: 'projekt_feature.main.activate').update(value: true)
-        projekt.debate_phase.update(active: true, start_date: 1.month.ago, end_date: 1.month.from_now )
-        projekt.proposal_phase.update(active: true, start_date: 1.month.ago, end_date: 1.month.from_now )
-      end
-    end
   end
 end

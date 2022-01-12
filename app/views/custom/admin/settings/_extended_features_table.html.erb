@@ -8,15 +8,15 @@
   <tbody>
     <% features.each do |feature| %>
       <tr>
-        <td>
-          <strong id="<%= dom_id(feature, :title) %>"><%= t("settings.#{feature.key}") %></strong>
+        <td class='small-10'>
+          <strong id="<%= dom_id(feature, :title) %>"><%= t("custom.settings.#{feature.key}") %></strong>
           <br>
           <span class="small">
             <%= t("custom.settings.#{feature.key}_description", default: t("admin.settings.no_description")) %>
           </span>
         </td>
 
-        <td>
+        <td class='small-2'>
           <%= render Admin::Settings::FeaturedSettingsFormComponent.new(feature, tab: tab) %>
         </td>
       </tr>
