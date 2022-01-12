@@ -378,7 +378,7 @@ de:
         notice: Meilenstein erfolgreich gelöscht
     statuses:
       index:
-        title: Status der Investitionsvorschläge
+        title: Status der Vorschläge
         empty_statuses: Es wurde noch kein Status für Investitionsvorschläge definiert
         new_status: Neuen Status für Investitionsvorschlag erstellen
         table_name: Name
