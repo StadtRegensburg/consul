@@ -10,6 +10,8 @@ class Debate
 
   validates :projekt_id, presence: true, if: :require_a_projekt?
 
+  alias_attribute :projekt_phase, :debate_phase
+
   def require_a_projekt?
     Setting["projekts.connected_resources"].present? ? true : false
   end
