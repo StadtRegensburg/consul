@@ -380,7 +380,7 @@ de:
       index:
         title: Status der Vorschläge
         empty_statuses: Es wurde noch kein Status für Investitionsvorschläge definiert
-        new_status: Neuen Status für Investitionsvorschlag erstellen
+        new_status: Neuen Status für Vorschlag erstellen
         table_name: Name
         table_description: Beschreibung
         table_actions: Aktionen
