@@ -5,10 +5,10 @@ module ProjektsHelper
     links = base_projekt.breadcrumb_trail_ids.map do |projekt_id|
       projekt = Projekt.find(projekt_id)
 
-      if projekt.page.published? && projekt != base_projekt
-        link_to projekt.page.title, projekt.page.url, class: 'breadcrumbs-item'
-      else
+      if !projekt.page.published? || (projekt == base_projekt && home_page_link)
         content_tag(:div, projekt.title, class: 'breadcrumbs-item')
+      else
+        link_to projekt.page.title, projekt.page.url, class: 'breadcrumbs-item'
       end
     end
 
