@@ -97,8 +97,6 @@
               <%= render "/deficiency_reports/deficiency_report_minimal", deficiency_report: deficiency_report %>
             <% end %>
           <% end %>
-        <% else %>
-          <%= empty_recommended_proposals_message_text(current_user) %>
         <% end %>
         <%= paginate @deficiency_reports%>
 
