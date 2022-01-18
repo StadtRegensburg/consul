@@ -28,9 +28,12 @@ class Projekt < ApplicationRecord
 
   accepts_nested_attributes_for :debate_phase, :proposal_phase, :projekt_notifications
 
+  before_validation :set_default_color
   after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location
   around_update :update_page
   after_destroy :ensure_projekt_order_integrity
+
+  validates :color, format: { with: /\A#[\d, a-f, A-F]{6}\Z/ }
 
   scope :top_level, -> { where(parent: nil).with_order_number }
 
@@ -47,7 +50,9 @@ class Projekt < ApplicationRecord
   scope :visible_in_menu, -> { joins(' INNER JOIN projekt_settings a ON projekts.id = a.projekt_id').
                             where( 'a.key': 'projekt_feature.general.show_in_navigation', 'a.value': 'active' ) }
 
-  scope :selectable, ->(controller_name, current_user) { active.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.selectable?(controller_name, current_user) } } }
+  scope :selectable_in_selector, ->(controller_name, current_user) { select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.selectable?(controller_name, current_user) } } }
+  scope :selectable_in_sidebar_active, ->(controller_name) { select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| ( p.active? && ( p.has_active_phase?(controller_name) || p.send(controller_name).any? ) ) } } }
+  scope :selectable_in_sidebar_archived, ->(controller_name) { select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.active? && p.send(controller_name).any? } } }
 
 
   def update_page
@@ -57,6 +62,7 @@ class Projekt < ApplicationRecord
 
   def selectable?(controller_name, user)
     return true if controller_name == 'polls'
+    return false if user.nil?
 
     if controller_name == 'proposals'
       proposal_phase.selectable_by?(user)
@@ -65,10 +71,10 @@ class Projekt < ApplicationRecord
     end
   end
 
-  def current?(timestamp = Date.current.beginning_of_day)
+  def current?(timestamp = Date.today)
     ( total_duration_start.nil? || total_duration_start <= timestamp ) &&
       ( total_duration_end.nil? || timestamp <= total_duration_end ) &&
-      ( projekt_settings.find_by(key: 'projekt_feature.main.activate').value == 'active' )
+      active?
   end
 
   def comments_allowed?(current_user)
@@ -79,6 +85,14 @@ class Projekt < ApplicationRecord
   def level(counter = 1)
     return counter if self.parent.blank?
     self.parent.level(counter+1)
+  end
+
+  def breadcrumb_trail_ids(breadcrumb_trail_ids = [])
+    breadcrumb_trail_ids.unshift(self.id)
+
+    parent.breadcrumb_trail_ids(breadcrumb_trail_ids) if parent.present?
+
+    breadcrumb_trail_ids
   end
 
   def all_parent_ids(all_parent_ids = [])
@@ -110,6 +124,14 @@ class Projekt < ApplicationRecord
     end
 
     all_children_projekts
+  end
+
+  def active?
+    projekt_settings.find_by(key: 'projekt_feature.main.activate').value.present?
+  end
+
+  def archived?
+    active? && !total_duration_end.nil? && total_duration_end < Date.today
   end
 
   def active_children
@@ -290,5 +312,9 @@ class Projekt < ApplicationRecord
         projekt_id: self.id
       )
     end
+  end
+
+  def set_default_color
+    self.color ||= "#004a83"
   end
 end

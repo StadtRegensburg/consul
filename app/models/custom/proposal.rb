@@ -9,23 +9,27 @@ class Proposal < ApplicationRecord
   validates :projekt_id, presence: true, if: :require_a_projekt?
   validate :description_sanitized
 
+  scope :with_active_projekt,  -> { joins(:projekt).merge(Projekt.active) }
+
+  alias_attribute :projekt_phase, :proposal_phase
+
   def require_a_projekt?
     Setting["projekts.connected_resources"].present? ? true : false
   end
 
   def votable_by?(user)
-      user &&
+    user.present? &&
       !user.organization? &&
       user.level_two_or_three_verified? &&
       (
         Setting['feature.user.skip_verification'].present? ||
         projekt.blank? ||
-        proposal_phase && proposal_phase.geozone_restrictions.blank? ||
-        (proposal_phase && proposal_phase.geozone_restrictions.any? && proposal_phase.geozone_restrictions.include?(user.geozone) )
+        proposal_phase.present? && proposal_phase.geozone_restrictions.blank? ||
+        (proposal_phase.present? && proposal_phase.geozone_restrictions.any? && proposal_phase.geozone_restrictions.include?(user.geozone) )
       ) &&
       (
         projekt.blank? ||
-        proposal_phase && !proposal_phase.expired?
+        proposal_phase.present? && proposal_phase.currently_active?
       )
   end
 

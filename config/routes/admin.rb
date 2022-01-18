@@ -1,9 +1,9 @@
 namespace :admin do
   root to: "dashboard#index"
 
-  # custom routes
+  # custom projekt routes
   resources :projekts, only: [:index, :show, :create, :update, :destroy] do
-    resources :projekt_settings, only: [:update] do
+    resources :settings, controller: 'projekt_settings', only: [:update] do
       member do
         patch :update_default_projekt_footer_tab
       end
@@ -19,6 +19,17 @@ namespace :admin do
     end
     patch :update_map, to: "projekts#update_map"
   end
+
+  # custom deficiency reports routes
+  scope module: :deficiency_reports, path: :deficiency_reports, as: :deficiency_report do
+    resources :officers,    only: [:index, :create, :destroy] do
+      get :search, on: :collection
+    end
+    resources :categories,  only: %i[index new create edit update destroy]
+    resources :statuses,    only: %i[index new create edit update destroy]
+    resources :settings,    only: :index
+  end
+
 
   resources :organizations, only: :index do
     get :search, on: :collection
@@ -71,14 +82,14 @@ namespace :admin do
     end
   end
 
-  resources :budgets do
+  resources :budgets, except: [:create, :new] do
     member do
       patch :publish
       put :calculate_winners
     end
 
-    resources :groups, except: [:show], controller: "budget_groups" do
-      resources :headings, except: [:show], controller: "budget_headings"
+    resources :groups, except: [:index, :show], controller: "budget_groups" do
+      resources :headings, except: [:index, :show], controller: "budget_headings"
     end
 
     resources :budget_investments, only: [:index, :show, :edit, :update] do
@@ -89,7 +100,21 @@ namespace :admin do
       resources :progress_bars, except: :show, controller: "budget_investment_progress_bars"
     end
 
-    resources :budget_phases, only: [:edit, :update]
+    resources :budget_phases, only: [:edit, :update] do
+      member { patch :toggle_enabled }
+    end
+  end
+
+  namespace :budgets_wizard do
+    resources :budgets, only: [:create, :new, :edit, :update] do
+      resources :groups, only: [:index, :create, :edit, :update, :destroy] do
+        resources :headings, only: [:index, :create, :edit, :update, :destroy]
+      end
+
+      resources :phases, as: "budget_phases", only: [:index, :edit, :update] do
+        member { patch :toggle_enabled }
+      end
+    end
   end
 
   resources :milestone_statuses, only: [:index, :new, :create, :update, :edit, :destroy]
@@ -277,6 +302,11 @@ namespace :admin do
   resources :local_census_records
   namespace :local_census_records do
     resources :imports, only: [:new, :create, :show]
+  end
+
+  resource :machine_learning, controller: :machine_learning, only: [:show] do
+    post :execute, on: :collection
+    delete :cancel, on: :collection
   end
 end
 

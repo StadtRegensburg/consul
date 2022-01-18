@@ -56,7 +56,7 @@
   <%tags = @selected_tags&.select{ |tag| tag.kind == 'category' } %>
 
   <% if feature?(:map) %>
-    <div class="map inline">
+    <div class="map proposals-map">
       <% if @selected_parent_projekt %>
         <%= render_map(@selected_parent_projekt.map_location, "proposals", false, nil, @proposals_coordinates) %>
       <% else %>
@@ -133,7 +133,7 @@
             <%= t('custom.proposals.index.max_number_reached', max_number: Setting['extended_option.proposals.max_active_proposals_per_user']) %>
           </div>
         <% else %>
-          <% if @top_level_active_projekts.any? %>
+          <% if current_user.nil? || Projekt.top_level.selectable_in_selector(controller_name, current_user).any? %>
             <%= link_to t("proposals.index.start_proposal"), new_proposal_path(tags: tags.any? ? tags.map{|t| t.name} : nil, projekt: @selected_parent_projekt),
               class: "button expanded js-preselect-projekt" %>
           <% else %>
@@ -173,7 +173,7 @@
             <%= t('custom.proposals.index.max_number_reached', max_number: Setting['extended_option.proposals.max_active_proposals_per_user']) %>
           </div>
         <% else %>
-          <% if @top_level_active_projekts.any? %>
+          <% if current_user.nil? || Projekt.top_level.selectable_in_selector(controller_name, current_user).any? %>
             <%= link_to t("proposals.index.start_proposal"), new_proposal_path(tags: tags.any? ? tags.map{|t| t.name} : nil, projekt: @selected_parent_projekt),
               class: "button expanded js-preselect-projekt" %>
           <% else %>
@@ -191,7 +191,10 @@
         <% end %>
 
         <% if params[:retired].blank? %>
-          <%= render "shared/projekt_sidebar_filter/projekts_sidebar" %>
+
+          <% if extended_feature?('proposals.enable_projekt_filter') %>
+            <%= render "shared/projekt_sidebar_filter/projekts_sidebar" %>
+          <% end %>
           <% if show_affiliation_filter_in_sidebar? %>
             <%= render "shared/sidebar_filter/geozone_affiliations" %>
           <% end %>

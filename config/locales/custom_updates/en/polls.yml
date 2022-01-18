@@ -8,6 +8,16 @@ en:
     polls:
       index:
         projekts: Projects
+      poll:
+        participate_button: Participate now!
+        date:
+          from: from
+          to: to
+        days_left:
+          one: "1 more day"
+          other: "%{count} more days"
+        expires_today: Expires today
+        expired: Poll expired
       questions:
         answers:
           more_info: More info

@@ -61,8 +61,13 @@ module Abilities
 
       can :manage, Dashboard::Action
 
-      can [:index, :read, :new, :create, :update, :destroy, :calculate_winners], Budget
+      can [:index, :read, :new, :create, :update, :destroy], Budget
       can :publish, Budget, id: Budget.drafting.ids
+      can :calculate_winners, Budget, &:reviewing_ballots?
+      can :read_results, Budget do |budget|
+        budget.balloting_finished? && budget.has_winning_investments?
+      end
+
       can [:read, :create, :update, :destroy], Budget::Group
       can [:read, :create, :update, :destroy], Budget::Heading
       can [:hide, :admin_update, :toggle_selection], Budget::Investment
@@ -111,6 +116,21 @@ module Abilities
 
       can :manage, LocalCensusRecord
       can [:create, :read], LocalCensusRecords::Import
+
+
+      #custom
+      can [:manage], ::DeficiencyReport::Officer
+      can [:manage], ::DeficiencyReport::Category
+      can [:manage], ::DeficiencyReport::Status
+      can [:index, :show, :new, :create, :destroy, :update_status, :update_category, :update_officer, :update_official_answer, :vote], DeficiencyReport
+      can [:approve_official_answer], ::DeficiencyReport do |dr|
+        Setting['deficiency_reports.admins_must_approve_officer_answer'].present? &&
+          !dr.official_answer_approved? &&
+          dr.official_answer.present?
+      end
+
+
+      can [:order_questions], Poll::Question
     end
   end
 end

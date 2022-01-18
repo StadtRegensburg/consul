@@ -43,9 +43,9 @@
 
       createMarker = function(latitude, longitude, color, iconClass) {
         if ( !iconClass ) {
-          iconClass = '';
+          iconClass = 'circle';
         } else {
-          iconClass = ' ' + 'custom-icon' + ' ' + iconClass
+          iconClass = iconClass
         };
 
         var markerLatLng;
@@ -58,9 +58,9 @@
         });
 
         if ( color ) {
-          markerIcon.options.html = '<div class="map-icon' + iconClass + '" style="background-color: ' + color + '"></div>'
+          markerIcon.options.html = '<div class="map-icon icon-' + iconClass + '" style="background-color: ' + color + '"></div>'
         } else {
-          markerIcon.options.html = '<div class="map-icon' + iconClass + '"></div>'
+          markerIcon.options.html = '<div class="map-icon icon-' + iconClass + '"></div>'
         }
 
         marker = L.marker(markerLatLng, {
@@ -106,7 +106,15 @@
       };
       openMarkerPopup = function(e) {
 
-        var route = (process == "proposals" ? "/proposals/" + e.target.options.id + "/json_data" : "/investments/" + e.target.options.id + "/json_data");
+        var route
+        if ( process == "proposals" ) {
+          route = "/proposals/" + e.target.options.id + "/json_data"
+        } else if ( process == "deficiency-reports") {
+          route = "/deficiency_reports/" + e.target.options.id + "/json_data"
+        } else {
+          route = "/investments/" + e.target.options.id + "/json_data"
+        }
+
         marker = e.target;
           $.ajax(route, {
             type: "GET",
@@ -116,18 +124,23 @@
           }
         });
       };
+
       getPopupContent = function(data) {
-        if(process == "proposals") {
-    return "<a href='/proposals/" + data.proposal_id + "'>" + data.proposal_title + "</a>";
+        if (process == "proposals") {
+          return "<a href='/proposals/" + data.proposal_id + "'>" + data.proposal_title + "</a>";
+        } else if ( process == "deficiency-reports" ) {
+          return "<a href='/deficiency_reports/" + data.deficiency_report_id + "'>" + data.deficiency_report_title + "</a>";
         } else {
-    return "<a href='/budgets/" + data.budget_id + "/investments/" + data.investment_id + "'>" + data.investment_title + "</a>";
+          return "<a href='/budgets/" + data.budget_id + "/investments/" + data.investment_id + "'>" + data.investment_title + "</a>";
         }
       };
+
       mapCenterLatLng = new L.LatLng(mapCenterLatitude, mapCenterLongitude);
 
 
       map = L.map(element.id, {
-        gestureHandling: true
+        gestureHandling: true,
+        maxZoom: 18
       }).setView(mapCenterLatLng, zoom);
 
 
@@ -155,7 +168,7 @@
       map.addControl(search);
 
 
-      L.control.locate().addTo(map);
+      L.control.locate({icon: 'fa fa-map-marker'}).addTo(map);
 
 
       if (markerLatitude && markerLongitude && !addMarker) {
@@ -175,7 +188,15 @@
         addMarker.forEach(function(coordinates) {
           if (App.Map.validCoordinates(coordinates)) {
             marker = createMarker(coordinates.lat, coordinates.long, coordinates.color, coordinates.fa_icon_class);
-            marker.options.id = (process == "proposals" ? coordinates.proposal_id : coordinates.investment_id);
+
+            if (process == "proposals") {
+              marker.options.id = coordinates.proposal_id
+            } else if (process == "deficiency-reports") {
+              marker.options.id = coordinates.deficiency_report_id
+            } else {
+              marker.options.id = coordinates.investment_id
+            }
+
             marker.on("click", openMarkerPopup);
           }
         });

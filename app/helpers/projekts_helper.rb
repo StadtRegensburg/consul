@@ -1,4 +1,38 @@
 module ProjektsHelper
+  def breadcrumbs_links(base_projekt, divider = '/', home_page_link = true)
+    divider_tag = content_tag(:div, divider, class: 'breadcrumbs-divider')
+
+    links = base_projekt.breadcrumb_trail_ids.map do |projekt_id|
+      projekt = Projekt.find(projekt_id)
+
+      if !projekt.page.published? || (projekt == base_projekt && home_page_link)
+        content_tag(:div, projekt.title, class: 'breadcrumbs-item')
+      else
+        link_to projekt.page.title, projekt.page.url, class: 'breadcrumbs-item'
+      end
+    end
+
+    links.unshift(link_to t('custom.projekt.page.breadcrumbs.homepage'), root_path, class: 'breadcrumbs-item') if home_page_link
+
+    content_tag(:div, safe_join(links, divider_tag).html_safe, class: 'custom-breadcrumbs')
+  end
+
+  def projekt_bar_background_color(projekt)
+    if projekt.color.present?
+      projekt.color
+    else
+      '#FFFFFF'
+    end
+  end
+
+  def projekt_bar_text_color(projekt)
+    if projekt.color.present?
+      pick_text_color(projekt.color)
+    else
+      '#000000'
+    end
+  end
+
   def show_archived_projekts_in_sidebar?
     Setting["projekts.show_archived.sidebar"].present? ? true : false
   end
@@ -74,9 +108,13 @@ module ProjektsHelper
     date.strftime("%d.%m.%Y")
   end
 
-  def format_date_range(start_date=nil, end_date=nil)
+  def format_date_range(start_date=nil, end_date=nil, options={})
+    options[:separator] ||= '-'
+    options[:separator] = ' ' + options[:separator] + ' '
+    options[:prefix].present? ? options[:prefix] = options[:prefix] + ' ' : options[:prefix] = ''
+
     if start_date && end_date
-      "#{format_date(start_date)} - #{format_date(end_date)}"
+      options[:prefix] + format_date(start_date) + options[:separator] + format_date(end_date)
     elsif start_date && !end_date
       "Start #{format_date(start_date)}"
     elsif !start_date && end_date

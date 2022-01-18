@@ -1,0 +1,11 @@
+<div class='projekt-bar column' style="background-color:<%= projekt_bar_background_color(poll.projekt.top_parent) %>;color:<%= projekt_bar_text_color(poll.projekt.top_parent) %>" >
+  <div class='projekt-name'>
+    <%= breadcrumbs_links(poll.projekt, ">", false) %>
+  </div>
+
+  <div class='show-for-large'>
+    <%= format_date_range(poll.starts_at, poll.ends_at, separator: t('custom.polls.poll.date.to')) %>
+  </div>
+
+  <%= render partial: "polls/poll/participation_label", locals: { poll: poll } %>
+</div>

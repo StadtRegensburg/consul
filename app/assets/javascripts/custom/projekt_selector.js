@@ -30,6 +30,10 @@
         $nextProejektSelector.css('visibility', 'visible')
         $nextProejektSelector.attr('data-target', '#group-for-' + projektId)
         $nextProejektSelector.children('.projekt_group').hide()
+      }
+
+      // conditionally toggle next group to select
+      if ( !$selectedProjekt.data('projektSelectable') ) {
         $('#group-for-' + projektId).show();
       }
 
@@ -45,7 +49,6 @@
         $selectedProjekt.closest('.projekt-selector').css('color', '#FFF')
         App.ProjektSelector.addNextProjektPlaceholder($nextProejektSelector, "(optional)")
         App.ProjektSelector.replaceProjektMapOnProposalCreation($selectedProjekt)
-
       } else {
         App.ProjektSelector.resetSelectedProjectStyles();
         $('[id$="projekt_id"]').val('')
@@ -87,8 +90,14 @@
 
     preselectProjekt: function(projektId) {
       // get preselcted projekt id
+      var selectedProjektId;
       var url = new URL(window.location.href);
-      var selectedProjektId = url.searchParams.get('projekt');
+      if (url.searchParams.get('projekt')) {
+        selectedProjektId = url.searchParams.get('projekt');
+      } else {
+        selectedProjektId = $('[id$="projekt_id"]').val();
+      }
+
 
       // get ordered array of parent projekts
       var projektIdsToShow = [selectedProjektId]
@@ -107,6 +116,57 @@
       });
     },
 
+
+    //accessibility functions
+
+    accessibilityProjektSelector: function(selector) {
+      // if group hidden and enter or down arrow pressed - toggle(show) grooup
+      if ( !$(selector).children('.projekt_group:visible').length && (event.which == 13 || event.which == 40) ) {
+        App.ProjektSelector.toggleProjektGroup(selector);
+      }
+
+      // if group visible and down arrow pressed - jump to grooup
+      if ( $(selector).children('.projekt_group:visible').length && event.which == 40 ) {
+        $(selector).children('.projekt_group:visible').first().find('.js-select-projekt').first().focus();
+      }
+
+      // if group visible and enter or up arrow pressed - toggle(hide) group
+      if ( $(selector).children('.projekt_group:visible').length && (event.which == 13 || event.which == 38) ) {
+        App.ProjektSelector.toggleProjektGroup(selector);
+      }
+
+      if ( event.which == 37 ) { // left arrow click
+        $(selector).prevAll('.projekt-selector').first().focus();
+        $(selector).prevAll('.projekt-selector').first().click();
+        $(selector).children('.projekt_group:visible').hide();
+      }
+
+      if ( event.which == 39 ) { // right arrow click
+        $(selector).nextAll('.projekt-selector').first().focus()
+        $(selector).nextAll('.projekt-selector').first().click()
+        $(selector).children('.projekt_group:visible').hide();
+      }
+    },
+
+    accessibilityProjekt: function(projekt) {
+      if ( event.which == 13 ) { // enter pressed
+        $(projekt).click();
+        $(projekt).closest('.projekt-selector').nextAll('.projekt-selector').first().focus();
+      }
+
+      if ( event.which == 40 ) { // down button pressed
+        $(projekt).next().focus();
+      }
+
+      if ( event.which == 38 ) { // up button pressed
+        if ( $(projekt).prev().length ) {
+          $(projekt).prev().focus();
+        } else {
+          $(projekt).closest('.projekt-selector').focus();
+        }
+      }
+    },
+
     initialize: function() {
       $("body").on("click", ".js-toggle-projekt-group", function(event) {
         App.ProjektSelector.toggleProjektGroup(this);
@@ -116,7 +176,28 @@
         App.ProjektSelector.selectProjekt($(this));
       });
 
+      $(".js-new-resource").on("click", function(event) {
+        if ( $(event.target).closest('.js-toggle-projekt-group').length == 0 ) {
+          $('.projekt_group').hide();
+        }
+      });
+
       App.ProjektSelector.preselectProjekt();
+
+      // Accessibility fixes
+      $('body').on('keyup', '.js-toggle-projekt-group', function(event) {
+        if ( [13, 36, 37, 38, 39, 40].includes(event.which) ) {
+          event.stopPropagation();
+          App.ProjektSelector.accessibilityProjektSelector(this);
+        }
+      });
+
+      $('body').on('keyup', '.js-select-projekt', function(event) {
+        if ( event.which === 13 || event.which === 38 || event.which === 40 ) {
+          event.stopPropagation();
+          App.ProjektSelector.accessibilityProjekt(this);
+        }
+      });
     }
   };
 }).call(this);

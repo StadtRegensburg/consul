@@ -40,8 +40,8 @@ class DebatesController < ApplicationController
 
     @selected_tags = all_selected_tags
 
-    @top_level_active_projekts = Projekt.top_level.active.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.has_active_phase?('debates') || p.debates.any? } }
-    @top_level_archived_projekts = Projekt.top_level.archived.select{ |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.has_active_phase?('debates') || p.debates.any? } }
+    @top_level_active_projekts = Projekt.top_level.selectable_in_sidebar_active('debates')
+    @top_level_archived_projekts = Projekt.top_level.archived.selectable_in_sidebar_archived('debates')
   end
 
   def show
@@ -59,6 +59,16 @@ class DebatesController < ApplicationController
 
     @selected_geozone_restriction = params[:geozone_restriction] || 'no_restriction'
     @restricted_geozones = (params[:restricted_geozones] || '').split(',').map(&:to_i)
+  end
+
+  def flag
+    Flag.flag(current_user, @debate)
+    redirect_to @debate
+  end
+
+  def unflag
+    Flag.unflag(current_user, @debate)
+    redirect_to @debate
   end
 
   private

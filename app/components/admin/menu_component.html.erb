@@ -33,11 +33,19 @@
     </li>
   <% end %>
 
-  <li class="section-title <%= "is-active" if controller_name == "projekts" %>">
-    <%= link_to admin_projekts_path, data: { turbolinks: "false" } do %>
-      <span class="icon-projekts"></span>
-      <strong><%= t("custom.admin.menu.projekts") %></strong>
-    <% end %>
+  <li class="<%= "is-active" if controller_name == "projekts" %>">
+    <%= link_to t("custom.admin.menu.projekts"), admin_projekts_path, class: 'projekts-link', data: { turbolinks: "false" } %>
+  </li>
+
+  <li>
+    <a href="#" class="deficiency-reports-link"><%= t("custom.admin.menu.deficiency_reports_title") %></a>
+    <%= link_list(
+      deficiency_report_officers,
+      deficiency_report_categories,
+      deficiency_report_statuses,
+      deficiency_report_settings,
+      id: "deficiency_reports_menu", class: ("is-active" if deficiency_reports?)
+    ) %>
   </li>
 
   <li>
@@ -133,4 +141,9 @@
       class: ("is-active" if dashboard?)
     ) %>
   </li>
+  <% if ::MachineLearning.enabled? %>
+    <li class="<%= "is-active" if controller_name == "machine_learning" %>">
+      <%= link_to t("admin.menu.machine_learning"), admin_machine_learning_path, class: "ml-link" %>
+    </li>
+  <% end %>
 </ul>
