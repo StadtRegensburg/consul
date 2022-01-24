@@ -29,4 +29,10 @@ class DeficiencyReport::Status < ApplicationRecord
   def safe_to_destroy?
     !deficiency_reports.exists?
   end
+
+  def self.order_statuses(ordered_array)
+    ordered_array.each_with_index do |status_id, order|
+      find(status_id).update_column(:given_order, (order + 1))
+    end
+  end
 end
