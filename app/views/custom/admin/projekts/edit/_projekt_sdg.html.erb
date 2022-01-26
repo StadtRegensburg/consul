@@ -1,0 +1,7 @@
+SDG
+
+<%= form_for(@projekt, url: admin_projekt_path, as: :projekt) do |f| %>
+  before
+  <%= render SDG::RelatedListSelectorComponent.new(f) %>
+  after
+<% end %>
