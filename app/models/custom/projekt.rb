@@ -5,6 +5,7 @@ class Projekt < ApplicationRecord
   include Mappable
   include ActiveModel::Dirty
   include SDG::Relatable
+  include Taggable
 
   has_many :children, class_name: 'Projekt', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Projekt', optional: true

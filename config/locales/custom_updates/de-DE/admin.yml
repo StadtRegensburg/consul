@@ -145,6 +145,10 @@ de:
             name: Projektfunktionen
             select_an_element: auswählen
             sidebar_settings: Seitenleiste
+          projekt_sdg_tab:
+            name: 'SDGs & Tags'
+            sdgs: SDGs
+            tags: Tags
           projekt_status: Projektstatus
           setting_indicator:
             'no': Nein
