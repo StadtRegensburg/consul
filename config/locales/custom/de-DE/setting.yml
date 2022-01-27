@@ -144,8 +144,8 @@ de:
           projekt_page_sharing_description: Aktivieren Sie die Teilen-Funktion in der rechten Seitenleiste der Projektseite
           show_phases_in_projekt_page_sidebar: Projektphasen
           show_phases_in_projekt_page_sidebar_description: Aktivieren Sie die Projektphasen in der rechten Seitenleiste der Projektseite
-          show_total_duration_in_projekts_page_sidebar: Projektinformation
-          show_total_duration_in_projekts_page_sidebar_description: Zeigt das Projektverzeichnis in der rechten Seitenleiste der Projektseiten an
+          show_information_in_projekts_page_sidebar: Projektinformation
+          show_information_in_projekts_page_sidebar_description: Zeigt das Projektverzeichnis in der rechten Seitenleiste der Projektseiten an
           show_navigator_in_projekts_page_sidebar: Projektverzeichnis
           show_navigator_in_projekts_page_sidebar_description: Zeigt die Projektverzeichnis in der rechten Seitenleiste der Projektseiten an
         footer:

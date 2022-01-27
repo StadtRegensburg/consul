@@ -24,6 +24,21 @@ span.replace-highlighted {
 
 // Sidebar
 
+table.sidebar {
+  font-size: 14px;
+
+  tbody {
+    border: none;
+  }
+
+  tr td {
+    padding: 0;
+    padding-right: 0.5rem;
+    min-width: 80px;
+    vertical-align: top;
+  }
+}
+
 .projekt-phase {
   margin-bottom: 1em;
   line-height: 1.75;
@@ -92,7 +107,6 @@ span.geo-affiliation-icon:before {
   font-family: "Font Awesome 5 Free";
   position: absolute;
   left: -23px;
-  color: $brand;
 }
 
 span.time-icon:before {
