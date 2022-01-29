@@ -1,24 +1,24 @@
-<nav class="<%= "legislation-process-list" if true %>">
+<nav class="margin-bottom <%= "legislation-process-list" if true %>">
   <div class="row">
     <div class="small-12 column">
       <% if true %>
-        <h3><%= t("legislation.processes.shared.key_dates") %></h3>
+        <h3><%= "Beteiligung" %></h3>
       <% end %>
 
-      <ul class="key-dates">
-        <% if projekt_feature?(projekt, 'footer.show_activity_in_projekt_footer') %>
-          <li <%= "class=is-active" if true %>>
-            <%= link_to "#tab-activities" do %>
-              <h4><%= t("legislation.processes.shared.debate_dates") %></h4>
+      <ul id='filter-subnav' class='key-dates'>
+        <% if true %>
+          <li id="filter-subnav-debates" class="is-active">
+            <%= link_to debates_footer_tab_page_path(projekt), remote: true do %>
+              <h4><%= "Debates" %></h4>
               <span><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
             <% end %>
           </li>
         <% end %>
 
-        <% if projekt_feature?(projekt, 'footer.show_comments_in_projekt_footer') %>
-          <li <%= "class=is-active" if false  %>>
-            <%= link_to "#tab-comments" do %>
-              <h4><%= t("legislation.processes.shared.proposals_dates") %></h4>
+        <% if true %>
+          <li id='filter-subnav-proposals' >
+            <%= link_to proposals_footer_tab_page_path(projekt), remote: true do %>
+              <h4><%= "Proposals" %></h4>
               <span><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
             <% end %>
           </li>
@@ -27,77 +27,3 @@
     </div>
   </div>
 </nav>
-
-
-
-
-<ul class="tabs"
-    id="projekt-footer-tabs"
-    data-deep-link="true"
-    data-update-history="true"
-    data-deep-link-smudge="true"
-    data-deep-link-smudge-delay="500"
-    data-tabs>
-
-  <% if projekt_feature?(projekt, 'footer.show_activity_in_projekt_footer') %>
-    <li class="tabs-title <%= active_tab_in_projekt_footer?(projekt, 'footer.show_activity_in_projekt_footer') %>">
-      <%= link_to "#tab-activities" do %>
-        <h3>
-          <%= t("custom.projekt.footer.show.activities_tab") %>
-        </h3>
-      <% end %>
-    </li>
-  <% end %>
-
-  <% if projekt_feature?(projekt, 'footer.show_comments_in_projekt_footer') %>
-    <li class="tabs-title <%= active_tab_in_projekt_footer?(projekt, 'footer.show_comments_in_projekt_footer') %>">
-      <%= link_to "#tab-comments" do %>
-        <h3>
-          <%= t("custom.projekt.footer.show.comments_tab") %>
-          <span class="js-comments-count">(<%= projekt.comments.count %>)</span>
-        </h3>
-      <% end %>
-    </li>
-  <% end %>
-
-  <% if projekt_feature?(projekt, 'footer.show_notifications_in_projekt_footer') %>
-    <li class="tabs-title <%= active_tab_in_projekt_footer?(projekt, 'footer.show_notifications_in_projekt_footer') %>">
-      <%= link_to "#tab-notifications" do %>
-        <h3>
-          <%= t("custom.projekt.footer.show.notifications_tab") %>
-          (<%= projekt.projekt_notifications.count %>)
-        </h3>
-      <% end %>
-    </li>
-  <% end %>
-
-  <% if projekt_feature?(projekt, 'footer.show_milestones_in_projekt_footer') %>
-    <li class="tabs-title <%= active_tab_in_projekt_footer?(projekt, 'footer.show_milestones_in_projekt_footer') %>">
-      <%= link_to "#tab-milestones" do %>
-        <h3>
-          <%= t("custom.projekt.footer.show.milestones_tab") %>
-          (<%= projekt.milestones.count %>)
-        </h3>
-      <% end %>
-    </li>
-  <% end %>
-
-  <% if projekt_feature?(projekt, 'footer.show_newsfeed_in_projekt_footer') &&
-        ProjektSetting.find_by(projekt: projekt, key: "projekt_newsfeed.id").value.present? &&
-        ProjektSetting.find_by(projekt: projekt, key: "projekt_newsfeed.type").value.present? %>
-      <li class="tabs-title <%= active_tab_in_projekt_footer?(projekt, 'footer.show_newsfeed_in_projekt_footer') %>" id='js-reload-newsfeed'>
-      <%= link_to "#tab-newsfeed" do %>
-        <h3>
-          <%= t("custom.projekt.footer.show.newsfeed_tab") %>
-        </h3>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-
-<script>
-  $('#js-reload-newsfeed').on('click', function() {
-    $('#newsfeed-placeholder').html('');
-    $("#newsfeed-placeholder" ).load(window.location.href + " #newsfeed-placeholder" );
-  } );
-</script>

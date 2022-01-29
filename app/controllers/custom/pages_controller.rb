@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   include CommentableActions
   include HasOrders
   include CustomHelper
+  include ProposalsHelper
 
   has_orders %w[most_voted newest oldest], only: :show
 
@@ -52,6 +53,32 @@ class PagesController < ApplicationController
     end
   rescue ActionView::MissingTemplate
     head 404, content_type: "text/html"
+  end
+
+  def debates_footer_tab
+    @debates = Debate.last(3)
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/debates_footer_tab" }
+    end
+  end
+
+  def proposals_footer_tab
+    @proposals = Proposal.
+      published.
+      not_archived.
+      not_retired.
+      joins(:projekt).merge(Projekt.activated)
+
+    set_proposal_votes(@proposals)
+
+    @proposals_coordinates = all_proposal_map_locations(@proposals)
+
+    @proposals = @proposals.page(params[:page]) #.send("sort_by_#{@current_order}")
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/proposals_footer_tab" }
+    end
   end
 
   private

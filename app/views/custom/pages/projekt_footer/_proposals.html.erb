@@ -1,0 +1,22 @@
+<div class='margin-bottom'>
+  <%= render "proposals/map" %>
+</div>
+
+<div class='row'>
+
+
+	<div id="proposals-sidebar"  class="small-12 medium-3 column">
+		<aside class="margin-bottom">
+      Sidebar
+		</aside>
+	</div>
+
+  <div id="proposals" class='proposals-list small-12 medium-9 column'>
+		<% if @proposals.any? || current_user.blank? %>
+			<%= render partial: "proposals/proposal", collection: @proposals %>
+		<% else %>
+			<%= empty_recommended_proposals_message_text(current_user) %>
+		<% end %>
+		<%= paginate @proposals, remote: true %>
+	</div>
+</div>
