@@ -7,11 +7,13 @@
 
 	<div id="proposals-sidebar"  class="small-12 medium-3 column">
 		<aside class="margin-bottom">
-      Sidebar
+      <%= render partial: "shared/projekt_sidebar_filter/projekts_sidebar", locals: { resources_name: 'proposals' } %>
 		</aside>
 	</div>
 
   <div id="proposals" class='proposals-list small-12 medium-9 column'>
+    <%= render "shared/order_links", i18n_namespace: "proposals.index" %>
+
 		<% if @proposals.any? || current_user.blank? %>
 			<%= render partial: "proposals/proposal", collection: @proposals %>
 		<% else %>

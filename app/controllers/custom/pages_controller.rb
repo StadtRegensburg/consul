@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   include ProposalsHelper
 
   has_orders %w[most_voted newest oldest], only: :show
+  has_orders ->(c) { Proposal.proposals_orders(c.current_user) }, only: :proposals_footer_tab
 
   def show
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
@@ -64,17 +65,29 @@ class PagesController < ApplicationController
   end
 
   def proposals_footer_tab
-    @proposals = Proposal.
+    @current_projekt = Projekt.find(params[:id])
+    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt)
+
+    @current_order = params[:order] || @valid_orders.first
+    @valid_orders.delete("archival_date")
+
+    @all_resources = Proposal.
       published.
       not_archived.
       not_retired.
+      where(projekt_id: scoped_projekt_ids).
       joins(:projekt).merge(Projekt.activated)
 
-    set_proposal_votes(@proposals)
+    take_by_projekts
 
-    @proposals_coordinates = all_proposal_map_locations(@proposals)
+    set_proposal_votes(@all_resources)
 
-    @proposals = @proposals.page(params[:page]) #.send("sort_by_#{@current_order}")
+    @proposals_coordinates = all_proposal_map_locations(@all_resources)
+
+    @proposals = @all_resources.page(params[:page]).send("sort_by_#{@current_order}")
+
+    @top_level_active_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_current('proposals')
+    @top_level_archived_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_expired('proposals')
 
     respond_to do |format|
       format.js { render "pages/projekt_footer/proposals_footer_tab" }
@@ -90,5 +103,12 @@ class PagesController < ApplicationController
   def resource_name
     "page"
   end
+
+  def take_by_projekts
+    if params[:projekts].present?
+      @all_resources = @all_resources.where(projekt_id: params[:projekts].split(',')).distinct
+    end
+  end
+
 
 end
