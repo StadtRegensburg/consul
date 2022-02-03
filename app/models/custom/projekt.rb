@@ -111,7 +111,8 @@ class Projekt < ApplicationRecord
 
   def expired?(timestamp = Date.today)
     activated? &&
-      ( total_duration_end.blank? || total_duration_end < timestamp )
+      total_duration_end.present? &&
+      total_duration_end < timestamp
   end
 
   def activated_children
