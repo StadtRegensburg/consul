@@ -3,7 +3,7 @@
 
   <h2 class="sidebar-title projekt-tag-chip-projekt projekt-tag-chip-icon"><%= t("custom.projekts.sidebar_filter.title") %></h2>
 
-  <div id='filter-projekts-all'>
+  <div id='filter-projekts-all' data-resources-name=<%= @current_projekt_footer_tab || controller_name %>>
 
     <% if show_archived_projekts_in_sidebar? && @top_level_active_projekts.any? && @top_level_archived_projekts.any? %>
       <div class='sidebar-projekt-group-name'>

@@ -10,6 +10,44 @@
       });
 
       $label.children('.toggle-arrow').attr('aria-expanded', $label.attr('aria-expanded'))
+
+      App.Projekts.updateToggledProjektsList($label);
+    },
+
+    updateToggledProjektsList: function($label) {
+      var resourceName = App.Projekts.selectedProjektIdsKeyName();
+			var toggledProjektIds;
+
+      if ( window.localStorage.getItem(resourceName) ) {
+				toggledProjektIds = App.Projekts.removeDuplicateValuesFromArray( window.localStorage.getItem(resourceName).split(',') );
+      } else {
+        toggledProjektIds = [];
+      }
+
+      var labelToggleState = $label.children('.toggle-arrow').attr('aria-expanded')
+
+      if ( labelToggleState === 'true' ) {
+        toggledProjektIds.push( $label.data('projekt-id') );
+      } else {
+        toggledProjektIds = App.Projekts.removeElementFromArray(toggledProjektIds, $label.data('projekt-id') );
+      }
+
+debugger
+      window.localStorage.setItem(resourceName, toggledProjektIds)
+    },
+
+    removeDuplicateValuesFromArray: function(arr) {
+      return arr.filter(function(elem, pos, arr) {
+        return arr.indexOf(elem) == pos;
+      });
+    },
+
+    removeElementFromArray: function(arr, el) {
+			var index = arr.indexOf(el);
+			if (index !== -1) {
+				arr.splice(index, 1);
+			}
+      return arr;
     },
 
     updateProjektFilterToggleIds: function($label) {
@@ -234,62 +272,22 @@
 
     },
 
-    setDefaultToggleProjektsIds: function() {
-      if (
-        !window.localStorage.getItem('proposalsProjektFilterToggleIds') ||
-        !window.localStorage.getItem('debatesProjektFilterToggleIds') ||
-        !window.localStorage.getItem('pollsProjektFilterToggleIds')
-      ) {
-
-        var topActiveProjekts, topActiveProjektIds, topArchivedProjekts, topArchivedProjektIds
-
-        if ( document.querySelector("meta[name='expand-active-projekts']").getAttribute("content") === 'active' ) {
-          topActiveProjekts = $('#filter-projekts-active > ul > li > label > input')
-          topActiveProjektIds = $.map(topActiveProjekts, function(n) { return $(n).val() })
-        } else {
-          topActiveProjektIds = new Array()
-        }
-
-        if ( document.querySelector("meta[name='expand-archived-projekts']").getAttribute("content") === 'active' ) {
-          topArchivedProjekts = $('#filter-projekts-archived > ul > li > label > input')
-          topArchivedProjektIds = $.map(topArchivedProjekts, function(n) { return $(n).val() })
-        } else {
-          topArchivedProjektIds = new Array()
-        }
-
-        var topProjektIds = topActiveProjektIds.concat(topArchivedProjektIds).join(',')
-      }
-
-      if ( topProjektIds && !window.localStorage.getItem('proposalsProjektFilterToggleIds') ) {
-        window.localStorage.setItem('proposalsProjektFilterToggleIds', topProjektIds)
-      }
-
-      if ( topProjektIds && !window.localStorage.getItem('debatesProjektFilterToggleIds') ) {
-        window.localStorage.setItem('debatesProjektFilterToggleIds', topProjektIds)
-      }
-
-      if ( topProjektIds && !window.localStorage.getItem('pollsProjektFilterToggleIds') ) {
-        window.localStorage.setItem('pollsProjektFilterToggleIds', topProjektIds)
+    selectedProjektIdsKeyName: function() {
+      if ( document.getElementById('filter-projekts-all') ) {
+        return document.getElementById('filter-projekts-all').dataset.resourcesName + 'ProjektFilterToggleIds'
+      } else {
+        return ''
       }
     },
 
     toggleProjektsInSidebarFilter: function() {
-      var resourceName;
-      if (window.location.href.includes('proposals')) {
-        resourceName = 'proposals' + 'ProjektFilterToggleIds'
-      } else if (window.location.href.includes('debates')) {
-        resourceName = 'debates' + 'ProjektFilterToggleIds'
-      } else if (window.location.href.includes('polls')) {
-        resourceName = 'polls' + 'ProjektFilterToggleIds'
-      }
-
+      var resourceName = App.Projekts.selectedProjektIdsKeyName();
 
       var currentUrl = new URL(window.location.href);
 
       if (currentUrl.searchParams.get('projekts') && currentUrl.searchParams.get('projekts').split(',').length == 1 ) {
         var filteredProjektId = currentUrl.searchParams.get('projekts').split(',')[0];
       }
-
 
       $('#filter-projekts-all').find('li').each( function() {
         var projektId = $(this).children('label').children('input').val()
@@ -418,7 +416,6 @@
         window.localStorage.setItem(resourceName, projektIds);
       });
 
-      App.Projekts.setDefaultToggleProjektsIds();
       App.Projekts.toggleProjektsInSidebarFilter();
 
       $("body").on("click", ".js-quick-projekt-update", function(event) {
