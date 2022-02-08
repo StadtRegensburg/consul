@@ -9,8 +9,8 @@
         return attr == 'true' ? 'false' : 'true'
       });
 
-      $label.children('.toggle-arrow').attr('aria-expanded', $label.attr('aria-expanded'))
 
+      $label.children('.toggle-arrow').attr('aria-expanded', $label.attr('aria-expanded'))
       App.Projekts.updateToggledProjektsList($label);
     },
 
@@ -29,10 +29,10 @@
       if ( labelToggleState === 'true' ) {
         toggledProjektIds.push( $label.data('projekt-id') );
       } else {
-        toggledProjektIds = App.Projekts.removeElementFromArray(toggledProjektIds, $label.data('projekt-id') );
+        var projektIdToRemove = $label.data('projekt-id').toString();
+        toggledProjektIds = App.Projekts.removeElementFromArray(toggledProjektIds, projektIdToRemove );
       }
 
-debugger
       window.localStorage.setItem(resourceName, toggledProjektIds)
     },
 
@@ -48,36 +48,6 @@ debugger
 				arr.splice(index, 1);
 			}
       return arr;
-    },
-
-    updateProjektFilterToggleIds: function($label) {
-      var resourceName;
-      if (window.location.href.includes('proposals')) {
-        resourceName = 'proposals' + 'ProjektFilterToggleIds'
-      } else if (window.location.href.includes('debates')) {
-        resourceName = 'debates' + 'ProjektFilterToggleIds'
-      } else if (window.location.href.includes('polls')) {
-        resourceName = 'polls' + 'ProjektFilterToggleIds'
-      }
-
-      var currentToggleProjekts = window.localStorage.getItem(resourceName)
-      var currentToggleProjektIds;
-
-      if (currentToggleProjekts) {
-        currentToggleProjektIds = currentToggleProjekts.split(',')
-      } else {
-        currentToggleProjektIds = [];
-      }
-
-      var toggledProjektId = $label.find('input').first().val()
-
-      if ( !currentToggleProjektIds.includes(toggledProjektId) ) {
-        currentToggleProjektIds.push(toggledProjektId)
-      } else {
-        currentToggleProjektIds.splice(currentToggleProjektIds.indexOf(toggledProjektId), 1);
-      }
-
-      window.localStorage.setItem(resourceName, currentToggleProjektIds.join(','));
     },
 
     formNewFilterProjektsRequest: function($checkbox) {
@@ -401,7 +371,6 @@ debugger
       $("body").on("click", ".js-icon-toggle-child-projekts", function(event) {
         var $label = $(this).parent();
         App.Projekts.toggleChildrenInSidebar($label);
-        App.Projekts.updateProjektFilterToggleIds($label)
       });
 
       $("body").on("click", ".js-toggle-edit-projekt-info", function(event) {
