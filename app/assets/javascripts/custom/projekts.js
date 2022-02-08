@@ -346,19 +346,6 @@
             $(this).prop('checked', false)
           }
         )
-
-        window.localStorage.removeItem('proposalsProjektFilterToggleIds')
-        window.localStorage.removeItem('debatesProjektFilterToggleIds')
-        window.localStorage.removeItem('pollsProjektFilterToggleIds')
-
-        App.Projekts.setDefaultToggleProjektsIds();
-
-        var url = new URL(window.location.href);
-        url.searchParams.delete('projekts')
-        window.history.pushState('', '', url)
-        window.location.href = url;
-
-
       });
 
       $("body").on("click", ".js-projekt-tag-filter-link", function(event) {

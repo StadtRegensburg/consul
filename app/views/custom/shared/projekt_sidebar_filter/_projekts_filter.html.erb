@@ -30,8 +30,45 @@
       <% end %>
     </li>
 
-    <%= render partial: "shared/projekt_sidebar_filter/projekts_filter", locals: { projekts: preselected_children, parent_projekt: projekt, group: group, resources_name: resources_name } %>
+    <%= render partial: "shared/projekt_sidebar_filter/projekts_filter", locals: {f: f, projekts: preselected_children, parent_projekt: projekt, group: group, resources_name: resources_name } %>
 
   </ul>
 
+<% end %>
+
+<%= f.collection_check_boxes :filtered_projekt_ids, projekts, :id, :name do |b| %>
+
+  <% if group == 'active' %>
+    <% preselected_children = b.object.children.selectable_in_sidebar_current(resources_name) %>
+  <% elsif group == 'archived' %>
+    <% preselected_children = b.object.children.selectable_in_sidebar_expired(resources_name) %>
+  <% end %>
+
+  <% label_class =  ( @selected_projekts_ids && b.object.id.to_s.in?(@selected_projekts_ids) ) ? 'label-selected' : 'label_regular' %>
+  <% checkbox_checked = @selected_projekts_ids && b.object.id.to_s.in?(@selected_projekts_ids)  %>
+
+  <ul aria-live="polite" >
+    <li data-projekt-id=<%= b.object.id %> >
+      <%= label_tag dom_id(b.object), class: label_class do %>
+        <%= check_box_tag dom_id(b.object), b.object.id, checkbox_checked, { class: 'js-filter-projekt', tabindex: "-1" }  %>
+        <i class="projekt-filter-icon fas fa-<%= b.object.icon || "circle" %>" <%= "style=color:#{b.object.color}" if b.object.color.present? %> ></i>
+        <span aria-label="<%= t('custom.links.projekts_filter.projekt_name', projekt_name: b.object.page.title ) %>" ><%= b.object.page.title %></span>
+        <% resource_count = @all_resources.where(projekt: b.object.selectable_tree_ids(resources_name, group)).count  %>
+        <span aria-label="<%= t('custom.links.projekts_filter.resource_count', resource_count: resource_count) %>"> <%= "(#{resource_count})" %> </span>
+        <span class="checkmark focusable js-prevent-key-scroll js-access-toggle-projekt-filter-checkbox" tabindex="0"></span>
+      <% end %>
+
+      <% if preselected_children.any? %>
+        <span class='js-icon-toggle-child-projekts toggle-arrow focusable js-prevent-key-scroll'
+              role="button"
+              tabindex="0"
+              aria-expanded="false"
+              aria-label="<%= t('custom.links.projekts_filter.arrow_label') %>" >
+        </span>
+      <% end %>
+      <%= b.label { b.check_box + b.text} %>
+      <%= f.collection_check_boxes :filtered_projekt_ids, preselected_children, :id, :name do |b| %>
+      <% end %>
+    </li>
+  </ul>
 <% end %>

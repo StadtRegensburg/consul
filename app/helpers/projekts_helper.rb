@@ -33,6 +33,10 @@ module ProjektsHelper
     end
   end
 
+  def projekt_filter_resources_name
+    @current_projekt_footer_tab || controller_name
+  end
+
   def show_archived_projekts_in_sidebar?
     Setting["projekts.show_archived.sidebar"].present? ? true : false
   end
