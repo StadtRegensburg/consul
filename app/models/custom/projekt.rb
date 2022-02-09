@@ -42,7 +42,7 @@ class Projekt < ApplicationRecord
                          where( 'act.key': 'projekt_feature.main.activate', 'act.value': 'active' ) }
 
   scope :current, ->(timestamp = Date.today) { activated.
-                                               where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today ). 
+                                               where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today ).
                                                where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today) }
   scope :expired, ->(timestamp = Date.today) { activated.
                                                where( "total_duration_end < ?", Date.today) }
@@ -65,6 +65,11 @@ class Projekt < ApplicationRecord
   scope :top_level_sidebar_current, ->(controller_name) { top_level.selectable_in_sidebar_current(controller_name) }
   scope :top_level_sidebar_expired, ->(controller_name) { top_level.selectable_in_sidebar_expired(controller_name) }
 
+  scope :by_my_posts, -> (my_posts_switch, current_user_id) {
+    return unless my_posts_switch
+
+    where(author_id: current_user_id)
+  }
 
 
   def update_page
@@ -280,7 +285,7 @@ class Projekt < ApplicationRecord
       preceding_sibling = siblings.find_by(order_number: preceding_sibling_order_number)
 
       preceding_sibling.update(order_number: order_number)
-      self.update(order_number: preceding_sibling_order_number)     
+      self.update(order_number: preceding_sibling_order_number)
     end
   end
 
@@ -290,7 +295,7 @@ class Projekt < ApplicationRecord
       following_sibling = siblings.find_by(order_number: following_sibling_order_number)
 
       following_sibling.update(order_number: order_number)
-      self.update(order_number: following_sibling_order_number)     
+      self.update(order_number: following_sibling_order_number)
     end
   end
 
