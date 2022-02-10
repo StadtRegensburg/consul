@@ -67,6 +67,7 @@ class PagesController < ApplicationController
   def proposals_footer_tab
     @current_projekt = Projekt.find(params[:id])
 
+    @current_projekt_footer_tab = "proposals"
     @current_projekt_footer_tab = "footer#{@current_projekt.id}Proposals"
 
     scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt)
