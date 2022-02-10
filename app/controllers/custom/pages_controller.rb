@@ -65,7 +65,6 @@ class PagesController < ApplicationController
   end
 
   def proposals_footer_tab
-    byebug
     @current_projekt = Projekt.find(params[:id])
 
     @current_projekt_footer_tab = "footer#{@current_projekt.id}Proposals"
