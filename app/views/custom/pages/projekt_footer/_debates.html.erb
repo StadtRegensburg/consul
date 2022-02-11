@@ -1,1 +1,14 @@
-Debates
+<div class='row'>
+  <div id="debates-sidebar" class="small-12 medium-3 column">
+    <aside class="margin-bottom">
+      <%= render partial: 'debates/new_button' %>
+
+      <%= render Sidebar::ProjektsFilterComponent.new(@top_level_active_projekts, @top_level_archived_projekts, @all_resources, @current_projekt_footer_tab, @current_projekt) %>
+    </aside>
+  </div>
+
+  <div id="debates" class="debates-list small-12 medium-9 column">
+    <%= render "shared/order_links", i18n_namespace: "debates.index" %>
+  </div>
+
+</div>
