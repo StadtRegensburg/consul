@@ -7,8 +7,8 @@
 
       <ul id='filter-subnav' class='key-dates'>
         <% if true %>
-          <li id="filter-subnav-debates" class="is-active">
-            <%= link_to debates_footer_tab_page_path(projekt), remote: true do %>
+          <li id="filter-subnav-debates" class="is-active page-subnav-tab">
+            <%= link_to debates_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
               <h4><%= "Debates" %></h4>
               <span><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
             <% end %>
@@ -16,8 +16,8 @@
         <% end %>
 
         <% if true %>
-          <li id='filter-subnav-proposals' >
-            <%= link_to proposals_footer_tab_page_path(projekt), remote: true do %>
+          <li id='filter-subnav-proposals' class='page-subnav-tab'>
+            <%= link_to proposals_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
               <h4><%= "Proposals" %></h4>
               <span><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
             <% end %>

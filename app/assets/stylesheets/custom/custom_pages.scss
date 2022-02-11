@@ -172,3 +172,30 @@ li.projekt-navigator[aria-expanded="false"] {
     transform: rotate(0deg);
   }
 }
+
+
+// Footer
+
+#footer-content.page-tab-loader {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    color: red;
+    content: "\f110";
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    animation: rotation 2s infinite linear;
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
