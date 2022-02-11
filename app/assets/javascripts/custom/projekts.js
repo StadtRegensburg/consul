@@ -50,46 +50,6 @@
       return arr;
     },
 
-    formNewFilterProjektsRequest: function($checkbox) {
-
-      var url = new URL(window.location.href);
-      var selectedProjektIds;
-      var $label = $checkbox.parent()
-      var $filterArrow = $label.siblings('.projekt-arrow').first()
-
-      if (url.searchParams.get('projekts')) {
-        selectedProjektIds = url.searchParams.get('projekts').split(',');
-      } else {
-        selectedProjektIds = [];
-      }
-
-      if ( $checkbox.is(':checked') ) {
-        selectedProjektIds.push($checkbox.val());
-        $label.css('color', '#06408E')
-        $filterArrow.css('border-color', '#06408E')
-
-      } else {
-        var index = selectedProjektIds.indexOf($checkbox.val());
-        if (index > -1) {
-          selectedProjektIds.splice(index, 1);
-        }
-        $label.css('color', '#878787')
-        $filterArrow.css('border-color', '#C6C6C6')
-      }
-
-      var uniqueProjektIds = selectedProjektIds.filter( function(v, i, a) { return  a.indexOf(v) === i } );
-
-      if ( uniqueProjektIds.length > 0) {
-        url.searchParams.set('projekts', uniqueProjektIds.join(','))
-      }  else {
-        url.searchParams.delete('projekts')
-      }
-
-      url.searchParams.delete('search')
-
-      window.history.pushState('', '', url)
-    },
-
     // Functions for filtering by combination of projects, categories, and user tags
 
     modifyFilterParams: function(clickedLink) {
@@ -274,40 +234,11 @@
       });
     },
 
-    updateSelectedParentProjekt: function() {
-      var selected_projekt_ids = $('#filter-projekts-active input:checked').map( function() {
-        return $(this).val()
-      }).get();
-
-      var current_url = $('.js-preselect-projekt:visible').first().attr('href').split('?')[0]
-      var $visibleButton = $('.js-preselect-projekt:visible').first()
-      if ( selected_projekt_ids.length > 0 ) {
-        $.ajax({
-          url: "/update_selected_parent_projekt",
-          method: "post",
-          data: { selected_projekts_ids: selected_projekt_ids },
-          success: function(result) {
-            if (result["selected_parent_projekt_id"] != null) {
-              var new_url = current_url + '?projekt=' + result["selected_parent_projekt_id"]
-              $visibleButton.attr('href', new_url)
-            } else {
-              $visibleButton.attr('href', current_url)
-            }
-          }
-        });
-      } else {
-        $visibleButton.attr('href', current_url)
-      }
-    },
-
-
     // Initializer
  
     initialize: function() {
       $("body").on("click", ".js-filter-projekt", function() {
         var $checkbox = $(this);
-        App.Projekts.formNewFilterProjektsRequest($checkbox);
-
         var $parentProjekt = $(this).closest('li');
 
         if ( $parentProjekt.next().prop("tagName")  === 'UL') {
@@ -316,17 +247,13 @@
           if ( $checkbox.is(':checked') ) {
             $childrentCheckboxes.each( function() {
               $(this).prop( "checked", true )
-              App.Projekts.formNewFilterProjektsRequest($(this));
             });
           } else {
             $childrentCheckboxes.each( function() {
               $(this).prop( "checked", false)
-              App.Projekts.formNewFilterProjektsRequest($(this));
             });
           }
         }
-
-        App.Projekts.updateSelectedParentProjekt();
       });
 
       $("body").on("click", ".js-apply-projekts-filter", function(event) {

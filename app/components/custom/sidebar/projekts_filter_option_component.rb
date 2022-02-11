@@ -31,7 +31,7 @@ class Sidebar::ProjektsFilterOptionComponent < ApplicationComponent
   end
 
   def label_class
-    if @selected_projekts_ids && projekt.id.to_s.in?(@selected_projekts_ids)
+    if checkbox_checked
       'label-selected'
     else
       'label_regular'
@@ -39,6 +39,7 @@ class Sidebar::ProjektsFilterOptionComponent < ApplicationComponent
   end
 
   def checkbox_checked
-    @selected_projekts_ids && projekt.id.to_s.in?(@selected_projekts_ids)
+    selected_projekts_ids = params[:filter_projekt_ids]
+    selected_projekts_ids && projekt.id.to_s.in?(selected_projekts_ids)
   end
 end

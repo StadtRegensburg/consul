@@ -3,11 +3,9 @@
 
   <h2 class="sidebar-title projekt-tag-chip-projekt projekt-tag-chip-icon"><%= t("custom.projekts.sidebar_filter.title") %></h2>
 
-  <div id='filter-projekts-all' data-resources-name=<%= @current_projekt_footer_tab || controller_name %>>
+  <div id='filter-projekts-all' data-resources-name=<%= resource_name_js %>>
 
-    <%= form_with url: proposals_footer_tab_page_path(12), method: :get, local: false do |f| %>
-
-
+    <%= form_with url: form_path, method: :get, local: local_form? do |f| %>
 
       <% if show_archived_projekts_in_sidebar? && @top_level_active_projekts.any? && @top_level_archived_projekts.any? %>
         <div class='sidebar-projekt-group-name'>
@@ -33,11 +31,6 @@
           <% render Sidebar::ProjektsFilterOptionsComponent.new(f, @top_level_archived_projekts, 'archived', resources_name, @all_resources) %>
         </div>
       <% end %>
-
-      <div class="sidebar-filter-group">
-        <%= button_tag t('custom.projekts.sidebar_filter.filter_button'), class: 'js-apply-projekts-filter sidebar-filter-button' %>
-        <%= button_tag '', class: 'js-reset-projekts-filter sidebar-reset-filter-button' %>
-      </div>
 
       <div class="sidebar-filter-group">
         <%= f.submit t('custom.projekts.sidebar_filter.filter_button'), class: 'sidebar-filter-button' %>

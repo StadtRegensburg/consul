@@ -66,9 +66,9 @@ class PagesController < ApplicationController
 
   def proposals_footer_tab
     @current_projekt = Projekt.find(params[:id])
+    @selected_parent_projekt = @current_projekt
 
     @current_projekt_footer_tab = "proposals"
-    @current_projekt_footer_tab = "footer#{@current_projekt.id}Proposals"
 
     scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt)
 
@@ -109,8 +109,8 @@ class PagesController < ApplicationController
   end
 
   def take_by_projekts
-    if params[:projekts].present?
-      @all_resources = @all_resources.where(projekt_id: params[:projekts].split(',')).distinct
+    if params[:filter_projekt_ids].present?
+      @all_resources = @all_resources.where(projekt_id: params[:filter_projekt_ids].split(',')).distinct
     end
   end
 

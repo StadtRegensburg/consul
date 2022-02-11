@@ -236,6 +236,12 @@ div.projekt-phase-geozone-restriction-selector {
 
 #filter-projekts-all {
 
+  form label {
+    font-size: 0.875rem;
+    font-weight: inherit;
+    line-height: 1.8;
+  }
+
   ul {
     list-style-type: none;
     margin-bottom: 0;
@@ -342,15 +348,20 @@ div.projekt-phase-geozone-restriction-selector {
     content: "";
     position: absolute;
     display: none;
-    left: 4px;
-    top: 1px;
+    left: 50%;
+    top: 50%;
     width: 4px;
     height: 7px;
     border: 1.5px solid #fff;
     border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
   }
 
+  .sidebar-filter-group {
+    input[type="submit"] {
+      border: 0;
+    } 
+  }
 }
 
 .sidebar-projekt-group-name {

@@ -1,7 +1,7 @@
 <ul aria-live="polite" >
   <li data-projekt-id=<%= projekt.id %> >
     <%= label_tag dom_id(projekt), class: label_class do %>
-      <%= check_box_tag dom_id(projekt), projekt.id, checkbox_checked, { class: 'js-filter-projekt', tabindex: "-1" }  %>
+      <%= check_box_tag "filter_projekt_ids[]", projekt.id, checkbox_checked, {id: dom_id(projekt), class: 'js-filter-projekt', tabindex: "-1" }  %>
       <i class="projekt-filter-icon fas fa-<%= projekt.icon || "circle" %>" <%= "style=color:#{projekt.color}" if projekt.color.present? %> ></i>
       <span aria-label="<%= t('custom.links.projekts_filter.projekt_name', projekt_name: projekt.page.title ) %>" ><%= projekt.page.title %></span>
       <span aria-label="<%= t('custom.links.projekts_filter.resource_count', resource_count: resource_count) %>"> <%= "(#{resource_count})" %> </span>
