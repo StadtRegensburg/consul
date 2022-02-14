@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
   has_orders %w[most_voted newest oldest], only: :show
   has_orders ->(c) { Proposal.proposals_orders(c.current_user) }, only: :proposals_footer_tab
+  has_orders ->(c) { Debate.debates_orders(c.current_user) }, only: :debates_footer_tab
 
   def show
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
@@ -57,7 +58,26 @@ class PagesController < ApplicationController
   end
 
   def debates_footer_tab
-    @debates = Debate.last(3)
+    @current_projekt = Projekt.find(params[:id])
+    @selected_parent_projekt = @current_projekt
+
+    @current_projekt_footer_tab = "debates"
+
+    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt)
+
+    @current_order = params[:order] || @valid_orders.first
+    @valid_orders.delete("archival_date")
+
+    @all_resources = Debate.
+      where(projekt_id: scoped_projekt_ids).
+      joins(:projekt).merge(Projekt.activated)
+
+    take_by_projekts
+    set_top_level_projekts
+
+    set_debate_votes(@all_resources)
+
+    @debates = @all_resources.page(params[:page]).send("sort_by_#{@current_order}")
 
     respond_to do |format|
       format.js { render "pages/projekt_footer/debates_footer_tab" }
@@ -83,15 +103,13 @@ class PagesController < ApplicationController
       joins(:projekt).merge(Projekt.activated)
 
     take_by_projekts
+    set_top_level_projekts
 
     set_proposal_votes(@all_resources)
 
     @proposals_coordinates = all_proposal_map_locations(@all_resources)
 
     @proposals = @all_resources.page(params[:page]).send("sort_by_#{@current_order}")
-
-    @top_level_active_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_current('proposals')
-    @top_level_archived_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_expired('proposals')
 
     respond_to do |format|
       format.js { render "pages/projekt_footer/proposals_footer_tab" }
@@ -114,5 +132,8 @@ class PagesController < ApplicationController
     end
   end
 
-
+  def set_top_level_projekts
+    @top_level_active_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_current(@current_projekt_footer_tab)
+    @top_level_archived_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_expired(@current_projekt_footer_tab)
+  end
 end

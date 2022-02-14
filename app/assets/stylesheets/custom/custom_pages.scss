@@ -188,6 +188,7 @@ li.projekt-navigator[aria-expanded="false"] {
     font-family: "Font Awesome 5 Free";
     font-weight: bold;
     animation: rotation 2s infinite linear;
+    z-index: 1001;
   }
 }
 
