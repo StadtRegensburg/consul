@@ -91,13 +91,14 @@ li.projekt-navigator.current-projekt::before {
 
 
 
-// Sidebar icons 
+// Footer icons
 
 span.time-icon,
 span.geo-restriction-icon,
 span.geo-affiliation-icon {
   margin-left: 23px;
   position: relative;
+  display: block
 }
 
 span.time-icon:before,
@@ -107,6 +108,7 @@ span.geo-affiliation-icon:before {
   font-family: "Font Awesome 5 Free";
   position: absolute;
   left: -23px;
+  font-size: 0.75rem;
 }
 
 span.time-icon:before {
@@ -184,11 +186,12 @@ li.projekt-navigator[aria-expanded="false"] {
     left: 50%;
     top: 10px;
     color: red;
-    content: "\f110";
+    content: "\f2f1";
     font-family: "Font Awesome 5 Free";
     font-weight: bold;
     animation: rotation 2s infinite linear;
     z-index: 1001;
+    font-size: 3rem;
   }
 }
 

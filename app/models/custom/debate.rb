@@ -14,6 +14,11 @@ class Debate
 
   alias_attribute :projekt_phase, :debate_phase
 
+  def self.base_selection(scoped_projekt_ids = Projekt.ids)
+    where(projekt_id: scoped_projekt_ids).
+      joins(:projekt).merge(Projekt.activated)
+  end
+
   def require_a_projekt?
     Setting["projekts.connected_resources"].present? ? true : false
   end

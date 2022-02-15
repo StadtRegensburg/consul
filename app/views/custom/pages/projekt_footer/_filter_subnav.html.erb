@@ -9,8 +9,10 @@
         <% if true %>
           <li id="filter-subnav-debates" class="is-active page-subnav-tab">
             <%= link_to debates_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
-              <h4><%= "Debates" %></h4>
-              <span><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+              <h4><%= "Debates (#{@debates_count})" %></h4>
+              <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+              <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
+              <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>
             <% end %>
           </li>
         <% end %>
@@ -18,8 +20,21 @@
         <% if true %>
           <li id='filter-subnav-proposals' class='page-subnav-tab'>
             <%= link_to proposals_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
-              <h4><%= "Proposals" %></h4>
-              <span><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+              <h4><%= "Proposals (#{@proposals_count})" %></h4>
+              <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+              <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
+              <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>
+            <% end %>
+          </li>
+        <% end %>
+
+        <% if true %>
+          <li id='filter-subnav-polls' class='page-subnav-tab'>
+            <%= link_to polls_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
+              <h4><%= "Polls (#{@polls_count})" %></h4>
+              <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+              <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
+              <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>
             <% end %>
           </li>
         <% end %>

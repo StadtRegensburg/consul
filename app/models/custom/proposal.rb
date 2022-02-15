@@ -13,6 +13,14 @@ class Proposal < ApplicationRecord
 
   alias_attribute :projekt_phase, :proposal_phase
 
+  def self.base_selection(scoped_projekt_ids = Projekt.ids)
+    published.
+      not_archived.
+      not_retired.
+      where(projekt_id: scoped_projekt_ids).
+      joins(:projekt).merge(Projekt.activated)
+  end
+
   def require_a_projekt?
     Setting["projekts.connected_resources"].present? ? true : false
   end

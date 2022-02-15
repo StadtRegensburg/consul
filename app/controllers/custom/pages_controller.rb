@@ -9,6 +9,7 @@ class PagesController < ApplicationController
   has_orders %w[most_voted newest oldest], only: :show
   has_orders ->(c) { Proposal.proposals_orders(c.current_user) }, only: :proposals_footer_tab
   has_orders ->(c) { Debate.debates_orders(c.current_user) }, only: :debates_footer_tab
+  has_filters %w[all current], only: :polls_footer_tab
 
   def show
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
@@ -24,6 +25,10 @@ class PagesController < ApplicationController
     if @custom_page.present? && @custom_page.projekt.present?
       @projekt = @custom_page.projekt
       @proposals_coordinates = all_projekt_proposals_map_locations(@custom_page.projekt)
+
+      @debates_count = Debate.base_selection.count
+      @proposals_count = Proposal.base_selection.count
+      @polls_count = Poll.base_selection.count
 
       @most_active_proposals = Proposal.published.not_archived.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(3)
       set_proposal_votes(@most_active_proposals)
@@ -68,9 +73,7 @@ class PagesController < ApplicationController
     @current_order = params[:order] || @valid_orders.first
     @valid_orders.delete("archival_date")
 
-    @all_resources = Debate.
-      where(projekt_id: scoped_projekt_ids).
-      joins(:projekt).merge(Projekt.activated)
+    @all_resources = Debate.base_selection(scoped_projekt_ids)
 
     take_by_projekts
     set_top_level_projekts
@@ -95,12 +98,7 @@ class PagesController < ApplicationController
     @current_order = params[:order] || @valid_orders.first
     @valid_orders.delete("archival_date")
 
-    @all_resources = Proposal.
-      published.
-      not_archived.
-      not_retired.
-      where(projekt_id: scoped_projekt_ids).
-      joins(:projekt).merge(Projekt.activated)
+    @all_resources = Proposal.base_selection(scoped_projekt_ids)
 
     take_by_projekts
     set_top_level_projekts
@@ -116,6 +114,26 @@ class PagesController < ApplicationController
     end
   end
 
+  def polls_footer_tab
+    @current_projekt = Projekt.find(params[:id])
+    @selected_parent_projekt = @current_projekt
+
+    @current_projekt_footer_tab = "polls"
+
+    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt)
+
+    @all_resources = Poll.base_selection(scoped_projekt_ids).send(@current_filter)
+
+    take_by_projekts
+    set_top_level_projekts
+
+    @polls = Kaminari.paginate_array(@all_resources.sort_for_list).page(params[:page])
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/polls_footer_tab" }
+    end
+  end
+
   private
 
   def resource_model
@@ -128,7 +146,7 @@ class PagesController < ApplicationController
 
   def take_by_projekts
     if params[:filter_projekt_ids].present?
-      @all_resources = @all_resources.where(projekt_id: params[:filter_projekt_ids].split(',')).distinct
+      @all_resources = @all_resources.where(projekt_id: params[:filter_projekt_ids]).distinct
     end
   end
 
