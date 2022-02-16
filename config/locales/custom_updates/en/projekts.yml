@@ -20,3 +20,9 @@ en:
         title: Projects
         title_active: Active projects
         title_archived: Expired projects
+      page:
+        tabs:
+          debates: "Debates (%{count})"
+          proposals: "Proposals (%{count})"
+          polls: "Polls (%{count})"
+          budgets: Budgets

@@ -16,3 +16,9 @@ de:
         title: Projekte
         title_active: Aktive Projekte
         title_archived: Abgelaufene Projekte
+      page:
+        tabs:
+          debates: "Diskussionen (%{count})"
+          proposals: "Vorschläge (%{count})"
+          polls: "Abstimmungen (%{count})"
+          budgets: Budgets
