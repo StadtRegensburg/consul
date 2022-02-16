@@ -26,6 +26,10 @@ class Proposal::CsvExporter
         # I18n.t("admin.proposals.index.list.id"),
       [
         "id",
+        "title",
+        "summary",
+        "description",
+        "project_name",
         "responsible_name",
         "author_username",
         "created_at",
@@ -46,6 +50,10 @@ class Proposal::CsvExporter
     def csv_values(proposal)
       [
         proposal.id.to_s,
+        proposal.title,
+        proposal.summary,
+        proposal.description,
+        proposal.projekt&.name,
         proposal.responsible_name,
         proposal.author.username,
         proposal.created_at,
