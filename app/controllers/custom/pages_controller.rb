@@ -134,6 +134,30 @@ class PagesController < ApplicationController
     end
   end
 
+  def budget_footer_tab
+    @current_projekt = Projekt.find(params[:id])
+
+    params[:filter_projekt_id] ||= params[:id]
+    @budget = Budget.find_by(projekt_id: params[:filter_projekt_id])
+
+    @current_projekt_footer_tab = 'budget'
+
+    if @budget.present? && @current_projekt.current?
+      @top_level_active_projekts = Projekt.where( id: @current_projekt )
+      @top_level_archived_projekts = []
+    elsif @budget.present? && @current_projekt.expired?
+      @top_level_active_projekts = []
+      @top_level_archived_projekts = Projekt.where( id: @current_projekt )
+    else
+      @top_level_active_projekts = []
+      @top_level_archived_projekts = []
+    end
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/budget_footer_tab" }
+    end
+  end
+
   private
 
   def resource_model

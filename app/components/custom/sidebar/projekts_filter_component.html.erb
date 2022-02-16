@@ -13,10 +13,14 @@
         </div>
       <% end %>
 
-      <% if @top_level_active_projekts %>
+      <% if @top_level_active_projekts.any? %>
         <div id='filter-projekts-active'>
           <% @top_level_active_projekts.each do |projekt| %>
-            <%= render Sidebar::ProjektsFilterOptionComponent.new(f, projekt, 'active', @all_resources) %>
+            <% if @current_projekt_footer_tab == 'budget' %>
+              <%= render Sidebar::ProjektsFilterRadioComponent.new(f, projekt, 'active', @all_resources) %>
+            <% else %>
+              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, 'active', @all_resources) %>
+            <% end %>
           <% end %>
         </div>
       <% end %>
@@ -28,7 +32,13 @@
         </div>
 
         <div id='filter-projekts-archived'>
-          <% render Sidebar::ProjektsFilterOptionsComponent.new(f, @top_level_archived_projekts, 'archived', resources_name, @all_resources) %>
+          <% @top_level_archived_projekts.each do |projekt| %>
+            <% if @current_projekt_footer_tab == 'budget' %>
+              <%= render Sidebar::ProjektsFilteRadioComponent.new(f, projekt, 'archived', @all_resources) %>
+            <% else %>
+              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, 'archived', @all_resources) %>
+            <% end %>
+          <% end %>
         </div>
       <% end %>
 

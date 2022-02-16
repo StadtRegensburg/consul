@@ -301,7 +301,8 @@ div.projekt-phase-geozone-restriction-selector {
     margin-right: 2em;
   }
 
-  input[type='checkbox'] {
+  input[type='checkbox'],
+  input[type='radio'] {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -322,21 +323,31 @@ div.projekt-phase-geozone-restriction-selector {
     color: $brand;
   }
 
-  .checkmark {
+  .checkmark,
+  .radiomark {
     position: absolute;
     top: 5px;
     left: -19px;
     height: 14px;
     width: 14px;
     border: 1.5px solid #C6C6C6;
+  }
+
+  .checkmark {
     border-radius: 2px;
   }
 
-  input:checked ~ .checkmark:before {
+  .radiomark {
+    border-radius: 14px;
+  }
+
+  input:checked ~ .checkmark:before,
+  input:checked ~ .radiomark:before {
     display: block;
   }
 
-  input:checked ~ .checkmark {
+  input:checked ~ .checkmark,
+  input:checked ~ .radiomark {
     background: #878787;
     border: 1.5px solid #878787;
   }
@@ -344,7 +355,8 @@ div.projekt-phase-geozone-restriction-selector {
   .label-selected {
   }
 
-  .checkmark:before {
+  .checkmark:before,
+  .radiomark:before {
     content: "";
     position: absolute;
     display: none;

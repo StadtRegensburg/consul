@@ -153,3 +153,7 @@ en:
           category_options:
             active_projekt: Active participation process
             archived_projekt: Completed participation process
+      budgets:
+        edit:
+          info:
+            projekt_association: Project association

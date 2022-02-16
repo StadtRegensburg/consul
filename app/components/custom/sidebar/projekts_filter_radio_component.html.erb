@@ -1,11 +1,10 @@
 <ul aria-live="polite" >
   <li data-projekt-id=<%= projekt.id %> >
-    <%= label_tag dom_id(projekt), class: label_class do %>
-      <%= check_box_tag "filter_projekt_ids[]", projekt.id, checkbox_checked, {id: dom_id(projekt), class: 'js-filter-projekt', tabindex: "-1" }  %>
+    <%= label_tag "filter_projekt_id_#{projekt.id}", class: label_class do %>
+      <%= radio_button_tag :filter_projekt_id, projekt.id, checkbox_checked, { class: '', tabindex: "-1" }  %>
       <i class="projekt-filter-icon fas fa-<%= projekt.icon || "circle" %>" <%= "style=color:#{projekt.color}" if projekt.color.present? %> ></i>
       <span aria-label="<%= t('custom.links.projekts_filter.projekt_name', projekt_name: projekt.page.title ) %>" ><%= projekt.page.title %></span>
-      <span aria-label="<%= t('custom.links.projekts_filter.resource_count', resource_count: resource_count) %>"> <%= "(#{resource_count})" %> </span>
-      <span class="checkmark focusable js-prevent-key-scroll js-access-toggle-projekt-filter-checkbox" tabindex="0"></span>
+      <span class="radiomark focusable js-prevent-key-scroll js-access-toggle-projekt-filter-checkbox" tabindex="0"></span>
     <% end %>
 
     <% if selectable_children.any? %>
@@ -19,6 +18,6 @@
   </li>
 
   <% selectable_children.each do |projekt| %>
-    <%= render Sidebar::ProjektsFilterOptionComponent.new(f, projekt, @group, @all_resources) %>
+    <%= render Sidebar::ProjektsFilterRadioComponent.new(f, projekt, @group, @all_resources) %>
   <% end %>
 </ul>

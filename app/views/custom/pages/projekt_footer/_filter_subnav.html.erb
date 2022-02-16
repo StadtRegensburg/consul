@@ -23,7 +23,7 @@
               <h4><%= "Proposals (#{@proposals_count})" %></h4>
               <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
               <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
-              <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>
+              <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.proposal_phase) %></span>
             <% end %>
           </li>
         <% end %>
@@ -32,6 +32,17 @@
           <li id='filter-subnav-polls' class='page-subnav-tab'>
             <%= link_to polls_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
               <h4><%= "Polls (#{@polls_count})" %></h4>
+              <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+              <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
+              <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>
+            <% end %>
+          </li>
+        <% end %>
+
+        <% if true %>
+          <li id='filter-subnav-budget' class='page-subnav-tab'>
+            <%= link_to budget_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
+              <h4><%= "Budgets" %></h4>
               <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
               <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
               <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>

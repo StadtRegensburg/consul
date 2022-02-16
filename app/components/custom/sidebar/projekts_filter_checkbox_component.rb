@@ -1,4 +1,4 @@
-class Sidebar::ProjektsFilterOptionComponent < ApplicationComponent
+class Sidebar::ProjektsFilterCheckboxComponent < ApplicationComponent
   delegate :projekt_filter_resources_name, to: :helpers
 
   def initialize(f, projekt, group, all_resources)
@@ -25,7 +25,7 @@ class Sidebar::ProjektsFilterOptionComponent < ApplicationComponent
   def selectable_children
     if @group == 'active'
       @projekt.children.selectable_in_sidebar_current(projekt_filter_resources_name)
-    elsif group == 'archived'
+    elsif @group == 'archived'
       @projekt.children.selectable_in_sidebar_expired(projekt_filter_resources_name)
     end
   end

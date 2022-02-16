@@ -13,6 +13,7 @@ class Projekt < ApplicationRecord
   has_many :debates, dependent: :nullify
   has_many :proposals, dependent: :nullify
   has_many :polls, dependent: :nullify
+  has_one :budget, dependent: :nullify
 
   has_one :page, class_name: "SiteCustomization::Page", dependent: :destroy
 

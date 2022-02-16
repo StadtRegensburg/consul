@@ -65,6 +65,7 @@ Rails.application.routes.draw do
       get :debates_footer_tab
       get :proposals_footer_tab
       get :polls_footer_tab
+      get :budget_footer_tab
     end
   end
 
