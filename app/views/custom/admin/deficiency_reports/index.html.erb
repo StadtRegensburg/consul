@@ -2,7 +2,7 @@
   <%= t("admin.header.title") %> - <%= t("admin.resources.index.title") %>
 <% end %>
 
-<h2><%= t("admin.resources.index.title") %></h2>
+<h2><%= t("admin.deficiency_reports.index.title") %></h2>
 
 <% if @deficiency_reports.any? %>
   <h3><%= page_entries_info @deficiency_reports %></h3>
@@ -47,6 +47,6 @@
   <%= paginate @deficiency_reports %>
 <% else %>
   <div class="callout primary">
-    <%= t("admin.resources.index.no_proposals") %>
+    <%= t("admin.deficiency_reports.no_deficiency_reports") %>
   </div>
 <% end %>

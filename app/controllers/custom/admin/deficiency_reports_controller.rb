@@ -12,4 +12,8 @@ class Admin::DeficiencyReportsController < Admin::BaseController
       end
     end
   end
+
+  def show
+    @deficiency_report = DeficiencyReport.find(params[:id])
+  end
 end
