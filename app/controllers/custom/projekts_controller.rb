@@ -3,6 +3,11 @@ class ProjektsController < ApplicationController
 
   include ProjektControllerHelper
 
+  def index
+    @current_projekts = Projekt.current
+    @expired_projekts = Projekt.expired
+  end
+
   def show
     projekt = Projekt.find(params[:id])
 

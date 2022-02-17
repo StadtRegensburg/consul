@@ -114,9 +114,9 @@ de:
       projekts:
         connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
         connected_resources_description: Diskussionen & Vorschläge können ohne Projektzuordnung nicht erstellt werden
+        overview_page: Projektübersichtsseite in Navigation anzeigen
+        overview_page_description: Zeigt die Projektübersichtsseite in der Navigation an
         show_archived:
-          navigation: Archivierte Projekte in Navigation anzeigen
-          navigation_description: Zeigt archivierte Projekte in der Navigationsleiste wenn aktiviert
           sidebar: Archivierte Projekte in Projektseitenleiste  anzeigen
           sidebar_description: Zeigt archivierte Projekte in der Projektseitenleiste wenn aktiviert
         show_module_links_in_flyout_menu: Modul-Links in den Dropdowns
