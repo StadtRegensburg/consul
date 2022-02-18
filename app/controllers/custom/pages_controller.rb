@@ -20,9 +20,11 @@ class PagesController < ApplicationController
       @projekt = @custom_page.projekt
       @proposals_coordinates = all_projekt_proposals_map_locations(@custom_page.projekt)
 
-      @debates_count = Debate.base_selection.count
-      @proposals_count = Proposal.base_selection.count
-      @polls_count = Poll.base_selection.count
+      scoped_projekt_ids = @projekt.all_children_projekts.unshift(@projekt).pluck(:id)
+      @comments_count = @projekt.comments.count
+      @debates_count = Debate.base_selection(scoped_projekt_ids).count
+      @proposals_count = Proposal.base_selection(scoped_projekt_ids).count
+      @polls_count = Poll.base_selection(scoped_projekt_ids).count
 
       @most_active_proposals = Proposal.published.not_archived.where(projekt: @custom_page.projekt).sort_by_hot_score.limit(3)
       set_proposal_votes(@most_active_proposals)
@@ -75,7 +77,7 @@ class PagesController < ApplicationController
 
     @current_projekt_footer_tab = "debates"
 
-    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt)
+    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
 
     @current_order = params[:order] || @valid_orders.first
     @valid_orders.delete("archival_date")
@@ -100,7 +102,7 @@ class PagesController < ApplicationController
 
     @current_projekt_footer_tab = "proposals"
 
-    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt)
+    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
 
     @current_order = params[:order] || @valid_orders.first
     @valid_orders.delete("archival_date")
@@ -127,7 +129,7 @@ class PagesController < ApplicationController
 
     @current_projekt_footer_tab = "polls"
 
-    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt)
+    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
 
     @all_resources = Poll.base_selection(scoped_projekt_ids).send(@current_filter)
 
@@ -145,9 +147,16 @@ class PagesController < ApplicationController
     @current_projekt = Projekt.find(params[:id])
 
     params[:filter_projekt_id] ||= params[:id]
+
     @budget = Budget.find_by(projekt_id: params[:filter_projekt_id])
 
     @current_projekt_footer_tab = 'budget'
+
+    query = Budget::Ballot.where(user: current_user, budget: @budget)
+    @ballot = @budget.balloting? ? query.first_or_create! : query.first_or_initialize
+
+    @investments = @budget.investments
+    @investment_ids = @investments.ids
 
     if @budget.present? && @current_projekt.current?
       @top_level_active_projekts = Projekt.where( id: @current_projekt )

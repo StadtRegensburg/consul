@@ -1,5 +1,7 @@
 <%= render 'shared/loader_spinner' %>
 
+<%= render Pages::Projekts::BudgetsTabComponent.new(@budget, @ballot, current_user) %>
+
 <div class='row'>
   <div id='budgets-sidebar' class='small-12 medium-3 column'>
     <aside class='margin-bottom'>
@@ -8,6 +10,13 @@
   </div>
 
   <div id='budgets' class='budgets-list small-12 medium-9 column'>
-    <%= render Pages::Projekts::BudgetsTabComponent.new(@budget) %>
+
+    <% @investments.each do |investment| %>
+      <%= render "/budgets/investments/investment",
+                 investment: investment,
+                 investment_ids: @investment_ids,
+                 ballot: @ballot %>
+    <% end %>
+
   </div>
 </div>

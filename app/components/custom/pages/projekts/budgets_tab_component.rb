@@ -1,9 +1,12 @@
 class Pages::Projekts::BudgetsTabComponent < ApplicationComponent
-  delegate :render_map, to: :helpers
-  attr_reader :budget
+  delegate :render_map, :can?, to: :helpers
+  attr_reader :budget, :ballot, :current_user, :heading
 
-  def initialize(budget)
+  def initialize(budget, ballot, current_user)
     @budget = budget
+    @ballot = ballot
+    @current_user = current_user
+    @heading = @budget.headings.first
   end
 
   private

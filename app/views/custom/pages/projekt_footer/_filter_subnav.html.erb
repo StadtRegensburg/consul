@@ -50,7 +50,7 @@
           </li>
         <% end %>
 
-        <% if true %>
+        <% if projekt.budget.present? %>
           <li id='filter-subnav-budget' class='page-subnav-tab'>
             <%= link_to budget_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.budgets') %></h4>
