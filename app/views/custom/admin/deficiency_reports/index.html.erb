@@ -32,7 +32,7 @@
       <% @deficiency_reports.each do |deficiency_report| %>
         <tr id="<%= dom_id(deficiency_report) %>" class="deficiency_report">
           <td class="text-center"><%= deficiency_report.id %></td>
-          <td> <%= deficiency_report.title %> </td>
+          <td> <%= link_to(deficiency_report.title, admin_deficiency_report_path(deficiency_report)) %> </td>
           <td><%= deficiency_report.author.username %></td>
           <td><%= deficiency_report.official_answer %></td>
           <td><%= deficiency_report.category&.name %></td>

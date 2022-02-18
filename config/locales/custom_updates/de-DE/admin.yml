@@ -25,6 +25,20 @@ de:
           title: Mängel zuweisen
           no_deficiency_reports: Keine Mängelmeldungen
           entry_name: Mangel
+        show:
+          title: Mängel zuweisen
+          no_deficiency_reports: Keine Mängelmeldungen
+          entry_name: Mangel
+          category: Kategori
+          status: Status
+          summary: Zusammenfassung
+          description: Bezeichnung
+          video: Video
+          author: Autor
+          created_at: Erstellt am
+          updated_at: Aktualisiert am
+          official_answer: Offizielle Antwort
+          officer_name: Sachbearbeiter*in
         deficiency_report:
           title: Gemeldeter Mangel
           category: Kategorie
