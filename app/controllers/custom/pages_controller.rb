@@ -6,19 +6,13 @@ class PagesController < ApplicationController
   include CustomHelper
   include ProposalsHelper
 
-  has_orders %w[most_voted newest oldest], only: :show
+  has_orders %w[most_voted newest oldest], only: [ :show, :comments_footer_tab ]
   has_orders ->(c) { Proposal.proposals_orders(c.current_user) }, only: :proposals_footer_tab
   has_orders ->(c) { Debate.debates_orders(c.current_user) }, only: :debates_footer_tab
   has_filters %w[all current], only: :polls_footer_tab
 
   def show
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
-
-    if @custom_page.respond_to?(:comments)
-      @commentable = @custom_page
-      @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
-      set_comment_flags(@comment_tree.comments)
-    end
 
     set_resource_instance
 
@@ -64,6 +58,11 @@ class PagesController < ApplicationController
 
   def comments_footer_tab
     @current_projekt_footer_tab = "comments"
+    @current_projekt = Projekt.find(params[:id])
+
+    @commentable = @current_projekt
+    @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
+    set_comment_flags(@comment_tree.comments)
 
     respond_to do |format|
       format.js { render "pages/projekt_footer/footer_tab" }
@@ -91,7 +90,7 @@ class PagesController < ApplicationController
     @debates = @all_resources.page(params[:page]).send("sort_by_#{@current_order}")
 
     respond_to do |format|
-      format.js { render "pages/projekt_footer/debates_footer_tab" }
+      format.js { render "pages/projekt_footer/footer_tab" }
     end
   end
 
@@ -118,7 +117,7 @@ class PagesController < ApplicationController
     @proposals = @all_resources.page(params[:page]).send("sort_by_#{@current_order}")
 
     respond_to do |format|
-      format.js { render "pages/projekt_footer/proposals_footer_tab" }
+      format.js { render "pages/projekt_footer/footer_tab" }
     end
   end
 
@@ -138,7 +137,7 @@ class PagesController < ApplicationController
     @polls = Kaminari.paginate_array(@all_resources.sort_for_list).page(params[:page])
 
     respond_to do |format|
-      format.js { render "pages/projekt_footer/polls_footer_tab" }
+      format.js { render "pages/projekt_footer/footer_tab" }
     end
   end
 
@@ -162,7 +161,7 @@ class PagesController < ApplicationController
     end
 
     respond_to do |format|
-      format.js { render "pages/projekt_footer/budget_footer_tab" }
+      format.js { render "pages/projekt_footer/footer_tab" }
     end
   end
 
