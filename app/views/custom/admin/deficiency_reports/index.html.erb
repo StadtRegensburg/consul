@@ -2,7 +2,7 @@
   <%= t("admin.header.title") %> - <%= t("admin.resources.index.title") %>
 <% end %>
 
-<h2><%= t("admin.resources.index.title") %></h2>
+<h2><%= t("admin.deficiency_reports.index.title") %></h2>
 
 <% if @deficiency_reports.any? %>
   <h3><%= page_entries_info @deficiency_reports %></h3>
@@ -32,7 +32,7 @@
       <% @deficiency_reports.each do |deficiency_report| %>
         <tr id="<%= dom_id(deficiency_report) %>" class="deficiency_report">
           <td class="text-center"><%= deficiency_report.id %></td>
-          <td> <%= deficiency_report.title %> </td>
+          <td> <%= link_to(deficiency_report.title, admin_deficiency_report_path(deficiency_report)) %> </td>
           <td><%= deficiency_report.author.username %></td>
           <td><%= deficiency_report.official_answer %></td>
           <td><%= deficiency_report.category&.name %></td>
@@ -47,6 +47,6 @@
   <%= paginate @deficiency_reports %>
 <% else %>
   <div class="callout primary">
-    <%= t("admin.resources.index.no_proposals") %>
+    <%= t("admin.deficiency_reports.no_deficiency_reports") %>
   </div>
 <% end %>
