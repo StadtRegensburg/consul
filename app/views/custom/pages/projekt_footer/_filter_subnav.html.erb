@@ -7,7 +7,18 @@
 
       <ul id='filter-subnav' class='key-dates'>
         <% if true %>
-          <li id="filter-subnav-debates" class="is-active page-subnav-tab">
+          <li id="filter-subnav-comments" class="is-active page-subnav-tab">
+            <%= link_to comments_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
+              <h4><%= t('custom.projekts.page.tabs.comments', count: @comments_count) %></h4>
+              <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+              <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
+              <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>
+            <% end %>
+          </li>
+        <% end %>
+
+        <% if true %>
+          <li id="filter-subnav-debates" class="page-subnav-tab">
             <%= link_to debates_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("page-tab-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.debates', count: @debates_count) %></h4>
               <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>

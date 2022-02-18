@@ -62,6 +62,14 @@ class PagesController < ApplicationController
     head 404, content_type: "text/html"
   end
 
+  def comments_footer_tab
+    @current_projekt_footer_tab = "comments"
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/footer_tab" }
+    end
+  end
+
   def debates_footer_tab
     @current_projekt = Projekt.find(params[:id])
     @selected_parent_projekt = @current_projekt

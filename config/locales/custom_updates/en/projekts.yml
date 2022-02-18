@@ -22,6 +22,7 @@ en:
         title_archived: Expired projects
       page:
         tabs:
+          comments: "Comments (%{count})"
           debates: "Debates (%{count})"
           proposals: "Proposals (%{count})"
           polls: "Polls (%{count})"

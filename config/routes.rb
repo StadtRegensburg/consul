@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   # Static pages
   resources :pages, path: "/", only: [:show] do
     member do
+      get :comments_footer_tab
       get :debates_footer_tab
       get :proposals_footer_tab
       get :polls_footer_tab
