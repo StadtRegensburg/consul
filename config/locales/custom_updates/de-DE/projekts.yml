@@ -18,7 +18,7 @@ de:
         title_archived: Abgelaufene Projekte
       page:
         tabs:
-          comments: "Kommentare (%{count})"
+          comments: "Kommentare"
           debates: "Diskussionen (%{count})"
           proposals: "Vorschläge (%{count})"
           polls: "Abstimmungen (%{count})"

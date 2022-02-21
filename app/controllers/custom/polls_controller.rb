@@ -19,7 +19,7 @@ class PollsController < ApplicationController
     @filtered_target = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
 
     if params[:filter_projekt_ids]
-      @selected_projekts_ids = params[:filter_projekt_ids].split(',').select{ |id| Projekt.find_by(id: id).present? }
+      @selected_projekts_ids = params[:filter_projekt_ids].select{ |id| Projekt.find_by(id: id).present? }
       selected_parent_projekt_id = get_highest_unique_parent_projekt_id(@selected_projekts_ids)
       @selected_parent_projekt = Projekt.find_by(id: selected_parent_projekt_id)
     end

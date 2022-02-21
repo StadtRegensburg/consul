@@ -9,7 +9,8 @@
     </aside>
   </div>
 
-  <div id="debates" class="debates-list small-12 medium-9 column">
+  <div id="debates" class="debates-list spinner-placeholder small-12 medium-9 column">
+    <%= render 'shared/loader_spinner' %>
     <%= render "shared/order_links", i18n_namespace: "debates.index" %>
 
     <div class='row'>

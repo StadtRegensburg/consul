@@ -9,7 +9,8 @@
     </aside>
   </div>
 
-  <div id='budgets' class='budgets-list small-12 medium-9 column'>
+  <div id='budgets' class='budgets-list spinner-placeholder small-12 medium-9 column'>
+    <%= render 'shared/loader_spinner' %>
 
     <% @investments.each do |investment| %>
       <%= render "/budgets/investments/investment",

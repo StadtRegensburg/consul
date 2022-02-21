@@ -177,14 +177,19 @@ li.projekt-navigator[aria-expanded="false"] {
 
 
 // Footer
-#footer-content {
-  .loader {
-    display: none;
-  }
+
+.tab-info-summary {
+  height: 4rem;
+  overflow: hidden;
 }
 
-#footer-content.page-tab-loader {
-  .loader {
+// Loader
+.loader {
+  display: none;
+}
+
+.show-loader {
+  & > .loader {
     display: block;
     position: absolute;
     margin: auto;
