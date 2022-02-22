@@ -1,7 +1,7 @@
 <div class='row'>
   <div class='column'>
     <ul class="phases-list tabs" data-tabs id="budget_phases_tabs" data-deep-link="true">
-      <% budget.phases.each.with_index(1) do |phase, index| %>
+      <% phases.each.with_index(1) do |phase, index| %>
         <li class="phase-title tabs-title <%= "is-active current-phase-tab" if phase.current? %>">
           <span class="phase-name"><%= "#{index}. #{phase.name}" %></span><br>
           <span class="phase-date-range"><%= format_date_range( phase.starts_at, phase.ends_at)  %></span>

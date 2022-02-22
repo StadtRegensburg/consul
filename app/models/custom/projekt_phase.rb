@@ -21,7 +21,7 @@ class ProjektPhase < ApplicationRecord
   end
 
   def currently_active?
-    active.present? &&
+    phase_activated? &&
       ((start_date <= Date.today if start_date.present?) || start_date.blank? ) &&
       ((end_date >= Date.today if end_date.present?) || end_date.blank? )
   end

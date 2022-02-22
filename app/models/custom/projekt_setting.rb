@@ -24,7 +24,7 @@ class ProjektSetting < ApplicationRecord
   end
 
   def projekt_feature_type
-    if %w[main general sidebar footer].include? projekt_feature_prefix
+    if %w[main phase general sidebar footer].include? projekt_feature_prefix
       projekt_feature_prefix
     else
       "configuration"
@@ -36,6 +36,15 @@ class ProjektSetting < ApplicationRecord
     def defaults
       {
         "projekt_feature.main.activate": '',
+
+        "projekt_feature.phase.comment": '',
+        "projekt_feature.phase.comment_info": '',
+        "projekt_feature.phase.debate": '',
+        "projekt_feature.phase.debate_info": '',
+        "projekt_feature.phase.proposal": '',
+        "projekt_feature.phase.proposal_info": '',
+        "projekt_feature.phase.budget": '',
+        "projekt_feature.phase.budget_info": '',
 
         "projekt_feature.general.show_in_navigation": '',
         "projekt_feature.general.hide_additional_info_in_projekt_selector": '',

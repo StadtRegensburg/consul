@@ -31,17 +31,33 @@ class Admin::ProjektsController < Admin::BaseController
       @projekt.reload
     end
 
+    @projekt.build_comment_phase if @projekt.comment_phase.blank?
+    @projekt.comment_phase.geozone_restrictions.build
+
     @projekt.build_debate_phase if @projekt.debate_phase.blank?
     @projekt.debate_phase.geozone_restrictions.build
 
     @projekt.build_proposal_phase if @projekt.proposal_phase.blank?
     @projekt.proposal_phase.geozone_restrictions.build
 
+    @projekt.build_budget_phase if @projekt.budget_phase.blank?
+    @projekt.budget_phase.geozone_restrictions.build
+
     @projekt.build_map_location if @projekt.map_location.blank?
 
     all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
     all_projekt_features = all_settings["projekt_feature"].group_by(&:projekt_feature_type)
     @projekt_features_main = all_projekt_features['main']
+
+    @projekt_features_phase_comment_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.comment')
+    @projekt_features_phase_comment_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.comment_info')
+    @projekt_features_phase_debate_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.debate')
+    @projekt_features_phase_debate_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.debate_info')
+    @projekt_features_phase_proposal_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.proposal')
+    @projekt_features_phase_proposal_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.proposal_info')
+    @projekt_features_phase_budget_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.budget')
+    @projekt_features_phase_budget_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.budget_info')
+
     @projekt_features_general = all_projekt_features['general']
     @projekt_features_sidebar = all_projekt_features['sidebar']
     @projekt_features_footer = all_projekt_features['footer']
@@ -121,8 +137,10 @@ class Admin::ProjektsController < Admin::BaseController
 
   def projekt_params
     params.require(:projekt).permit(:name, :parent_id, :total_duration_start, :total_duration_end, :color, :icon, :geozone_affiliated, :tag_list, :related_sdg_list, geozone_affiliation_ids: [], sdg_goal_ids: [],
+                                    comment_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     debate_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     proposal_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    budget_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     map_location_attributes: map_location_attributes,
                                     projekt_notifications: [:title, :body])
   end

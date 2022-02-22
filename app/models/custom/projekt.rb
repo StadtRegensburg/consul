@@ -20,6 +20,8 @@ class Projekt < ApplicationRecord
   has_many :projekt_phases, dependent: :destroy
   has_one :debate_phase, class_name: 'ProjektPhase::DebatePhase'
   has_one :proposal_phase, class_name: 'ProjektPhase::ProposalPhase'
+  has_one :budget_phase, class_name: 'ProjektPhase::BudgetPhase'
+  has_one :comment_phase, class_name: 'ProjektPhase::CommentPhase'
   has_many :geozone_restrictions, through: :projekt_phases
   has_and_belongs_to_many :geozone_affiliations, through: :geozones_projekts, class_name: 'Geozone'
 
@@ -29,7 +31,7 @@ class Projekt < ApplicationRecord
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :destroy
   belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :projekts
 
-  accepts_nested_attributes_for :debate_phase, :proposal_phase, :projekt_notifications
+  accepts_nested_attributes_for :debate_phase, :proposal_phase, :budget_phase, :comment_phase, :projekt_notifications
 
   before_validation :set_default_color
   after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location
@@ -237,6 +239,8 @@ class Projekt < ApplicationRecord
     all.each do |projekt|
       projekt.debate_phase = ProjektPhase::DebatePhase.create unless projekt.debate_phase
       projekt.proposal_phase = ProjektPhase::ProposalPhase.create unless projekt.proposal_phase
+      projekt.budget_phase = ProjektPhase::BudgetPhase.create unless projekt.budget_phase
+      projekt.comment_phase = ProjektPhase::CommentPhase.create unless projekt.comment_phase
     end
   end
 
@@ -289,6 +293,8 @@ class Projekt < ApplicationRecord
   def create_projekt_phases
     self.debate_phase = ProjektPhase::DebatePhase.create
     self.proposal_phase = ProjektPhase::ProposalPhase.create
+    self.budget_phase = ProjektPhase::BudgetPhase.create
+    self.comment_phase = ProjektPhase::CommentPhase.create
   end
 
   def swap_order_numbers_up

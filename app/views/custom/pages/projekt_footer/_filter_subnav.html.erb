@@ -11,7 +11,9 @@
             <%= link_to comments_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.comments') %></h4>
               <div class='tab-info-summary'>
-                <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+                <span class='time-icon'><%= format_date(projekt.comment_phase.start_date) %> - <%= format_date(projekt.comment_phase.end_date) %></span>
+                <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
+                <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.comment_phase) %></span>
               </div>
             <% end %>
           </li>
@@ -22,7 +24,7 @@
             <%= link_to debates_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.debates', count: @debates_count) %></h4>
               <div class='tab-info-summary'>
-                <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+                <span class='time-icon'><%= format_date(projekt.debate_phase.start_date) %> - <%= format_date(projekt.debate_phase.end_date) %></span>
                 <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
                 <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>
               </div>
@@ -35,7 +37,7 @@
             <%= link_to proposals_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.proposals', count: @proposals_count) %></h4>
               <div class='tab-info-summary'>
-                <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+                <span class='time-icon'><%= format_date(projekt.proposal_phase.start_date) %> - <%= format_date(projekt.proposal_phase.end_date) %></span>
                 <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
                 <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.proposal_phase) %></span>
               </div>
@@ -61,9 +63,9 @@
             <%= link_to budget_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.budgets') %></h4>
               <div class='tab-info-summary'>
-                <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
+                <span class='time-icon'><%= format_date(projekt.budget_phase.start_date) %> - <%= format_date(projekt.budget_phase.end_date) %></span>
                 <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
-                <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.debate_phase) %></span>
+                <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(projekt.budget_phase) %></span>
               </div>
             <% end %>
           </li>

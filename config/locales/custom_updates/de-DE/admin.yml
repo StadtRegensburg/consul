@@ -121,6 +121,8 @@ de:
           projekt_phases: Projektphasen
           projekt_phases_tab:
             actions: Aktionen
+            activate_phase: Phase aktiviert
+            activate_info: Info aktiviert
             activate: Aktiviert
             affiliation: Gebietszuordnung
             beginning: Anfangsdatum

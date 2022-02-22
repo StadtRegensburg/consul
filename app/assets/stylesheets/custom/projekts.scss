@@ -218,11 +218,19 @@ div.projekt-phase-geozone-restriction-selector {
   }
 
 
+  input.comment_phase_only_geozones:checked ~ .projekt-phase-geozone-selector.comment_phase {
+    display: block;
+  }
+
   input.debate_phase_only_geozones:checked ~ .projekt-phase-geozone-selector.debate_phase {
     display: block;
   }
 
   input.proposal_phase_only_geozones:checked ~ .projekt-phase-geozone-selector.proposal_phase {
+    display: block;
+  }
+
+  input.budget_phase_only_geozones:checked ~ .projekt-phase-geozone-selector.budget_phase {
     display: block;
   }
 

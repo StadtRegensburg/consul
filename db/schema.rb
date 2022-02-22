@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_27_130721) do
+ActiveRecord::Schema.define(version: 2022_02_22_170400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1427,7 +1427,6 @@ ActiveRecord::Schema.define(version: 2022_01_27_130721) do
     t.string "type"
     t.date "start_date"
     t.date "end_date"
-    t.boolean "active"
     t.string "geozone_restricted"
     t.bigint "projekt_id"
     t.datetime "created_at", null: false
@@ -1853,6 +1852,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_130721) do
     t.string "city_name"
     t.datetime "bam_letter_verification_code_sent_at"
     t.string "bam_unique_stamp"
+    t.boolean "custom_newsletter", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
