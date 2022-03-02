@@ -187,9 +187,9 @@ class Projekt < ApplicationRecord
   def has_active_phase?(controller_name)
     case controller_name
     when 'proposals'
-      proposal_phase.currently_active?
+      proposal_phase.current?
     when 'debates'
-      debate_phase.currently_active?
+      debate_phase.current?
     when 'polls'
       false
     end

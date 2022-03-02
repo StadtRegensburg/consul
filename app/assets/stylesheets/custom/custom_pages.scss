@@ -94,45 +94,33 @@ span.sidebar-projekt-phases-title {
   }
 }
 
-
-table.sidebar {
-  font-size: 14px;
-
-  tbody {
-    border: none;
-  }
-
-  tr td {
-    padding: 0;
-    padding-right: 0.5rem;
-    min-width: 80px;
-    vertical-align: top;
-  }
+.sidebar-projekt-map .map_location {
+  height: 250px;
 }
 
-.projekt-phase {
-  margin-bottom: 1em;
-  line-height: 1.75;
-
-
-  .projekt-phase-button {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-}
-
-.debate-phase, .proposals-phase {
-  margin-bottom: 2em;
-}
-
-.link-icon {
-
-  &:before {
-    content: "\f35d";
-    font-family: "Font Awesome 5 Free";
-    font-weight: bold;
-  }
-}
+// .projekt-phase {
+//   margin-bottom: 1em;
+//   line-height: 1.75;
+// 
+// 
+//   .projekt-phase-button {
+//     margin-top: 0.5em;
+//     margin-bottom: 0.5em;
+//   }
+// }
+// 
+// .debate-phase, .proposals-phase {
+//   margin-bottom: 2em;
+// }
+// 
+// .link-icon {
+// 
+//   &:before {
+//     content: "\f35d";
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: bold;
+//   }
+// }
 
 ul.projekt-navigator {
   margin-left: 1rem;
