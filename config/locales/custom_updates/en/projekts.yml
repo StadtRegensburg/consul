@@ -21,6 +21,9 @@ en:
         title_active: Active projects
         title_archived: Expired projects
       page:
+        sidebar:
+          phases:
+            participate: Open for participation!
         tabs:
           comments: "Comments"
           debates: "Debates (%{count})"

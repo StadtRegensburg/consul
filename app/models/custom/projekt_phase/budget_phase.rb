@@ -8,6 +8,6 @@ class ProjektPhase::BudgetPhase < ProjektPhase
   end
 
   def resources_name
-    'budgets'
+    'budget'
   end
 end

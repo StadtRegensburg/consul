@@ -1,6 +1,13 @@
 en:
   custom:
     shared:
+      dates:
+        days_left:
+          one: "1 more day"
+          other: "%{count} more days"
+        starts_in_days:
+          one: 'Starts in 1 day'
+          other: 'Starts in %{count} days'
       form:
         projekt_assignment: Project
         star_message: All Fields marked with a (*) are required

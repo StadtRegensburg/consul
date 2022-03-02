@@ -4,7 +4,9 @@
 
 <div class='sidebar-projekt-phases'>
 
-  <span class='sidebar-projekt-phases-title'>Offen für Beteiligung!</span>
+  <% if @phases.any? { |phase| phase.current? } %>
+    <span class='sidebar-projekt-phases-title'><%= t('custom.projekts.page.sidebar.phases.participate') %></span>
+  <% end %>
 
   <% @phases.each do |phase| %>
     <div class="sidebar-projekt-phase <%= 'active' if phase.current? %>">
@@ -13,7 +15,9 @@
       <div class='sidebar-projekt-phase-details'>
         <span class='sidebar-projekt-phase-name'>
           <%= phase_name(phase) %>
-          <i class="fas fa-long-arrow-alt-right"></i>
+          <%= link_to "/#{projekt.id}/#{phase.name}_footer_tab", remote: true, onclick: '$("html, body").animate({scrollTop: $("#filter-subnav").offset().top}); $("#footer-content").addClass("show-loader");' do %>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          <% end %>
         </span>
         <span class='sidebar-projekt-phase-duration'><%= format_date_range(phase.start_date, phase.end_date) %></span>
       </div>

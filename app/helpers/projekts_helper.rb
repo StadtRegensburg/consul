@@ -117,14 +117,26 @@ module ProjektsHelper
     options[:separator] = ' ' + options[:separator] + ' '
     options[:prefix].present? ? options[:prefix] = options[:prefix] + ' ' : options[:prefix] = ''
 
-    if start_date && end_date
-      options[:prefix] + format_date(start_date) + options[:separator] + format_date(end_date)
-    elsif start_date && !end_date
-      "Start #{format_date(start_date)}"
-    elsif !start_date && end_date
-      "bis #{format_date(end_date)}"
-    else
-      'Zeitlich nicht beschränkt'
+    # if start_date && end_date
+    #   options[:prefix] + format_date(start_date) + options[:separator] + format_date(end_date)
+    # elsif start_date && !end_date
+    #  "Start #{format_date(start_date)}"
+    # elsif !start_date && end_date
+    #  "bis #{format_date(end_date)}"
+    # else
+    #  'Zeitlich nicht beschränkt'
+    # end
+
+    if end_date.present? && end_date.to_date < Date.today
+      "Abgeschlossen am #{l end_date.to_date}"
+    elsif end_date.present?  && end_date.to_date > Date.today && start_date.present? && start_date.to_date <= Date.today
+      days_left = (end_date.to_date - Date.today).to_i
+      t('custom.shared.dates.days_left', count: days_left)
+    elsif end_date.present? && end_date.to_date == Date.today && start_date.present? && start_date.to_date <= Date.today
+      "Endet heute"
+    elsif start_date.present? && start_date.to_date > Date.today
+      days_left = (start_date.to_date - Date.today).to_i
+      t('custom.shared.dates.starts_in_days', count: days_left)
     end
   end
 

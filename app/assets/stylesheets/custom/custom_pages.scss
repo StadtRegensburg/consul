@@ -33,6 +33,7 @@ span.sidebar-projekt-phases-title {
 .sidebar-projekt-phase {
   display: flex;
   color: #9EADBA;
+  margin-bottom: .5rem;
 
   .sidebar-projekt-phase-status {
     width: 14px;
@@ -51,13 +52,17 @@ span.sidebar-projekt-phases-title {
     }
 
     .sidebar-projekt-phase-name {
+      a {
+        color: inherit;
+      }
+
       i {
         margin-left: 5px;
       }
     }
 
     .sidebar-projekt-phase-duration {
-      font-size: 0.875rem;
+      font-size: 0.65rem;
     }
   }
 }
@@ -79,8 +84,8 @@ span.sidebar-projekt-phases-title {
 }
 
 .sidebar-projekt-phase.active {
-  .sidebar-projekt-phase {
-    color: #207868;
+  .sidebar-projekt-phase-details {
+    color: #207868 !important;
   }
 
   .sidebar-projekt-phase-status {

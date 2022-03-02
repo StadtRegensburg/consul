@@ -17,6 +17,9 @@ de:
         title_active: Aktive Projekte
         title_archived: Abgelaufene Projekte
       page:
+        sidebar:
+          phases:
+            participate: Offen für Beteiligung!
         tabs:
           comments: "Kommentare"
           debates: "Diskussionen (%{count})"
