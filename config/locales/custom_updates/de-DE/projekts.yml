@@ -21,11 +21,11 @@ de:
           phases:
             participate: Offen für Beteiligung!
         tabs:
-          comments: "Kommentare"
-          debates: "Diskussionen (%{count})"
-          proposals: "Vorschläge (%{count})"
-          polls: "Abstimmungen (%{count})"
-          budgets: Budgets
+          comments: Kommentare
+          debates: Diskussionen
+          proposals: Vorschläge
+          polls: Abstimmungen
+          budget: Budgets
       phase_name:
         comment_phase: Kommentare
         debate_phase: Diskussionen

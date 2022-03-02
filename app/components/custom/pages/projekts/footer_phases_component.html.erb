@@ -1,0 +1,30 @@
+<nav class="margin-bottom <%= "legislation-process-list" if true %>">
+  <div class="row">
+    <div class="small-12 column">
+      <% if true %>
+        <h3><%= "Beteiligung" %></h3>
+      <% end %>
+      <ul id='filter-subnav' class='key-dates'>
+        <% @phases.each do |phase| %>
+
+          <% if true %>
+            <li id="filter-subnav-comments" class="is-active page-subnav-tab">
+              <%= link_to "/#{projekt.id}/#{phase.name}_footer_tab", remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+                <h4>
+                  <%= t("custom.projekts.page.tabs.#{phase.resources_name}") %>
+                  <%= "(#{projekt.send(phase.resources_name).count})" if phase.resources_name.in?(['debates', 'proposals', 'polls']) %>
+                </h4>
+                <div class='tab-info-summary'>
+                  <span class='time-icon'><%= format_date_range(phase.start_date, phase.end_date) %></span>
+                  <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
+                  <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(phase) %></span>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
