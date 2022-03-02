@@ -8,7 +8,7 @@
       <ul id='filter-subnav' class='key-dates'>
         <% if true %>
           <li id="filter-subnav-comments" class="is-active page-subnav-tab">
-            <%= link_to comments_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+            <%= link_to comment_phase_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.comments') %></h4>
               <div class='tab-info-summary'>
                 <span class='time-icon'><%= format_date(projekt.comment_phase.start_date) %> - <%= format_date(projekt.comment_phase.end_date) %></span>
@@ -21,7 +21,7 @@
 
         <% if true %>
           <li id="filter-subnav-debates" class="page-subnav-tab">
-            <%= link_to debates_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+            <%= link_to debate_phase_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.debates', count: @debates_count) %></h4>
               <div class='tab-info-summary'>
                 <span class='time-icon'><%= format_date(projekt.debate_phase.start_date) %> - <%= format_date(projekt.debate_phase.end_date) %></span>
@@ -34,7 +34,7 @@
 
         <% if true %>
           <li id='filter-subnav-proposals' class='page-subnav-tab'>
-            <%= link_to proposals_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+            <%= link_to proposal_phase_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.proposals', count: @proposals_count) %></h4>
               <div class='tab-info-summary'>
                 <span class='time-icon'><%= format_date(projekt.proposal_phase.start_date) %> - <%= format_date(projekt.proposal_phase.end_date) %></span>
@@ -47,7 +47,7 @@
 
         <% if true %>
           <li id='filter-subnav-polls' class='page-subnav-tab'>
-            <%= link_to polls_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+            <%= link_to voting_phase_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.polls', count: @polls_count) %></h4>
               <div class='tab-info-summary'>
                 <span class='time-icon'><%= format_date(projekt.total_duration_start) %> - <%= format_date(projekt.total_duration_end) %></span>
@@ -60,7 +60,7 @@
 
         <% if projekt.budget.present? %>
           <li id='filter-subnav-budget' class='page-subnav-tab'>
-            <%= link_to budget_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+            <%= link_to budget_phase_footer_tab_page_path(projekt), remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
               <h4><%= t('custom.projekts.page.tabs.budgets') %></h4>
               <div class='tab-info-summary'>
                 <span class='time-icon'><%= format_date(projekt.budget_phase.start_date) %> - <%= format_date(projekt.budget_phase.end_date) %></span>

@@ -34,7 +34,7 @@ module ProjektsHelper
   end
 
   def projekt_filter_resources_name
-    @current_projekt_footer_tab || controller_name
+    @current_tab_phase&.resources_name || controller_name
   end
 
   def show_archived_projekts_in_sidebar?
@@ -103,7 +103,7 @@ module ProjektsHelper
   end
 
   def projekt_phase_show_in_navigation?(projekt, phase_name)
-    projekt.send(phase_name).active &&
+    projekt.send(phase_name).phase_activated? &&
       ((projekt.send(phase_name).start_date <= Date.today if projekt.send(phase_name).start_date) || projekt.send(phase_name).start_date.blank? )
   end
 

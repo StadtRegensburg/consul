@@ -1,12 +1,12 @@
 class Sidebar::ProjektsFilterComponent < ApplicationComponent
   delegate :projekt_filter_resources_name, :show_archived_projekts_in_sidebar?, to: :helpers
 
-  def initialize(top_level_active_projekts, top_level_archived_projekts, all_resources, current_projekt_footer_tab = nil, current_projekt = nil)
+  def initialize(top_level_active_projekts, top_level_archived_projekts, all_resources, current_tab_phase = nil, current_projekt = nil)
     @top_level_active_projekts = top_level_active_projekts
     @top_level_archived_projekts = top_level_archived_projekts
     @all_resources = all_resources
-    @current_projekt_footer_tab = current_projekt_footer_tab
     @current_projekt = current_projekt
+    @current_tab_phase = current_tab_phase
   end
 
 	private
@@ -20,16 +20,16 @@ class Sidebar::ProjektsFilterComponent < ApplicationComponent
 	end
 
   def resource_name_js
-    if @current_projekt_footer_tab && @current_projekt
-      "footer#{@current_projekt.id}#{controller_name.capitalize}"
+    if @current_tab_phase && @current_projekt
+      "footer#{@current_projekt.id}#{@current_tab_phase.name.capitalize}"
     else
       controller_name
     end
   end
 
   def form_path
-    if @current_projekt_footer_tab && @current_projekt
-      send("#{@current_projekt_footer_tab}_footer_tab_page_path")
+    if @current_tab_phase && @current_projekt
+      send("#{@current_tab_phase.name}_footer_tab_page_path")
     else
       send("#{controller_name}_path")
     end

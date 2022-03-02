@@ -22,6 +22,7 @@ class Projekt < ApplicationRecord
   has_one :proposal_phase, class_name: 'ProjektPhase::ProposalPhase'
   has_one :budget_phase, class_name: 'ProjektPhase::BudgetPhase'
   has_one :comment_phase, class_name: 'ProjektPhase::CommentPhase'
+  has_one :voting_phase, class_name: 'ProjektPhase::VotingPhase'
   has_many :geozone_restrictions, through: :projekt_phases
   has_and_belongs_to_many :geozone_affiliations, through: :geozones_projekts, class_name: 'Geozone'
 
@@ -241,6 +242,7 @@ class Projekt < ApplicationRecord
       projekt.proposal_phase = ProjektPhase::ProposalPhase.create unless projekt.proposal_phase
       projekt.budget_phase = ProjektPhase::BudgetPhase.create unless projekt.budget_phase
       projekt.comment_phase = ProjektPhase::CommentPhase.create unless projekt.comment_phase
+      projekt.voting_phase = ProjektPhase::VotingPhase.create unless projekt.voting_phase
     end
   end
 
@@ -295,6 +297,7 @@ class Projekt < ApplicationRecord
     self.proposal_phase = ProjektPhase::ProposalPhase.create
     self.budget_phase = ProjektPhase::BudgetPhase.create
     self.comment_phase = ProjektPhase::CommentPhase.create
+    self.voting_phase = ProjektPhase::VotingPhase.create
   end
 
   def swap_order_numbers_up

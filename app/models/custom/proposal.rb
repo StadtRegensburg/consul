@@ -37,7 +37,7 @@ class Proposal < ApplicationRecord
       ) &&
       (
         projekt.blank? ||
-        proposal_phase.present? && proposal_phase.currently_active?
+        proposal_phase.present? && proposal_phase.current?
       )
   end
 

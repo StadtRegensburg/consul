@@ -23,3 +23,9 @@ de:
           proposals: "Vorschläge (%{count})"
           polls: "Abstimmungen (%{count})"
           budgets: Budgets
+      phase_name:
+        comment_phase: Kommentare
+        debate_phase: Diskussionen
+        proposal_phase: Vorschläge
+        voting_phase: Abstimmungen
+        budget_phase: Budget

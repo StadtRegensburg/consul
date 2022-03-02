@@ -45,6 +45,8 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.phase.proposal_info": '',
         "projekt_feature.phase.budget": '',
         "projekt_feature.phase.budget_info": '',
+        "projekt_feature.phase.voting": '',
+        "projekt_feature.phase.voting_info": '',
 
         "projekt_feature.general.show_in_navigation": '',
         "projekt_feature.general.hide_additional_info_in_projekt_selector": '',

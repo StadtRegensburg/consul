@@ -35,7 +35,7 @@ class Debate
     ) &&
     (
       projekt.blank? ||
-      debate_phase.present? && debate_phase.currently_active?
+      debate_phase.present? && debate_phase.current?
     )
 
     #  user.voted_for?(self)

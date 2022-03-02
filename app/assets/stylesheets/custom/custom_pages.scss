@@ -24,6 +24,72 @@ span.replace-highlighted {
 
 // Sidebar
 
+span.sidebar-projekt-phases-title {
+  display: block;
+  color: #207868;
+  margin-bottom: 1rem;
+}
+
+.sidebar-projekt-phase {
+  display: flex;
+  color: #9EADBA;
+
+  .sidebar-projekt-phase-status {
+    width: 14px;
+    height: 14px;
+    background: #DFE6ED;
+    border-radius: 50%;
+    border: 2px solid #9EADBA;
+    margin-top: 4px;
+    margin-right: 4px;
+  }
+
+  .sidebar-projekt-phase-details {
+    .sidebar-projekt-phase-name,
+    .sidebar-projekt-phase-duration {
+      display: block;
+    }
+
+    .sidebar-projekt-phase-name {
+      i {
+        margin-left: 5px;
+      }
+    }
+
+    .sidebar-projekt-phase-duration {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.sidebar-projekt-phase:not(:last-child) {
+  .sidebar-projekt-phase-details {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      border-left: 2px solid;
+      left: -12px;
+      top: 12px;
+      z-index: -1;
+    }
+  }
+}
+
+.sidebar-projekt-phase.active {
+  .sidebar-projekt-phase {
+    color: #207868;
+  }
+
+  .sidebar-projekt-phase-status {
+    background-color: #90BCB3;
+    border-color: #207868;
+  }
+}
+
+
 table.sidebar {
   font-size: 14px;
 

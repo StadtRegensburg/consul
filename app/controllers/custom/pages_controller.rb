@@ -6,10 +6,10 @@ class PagesController < ApplicationController
   include CustomHelper
   include ProposalsHelper
 
-  has_orders %w[most_voted newest oldest], only: [ :show, :comments_footer_tab ]
-  has_orders ->(c) { Proposal.proposals_orders(c.current_user) }, only: :proposals_footer_tab
-  has_orders ->(c) { Debate.debates_orders(c.current_user) }, only: :debates_footer_tab
-  has_filters %w[all current], only: :polls_footer_tab
+  has_orders %w[most_voted newest oldest], only: [ :show, :comment_phase_footer_tab ]
+  has_orders ->(c) { Proposal.proposals_orders(c.current_user) }, only: :proposal_phase_footer_tab
+  has_orders ->(c) { Debate.debates_orders(c.current_user) }, only: :debate_phase_footer_tab
+  has_filters %w[all current], only: :voting_phase_footer_tab
 
   def show
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
@@ -58,9 +58,9 @@ class PagesController < ApplicationController
     head 404, content_type: "text/html"
   end
 
-  def comments_footer_tab
-    @current_projekt_footer_tab = "comments"
+  def comment_phase_footer_tab
     @current_projekt = Projekt.find(params[:id])
+    @current_tab_phase = @current_projekt.comment_phase
 
     @commentable = @current_projekt
     @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
@@ -71,11 +71,11 @@ class PagesController < ApplicationController
     end
   end
 
-  def debates_footer_tab
+  def debate_phase_footer_tab
     @current_projekt = Projekt.find(params[:id])
-    @selected_parent_projekt = @current_projekt
+    @current_tab_phase = @current_projekt.debate_phase
 
-    @current_projekt_footer_tab = "debates"
+    @selected_parent_projekt = @current_projekt
 
     scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
 
@@ -96,11 +96,11 @@ class PagesController < ApplicationController
     end
   end
 
-  def proposals_footer_tab
+  def proposal_phase_footer_tab
     @current_projekt = Projekt.find(params[:id])
-    @selected_parent_projekt = @current_projekt
+    @current_tab_phase = @current_projekt.proposal_phase
 
-    @current_projekt_footer_tab = "proposals"
+    @selected_parent_projekt = @current_projekt
 
     scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
 
@@ -123,11 +123,10 @@ class PagesController < ApplicationController
     end
   end
 
-  def polls_footer_tab
+  def voting_phase_footer_tab
     @current_projekt = Projekt.find(params[:id])
+    @current_tab_phase = @current_projekt.voting_phase
     @selected_parent_projekt = @current_projekt
-
-    @current_projekt_footer_tab = "polls"
 
     scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
 
@@ -143,14 +142,13 @@ class PagesController < ApplicationController
     end
   end
 
-  def budget_footer_tab
+  def budget_phase_footer_tab
     @current_projekt = Projekt.find(params[:id])
+    @current_tab_phase = @current_projekt.budget_phase
 
     params[:filter_projekt_id] ||= params[:id]
 
     @budget = Budget.find_by(projekt_id: params[:filter_projekt_id])
-
-    @current_projekt_footer_tab = 'budget'
 
     query = Budget::Ballot.where(user: current_user, budget: @budget)
     @ballot = @budget.balloting? ? query.first_or_create! : query.first_or_initialize
@@ -191,7 +189,7 @@ class PagesController < ApplicationController
   end
 
   def set_top_level_projekts
-    @top_level_active_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_current(@current_projekt_footer_tab)
-    @top_level_archived_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_expired(@current_projekt_footer_tab)
+    @top_level_active_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_current(@current_tab_phase.resources_name)
+    @top_level_archived_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_expired(@current_tab_phase.resources_name)
   end
 end

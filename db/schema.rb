@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_22_170400) do
+ActiveRecord::Schema.define(version: 2022_02_28_162731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1831,7 +1831,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_170400) do
     t.datetime "date_of_birth"
     t.boolean "email_on_proposal_notification", default: true
     t.boolean "email_digest", default: true
-    t.boolean "email_on_direct_message", default: false
+    t.boolean "email_on_direct_message", default: true
     t.boolean "official_position_badge", default: false
     t.datetime "password_changed_at", default: "2015-01-01 01:01:01", null: false
     t.boolean "created_from_signature", default: false
@@ -1841,18 +1841,6 @@ ActiveRecord::Schema.define(version: 2022_02_22_170400) do
     t.boolean "public_interests", default: false
     t.boolean "recommended_debates", default: true
     t.boolean "recommended_proposals", default: true
-    t.string "keycloak_link"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "plz"
-    t.string "location"
-    t.integer "bam_letter_verification_code"
-    t.string "street_name"
-    t.string "house_number"
-    t.string "city_name"
-    t.datetime "bam_letter_verification_code_sent_at"
-    t.string "bam_unique_stamp"
-    t.boolean "custom_newsletter", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
