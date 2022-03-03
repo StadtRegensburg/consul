@@ -99,6 +99,17 @@ span.sidebar-projekt-phases-title {
   }
 }
 
+.sidebar-projekt-phase[aria-expanded="false"] {
+  .sidebar-projekt-budget-phases {
+    display: none;
+  }
+
+  span.toggle-arrow:after {
+    transform: rotate(180deg);
+    transition: 0.25s;
+  }
+}
+
 .sidebar-projekt-map .map_location {
   height: 250px;
 }
