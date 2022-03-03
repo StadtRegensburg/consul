@@ -43,9 +43,12 @@ span.sidebar-projekt-phases-title {
     border: 2px solid #9EADBA;
     margin-top: 4px;
     margin-right: 4px;
+    min-width: 14px;
   }
 
   .sidebar-projekt-phase-details {
+    flex-basis: 100%;
+
     .sidebar-projekt-phase-name,
     .sidebar-projekt-phase-duration {
       display: block;
