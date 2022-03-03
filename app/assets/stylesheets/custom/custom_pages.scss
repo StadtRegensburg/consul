@@ -258,6 +258,10 @@ li.projekt-navigator[aria-expanded="false"] {
   overflow: hidden;
 }
 
+.page-subnav-tab.is-active {
+  background: #e7f2fc;
+}
+
 // Loader
 .loader {
   display: none;

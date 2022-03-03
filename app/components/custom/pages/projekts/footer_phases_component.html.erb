@@ -8,7 +8,7 @@
         <% @phases.each do |phase| %>
 
           <% if true %>
-            <li id="filter-subnav-comments" class="is-active page-subnav-tab">
+            <li id="filter-subnav-<%= phase.resources_name %>" class="page-subnav-tab">
               <%= link_to "/#{projekt.id}/#{phase.name}_footer_tab", remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
                 <h4>
                   <%= t("custom.projekts.page.tabs.#{phase.resources_name}") %>
