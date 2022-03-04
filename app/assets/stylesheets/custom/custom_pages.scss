@@ -262,45 +262,34 @@ li.projekt-navigator[aria-expanded="false"] {
   background: #e7f2fc;
 }
 
-.footer-phases-filter-subnav {
-  display: flex;
-  align-items: center;
-
-  #left-arrow-control,
-  #right-arrow-control {
-    display: inline-block;
-    width: 45px;
-    height: 45px;
-    border-top: 3px solid gray;
-    border-right: 3px solid gray;
-    cursor: pointer;
-  }
-
-  #left-arrow-control {
-    transform: rotate(225deg);
-    margin-left: 20px;
-    display: none;
-  }
-
-  #right-arrow-control {
-    transform: rotate(45deg);
-  }
+.arrow-controls {
+  display: none;
 }
 
-.custom-page #filter-subnav {
-  display: flex;
-  overflow: hidden;
+@media screen and (min-width: 64em) {
+  .arrow-controls {
+    display: flex;
+    font-size: 1.5rem;
+    cursor: pointer;
 
-  li.page-subnav-tab {
-    display: none;
+    #left-arrow-control {
+      margin-right: 10px;
+    }
   }
 
-  li.page-subnav-tab:nth-child(-n+3) {
-    display: block;
-  }
+  .custom-page #filter-subnav {
+    display: flex;
+    overflow-x: scroll;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
 
-  .page-subnav-tab a {
-    width: 270px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .page-subnav-tab a {
+      width: 270px;
+    }
   }
 }
 

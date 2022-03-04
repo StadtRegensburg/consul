@@ -1,14 +1,20 @@
 <nav class="margin-bottom <%= "legislation-process-list" if true %>">
   <div class="row">
     <div class="small-12 column">
-      <% if true %>
+      <div style='display:flex;justify-content:space-between;align-items:end;'>
         <h3><%= "Beteiligung" %></h3>
-      <% end %>
+        <div class='arrow-controls'>
+          <div id='left-arrow-control' class='js-left-arrow-control'>
+            <i class="fas fa-chevron-circle-left"></i>
+          </div>
+          <div id='right-arrow-control' class='js-right-arrow-control'>
+            <i class="fas fa-chevron-circle-right"></i>
+          </div>
+        </div>
+      </div>
 
 
       <div class='footer-phases-filter-subnav'>
-        <div id='left-arrow-control' class='js-left-arrow-control'>
-        </div>
 
         <ul id='filter-subnav' class='key-dates'>
           <% @phases.each do |phase| %>
@@ -32,8 +38,6 @@
           <% end %>
         </ul>
 
-        <div id='right-arrow-control' class='js-right-arrow-control'>
-        </div>
 
       </div>
 
