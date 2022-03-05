@@ -264,6 +264,10 @@ li.projekt-navigator[aria-expanded="false"] {
 
 .arrow-controls {
   display: none;
+
+  .disabled {
+    color: gray;
+  }
 }
 
 @media screen and (min-width: 64em) {
