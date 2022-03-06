@@ -32,7 +32,7 @@ class Projekt < ApplicationRecord
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :destroy
   belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :projekts
 
-  accepts_nested_attributes_for :debate_phase, :proposal_phase, :budget_phase, :comment_phase, :projekt_notifications
+  accepts_nested_attributes_for :debate_phase, :proposal_phase, :budget_phase, :voting_phase, :comment_phase, :projekt_notifications
 
   before_validation :set_default_color
   after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location

@@ -43,6 +43,9 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt.build_budget_phase if @projekt.budget_phase.blank?
     @projekt.budget_phase.geozone_restrictions.build
 
+    @projekt.build_voting_phase if @projekt.voting_phase.blank?
+    @projekt.voting_phase.geozone_restrictions.build
+
     @projekt.build_map_location if @projekt.map_location.blank?
 
     all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
@@ -57,6 +60,8 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt_features_phase_proposal_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.proposal_info')
     @projekt_features_phase_budget_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.budget')
     @projekt_features_phase_budget_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.budget_info')
+    @projekt_features_phase_voting_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.voting')
+    @projekt_features_phase_voting_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.voting_info')
 
     @projekt_features_general = all_projekt_features['general']
     @projekt_features_sidebar = all_projekt_features['sidebar']
@@ -141,6 +146,7 @@ class Admin::ProjektsController < Admin::BaseController
                                     debate_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     proposal_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     budget_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    voting_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     map_location_attributes: map_location_attributes,
                                     projekt_notifications: [:title, :body])
   end

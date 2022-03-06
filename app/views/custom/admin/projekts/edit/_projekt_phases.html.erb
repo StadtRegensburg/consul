@@ -95,11 +95,19 @@
     <th scope="col" class="small-2"><%= t("custom.admin.projekts.edit.projekt_phases_tab.activate_phase") %></th>
   </thead>
   <tbody>
+
     <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
       projekt_phase: @projekt.comment_phase,
       phase_name: 'comment_phase',
       feature_phase_active: @projekt_features_phase_comment_active,
       feature_phase_info: @projekt_features_phase_comment_info,
+    } %>
+
+    <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
+      projekt_phase: @projekt.voting_phase,
+      phase_name: 'voting_phase',
+      feature_phase_active: @projekt_features_phase_voting_active,
+      feature_phase_info: @projekt_features_phase_voting_info,
     } %>
 
     <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
