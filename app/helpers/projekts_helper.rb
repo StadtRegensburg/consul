@@ -148,7 +148,7 @@ module ProjektsHelper
     end
   end
 
-  def get_projekt_affiliation_name(projekt)
+  def get_projekt_affiliation_name(projekt, only_name = false )
     affiliation_name = projekt.geozone_affiliated || "no_affiliation"
     geozone_affiliations = projekt.geozone_affiliations
 
@@ -156,12 +156,16 @@ module ProjektsHelper
       return geozone_affiliations.pluck(:name).join(', ')
     end
 
+    return affiliation_name if only_name
+
     t("custom.geozones.projekt_selector.affiliations.#{affiliation_name}" )
   end
 
-  def get_projekt_phase_restriction_name(projekt_phase, destination=nil)
+  def get_projekt_phase_restriction_name(projekt_phase, destination=nil, only_name=false)
     restriction_name = projekt_phase.geozone_restricted || "no_restriction"
     geozone_restrictions = projekt_phase.geozone_restrictions
+
+    return restriction_name if only_name
 
     if geozone_restrictions.exists? && restriction_name == 'only_geozones'
       return geozone_restrictions.pluck(:name).join(', ')
