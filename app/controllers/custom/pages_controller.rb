@@ -14,8 +14,8 @@ class PagesController < ApplicationController
 
     if @custom_page.present? && @custom_page.projekt.present?
       @projekt = @custom_page.projekt
-      @first_phase_name = @projekt.projekt_phases.order(:start_date).first.resources_name
-      send("set_#{@first_phase_name}_footer_tab_variables", @projekt)
+      @default_phase_name = @projekt.projekt_phases.order(:start_date).first.resources_name
+      send("set_#{@default_phase_name}_footer_tab_variables", @projekt)
 
       scoped_projekt_ids = @projekt.all_children_projekts.unshift(@projekt).pluck(:id)
       @comments_count = @projekt.comments.count

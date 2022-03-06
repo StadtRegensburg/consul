@@ -1,5 +1,5 @@
 class Pages::Projekts::BudgetsTabComponent < ApplicationComponent
-  delegate :render_map, :can?, :format_date_range, to: :helpers
+  delegate :render_map, :can?, to: :helpers
   attr_reader :budget, :ballot, :current_user, :heading
 
   def initialize(budget, ballot, current_user)
