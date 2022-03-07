@@ -1,8 +1,10 @@
 <%= render 'shared/loader_spinner' %>
 
-<div class='margin-bottom'>
-  <%= render "proposals/map" %>
-</div>
+<% if feature?(:map) %>
+  <div class='margin-bottom'>
+    <%= render "proposals/map" %>
+  </div>
+<% end %>
 
 <div class='row'>
 

@@ -1,4 +1,4 @@
-<% unless budget.informing? %>
+<% if !budget.informing? && feature?(:map) %>
   <div class="map proposals-map">
     <%= render_map(budget.projekt.map_location, "budgets", false, nil, coordinates) %>
   </div>
