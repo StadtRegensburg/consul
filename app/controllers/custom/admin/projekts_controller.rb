@@ -62,6 +62,8 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt_features_phase_budget_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.budget_info')
     @projekt_features_phase_voting_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.voting')
     @projekt_features_phase_voting_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.voting_info')
+    @projekt_features_phase_milestone_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.milestone')
+    @projekt_features_phase_milestone_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.milestone_info')
 
     @projekt_features_general = all_projekt_features['general']
     @projekt_features_sidebar = all_projekt_features['sidebar']
