@@ -40,6 +40,16 @@
             <% end %>
 
           <% end %>
+
+          <% if true %>
+            <li id="filter-subnav-<%= milestone_phase.resources_name %>" class="page-subnav-tab <%= 'is-active' if milestone_phase.resources_name == default_phase_name %>">
+              <%= link_to "/#{projekt.id}/#{milestone_phase.name}_footer_tab", remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+                <h4>
+                  <%= t("custom.projekts.page.tabs.#{milestone_phase.resources_name}") %>
+                </h4>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
 
 

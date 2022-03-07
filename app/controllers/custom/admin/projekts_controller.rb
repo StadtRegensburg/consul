@@ -149,6 +149,7 @@ class Admin::ProjektsController < Admin::BaseController
                                     proposal_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     budget_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     voting_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    milestone_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
                                     map_location_attributes: map_location_attributes,
                                     projekt_notifications: [:title, :body])
   end

@@ -67,6 +67,7 @@ Rails.application.routes.draw do
       get :proposal_phase_footer_tab
       get :voting_phase_footer_tab
       get :budget_phase_footer_tab
+      get :milestone_phase_footer_tab
     end
   end
 

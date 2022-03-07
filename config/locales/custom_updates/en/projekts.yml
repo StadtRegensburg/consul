@@ -25,8 +25,16 @@ en:
           phases:
             participate: Open for participation!
         tabs:
-          comments: "Comments"
-          debates: "Debates (%{count})"
-          proposals: "Proposals (%{count})"
-          polls: "Polls (%{count})"
+          comments: Comments
+          debates: Debates
+          proposals: Proposals
+          polls: Polls
           budgets: Budgets
+          milestones: Milestones
+      phase_name:
+        comment_phase: Kommentare
+        debate_phase: Diskussionen
+        proposal_phase: Vorschläge
+        voting_phase: Abstimmungen
+        budget_phase: Budget
+        milestone_phase: Milestones

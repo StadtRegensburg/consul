@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 
     if @custom_page.present? && @custom_page.projekt.present?
       @projekt = @custom_page.projekt
-      @default_phase_name = @projekt.projekt_phases.order(:start_date).first.resources_name
+      @default_phase_name = @projekt.projekt_phases.where.not(type: 'ProjektPhase::MilestonePhase').order(:start_date).first.resources_name
       send("set_#{@default_phase_name}_footer_tab_variables", @projekt)
 
       scoped_projekt_ids = @projekt.all_children_projekts.unshift(@projekt).pluck(:id)
@@ -70,6 +70,14 @@ class PagesController < ApplicationController
 
   def budget_phase_footer_tab
     set_budget_footer_tab_variables
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/footer_tab" }
+    end
+  end
+
+  def milestone_phase_footer_tab
+    set_milestones_footer_tab_variables
 
     respond_to do |format|
       format.js { render "pages/projekt_footer/footer_tab" }
@@ -197,5 +205,10 @@ class PagesController < ApplicationController
       @top_level_active_projekts = []
       @top_level_archived_projekts = []
     end
+  end
+
+  def set_milestones_footer_tab_variables(projekt=nil)
+    @current_projekt = projekt || Projekt.find(params[:id])
+    @current_tab_phase = @current_projekt.milestone_phase
   end
 end

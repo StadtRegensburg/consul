@@ -26,9 +26,11 @@ de:
           proposals: Vorschläge
           polls: Abstimmungen
           budget: Budgets
+          milestones: Meilensteine
       phase_name:
         comment_phase: Kommentare
         debate_phase: Diskussionen
         proposal_phase: Vorschläge
         voting_phase: Abstimmungen
         budget_phase: Budget
+        milestone_phase: Meilensteine
