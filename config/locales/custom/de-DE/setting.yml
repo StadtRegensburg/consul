@@ -144,17 +144,11 @@ de:
           projekt_page_sharing_description: Aktivieren Sie die Teilen-Funktion in der rechten Seitenleiste der Projektseite
           show_phases_in_projekt_page_sidebar: Projektphasen
           show_phases_in_projekt_page_sidebar_description: Aktivieren Sie die Projektphasen in der rechten Seitenleiste der Projektseite
-          show_information_in_projekts_page_sidebar: Projektinformation
-          show_information_in_projekts_page_sidebar_description: Zeigt das Projektverzeichnis in der rechten Seitenleiste der Projektseiten an
           show_navigator_in_projekts_page_sidebar: Projektverzeichnis
           show_navigator_in_projekts_page_sidebar_description: Zeigt die Projektverzeichnis in der rechten Seitenleiste der Projektseiten an
         footer:
           show_projekt_footer: Fußzeile aktivieren
           show_projekt_footer_description: Aktiviert die Fußzeile am unteren Ende des Projektes
-          show_activity_in_projekt_footer: Aktivität
-          show_activity_in_projekt_footer_description: Aktiviert die Aktivität in der Fußzeile eines Projektes
-          show_comments_in_projekt_footer: Kommentare
-          show_comments_in_projekt_footer_description: Aktiviert die Kommentarfunktion in der Fußzeile eines Projekts
           show_notifications_in_projekt_footer: Benachrichtigungen
           show_notifications_in_projekt_footer_description: Aktiviert die Benachrichtigungsfunktion in der Fußzeile eines Projekts
           show_milestones_in_projekt_footer: Meilensteine
