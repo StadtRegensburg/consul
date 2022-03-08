@@ -20,14 +20,14 @@ class Sidebar::ProjektsFilterRadioComponent < ApplicationComponent
   end
 
   def label_class
-    if checkbox_checked
+    if radio_button_selected
       'label-selected'
     else
       'label_regular'
     end
   end
 
-  def checkbox_checked
-    projekt.id.to_s == params[:filter_projekt_id]
+  def radio_button_selected
+    projekt.id == params[:filter_projekt_id]
   end
 end

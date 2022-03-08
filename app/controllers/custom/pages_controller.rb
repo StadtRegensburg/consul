@@ -14,7 +14,10 @@ class PagesController < ApplicationController
 
     if @custom_page.present? && @custom_page.projekt.present?
       @projekt = @custom_page.projekt
-      @default_phase_name = @projekt.regular_projekt_phases.order(:start_date).first.resources_name
+
+      default_phase = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
+      @default_phase_name = ProjektPhase.find(default_phase.value).resources_name
+
       send("set_#{@default_phase_name}_footer_tab_variables", @projekt)
 
       scoped_projekt_ids = @projekt.all_children_projekts.unshift(@projekt).pluck(:id)
@@ -182,10 +185,11 @@ class PagesController < ApplicationController
   end
 
   def set_budget_footer_tab_variables(projekt=nil)
-    @current_projekt = projekt || Projekt.find(params[:id])
+    params[:filter_projekt_id] = projekt&.id || params[:id].to_i
+    @current_projekt = Projekt.find(params[:filter_projekt_id])
     @current_tab_phase = @current_projekt.budget_phase
 
-    params[:filter_projekt_id] ||= params[:id]
+    params[:filter_projekt_id] ||= @current_projekt.id
 
     @budget = Budget.find_by(projekt_id: params[:filter_projekt_id])
 
