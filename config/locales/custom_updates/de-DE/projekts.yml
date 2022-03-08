@@ -34,3 +34,6 @@ de:
         voting_phase: Abstimmungen
         budget_phase: Budget
         milestone_phase: Meilensteine
+        milestone_phase:
+          start: Umsetzung
+          ending: Gepl. Fertigstellung

@@ -81,6 +81,11 @@ class Projekt < ApplicationRecord
     end
   end
 
+  def regular_projekt_phases
+    projekt_phases.
+      where.not(type: 'ProjektPhase::MilestonePhase')
+  end
+
   def update_page
     update_corresponding_page if self.name_changed?
     yield

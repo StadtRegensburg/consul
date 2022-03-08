@@ -4,11 +4,11 @@
 
 <div class='sidebar-projekt-phases'>
 
-  <% if @phases.any? { |phase| phase.current? } %>
+  <% if phases.any? { |phase| phase.current? } %>
     <span class='sidebar-projekt-phases-title'><%= t('custom.projekts.page.sidebar.phases.participate') %></span>
   <% end %>
 
-  <% @phases.each do |phase| %>
+  <% phases.each do |phase| %>
     <div class="sidebar-projekt-phase <%= 'active' if phase.current? %>" <%= "aria-expanded=true" if phase.name == 'budget_phase' %>>
       <div class='sidebar-projekt-phase-status'>
       </div>
@@ -38,4 +38,26 @@
 
     </div>
   <% end %>
+
+  <div class="sidebar-projekt-phase <%= 'active' if milestone_phase.current? %>" >
+    <div class='sidebar-projekt-phase-status'>
+    </div>
+    <div class='sidebar-projekt-phase-details'>
+      <span class='sidebar-projekt-phase-name'>
+        <%= phase_name(milestone_phase, 'start') %>
+      </span>
+      <span class='sidebar-projekt-phase-duration'><%= format_date_range(milestone_phase.start_date, milestone_phase.start_date) %></span>
+    </div>
+  </div>
+
+  <div class="sidebar-projekt-phase" >
+    <div class='sidebar-projekt-phase-status'>
+    </div>
+    <div class='sidebar-projekt-phase-details'>
+      <span class='sidebar-projekt-phase-name'>
+        <%= phase_name(milestone_phase, 'ending') %>
+      </span>
+      <span class='sidebar-projekt-phase-duration'><%= format_date_range(milestone_phase.end_date, milestone_phase.end_date) %></span>
+    </div>
+  </div>
 </div>
