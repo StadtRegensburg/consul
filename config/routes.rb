@@ -68,6 +68,7 @@ Rails.application.routes.draw do
       get :voting_phase_footer_tab
       get :budget_phase_footer_tab
       get :milestone_phase_footer_tab
+      get :extended_sidebar_map
     end
   end
 
