@@ -136,6 +136,8 @@ de:
           projekt_phases: Projektphasen
           projekt_phases_tab:
             actions: Aktionen
+            activate_phase: Phase aktiviert
+            activate_info: Info aktiviert
             activate: Aktiviert
             affiliation: Gebietszuordnung
             beginning: Anfangsdatum
@@ -160,6 +162,10 @@ de:
             name: Projektfunktionen
             select_an_element: auswählen
             sidebar_settings: Seitenleiste
+          projekt_sdg_tab:
+            name: 'SDGs & Tags'
+            sdgs: SDGs
+            tags: Tags
           projekt_status: Projektstatus
           setting_indicator:
             'no': Nein
@@ -231,3 +237,7 @@ de:
           category_options:
             active_projekt: Aktiver Beteiligungsprozess
             archived_projekt: Abgeschlossener Beteiligungsprozess
+      budgets:
+        edit:
+          info:
+            projekt_association: Projektzuordnung
