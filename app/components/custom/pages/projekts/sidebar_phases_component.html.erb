@@ -46,7 +46,7 @@
       <span class='sidebar-projekt-phase-name'>
         <%= phase_name(milestone_phase, 'start') %>
       </span>
-      <span class='sidebar-projekt-phase-duration'><%= format_date_range(milestone_phase.start_date, milestone_phase.start_date) %></span>
+      <span class='sidebar-projekt-phase-duration'><%= format_date(milestone_phase.start_date) %></span>
     </div>
   </div>
 
@@ -57,7 +57,7 @@
       <span class='sidebar-projekt-phase-name'>
         <%= phase_name(milestone_phase, 'ending') %>
       </span>
-      <span class='sidebar-projekt-phase-duration'><%= format_date_range(milestone_phase.end_date, milestone_phase.end_date) %></span>
+      <span class='sidebar-projekt-phase-duration'><%= format_date(milestone_phase.end_date) %></span>
     </div>
   </div>
 </div>

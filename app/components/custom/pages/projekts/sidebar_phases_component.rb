@@ -1,5 +1,5 @@
 class Pages::Projekts::SidebarPhasesComponent < ApplicationComponent
-  delegate :format_date_range, to: :helpers
+  delegate :format_date_range, :format_date, to: :helpers
   attr_reader :projekt, :phases, :milestone_phase
 
   def initialize(projekt)

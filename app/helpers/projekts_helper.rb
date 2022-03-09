@@ -109,7 +109,7 @@ module ProjektsHelper
 
   def format_date(date)
     return '' if date.blank?
-    date.strftime("%d.%m.%Y")
+    l date.to_date
   end
 
   def format_date_range(start_date=nil, end_date=nil, options={})
