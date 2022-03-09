@@ -1,0 +1,63 @@
+<nav class="margin-bottom <%= "legislation-process-list" if true %>">
+  <div class="row">
+    <div class="small-12 column">
+      <div style='display:flex;justify-content:space-between;align-items:end;'>
+        <h3><%= "Beteiligung" %></h3>
+        <div class='arrow-controls'>
+          <div id='left-arrow-control' class='js-left-arrow-control disabled'>
+            <i class="fas fa-chevron-circle-left"></i>
+          </div>
+          <div id='right-arrow-control' class='js-right-arrow-control'>
+            <i class="fas fa-chevron-circle-right"></i>
+          </div>
+        </div>
+      </div>
+
+
+      <div class='footer-phases-filter-subnav'>
+
+        <ul id='filter-subnav' class='key-dates'>
+          <% @phases.each do |phase| %>
+
+            <% if true %>
+              <li id="filter-subnav-<%= phase.resources_name %>" class="page-subnav-tab <%= 'is-active' if phase.resources_name == default_phase_name %>">
+                <%= link_to "/#{projekt.id}/#{phase.name}_footer_tab", remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+                  <h4>
+                    <%= t("custom.projekts.page.tabs.#{phase.resources_name}") %>
+                    <% if phase.resources_name.in?(['debates', 'proposals', 'polls']) %>
+                      <% count = instance_variable_get("@#{phase.resources_name}_count") %>
+                      <%= "(#{count})" %>
+                    <% end %>
+                  </h4>
+                  <div class='tab-info-summary'>
+                    <span class='time-icon'><%= format_date_range(phase.start_date, phase.end_date) %></span>
+                    <% unless get_projekt_affiliation_name(projekt, true) == 'no_affiliation' %>
+                      <span class='geo-affiliation-icon'><%= get_projekt_affiliation_name(projekt) %></span>
+                    <% end %>
+                    <% unless get_projekt_phase_restriction_name(phase, nil, true) == 'no_restriction' %>
+                      <span class='geo-restriction-icon'><%= get_projekt_phase_restriction_name(phase) %></span>
+                    <% end %>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+
+          <% end %>
+
+          <% if true %>
+            <li id="filter-subnav-<%= milestone_phase.resources_name %>" class="page-subnav-tab <%= 'is-active' if milestone_phase.resources_name == default_phase_name %>">
+              <%= link_to "/#{projekt.id}/#{milestone_phase.name}_footer_tab", remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+                <h4>
+                  <%= t("custom.projekts.page.tabs.#{milestone_phase.resources_name}") %>
+                </h4>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
+
+      </div>
+
+    </div>
+  </div>
+</nav>

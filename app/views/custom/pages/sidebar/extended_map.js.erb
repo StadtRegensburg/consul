@@ -1,0 +1,4 @@
+$("#extended-sidebar-map").html("<%= j render("pages/sidebar/sidebar_map_extended") %>");
+$('#extended-sidebar-map').foundation();
+App.Map.destroy();
+App.Map.initialize();

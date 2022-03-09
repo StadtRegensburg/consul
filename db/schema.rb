@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_094849) do
+ActiveRecord::Schema.define(version: 2022_02_28_162731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1425,7 +1425,6 @@ ActiveRecord::Schema.define(version: 2022_01_24_094849) do
     t.string "type"
     t.date "start_date"
     t.date "end_date"
-    t.boolean "active"
     t.string "geozone_restricted"
     t.bigint "projekt_id"
     t.datetime "created_at", null: false
@@ -1758,6 +1757,7 @@ ActiveRecord::Schema.define(version: 2022_01_24_094849) do
     t.boolean "custom_logic_category_cloud"
     t.boolean "custom_logic_subcategory_cloud"
     t.boolean "custom_logic_usertags_cloud"
+    t.integer "projekts_count", default: 0
     t.index ["debates_count"], name: "index_tags_on_debates_count"
     t.index ["legislation_processes_count"], name: "index_tags_on_legislation_processes_count"
     t.index ["legislation_proposals_count"], name: "index_tags_on_legislation_proposals_count"

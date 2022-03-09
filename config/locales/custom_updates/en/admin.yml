@@ -77,6 +77,11 @@ en:
             name: Project functions
             select_an_element: select
             sidebar_settings: Sidebar
+          projekt_sdg_tab:
+            name: 'SDGs & Tags'
+            sdgs: SDGs
+            tags: Tags
+          projekt_status: Projektstatus
           projekt_status: Project status
           setting_indicator:
             'no': "No"
@@ -148,3 +153,7 @@ en:
           category_options:
             active_projekt: Active participation process
             archived_projekt: Completed participation process
+      budgets:
+        edit:
+          info:
+            projekt_association: Project association
