@@ -9,6 +9,12 @@ class Pages::Projekts::FooterPhasesComponent < ApplicationComponent
 
     @phases = projekt.regular_projekt_phases.order(:start_date)
     @milestone_phase = projekt.milestone_phase
+
+    scoped_projekt_ids = @projekt.all_children_projekts.unshift(@projekt).pluck(:id)
+    @comments_count = @projekt.comments.count
+    @debates_count = Debate.base_selection(scoped_projekt_ids).count
+    @proposals_count = Proposal.base_selection(scoped_projekt_ids).count
+    @polls_count = Poll.base_selection(scoped_projekt_ids).count
   end
 
   private

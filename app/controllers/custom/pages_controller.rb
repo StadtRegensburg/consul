@@ -89,13 +89,6 @@ class PagesController < ApplicationController
 
   def extended_sidebar_map
     @current_projekt = Projekt.find(params[:id])
-    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
-
-    @all_resources = Proposal.base_selection(scoped_projekt_ids)
-
-    set_proposal_votes(@all_resources)
-
-    @proposals_coordinates = all_proposal_map_locations(@all_resources)
 
     respond_to do |format|
       format.js { render "pages/sidebar/extended_map" }
