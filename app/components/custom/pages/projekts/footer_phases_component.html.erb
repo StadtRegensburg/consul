@@ -19,7 +19,7 @@
         <ul id='filter-subnav' class='key-dates'>
           <% @phases.each do |phase| %>
 
-            <% if true %>
+            <% if phase.phase_info_activated? %>
               <li id="filter-subnav-<%= phase.resources_name %>" class="page-subnav-tab <%= 'is-active' if phase.resources_name == default_phase_name %>">
                 <%= link_to "/#{projekt.id}/#{phase.name}_footer_tab", remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
                   <h4>
@@ -44,15 +44,13 @@
 
           <% end %>
 
-          <% if true %>
-            <li id="filter-subnav-<%= milestone_phase.resources_name %>" class="page-subnav-tab <%= 'is-active' if milestone_phase.resources_name == default_phase_name %>">
-              <%= link_to "/#{projekt.id}/#{milestone_phase.name}_footer_tab", remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
-                <h4>
-                  <%= t("custom.projekts.page.tabs.#{milestone_phase.resources_name}") %>
-                </h4>
-              <% end %>
-            </li>
-          <% end %>
+          <li id="filter-subnav-<%= milestone_phase.resources_name %>" class="page-subnav-tab <%= 'is-active' if milestone_phase.resources_name == default_phase_name %>">
+            <%= link_to "/#{projekt.id}/#{milestone_phase.name}_footer_tab", remote: true, onclick: '$("#footer-content").addClass("show-loader")' do %>
+              <h4>
+                <%= t("custom.projekts.page.tabs.#{milestone_phase.resources_name}") %>
+              </h4>
+            <% end %>
+          </li>
         </ul>
 
 
