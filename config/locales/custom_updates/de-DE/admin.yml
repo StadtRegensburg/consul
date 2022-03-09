@@ -156,6 +156,9 @@ de:
             start_date: Anfangsdatum
             voting_manage: Abstimmungen verwalten
             voting_phase: Abstimmungsphase
+            comment_phase: Kommentarphase
+            budget_phase: Budgetphase
+            milestone_phase: Umsetzungsphase
           projekt_settings_tab:
             footer_settings: Fußzeile
             general_settings: Allgemein

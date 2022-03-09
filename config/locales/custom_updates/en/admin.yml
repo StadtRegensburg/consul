@@ -71,6 +71,9 @@ en:
             start_date: Start date
             voting_manage: Manage polls
             voting_phase: Voting phase
+            comment_phase: Commenting phase
+            budget_phase: Budget phase
+            milestone_phase: Execution phase
           projekt_settings_tab:
             footer_settings: Footer
             general_settings: General

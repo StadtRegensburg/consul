@@ -143,12 +143,12 @@ class Admin::ProjektsController < Admin::BaseController
 
   def projekt_params
     params.require(:projekt).permit(:name, :parent_id, :total_duration_start, :total_duration_end, :color, :icon, :geozone_affiliated, :tag_list, :related_sdg_list, geozone_affiliation_ids: [], sdg_goal_ids: [],
-                                    comment_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    debate_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    proposal_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    budget_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    voting_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    milestone_phase_attributes: [:id, :start_date, :end_date, :active, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    comment_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    debate_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    proposal_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    budget_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    voting_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+                                    milestone_phase_attributes: [:id, :start_date, :end_date],
                                     map_location_attributes: map_location_attributes,
                                     projekt_notifications: [:title, :body])
   end
