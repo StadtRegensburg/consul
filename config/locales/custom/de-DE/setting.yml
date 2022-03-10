@@ -160,6 +160,18 @@ de:
           show_milestones_in_projekt_footer_description: Aktiviert die Meilensteinfunktion in der Fußzeile eines Projekts
           show_newsfeed_in_projekt_footer: News-Feed
           show_newsfeed_in_projekt_footer_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
+          comment_info: Kommentarphase
+          comment_info_description: Aktiviert die Kommentarphase in der Fußzeile eines Projekts
+          debate_info: Diskussionsphase
+          debate_info_description: Aktiviert die Diskussionsphase in der Fußzeile eines Projekts
+          proposal_info: Vorschlagsphase
+          proposal_info_description: Aktiviert die Vorschlagsphase in der Fußzeile eines Projekts
+          voting_info: Abstimmungsphase
+          voting_info_description: Aktiviert die Abstimmungsphase in der Fußzeile eines Projekts
+          budget_info: Budgetphase
+          budget_info_description: Aktiviert die Budgetphase in der Fußzeile eines Projekts
+          milestone_info: Umsetzungsphase
+          milestone_info_description: Aktiviert die Umsetzungsphase in der Fußzeile eines Projekts
 
       deficiency_reports:
         show_in_main_menu: Mängelmelder in Navigation anzeigen

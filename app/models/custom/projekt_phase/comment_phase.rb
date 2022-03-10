@@ -4,7 +4,7 @@ class ProjektPhase::CommentPhase < ProjektPhase
   end
 
   def phase_info_activated?
-    ProjektSetting.find_by(projekt: projekt, key: "projekt_feature.phase.comment_info").value.present?
+    ProjektSetting.find_by(projekt: projekt, key: "projekt_feature.footer.comment_info").value.present?
   end
 
   def name
