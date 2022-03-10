@@ -104,13 +104,6 @@
     } %>
 
     <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
-      projekt_phase: @projekt.voting_phase,
-      phase_name: 'voting_phase',
-      feature_phase_active: @projekt_features_phase_voting_active,
-      feature_phase_info: @projekt_features_phase_voting_info,
-    } %>
-
-    <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
       projekt_phase: @projekt.debate_phase,
       phase_name: 'debate_phase',
       feature_phase_active: @projekt_features_phase_debate_active,
@@ -122,6 +115,13 @@
       phase_name: 'proposal_phase',
       feature_phase_active: @projekt_features_phase_proposal_active,
       feature_phase_info: @projekt_features_phase_proposal_info,
+    } %>
+
+    <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
+      projekt_phase: @projekt.voting_phase,
+      phase_name: 'voting_phase',
+      feature_phase_active: @projekt_features_phase_voting_active,
+      feature_phase_info: @projekt_features_phase_voting_info,
     } %>
 
     <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
