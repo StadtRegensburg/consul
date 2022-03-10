@@ -159,6 +159,9 @@ de:
             comment_phase: Kommentarphase
             budget_phase: Budgetphase
             milestone_phase: Umsetzungsphase
+            link:
+              voting_phase: Abstimmungen
+              budget_phase: Budgets
           projekt_settings_tab:
             footer_settings: Fußzeile
             general_settings: Allgemein

@@ -2,7 +2,7 @@
   <%= render Pages::Projekts::SidebarPhasesComponent.new(projekt) %>
 <% end %>
 
-<% if feature?(:map) %>
+<% if projekt_feature?(projekt, 'general.show_map') %>
   <%= render Pages::Projekts::SidebarMapComponent.new(projekt) %>
 <% end %>
 

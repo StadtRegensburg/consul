@@ -38,17 +38,11 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.main.activate": '',
 
         "projekt_feature.phase.comment": '',
-        "projekt_feature.phase.comment_info": '',
         "projekt_feature.phase.debate": '',
-        "projekt_feature.phase.debate_info": '',
         "projekt_feature.phase.proposal": '',
-        "projekt_feature.phase.proposal_info": '',
-        "projekt_feature.phase.budget": '',
-        "projekt_feature.phase.budget_info": '',
         "projekt_feature.phase.voting": '',
-        "projekt_feature.phase.voting_info": '',
+        "projekt_feature.phase.budget": '',
         "projekt_feature.phase.milestone": '',
-        "projekt_feature.phase.milestone_info": '',
 
         "projekt_feature.general.show_in_navigation": '',
         "projekt_feature.general.hide_additional_info_in_projekt_selector": '',
@@ -61,8 +55,13 @@ class ProjektSetting < ApplicationRecord
 
         "projekt_feature.footer.show_projekt_footer": 'active',
         "projekt_feature.footer.show_notifications_in_projekt_footer": '',
-        "projekt_feature.footer.show_milestones_in_projekt_footer": '',
         "projekt_feature.footer.show_newsfeed_in_projekt_footer": '',
+        "projekt_feature.footer.comment_info": 'active',
+        "projekt_feature.footer.debate_info": 'active',
+        "projekt_feature.footer.proposal_info": 'active',
+        "projekt_feature.footer.voting_info": 'active',
+        "projekt_feature.footer.budget_info": 'active',
+        "projekt_feature.footer.milestone_info": 'active',
 
         "projekt_newsfeed.id": '',
         "projekt_newsfeed.type": '',

@@ -1,6 +1,6 @@
 <%= render 'shared/loader_spinner' %>
 
-<% if feature?(:map) %>
+<% if projekt_feature?(@current_projekt, 'general.show_map') %>
   <div class='margin-bottom'>
     <%= render "proposals/map" %>
   </div>
