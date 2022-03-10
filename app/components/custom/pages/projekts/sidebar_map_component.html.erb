@@ -2,6 +2,7 @@
 
 <h2 class="sidebar-title hide-for-small-only"><%= t("custom.projekt.page.sidebar.map.title") %></h2>
 
+<p><%= get_projekt_affiliation_name(projekt) %></p>
 <%= link_to extended_sidebar_map_page_path(projekt), remote: true do %>
   <div class='sidebar-projekt-map'>
     <%= render_map(projekt.map_location, "proposals_sidebar", false, nil, [] ) %>
