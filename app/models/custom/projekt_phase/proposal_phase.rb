@@ -4,7 +4,7 @@ class ProjektPhase::ProposalPhase < ProjektPhase
   end
 
   def phase_info_activated?
-    ProjektSetting.find_by(projekt: projekt, key: "projekt_feature.footer.proposal_info").value.present?
+    ProjektSetting.find_by(projekt: projekt, key: "projekt_feature.phase.proposal_info").value.present?
   end
 
   def name

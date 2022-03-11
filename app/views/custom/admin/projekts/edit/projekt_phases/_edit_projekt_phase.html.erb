@@ -25,6 +25,11 @@
       <%= f.submit(t("custom.admin.projekts.edit.update"), class: "button success") %>
     <% end %>
   </td>
+
+  <td>
+    <%= render Admin::Settings::FeaturedSettingsFormComponent.new(feature_phase_info, tab: '#tab-projekt-phases') %>
+  </td>
+
   <td>
     <% if phase_name == 'budget_phase'  %>
       <%= link_to t("custom.admin.projekts.edit.projekt_phases_tab.link.budget_phase"), admin_budgets_path, target: '_blank' %>

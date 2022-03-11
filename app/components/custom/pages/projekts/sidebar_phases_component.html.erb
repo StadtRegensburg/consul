@@ -9,7 +9,7 @@
   <% end %>
 
   <% phases.each do |phase| %>
-    <% if phase.phase_activated? %>
+    <% if phase.phase_info_activated? %>
       <div class="sidebar-projekt-phase <%= 'active' if phase.current? %>" <%= "aria-expanded=true" if phase.name == 'budget_phase' %>>
         <div class='sidebar-projekt-phase-status'>
         </div>
