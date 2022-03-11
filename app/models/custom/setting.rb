@@ -144,7 +144,7 @@ class Setting < ApplicationRecord
         "sdg.process.legislation": false,
         "sdg.process.projekts": true,
         "projekts.connected_resources": true,
-        "projekts.show_archived.navigation": true,
+        "projekts.overview_page": true,
         "projekts.show_archived.sidebar": true,
         "projekts.show_module_links_in_flyout_menu": true,
         "projekts.second_level_projekts_in_active_filter": false,

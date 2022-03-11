@@ -10,8 +10,6 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt = Projekt.new
 
     @projekts_settings = Setting.all.group_by(&:type)['projekts']
-    map_setting = Setting.find_by(key: 'feature.map')
-    @projekts_settings.push(map_setting)
     skip_user_verification_setting = Setting.find_by(key: 'feature.user.skip_verification')
     @projekts_settings.push(skip_user_verification_setting)
 
