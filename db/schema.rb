@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_162731) do
+ActiveRecord::Schema.define(version: 2022_03_11_105237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -431,6 +431,8 @@ ActiveRecord::Schema.define(version: 2022_02_28_162731) do
     t.text "description_informing"
     t.string "voting_style", default: "knapsack"
     t.boolean "published"
+    t.bigint "projekt_id"
+    t.index ["projekt_id"], name: "index_budgets_on_projekt_id"
   end
 
   create_table "campaigns", id: :serial, force: :cascade do |t|
@@ -1441,6 +1443,16 @@ ActiveRecord::Schema.define(version: 2022_02_28_162731) do
     t.index ["projekt_id"], name: "index_projekt_settings_on_projekt_id"
   end
 
+  create_table "projekt_translations", force: :cascade do |t|
+    t.bigint "projekt_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.index ["locale"], name: "index_projekt_translations_on_locale"
+    t.index ["projekt_id"], name: "index_projekt_translations_on_projekt_id"
+  end
+
   create_table "projekts", force: :cascade do |t|
     t.string "name"
     t.bigint "parent_id"
@@ -1839,6 +1851,16 @@ ActiveRecord::Schema.define(version: 2022_02_28_162731) do
     t.boolean "public_interests", default: false
     t.boolean "recommended_debates", default: true
     t.boolean "recommended_proposals", default: true
+    t.string "first_name"
+    t.string "last_name"
+    t.string "plz"
+    t.string "location"
+    t.integer "bam_letter_verification_code"
+    t.string "street_name"
+    t.string "house_number"
+    t.string "city_name"
+    t.datetime "bam_letter_verification_code_sent_at"
+    t.string "bam_unique_stamp"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -1968,6 +1990,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_162731) do
   add_foreign_key "budget_investments", "communities"
   add_foreign_key "budget_valuators", "budgets"
   add_foreign_key "budget_valuators", "valuators"
+  add_foreign_key "budgets", "projekts"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
