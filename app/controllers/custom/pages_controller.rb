@@ -135,6 +135,7 @@ class PagesController < ApplicationController
 
     @current_projekt = projekt || Projekt.find(params[:id])
     @current_tab_phase = @current_projekt.debate_phase
+    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
 
     @selected_parent_projekt = @current_projekt
 
@@ -157,6 +158,7 @@ class PagesController < ApplicationController
 
     @current_projekt = projekt || Projekt.find(params[:id])
     @current_tab_phase = @current_projekt.proposal_phase
+    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
 
     @selected_parent_projekt = @current_projekt
 
@@ -181,6 +183,7 @@ class PagesController < ApplicationController
     @current_projekt = projekt || Projekt.find(params[:id])
     @current_tab_phase = @current_projekt.voting_phase
     @selected_parent_projekt = @current_projekt
+    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
 
     scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
 

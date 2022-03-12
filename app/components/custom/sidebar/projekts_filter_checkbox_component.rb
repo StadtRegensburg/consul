@@ -1,9 +1,10 @@
 class Sidebar::ProjektsFilterCheckboxComponent < ApplicationComponent
   delegate :projekt_filter_resources_name, to: :helpers
 
-  def initialize(f, projekt, group, all_resources)
+  def initialize(f, projekt, current_projekt, group, all_resources)
     @f = f
     @projekt = projekt
+    @current_projekt = current_projekt
     @group = group
     @all_resources = all_resources
   end
@@ -24,7 +25,7 @@ class Sidebar::ProjektsFilterCheckboxComponent < ApplicationComponent
 
   def selectable_children
     if @group == 'active'
-      @projekt.children.selectable_in_sidebar_current(projekt_filter_resources_name)
+      @projekt.children.selectable_in_sidebar_current(projekt_filter_resources_name).select { |projekt| (projekt.all_parent_ids + [projekt.id] +  projekt.all_children_ids).include?(@current_projekt.id) }
     elsif @group == 'archived'
       @projekt.children.selectable_in_sidebar_expired(projekt_filter_resources_name)
     end

@@ -3,7 +3,7 @@
 
   <h2 class="sidebar-title projekt-tag-chip-projekt projekt-tag-chip-icon"><%= t("custom.projekts.sidebar_filter.title") %></h2>
 
-  <div id='filter-projekts-all' data-resources-name=<%= resource_name_js %>>
+  <div id='filter-projekts-all' data-resources-name=<%= resource_name_js %> data-projekts-to-toggle=<%= projekts_to_toggle_js %>  >
 
     <%= form_with url: form_path, method: :get, local: local_form? do |f| %>
 
@@ -19,7 +19,7 @@
             <% if @current_tab_phase&.name == 'budget_phase' %>
               <%= render Sidebar::ProjektsFilterRadioComponent.new(f, projekt, 'active', @all_resources) %>
             <% else %>
-              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, 'active', @all_resources) %>
+              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, @current_projekt, 'active', @all_resources) %>
             <% end %>
           <% end %>
         </div>
@@ -36,7 +36,7 @@
             <% if @current_tab_phase&.name == 'budget_phase' %>
               <%= render Sidebar::ProjektsFilteRadioComponent.new(f, projekt, 'archived', @all_resources) %>
             <% else %>
-              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, 'archived', @all_resources) %>
+              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, @current_projekt, 'archived', @all_resources) %>
             <% end %>
           <% end %>
         </div>

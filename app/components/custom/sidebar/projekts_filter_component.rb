@@ -27,6 +27,14 @@ class Sidebar::ProjektsFilterComponent < ApplicationComponent
     end
   end
 
+  def projekts_to_toggle_js
+    if @current_projekt
+      @current_projekt.all_children_ids.unshift(@current_projekt.id).unshift(@current_projekt.all_parent_ids).join(',')
+    else
+      ''
+    end
+  end
+
   def form_path
     if @current_tab_phase && @current_projekt
       send("#{@current_tab_phase.name}_footer_tab_page_path")

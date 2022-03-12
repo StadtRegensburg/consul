@@ -210,6 +210,14 @@
       }
     },
 
+    toggleDefaultProjekts: function() {
+      var selectedProjektIdsKeyName = App.Projekts.selectedProjektIdsKeyName();
+      var projektIdsToToggle = document.getElementById('filter-projekts-all').dataset.projektsToToggle;
+      if ( window.localStorage.getItem(selectedProjektIdsKeyName).length == 0 ) {
+        window.localStorage.setItem(selectedProjektIdsKeyName, projektIdsToToggle);
+      }
+    },
+
     toggleProjektsInSidebarFilter: function() {
       var resourceName = App.Projekts.selectedProjektIdsKeyName();
 

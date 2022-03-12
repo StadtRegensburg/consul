@@ -5,5 +5,7 @@ $("#footer-content").html("<%= j render("pages/projekt_footer/#{@current_tab_pha
 App.Projekts.toggleProjektsInSidebarFilter();
 $('#footer-content').foundation();
 
+App.Projekts.toggleDefaultProjekts()
+
 App.Map.destroy();
 App.Map.initialize();
