@@ -153,6 +153,7 @@ class PagesController < ApplicationController
 
   def set_proposals_footer_tab_variables(projekt=nil)
     @valid_orders = Proposal.proposals_orders(current_user)
+    @valid_orders.delete("archival_date")
     @valid_orders.delete('relevance')
     @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
 
