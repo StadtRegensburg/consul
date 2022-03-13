@@ -143,7 +143,6 @@ class Setting < ApplicationRecord
         "sdg.process.budgets": false,
         "sdg.process.legislation": false,
         "sdg.process.projekts": true,
-        "projekts.connected_resources": true,
         "projekts.overview_page": true,
         "projekts.show_archived.sidebar": true,
         "projekts.show_module_links_in_flyout_menu": true,

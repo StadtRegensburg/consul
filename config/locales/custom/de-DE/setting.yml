@@ -117,8 +117,6 @@ de:
           description_max_length_description: Legen Sie fest, wie viele Zeichen für Vorschläge maximal verwendet werden dürfen
 
       projekts:
-        connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
-        connected_resources_description: Diskussionen & Vorschläge können ohne Projektzuordnung nicht erstellt werden
         overview_page: Projektübersichtsseite in Navigation anzeigen
         overview_page_description: Zeigt die Projektübersichtsseite in der Navigation an
         show_archived:
