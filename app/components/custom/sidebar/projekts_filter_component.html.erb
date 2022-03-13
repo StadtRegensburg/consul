@@ -19,7 +19,7 @@
             <% if @current_tab_phase&.name == 'budget_phase' %>
               <%= render Sidebar::ProjektsFilterRadioComponent.new(f, projekt, 'active', @all_resources) %>
             <% else %>
-              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, @current_projekt, 'active', @all_resources) %>
+              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, 'active', @all_resources, @current_projekt) %>
             <% end %>
           <% end %>
         </div>
@@ -36,7 +36,7 @@
             <% if @current_tab_phase&.name == 'budget_phase' %>
               <%= render Sidebar::ProjektsFilteRadioComponent.new(f, projekt, 'archived', @all_resources) %>
             <% else %>
-              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, @current_projekt, 'archived', @all_resources) %>
+              <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, 'archived', @all_resources, @current_projekt) %>
             <% end %>
           <% end %>
         </div>
