@@ -6,6 +6,10 @@ class Projekt < ApplicationRecord
   include ActiveModel::Dirty
   include SDG::Relatable
   include Taggable
+  include Imageable
+
+  translates :description
+  include Globalizable
 
   has_many :children, class_name: 'Projekt', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Projekt', optional: true

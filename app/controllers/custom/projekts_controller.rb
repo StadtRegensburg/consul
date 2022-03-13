@@ -1,6 +1,10 @@
 class ProjektsController < ApplicationController
   skip_authorization_check
 
+  before_action do
+    raise FeatureFlags::FeatureDisabled, :projekts_overview unless Setting['projekts.overview_page']
+  end
+
   include ProjektControllerHelper
 
   def index

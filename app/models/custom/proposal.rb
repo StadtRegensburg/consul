@@ -6,7 +6,7 @@ class Proposal < ApplicationRecord
   has_many :geozone_restrictions, through: :proposal_phase
   has_many :geozone_affiliations, through: :projekt
 
-  validates :projekt_id, presence: true, if: :require_a_projekt?
+  validates :projekt_id, presence: true
   validate :description_sanitized
 
   scope :with_current_projekt,  -> { joins(:projekt).merge(Projekt.current) }
@@ -24,10 +24,6 @@ class Proposal < ApplicationRecord
       not_retired.
       where(projekt_id: scoped_projekt_ids).
       joins(:projekt).merge(Projekt.activated)
-  end
-
-  def require_a_projekt?
-    Setting["projekts.connected_resources"].present? ? true : false
   end
 
   def votable_by?(user)

@@ -117,8 +117,6 @@ de:
           description_max_length_description: Legen Sie fest, wie viele Zeichen für Vorschläge maximal verwendet werden dürfen
 
       projekts:
-        connected_resources: Verpflichtende Zuordnung von Diskussionen & Vorschläge zu Projekten
-        connected_resources_description: Diskussionen & Vorschläge können ohne Projektzuordnung nicht erstellt werden
         overview_page: Projektübersichtsseite in Navigation anzeigen
         overview_page_description: Zeigt die Projektübersichtsseite in der Navigation an
         show_archived:
@@ -136,7 +134,7 @@ de:
           activate: Projekt aktivieren
           activate_description: Aktivieren Sie das Projekt, sodass es in der Applikation sichtbar ist
         general:
-          show_in_navigation: Projekt in Navigation anzeigen
+          show_in_navigation: Projekt in Navigation hervorheben
           show_in_navigation_description: Zeigt das Projekt in der Top-Navigation der Webseite an (nur für Top-Level-Projekte)
           hide_additional_info_in_projekt_selector: Zusätzliche Projektinformationen im Projekt-Selektor ausblenden
           hide_additional_info_in_projekt_selector_description: Verbirgt die zusätzlichen Projektinformationen wie Gebiet, Dauer und Partizipationsberechtigung im Projekt-Selektor

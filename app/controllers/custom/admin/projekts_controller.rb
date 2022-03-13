@@ -1,5 +1,8 @@
 class Admin::ProjektsController < Admin::BaseController
   include MapLocationAttributes
+  include Translatable
+  include ImageAttributes
+
 
   before_action :find_projekt, only: [:update, :destroy, :quick_update]
   before_action :load_geozones, only: [:new, :create, :edit, :update]
@@ -10,8 +13,6 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt = Projekt.new
 
     @projekts_settings = Setting.all.group_by(&:type)['projekts']
-    map_setting = Setting.find_by(key: 'feature.map')
-    @projekts_settings.push(map_setting)
     skip_user_verification_setting = Setting.find_by(key: 'feature.user.skip_verification')
     @projekts_settings.push(skip_user_verification_setting)
 
@@ -58,12 +59,12 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt_features_phase_budget_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.budget')
     @projekt_features_phase_voting_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.voting')
     @projekt_features_phase_milestone_active = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.milestone')
-    @projekt_features_phase_comment_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.footer.comment_info')
-    @projekt_features_phase_debate_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.footer.debate_info')
-    @projekt_features_phase_proposal_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.footer.proposal_info')
-    @projekt_features_phase_budget_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.footer.budget_info')
-    @projekt_features_phase_voting_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.footer.voting_info')
-    @projekt_features_phase_milestone_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.footer.milestone_info')
+    @projekt_features_phase_comment_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.comment_info')
+    @projekt_features_phase_debate_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.debate_info')
+    @projekt_features_phase_proposal_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.proposal_info')
+    @projekt_features_phase_budget_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.budget_info')
+    @projekt_features_phase_voting_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.voting_info')
+    @projekt_features_phase_milestone_info = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_feature.phase.milestone_info')
 
     @projekt_features_general = all_projekt_features['general']
     @projekt_features_sidebar = all_projekt_features['sidebar']
@@ -142,15 +143,19 @@ class Admin::ProjektsController < Admin::BaseController
   private
 
   def projekt_params
-    params.require(:projekt).permit(:name, :parent_id, :total_duration_start, :total_duration_end, :color, :icon, :geozone_affiliated, :tag_list, :related_sdg_list, geozone_affiliation_ids: [], sdg_goal_ids: [],
-                                    comment_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    debate_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    proposal_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    budget_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    voting_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
-                                    milestone_phase_attributes: [:id, :start_date, :end_date],
-                                    map_location_attributes: map_location_attributes,
-                                    projekt_notifications: [:title, :body])
+    attributes = [
+      :name, :parent_id, :total_duration_start, :total_duration_end, :color, :icon, :geozone_affiliated, :tag_list, :related_sdg_list, geozone_affiliation_ids: [], sdg_goal_ids: [],
+      comment_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+      debate_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+      proposal_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+      budget_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+      voting_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, geozone_restriction_ids: [] ],
+      milestone_phase_attributes: [:id, :start_date, :end_date],
+      map_location_attributes: map_location_attributes,
+      image_attributes: image_attributes,
+      projekt_notifications: [:title, :body]
+    ]
+    params.require(:projekt).permit(attributes, translation_params(Projekt))
   end
 
   def process_tags

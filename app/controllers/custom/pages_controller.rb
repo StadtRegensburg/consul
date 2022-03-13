@@ -6,7 +6,6 @@ class PagesController < ApplicationController
   include CustomHelper
   include ProposalsHelper
 
-
   def show
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
 
@@ -112,8 +111,8 @@ class PagesController < ApplicationController
   end
 
   def set_top_level_projekts
-    @top_level_active_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_current(@current_tab_phase.resources_name)
-    @top_level_archived_projekts = Projekt.where( id: @current_projekt ).selectable_in_sidebar_expired(@current_tab_phase.resources_name)
+    @top_level_active_projekts = Projekt.where( id: @current_projekt.top_parent ).selectable_in_sidebar_current(@current_tab_phase.resources_name)
+    @top_level_archived_projekts = Projekt.where( id: @current_projekt.top_parent ).selectable_in_sidebar_expired(@current_tab_phase.resources_name)
   end
 
   def set_comments_footer_tab_variables(projekt=nil)
@@ -129,12 +128,14 @@ class PagesController < ApplicationController
   end
 
   def set_debates_footer_tab_variables(projekt=nil)
+
     @valid_orders = Debate.debates_orders(current_user)
     @valid_orders.delete('relevance')
     @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
 
     @current_projekt = projekt || Projekt.find(params[:id])
     @current_tab_phase = @current_projekt.debate_phase
+    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
 
     @selected_parent_projekt = @current_projekt
 
@@ -152,11 +153,13 @@ class PagesController < ApplicationController
 
   def set_proposals_footer_tab_variables(projekt=nil)
     @valid_orders = Proposal.proposals_orders(current_user)
+    @valid_orders.delete("archival_date")
     @valid_orders.delete('relevance')
     @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
 
     @current_projekt = projekt || Projekt.find(params[:id])
     @current_tab_phase = @current_projekt.proposal_phase
+    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
 
     @selected_parent_projekt = @current_projekt
 
@@ -181,6 +184,7 @@ class PagesController < ApplicationController
     @current_projekt = projekt || Projekt.find(params[:id])
     @current_tab_phase = @current_projekt.voting_phase
     @selected_parent_projekt = @current_projekt
+    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
 
     scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).pluck(:id)
 

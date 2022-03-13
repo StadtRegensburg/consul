@@ -12,12 +12,12 @@
       })
 
       $("body").on("click", ".js-left-arrow-control", function(event) {
-        $('#filter-subnav').animate( { scrollLeft: '-=120' }, 1000 );
+        $('#filter-subnav').animate( { scrollLeft: '-=240' }, 500 );
 
         var tabFilterSubnav = document.getElementById('filter-subnav')
         var maxScroll = tabFilterSubnav.scrollWidth - tabFilterSubnav.clientWidth
 
-        if ( $('#filter-subnav').scrollLeft() <= 120 ) {
+        if ( $('#filter-subnav').scrollLeft() <= 240 ) {
           $('#left-arrow-control').addClass('disabled')
         }
 
@@ -27,7 +27,7 @@
       })
 
       $("body").on("click", ".js-right-arrow-control", function(event) {
-        $('#filter-subnav').animate( { scrollLeft: '+=120' }, 1000 );
+        $('#filter-subnav').animate( { scrollLeft: '+=240' }, 500 );
 
         var tabFilterSubnav = document.getElementById('filter-subnav')
         var maxScroll = tabFilterSubnav.scrollWidth - tabFilterSubnav.clientWidth
@@ -36,7 +36,7 @@
           $('#left-arrow-control').removeClass('disabled')
         }
 
-        if ( maxScroll <= $('#filter-subnav').scrollLeft() + 120 ) {
+        if ( maxScroll <= $('#filter-subnav').scrollLeft() + 240 ) {
           $('#right-arrow-control').addClass('disabled')
         }
 

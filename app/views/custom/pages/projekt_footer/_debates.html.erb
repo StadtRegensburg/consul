@@ -33,7 +33,7 @@
 			<%= render @debates %>
       <% render partial: "debates/debate", collection: @debates %>
 		<% else %>
-			<%= empty_recommended_debates_message_text(current_user) %>
+			<%# = empty_recommended_debates_message_text(current_user) %>
 		<% end %>
 		<%= paginate @debates, remote: true %>
 
