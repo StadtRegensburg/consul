@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       @projekt = @custom_page.projekt
 
       default_phase_id = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab').value
-      @default_phase_name = default_phase_id ? ProjektPhase.find(default_phase_id).resources_name : 'comments'
+      @default_phase_name = default_phase_id.present? ? ProjektPhase.find(default_phase_id).resources_name : 'comments'
 
       send("set_#{@default_phase_name}_footer_tab_variables", @projekt)
 
