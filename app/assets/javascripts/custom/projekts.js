@@ -211,9 +211,15 @@
     },
 
     toggleDefaultProjekts: function() {
-      var selectedProjektIdsKeyName = App.Projekts.selectedProjektIdsKeyName();
-      var projektIdsToToggle = document.getElementById('filter-projekts-all').dataset.projektsToToggle;
-      if ( window.localStorage.getItem(selectedProjektIdsKeyName).length == 0 ) {
+
+      if ( document.getElementById('filter-projekts-all') ) {
+        var selectedProjektIdsKeyName = App.Projekts.selectedProjektIdsKeyName();
+        var projektIdsToToggle = document.getElementById('filter-projekts-all').dataset.projektsToToggle;
+      } else {
+        return;
+      }
+
+      if ( !window.localStorage.getItem(selectedProjektIdsKeyName) ) {
         window.localStorage.setItem(selectedProjektIdsKeyName, projektIdsToToggle);
       }
     },

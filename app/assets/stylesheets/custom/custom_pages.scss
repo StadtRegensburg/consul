@@ -190,6 +190,10 @@ li.projekt-navigator.current-projekt::before {
 
     .extended-sidebar-map {
       height: 500px;
+
+      @media screen and (min-width: 1920px) {
+        height: 700px;
+      }
     }
 
     .close-button {
