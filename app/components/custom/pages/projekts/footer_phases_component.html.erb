@@ -49,6 +49,11 @@
               <h4>
                 <%= t("custom.projekts.page.tabs.#{milestone_phase.resources_name}") %>
               </h4>
+              <div class='tab-info-summary'>
+                <% if @projekt.milestones.any? %>
+                <span class='time-icon'><%= format_date(@projekt.milestones.last.publication_date.to_date) %></span>
+                <% end %>
+              </div>
             <% end %>
           </li>
         </ul>
