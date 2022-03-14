@@ -114,6 +114,7 @@ de:
       projekts:
         destroy: Löschen
         edit:
+          description: Projektbeschreibung
           projekt_activated: Projekt aktiv
           projekt_active:
             'no': Nein
