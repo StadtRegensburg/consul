@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       @projekt = @custom_page.projekt
 
       default_phase_id = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab').value
-      @default_phase_name = default_phase_id ? ProjektPhase.find(default_phase_id).resources_name : 'comments'
+      @default_phase_name = default_phase_id.present? ? ProjektPhase.find(default_phase_id).resources_name : 'comments'
 
       send("set_#{@default_phase_name}_footer_tab_variables", @projekt)
 
@@ -83,6 +83,25 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.js { render "pages/projekt_footer/footer_tab" }
+    end
+  end
+
+  def projekt_notifications_footer_tab
+    @current_projekt = Projekt.find(params[:id])
+    @projekt_notifications = @current_projekt.projekt_notifications
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/projekt_notifications" }
+    end
+  end
+
+  def newsfeed_footer_tab
+    @current_projekt = Projekt.find(params[:id])
+    @rss_id = ProjektSetting.find_by(projekt: @current_projekt, key: "projekt_newsfeed.id").value
+    @rss_type = ProjektSetting.find_by(projekt: @current_projekt, key: "projekt_newsfeed.type").value
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/newsfeed" }
     end
   end
 

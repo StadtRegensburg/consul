@@ -1,11 +1,11 @@
 class Pages::Projekts::FooterPhasesComponent < ApplicationComponent
-  delegate :format_date_range, :get_projekt_phase_restriction_name, to: :helpers
+  delegate :format_date, :format_date_range, :get_projekt_phase_restriction_name, :projekt_feature?, to: :helpers
   attr_reader :projekt, :default_phase_name, :phases, :milestone_phase
 
   def initialize(projekt, default_phase_name)
     @projekt = projekt
     default_phase_id = ProjektSetting.find_by(projekt: projekt, key: 'projekt_custom_feature.default_footer_tab').value
-    @default_phase_name = default_phase_id ? ProjektPhase.find(default_phase_id).resources_name : 'comments'
+    @default_phase_name = default_phase_id.present? ? ProjektPhase.find(default_phase_id).resources_name : 'comments'
 
     @phases = projekt.regular_projekt_phases.order(:start_date)
     @milestone_phase = projekt.milestone_phase
