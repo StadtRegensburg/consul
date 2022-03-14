@@ -27,6 +27,8 @@ de:
           polls: Abstimmungen
           budget: Budgets
           milestones: Meilensteine
+          projekt_notifications: Benachrichtigungen
+          newsfeed: News
       phase_name:
         comment_phase: Kommentare
         debate_phase: Diskussionen

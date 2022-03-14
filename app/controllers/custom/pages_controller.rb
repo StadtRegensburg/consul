@@ -86,6 +86,25 @@ class PagesController < ApplicationController
     end
   end
 
+  def projekt_notifications_footer_tab
+    @current_projekt = Projekt.find(params[:id])
+    @projekt_notifications = @current_projekt.projekt_notifications
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/projekt_notifications" }
+    end
+  end
+
+  def newsfeed_footer_tab
+    @current_projekt = Projekt.find(params[:id])
+    @rss_id = ProjektSetting.find_by(projekt: @current_projekt, key: "projekt_newsfeed.id").value
+    @rss_type = ProjektSetting.find_by(projekt: @current_projekt, key: "projekt_newsfeed.type").value
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/newsfeed" }
+    end
+  end
+
   def extended_sidebar_map
     @current_projekt = Projekt.find(params[:id])
 
