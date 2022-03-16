@@ -1,6 +1,6 @@
 class ProjektPhase::VotingPhase < ProjektPhase
   def phase_activated?
-    true
+    projekt.polls.any? { |poll| poll.current? }
   end
 
   def phase_info_activated?
