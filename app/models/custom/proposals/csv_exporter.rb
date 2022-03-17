@@ -1,4 +1,4 @@
-class Proposal::CsvExporter
+class Proposals::CsvExporter
   require "csv"
   include JsonExporter
 
