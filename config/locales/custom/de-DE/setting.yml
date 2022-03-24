@@ -154,12 +154,6 @@ de:
         footer:
           show_projekt_footer: Fußzeile aktivieren
           show_projekt_footer_description: Aktiviert die Fußzeile am unteren Ende des Projektes
-          show_notifications_in_projekt_footer: Benachrichtigungen
-          show_notifications_in_projekt_footer_description: Aktiviert die Benachrichtigungsfunktion in der Fußzeile eines Projekts
-          show_milestones_in_projekt_footer: Meilensteine
-          show_milestones_in_projekt_footer_description: Aktiviert die Meilensteinfunktion in der Fußzeile eines Projekts
-          show_newsfeed_in_projekt_footer: News-Feed
-          show_newsfeed_in_projekt_footer_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
           comment_info: Kommentarphase
           comment_info_description: Aktiviert die Kommentarphase in der Fußzeile eines Projekts
           debate_info: Diskussionsphase

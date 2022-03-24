@@ -28,6 +28,8 @@ class Projekt < ApplicationRecord
   has_one :comment_phase, class_name: 'ProjektPhase::CommentPhase'
   has_one :voting_phase, class_name: 'ProjektPhase::VotingPhase'
   has_one :milestone_phase, class_name: 'ProjektPhase::MilestonePhase'
+  has_one :projekt_notification_phase, class_name: 'ProjektPhase::ProjektNotificationPhase'
+  has_one :newsfeed_phase, class_name: 'ProjektPhase::NewsfeedPhase'
   has_many :geozone_restrictions, through: :projekt_phases
   has_and_belongs_to_many :geozone_affiliations, through: :geozones_projekts, class_name: 'Geozone'
 
@@ -92,7 +94,7 @@ class Projekt < ApplicationRecord
 
   def regular_projekt_phases
     projekt_phases.
-      where.not(type: 'ProjektPhase::MilestonePhase')
+      where.not(type: ['ProjektPhase::MilestonePhase', 'ProjektPhase::ProjektNotificationPhase', 'ProjektPhase::NewsfeedPhase' ])
   end
 
   def update_page
@@ -260,6 +262,8 @@ class Projekt < ApplicationRecord
       projekt.comment_phase = ProjektPhase::CommentPhase.create unless projekt.comment_phase
       projekt.voting_phase = ProjektPhase::VotingPhase.create unless projekt.voting_phase
       projekt.milestone_phase = ProjektPhase::MilestonePhase.create unless projekt.milestone_phase
+      projekt.notification_phase = ProjektPhase::ProjektNotificationPhase.create unless projekt.notification_phase
+      projekt.newsfeed_phase = ProjektPhase::NewsfeedPhase.create unless projekt.newsfeed_phase
     end
   end
 
