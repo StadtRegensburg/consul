@@ -11,7 +11,7 @@ class Projekt < ApplicationRecord
   translates :description
   include Globalizable
 
-  has_many :children, class_name: 'Projekt', foreign_key: 'parent_id'
+  has_many :children, -> { order(order_number: :asc) }, class_name: 'Projekt', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Projekt', optional: true
 
   has_many :debates, dependent: :nullify
@@ -42,8 +42,11 @@ class Projekt < ApplicationRecord
   accepts_nested_attributes_for :debate_phase, :proposal_phase, :budget_phase, :voting_phase, :comment_phase, :milestone_phase, :projekt_notifications
 
   before_validation :set_default_color
-  after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location
   around_update :update_page
+  after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location
+  after_save do
+    Projekt.all.each { |projekt| projekt.update_column('level', projekt.calculate_level) }
+  end
   after_destroy :ensure_projekt_order_integrity
 
   validates :color, format: { with: /\A#[\d, a-f, A-F]{6}\Z/ }
@@ -114,7 +117,7 @@ class Projekt < ApplicationRecord
   end
 
   def top_level?
-    order_number.present? && parent.present?
+    order_number.present? && parent.blank?
   end
 
   def activated?
@@ -150,9 +153,9 @@ class Projekt < ApplicationRecord
       comment_phase.current?
   end
 
-  def level(counter = 1)
+  def calculate_level(counter = 1)
     return counter if self.parent.blank?
-    self.parent.level(counter+1)
+    self.parent.calculate_level(counter+1)
   end
 
   def breadcrumb_trail_ids(breadcrumb_trail_ids = [])
