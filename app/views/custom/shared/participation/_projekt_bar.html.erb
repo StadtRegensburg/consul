@@ -4,7 +4,7 @@
   </div>
 
   <div class='show-for-large'>
-    <% if action_name == 'index' && controller_name.in?(['proposals', 'debates', 'polls'])  %>
+    <% if action_name == 'index' && controller_name.in?(['proposals', 'debates', 'polls', 'welcome'])  %>
       <% unless resource.author.name.blank? %>
         <%= link_to resource.author.name, resource.author %>
       <% end%>
@@ -14,7 +14,7 @@
       <% end %>
 
     <% elsif action_name == 'show' && controller_name.in?(['proposals', 'debates', 'polls']) %>
-      <%= link_to t("custom.shared.show.back_link", resources: resource.model_name.human(count: 2)), resource.projekt %>
+      <%= link_to t("custom.shared.show.back_link", resources: resource.model_name.human(count: 2)), resource.projekt.projekt %>
 
     <% elsif controller_name == 'pages' %>
         <%= link_to resource.author.name, resource.author %>
