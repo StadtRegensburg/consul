@@ -41,10 +41,6 @@ module ProjektsHelper
     Setting["projekts.show_archived.sidebar"].present? ? true : false
   end
 
-  def show_archived_projekts_in_menu?
-    Setting["projekts.show_archived.navigation"].present? ? true : false
-  end
-
   def show_affiliation_filter_in_sidebar?
     Setting["extended_feature.modulewide.show_affiliation_filter_in_index_sidebar"].present? ? true : false
   end

@@ -69,8 +69,7 @@ class Projekt < ApplicationRecord
   scope :with_active_feature, ->(projekt_feature_key) { joins( 'INNER JOIN projekt_settings waf ON projekts.id = waf.projekt_id').
                                                         where( 'waf.key': "projekt_feature.#{projekt_feature_key}", 'waf.value': 'active' ) }
 
-  scope :top_level_navigation_current, -> { top_level.visible_in_menu.current }
-  scope :top_level_navigation_expired, -> { top_level.visible_in_menu.expired }
+  scope :top_level_navigation, -> { top_level.visible_in_menu }
 
   scope :top_level_sidebar_current, ->(controller_name) { top_level.selectable_in_sidebar_current(controller_name) }
   scope :top_level_sidebar_expired, ->(controller_name) { top_level.selectable_in_sidebar_expired(controller_name) }
