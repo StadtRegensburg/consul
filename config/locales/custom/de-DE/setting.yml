@@ -105,6 +105,9 @@ de:
           enable_projekt_filter_description: Zeigt den Projektfilter in der Abstimmungsübersichtseite
 
       extended_option:
+        general:
+          subtitle: Untertitel der Applikation
+          subtitle_description: Fügt einen Untertitel zur Applikation hinzu.
         gdpr:
           devise_timeout_min: Dauer von Nutzer-Sitzungen
           devise_timeout_min_description: Legen Sie fest, wie lange ein Nutzer pro Sitzung eingeloggt bleiben soll in Minuten
