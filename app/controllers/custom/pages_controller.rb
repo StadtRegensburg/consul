@@ -221,6 +221,7 @@ class PagesController < ApplicationController
     params[:filter_projekt_id] = projekt&.id || SiteCustomization::Page.find_by(slug: params[:id]).projekt.id
     @current_projekt = Projekt.find(params[:filter_projekt_id])
     @current_tab_phase = @current_projekt.budget_phase
+    params[:current_tab_path] = 'budget_phase_footer_tab'
 
     params[:filter_projekt_id] ||= @current_projekt.id
 
