@@ -9,11 +9,9 @@
       <% if @budget.accepting? %>
         <% if current_user %>
           <% if current_user.level_two_or_three_verified? %>
-            <div class="text-right">
-              <%= link_to t("budgets.investments.index.sidebar.create"),
-                          new_budget_investment_path(@budget),
-                          class: "button" %>
-            </div>
+            <%= link_to t("budgets.investments.index.sidebar.create"),
+                        new_budget_investment_path(@budget),
+                        class: "button expanded" %>
           <% else %>
             <div class="callout warning">
               <%= sanitize(t("budgets.investments.index.sidebar.verified_only",
