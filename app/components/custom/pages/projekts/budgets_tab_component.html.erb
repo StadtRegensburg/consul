@@ -42,7 +42,7 @@
           <% end %>
         <% else %>
           <h2 class="margin-top">
-            <%= t("budgets.investments.index.by_heading", heading: heading.name) %>
+            <%= budget.current_phase.name %>
           </h2>
           <h3>
             <span class="tagline"><%= t("budgets.investments.header.price") %></span>
@@ -50,8 +50,6 @@
           </h3>
         <% end %>
 
-
-      <%= budget.current_phase.name %>
       </div>
     </div>
   </div>
