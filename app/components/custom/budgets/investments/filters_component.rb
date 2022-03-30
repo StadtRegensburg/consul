@@ -9,7 +9,8 @@ class Budgets::Investments::FiltersComponent < ApplicationComponent
           t("budgets.investments.index.filters.#{filter}"),
           link_path(filter),
           current_filter == filter,
-          remote: remote?
+          remote: remote?,
+          onclick: (controller_name == 'pages' ? '$(".spinner-placeholder").addClass("show-loader")' : '')
         ]
       end
     end
