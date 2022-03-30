@@ -220,7 +220,13 @@ class PagesController < ApplicationController
   def set_budget_footer_tab_variables(projekt=nil)
     params[:filter_projekt_id] = projekt&.id || SiteCustomization::Page.find_by(slug: params[:id]).projekt.id
     @current_projekt = Projekt.find(params[:filter_projekt_id])
+
+    @valid_filters = @current_projekt.budget.investments_filters
+    params[:filter] ||= 'winners' if @current_projekt.budget.phase == 'finished'
+    @current_filter = @valid_filters.include?(params[:filter]) ? params[:filter] : nil
+
     @current_tab_phase = @current_projekt.budget_phase
+    params[:current_tab_path] = 'budget_phase_footer_tab'
 
     params[:filter_projekt_id] ||= @current_projekt.id
 
@@ -230,6 +236,8 @@ class PagesController < ApplicationController
     @ballot = @budget.balloting? ? query.first_or_create! : query.first_or_initialize
 
     @investments = @budget.investments
+    @investments = @investments.send(params[:filter]) if params[:filter]
+
     @investment_ids = @investments.ids
 
     if @budget.present? && @current_projekt.current?
