@@ -1,31 +1,10 @@
-<h1><%= investment.title %></h1>
-<div class="budget-investment-info">
-  <%= render "/shared/author_info", resource: investment %>
-
-  <span class="bullet">&nbsp;&bull;&nbsp;</span>
-  <%= l investment.created_at.to_date %>
-  <span class="bullet">&nbsp;&bull;&nbsp;</span>
-  <%= investment.heading.name %>
-  <span class="bullet">&nbsp;&bull;&nbsp;</span>
-  <% if local_assigns[:preview].nil? %>
-    <span class="js-flag-actions">
-      <%= render "shared/flag_actions", flaggable: investment %>
-    </span>
-  <% end %>
-</div>
-
-<br>
-
 <% if feature?(:map) && map_location_available?(@investment.map_location) %>
-  <div class="margin">
+  <div class="">
     <%= render_map(investment.map_location, "budget_investment", false, nil) %>
   </div>
 <% end %>
 
-<p id="investment_code">
-  <%= sanitize(t("budgets.investments.show.code", code: investment.id)) %>
-</p>
-
+<br>
 <%= auto_link_already_sanitized_html wysiwyg(investment.description) %>
 
 <%= render_image(investment.image, :large, true) if investment.image.present? %>
@@ -70,8 +49,4 @@
 
 <% if local_assigns[:preview].nil? %>
   <%= render "relationable/related_content", relationable: investment %>
-
-  <div class="js-moderator-investment-actions margin">
-    <%= render "budgets/investments/actions", investment: investment %>
-  </div>
 <% end %>

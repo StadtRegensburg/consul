@@ -11,6 +11,10 @@
           investment,
           investment.author,
           Flag.flagged?(current_user, investment),
+          extended_feature?('budget_investments.show_report_button_in_sidebar'),
+          extended_feature?('budget_investments.show_follow_button_in_sidebar'),
+          extended_feature?('budget_investments.show_community_button_in_sidebar'),
+          extended_feature?('budget_investments.show_related_content'),
           investment.followed_by?(current_user),
           feature?(:remove_investments_supports),
           current_user&.voted_for?(investment)] do %>
@@ -20,6 +24,10 @@
       <div class="column margin-bottom">
         <%= render partial: "shared/participation/projekt_bar", locals: { resource: investment } %>
       </div>
+
+      <div class="column">
+        <h1><%= investment.title %></h1>
+      </div>
     </div>
 
     <div class="row">
@@ -28,6 +36,16 @@
       </div>
 
       <aside class="small-12 medium-3 column">
+
+        <% if current_user.present? && current_user.administrator? %>
+          <div class="sidebar-divider"></div>
+          <h2><%= t("custom.shared.show.admin") %></h2>
+
+          <div class="">
+            <%= render "budgets/investments/actions", investment: investment %>
+          </div>
+        <% end %>
+
         <%= render "/budgets/investments/author_actions", investment: investment %>
 
         <% if investment.should_show_aside? %>
@@ -80,15 +98,8 @@
           <div class="callout warning">
             <%= sanitize(t("budgets.investments.show.project_not_selected")) %>
           </div>
-        <% else %>
-          <br>
-          <div class="float-right">
-            <span class="label-budget-investment float-left">
-              <%= t("budgets.investments.show.title") %>
-            </span>
-            <span class="icon-budget"></span>
-          </div>
         <% end %>
+
         <% if investment.should_show_price? %>
           <div class="sidebar-divider"></div>
           <h2><%= t("budgets.investments.show.price") %></h2>
@@ -105,6 +116,12 @@
           <% end %>
         <% end %>
 
+        <%= render "shared/participation/resource_info", resource: investment %>
+
+        <% if extended_feature?('budget_investments.show_report_button_in_sidebar') %>
+          <%= render "shared/participation/flag", resource: investment %>
+        <% end %>
+
         <%= render "shared/social_share",
           share_title: t("budgets.investments.show.share"),
           title: investment.title,
@@ -117,14 +134,27 @@
                      title: investment.title,
                      handle: setting["twitter_handle"]) %>
 
-        <% if current_user %>
+        <% if current_user && extended_feature?('budget_investments.show_follow_button_in_sidebar') %>
           <div class="sidebar-divider"></div>
           <p class="sidebar-title"><%= t("shared.follow") %></p>
 
           <%= render "follows/follow_button", follow: find_or_build_follow(current_user, investment) %>
         <% end %>
 
-        <%= render "communities/access_button", community: investment.community %>
+        <% if current_user && extended_feature?('budget_investments.show_community_button_in_sidebar') %>
+          <%= render "communities/access_button", community: investment.community %>
+        <% end %>
+
+        <% if current_user && extended_feature?('budget_investments.show_related_content') %>
+          <div class="sidebar-divider"></div>
+          <h2><%= t("custom.shared.show.related_title") %></h2>
+          <p><%= t("custom.shared.show.related_text") %></p>
+          <div class="">
+            <%= link_to '#related_content', data: {toggle: "related_content"}, id: "add-related-content", class: "button hollow expanded" do %>
+              <%= t("custom.shared.show.related_button") %>
+            <% end %>
+          </div>
+        <% end %>
 
        </aside>
     </div>

@@ -232,13 +232,24 @@ class PagesController < ApplicationController
 
     @budget = Budget.find_by(projekt_id: params[:filter_projekt_id])
 
-    query = Budget::Ballot.where(user: current_user, budget: @budget)
-    @ballot = @budget.balloting? ? query.first_or_create! : query.first_or_initialize
+    params[:section] ||= 'results' if @budget.phase == 'finished'
 
-    @investments = @budget.investments
-    @investments = @investments.send(params[:filter]) if params[:filter]
+    if params[:section] == 'results' 
+      @investments = Budget::Result.new(@budget, @budget.headings.first).investments
+      @headings = @budget.headings.sort_by_name
+      @heading = @headings.first
+    elsif params[:section] == 'stats'
+      @stats = Budget::Stats.new(@budget)
+      @headings = @budget.headings.sort_by_name
+      @investments = @budget.investments
+    else
+      query = Budget::Ballot.where(user: current_user, budget: @budget)
+      @ballot = @budget.balloting? ? query.first_or_create! : query.first_or_initialize
 
-    @investment_ids = @investments.ids
+      @investments = @budget.investments
+      @investments = @investments.send(params[:filter]) if params[:filter]
+      @investment_ids = @budget.investments.ids
+    end
 
     if @budget.present? && @current_projekt.current?
       @top_level_active_projekts = Projekt.where( id: @current_projekt )
