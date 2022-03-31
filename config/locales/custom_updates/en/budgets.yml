@@ -1,0 +1,11 @@
+en:
+  custom:
+    budgets:
+      investments:
+        statuses:
+          phases:
+            reviewing: The feasibility of the investment proposal is currently evaluated.
+            reviewing_ballots: We're currently checking the votes.
+
+
+
