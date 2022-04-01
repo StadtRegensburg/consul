@@ -100,6 +100,12 @@
           </div>
         <% end %>
 
+        <% if @budget.phase.in?(['reviewing', 'reviewing_ballots']) %>
+          <div class="callout warning">
+            <%= t("custom.budgets.investments.statuses.phases.#{investment.budget.phase}") %>
+          </div>
+        <% end %>
+
         <% if investment.should_show_price? %>
           <div class="sidebar-divider"></div>
           <h2><%= t("budgets.investments.show.price") %></h2>
