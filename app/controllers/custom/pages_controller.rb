@@ -231,16 +231,15 @@ class PagesController < ApplicationController
     params[:filter_projekt_id] ||= @current_projekt.id
 
     @budget = Budget.find_by(projekt_id: params[:filter_projekt_id])
+    @headings = @budget.headings.sort_by_name
+    @heading = @headings.first
 
     params[:section] ||= 'results' if @budget.phase == 'finished'
 
     if params[:section] == 'results' 
       @investments = Budget::Result.new(@budget, @budget.headings.first).investments
-      @headings = @budget.headings.sort_by_name
-      @heading = @headings.first
     elsif params[:section] == 'stats'
       @stats = Budget::Stats.new(@budget)
-      @headings = @budget.headings.sort_by_name
       @investments = @budget.investments
     else
       query = Budget::Ballot.where(user: current_user, budget: @budget)
