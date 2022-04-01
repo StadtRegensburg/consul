@@ -117,8 +117,8 @@ de:
           not_logged_in: "Um einen neuen Investitionsvorschlag erstellen zu können, müssen Sie %{sign_in} oder %{sign_up}."
         filter: "Projekte filtern nach"
         filters:
-          not_unfeasible: "Aktiv"
-          selected: "Aktive"
+          not_unfeasible: "Durchführbar"
+          selected: "Ausgewählt"
           unfeasible: "Nicht durchführbar"
           unselected: "Nicht für die Endabstimmung ausgewählt"
           winners: "Gewinner"
