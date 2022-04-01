@@ -21,4 +21,8 @@ class Budgets::Investments::NewComponent < ApplicationComponent
 
     end
   end
+
+  def subtitle
+    tag.span budget.formatted_heading_price(budget.headings.first)
+  end
 end
