@@ -10,7 +10,7 @@
         <% if current_user %>
           <% if current_user.level_two_or_three_verified? %>
             <%= link_to t("budgets.investments.index.sidebar.create"),
-                        new_budget_investment_path(@budget),
+                        new_budget_investment_path(@budget, origin: 'projekt'),
                         class: "button expanded" %>
           <% else %>
             <div class="callout warning">
