@@ -1,4 +1,4 @@
-<% cache [locale_and_user_status, investment, investment.budget, investment.projekt, investment.projekt.top_parent, investment.projekt.page, investment.image, investment.author, params[:tags], params[:projekts], params[:geozone_affiliation], params[:affiliated_geozones], params[:geozone_restriction], params[:restricted_geozones]] do %>
+<% cache [locale_and_user_status, investment, investment.budget, investment.projekt, investment.projekt.top_parent, investment.projekt.page, investment.image, investment.author, investment.ballot_lines_count, investment.votes_for.count, params[:tags], params[:projekts], params[:geozone_affiliation], params[:affiliated_geozones], params[:geozone_restriction], params[:restricted_geozones]] do %>
   <div id="<%= dom_id(investment) %>" class='row collapse resource-n budget-investment margin-bottom' data-equalizer='main' data-equalize-on="medium">
 
     <div class='columns'>
