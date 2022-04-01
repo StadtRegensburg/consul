@@ -3,7 +3,7 @@
   <%= render "shared/errors", resource: investment %>
 
   <fieldset class="required-fields">
-    <legend><%= t("shared.required") %></legend>
+    <legend><%= t("custom.budgets.investments.form.required") %></legend>
 
     <% unless budget.single_heading? %>
       <div>
@@ -62,34 +62,8 @@
     <% end %>
 
     <div>
-      <%= f.text_field :location %>
-    </div>
-
-    <div>
       <%= f.text_field :organization_name %>
     </div>
-
-    <div>
-      <%= f.label :tag_list, t("budgets.investments.form.tags_label") %>
-      <p class="help-text" id="tags-list-help-text"><%= t("budgets.investments.form.tags_instructions") %></p>
-
-      <div id="category_tags" class="tags">
-        <%= f.label :category_tag_list, t("budgets.investments.form.tag_category_label") %>
-        <% categories.each do |tag| %>
-          <a class="js-add-tag-link"><%= tag.name %></a>
-        <% end %>
-      </div>
-
-      <br>
-      <%= f.text_field :tag_list, value: investment.tag_list.to_s,
-                        label: false,
-                        placeholder: t("budgets.investments.form.tags_placeholder"),
-                        aria: { describedby: "tags-list-help-text" },
-                        class: "js-tag-list tag-autocomplete",
-                        data: { js_url: suggest_tags_path } %>
-    </div>
-
-    <%= render SDG::RelatedListSelectorComponent.new(f) %>
   </fieldset>
 
   <div class="actions">

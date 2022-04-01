@@ -48,7 +48,7 @@ de:
       informing: Information
       accepting: Investitionsvorschläge einreichen
       reviewing: Interne Überprüfung der Investitionsvorschläge
-      selecting: Auswahlphase der Investitionsvorschläge
+      selecting: Unterstützungsphase
       valuating: Investitionsvorschläge begutachten
       publishing_prices: Preise der Investitionsvorschläge veröffentlichen
       balloting: Abstimmung über Investitionsvorschläge
@@ -117,8 +117,8 @@ de:
           not_logged_in: "Um einen neuen Investitionsvorschlag erstellen zu können, müssen Sie %{sign_in} oder %{sign_up}."
         filter: "Projekte filtern nach"
         filters:
-          not_unfeasible: "Aktiv"
-          selected: "Aktive"
+          not_unfeasible: "Durchführbar"
+          selected: "Ausgewählt"
           unfeasible: "Nicht durchführbar"
           unselected: "Nicht für die Endabstimmung ausgewählt"
           winners: "Gewinner"
@@ -168,8 +168,8 @@ de:
         confirm_group:
           one: "Sie können nur Investitionen im Bezirk %{count} unterstützen. Wenn Sie fortfahren, können Sie die Wahl Ihres Bezirks nicht ändern. Sind Sie sicher?"
           other: "Sie können nur Investitionen in %{count}-Bezirken unterstützen. Wenn Sie fortfahren, können Sie die Wahl Ihres Bezirks nicht ändern. Sind Sie sicher?"
-        remove_support: "Unterstützung zurückziehen"
-        remove_support_label: "Streichen Sie Ihre Unterstützung für %{investition}"
+        remove_support: "Zurückziehen"
+        remove_support_label: "Streichen Sie Ihre Unterstützung für %{investment}"
         support: "Unterstützung"
         support_label: "Unterstützung für %{investment}"
     investments_list:

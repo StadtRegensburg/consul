@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     if @custom_page.present? && @custom_page.projekt.present?
       @projekt = @custom_page.projekt
 
-      @default_phase_name = default_phase_name
+      @default_phase_name = default_phase_name(params[:selected_phase_id])
 
       send("set_#{@default_phase_name}_footer_tab_variables", @projekt)
 
@@ -231,16 +231,15 @@ class PagesController < ApplicationController
     params[:filter_projekt_id] ||= @current_projekt.id
 
     @budget = Budget.find_by(projekt_id: params[:filter_projekt_id])
+    @headings = @budget.headings.sort_by_name
+    @heading = @headings.first
 
     params[:section] ||= 'results' if @budget.phase == 'finished'
 
     if params[:section] == 'results' 
       @investments = Budget::Result.new(@budget, @budget.headings.first).investments
-      @headings = @budget.headings.sort_by_name
-      @heading = @headings.first
     elsif params[:section] == 'stats'
       @stats = Budget::Stats.new(@budget)
-      @headings = @budget.headings.sort_by_name
       @investments = @budget.investments
     else
       query = Budget::Ballot.where(user: current_user, budget: @budget)
@@ -281,8 +280,8 @@ class PagesController < ApplicationController
     @rss_type = ProjektSetting.find_by(projekt: @current_projekt, key: "projekt_newsfeed.type").value
   end
 
-  def default_phase_name
-    default_phase_id = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab').value
+  def default_phase_name(default_phase_id)
+    default_phase_id ||= ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab').value
     if default_phase_id.present?
       ProjektPhase.find(default_phase_id).resources_name
     elsif @projekt.projekt_phases.select{ |phase| phase.phase_activated? }.any?
