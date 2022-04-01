@@ -74,7 +74,9 @@
             <br>
 
             <% if investment.budget.phase.in?(['reviewing', 'reviewing_ballots']) %>
-              <%= t("custom.budgets.investments.statuses.phases.#{investment.budget.phase}") %>
+              <div class="callout warning">
+                <%= t("custom.budgets.investments.statuses.phases.#{investment.budget.phase}") %>
+              </div>
             <% end %>
 
           </div>
