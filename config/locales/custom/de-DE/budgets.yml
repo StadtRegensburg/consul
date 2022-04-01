@@ -168,8 +168,8 @@ de:
         confirm_group:
           one: "Sie können nur Investitionen im Bezirk %{count} unterstützen. Wenn Sie fortfahren, können Sie die Wahl Ihres Bezirks nicht ändern. Sind Sie sicher?"
           other: "Sie können nur Investitionen in %{count}-Bezirken unterstützen. Wenn Sie fortfahren, können Sie die Wahl Ihres Bezirks nicht ändern. Sind Sie sicher?"
-        remove_support: "Unterstützung zurückziehen"
-        remove_support_label: "Streichen Sie Ihre Unterstützung für %{investition}"
+        remove_support: "Zurückziehen"
+        remove_support_label: "Streichen Sie Ihre Unterstützung für %{investment}"
         support: "Unterstützung"
         support_label: "Unterstützung für %{investment}"
     investments_list:
