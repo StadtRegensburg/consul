@@ -11,6 +11,16 @@
       </div>
     <% end %>
 
+    <% if extended_feature?('budget_investments.show_implementation_option_fields')  %>
+      <div>
+        <%= f.select :implementation_performer, options_for_implementation_select, {class: 'implementation-performer'}, onChange: "$(this).val() === 'user' ? $('#implementation_contribution').css('display', 'block') : $('#implementation_contribution').css('display', 'none') " %>
+      </div>
+
+      <div id='implementation_contribution' style='display:none'>
+        <%= f.text_field :implementation_contribution %>
+      </div>
+    <% end %>
+
     <div>
       <%= render "shared/globalize_locales", resource: investment %>
     </div>
