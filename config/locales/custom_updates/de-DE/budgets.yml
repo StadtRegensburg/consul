@@ -2,6 +2,9 @@ de:
   custom:
     budgets:
       investments:
+        show:
+          implementation: Umsetzung
+          implementation_text_html: "<p>%{author} unterstützt bei der Durchführung<p><p>%{implementation_contribution}</p>"
         statuses:
           phases:
             accepting: Der Investitionsvorschlag wurde erfolgreich eingereicht.
