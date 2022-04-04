@@ -4,7 +4,9 @@ en:
       investments:
         statuses:
           phases:
+            accepting: The investment proposal was successfully submitted.
             reviewing: The feasibility of the investment proposal is currently evaluated.
+            valuating: The costs for this investment proposal are evaluated internally.
             reviewing_ballots: We're currently checking the votes.
         form:
           required: Your investment proposal

@@ -4,6 +4,6 @@ class Budgets::Ballot::InvestmentComponent < ApplicationComponent
   private
 
     def delete_path
-      budget_ballot_line_path(id: investment.id, investments_ids: investment_ids, budget_id: investment.budget.id)
+      budget_ballot_line_path(id: investment.id, budget_id: investment.budget.id)
     end
 end

@@ -15,6 +15,8 @@ de:
         user:
           skip_verification: Standardmäßige Partizipation für alle Nutzer:innen der Plattform
           skip_verification_description: Nutzer:innen können ohne Verifizierung am Beteiligungsprozess teilnehmen
+        remove_investments_supports: Zurückziehen von Unterstützungen für Investitionsvorschläge zulassen
+        remove_investments_supports_description: Ermöglicht es den Nutzern, in der Phase der Projektauswahl Unterstützungen für Investitionsvorschläge zurückzuziehen
       extended_feature:
         general:
           elasticsearch: "Elasticsearch"
