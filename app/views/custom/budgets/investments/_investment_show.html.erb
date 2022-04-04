@@ -128,6 +128,12 @@
           <%= render "shared/participation/flag", resource: investment %>
         <% end %>
 
+        <% if extended_feature?('budget_investments.show_implementation_option_fields') && investment.implementation_performer == 'user' %>
+          <div class="sidebar-divider"></div>
+          <h2><%= t("custom.budgets.investments.show.implementation") %></h2>
+          <%= t("custom.budgets.investments.show.implementation_text_html", author: investment.author.name, implementation_contribution: investment.implementation_contribution) %>
+        <% end %>
+
         <%= render "shared/social_share",
           share_title: t("budgets.investments.show.share"),
           title: investment.title,
