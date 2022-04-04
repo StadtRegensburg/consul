@@ -47,6 +47,47 @@
 }
 
 
+// Investment partial
+
+.budget-investment {
+  .callout {
+    padding: 0.5rem 1rem;
+  }
+
+  .no-button {
+    margin-top: 0;
+  }
+
+  .supports {
+    padding: 0.5rem 0;
+
+    .total-supports {
+      font-size: 24px;
+    }
+
+    .investment-project-amount {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .remove {
+      .icon-check-circle {
+        display: none;
+      }
+
+      .investment-project-amount:before {
+        content: "\f058";
+        font-family: 'Font Awesome 5 Free';
+        font-weight: bold;
+      }
+    }
+
+    .button-remove-support {
+      margin-top: 0.75rem;
+    }
+  }
+}
+
 // Form
 
 .budget-investment-form select#budget_investment_implementation_performer {
