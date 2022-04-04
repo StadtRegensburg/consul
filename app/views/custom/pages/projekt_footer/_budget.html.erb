@@ -4,7 +4,7 @@
 
 <div class='row'>
   <div id='budgets-sidebar' class='small-12 medium-3 column'>
-    <aside class='margin-bottom'>
+    <aside class='margin-bottom' id='sidebar'>
 
       <% if can?(:create, Budget::Investment.new(budget: @budget)) %>
         <% if current_user %>
