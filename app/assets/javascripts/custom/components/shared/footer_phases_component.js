@@ -18,13 +18,11 @@
       $('.js-sidebar-phase-link').on("ajax:complete", function (e, data){
         var index = Number.parseInt(e.currentTarget.dataset.index);
         var tabFilterSubnav = document.querySelector('#filter-subnav')
+
+        $("#filter-subnav").get(0).scrollLeft = index * 270
+
+
         var maxScroll = tabFilterSubnav.scrollWidth - tabFilterSubnav.clientWidth
-
-        $("#filter-subnav").animate({ scrollLeft: (index * 270) });
-
-        if ( $('#filter-subnav').scrollLeft() <= 240 ) {
-          $('#left-arrow-control').addClass('disabled')
-        }
 
         if ( $('#filter-subnav').scrollLeft() != maxScroll) {
           $('#right-arrow-control').removeClass('disabled')
@@ -36,6 +34,9 @@
 
         if ( maxScroll <= $('#filter-subnav').scrollLeft() + 240 ) {
           $('#right-arrow-control').addClass('disabled')
+        }
+        if ( $('#filter-subnav').scrollLeft() <= 240 ) {
+          $('#left-arrow-control').addClass('disabled')
         }
       })
     }
