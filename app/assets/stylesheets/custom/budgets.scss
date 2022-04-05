@@ -61,7 +61,7 @@
   .supports {
     padding: 0.5rem 0;
 
-    .total-supports {
+    .total-supports.price {
       font-size: 24px;
     }
 
@@ -86,10 +86,4 @@
       margin-top: 0.75rem;
     }
   }
-}
-
-// Form
-
-.budget-investment-form select#budget_investment_implementation_performer {
-  width: 100%;
 }
