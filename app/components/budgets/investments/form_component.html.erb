@@ -13,10 +13,10 @@
 
     <% if extended_feature?('budget_investments.show_implementation_option_fields')  %>
       <div>
-        <%= f.select :implementation_performer, options_for_implementation_select, {class: 'implementation-performer'}, onChange: "$(this).val() === 'user' ? $('#implementation_contribution').css('display', 'block') : $('#implementation_contribution').css('display', 'none') " %>
+        <%= f.select :implementation_performer, options_for_implementation_select, {}, { class: 'implementation-performer show-arrow', onChange: "$(this).val() === 'user' ? $('#implementation_contribution').css('display', 'block') : $('#implementation_contribution').css('display', 'none')" } %>
       </div>
 
-      <div id='implementation_contribution' style='display:none'>
+      <div id='implementation_contribution' style="display:<%= investment.implementation_performer == 'user' ? 'block' : 'none' %>">
         <%= f.text_field :implementation_contribution %>
       </div>
     <% end %>

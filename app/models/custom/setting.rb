@@ -209,6 +209,7 @@ class Setting < ApplicationRecord
         "extended_feature.budget_investments.show_community_button_in_sidebar": true,
         "extended_feature.budget_investments.show_related_content": true,
         "extended_feature.budget_investments.show_implementation_option_fields": true,
+        "extended_feature.budget_investments.enable_investment_milestones_tab": true,
 
         "extended_feature.proposals.enable_my_posts_filter": true,
         "extended_feature.debates.enable_my_posts_filter": true,

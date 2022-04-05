@@ -115,9 +115,12 @@ table.edit-projekt {
 }
 
 form select {
-  background: #f8f8f8;
   height: 3rem;
   margin-bottom: 1rem;
+
+  &:not(.show-arrow) {
+    background: #f8f8f8;
+  }
 }
 
 tr.projekt-row td {
