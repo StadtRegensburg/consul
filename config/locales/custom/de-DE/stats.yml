@@ -32,7 +32,7 @@ de:
       participants_vote_phase: "Teilnehmer*innen Abstimmungs-Phase"
       participants_every_phase: "Gesamtanzahl Teilnehmer*innen"
       percent_total_participants: "% Gesamtanzahl Teilnehmer*innen"
-      percent_heading_census: "% Rubrik Zensus"
+      percent_heading_census: "% Zensus"
       participatory_disclaimer: "** Die Gesamtzahl der Teilnehmer bezieht sich auf Personen, die Investitionsvorschläge erstellt, unterstützt oder abgestimmt haben."
       heading_disclaimer: "*** Daten über Rubriken beziehen sich auf die Rubrik, in der jeder Benutzer abgestimmt hat, nicht unbedingt auf diejenige, in der die Person registriert ist."
     polls:
