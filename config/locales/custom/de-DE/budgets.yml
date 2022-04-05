@@ -63,7 +63,7 @@ de:
         help: Hilfe zu Budgets
       all_phases: Phasen des Budgets
       map: Investitionsvorschläge geografisch geordnet
-      investment_proyects: Liste aller Investitionsvorschläge
+      investment_proyects: Liste aller Investitionsvorschläge, die gewonnen haben
       unfeasible_investment_proyects: Liste aller nicht durchführbaren Investitionsvorschläge
       not_selected_investment_proyects: Liste aller Investitionsvorschläge, die nicht für die Abstimmung ausgewählt wurden
       finished_budgets: Abgeschlossene Budgets
@@ -205,8 +205,8 @@ de:
       accepted: "Genehmigter Investitionsvorschlag: "
       discarded: "Verworfener Investitionsvorschlag: "
       incompatibles: Unvereinbar
-      investment_title: Projekt Titel
-      investment_proyects: Liste aller Investitionsvorschläge
+      investment_title: Vorschlag Titel
+      investment_proyects: Liste aller Investitionsvorschläge, die gewonnen haben
       unfeasible_investment_proyects: Liste aller nicht durchführbaren Investitionsvorschläge
       not_selected_investment_proyects: Liste aller Investitionsvorschläge, die es nicht in die Abstimmung geschafft haben
     executions:
