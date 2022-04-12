@@ -139,6 +139,7 @@ class PagesController < ApplicationController
 
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.comment_phase
+    params[:current_tab_path] = 'comment_phase_footer_tab'
 
     @commentable = @current_projekt
     @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
