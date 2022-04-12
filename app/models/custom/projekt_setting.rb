@@ -53,6 +53,8 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.phase.projekt_notification_info": 'active',
         "projekt_feature.phase.newsfeed": '',
         "projekt_feature.phase.newsfeed_info": 'active',
+        "projekt_feature.phase.event": '',
+        "projekt_feature.phase.event_info": 'active',
 
         "projekt_feature.general.show_in_navigation": '',
         "projekt_feature.general.show_in_overview_page": '',
