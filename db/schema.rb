@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_08_065530) do
+ActiveRecord::Schema.define(version: 2022_04_12_141250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1481,6 +1481,7 @@ ActiveRecord::Schema.define(version: 2022_04_08_065530) do
     t.string "color"
     t.string "icon"
     t.integer "level", default: 1
+    t.jsonb "selectable_in_sidebar_selector", default: {}
     t.index ["parent_id"], name: "index_projekts_on_parent_id"
   end
 
