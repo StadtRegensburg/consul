@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_07_063921) do
+ActiveRecord::Schema.define(version: 2022_04_08_065530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1856,7 +1856,7 @@ ActiveRecord::Schema.define(version: 2022_04_07_063921) do
     t.datetime "date_of_birth"
     t.boolean "email_on_proposal_notification", default: true
     t.boolean "email_digest", default: true
-    t.boolean "email_on_direct_message", default: false
+    t.boolean "email_on_direct_message", default: true
     t.boolean "official_position_badge", default: false
     t.datetime "password_changed_at", default: "2015-01-01 01:01:01", null: false
     t.boolean "created_from_signature", default: false
@@ -1866,7 +1866,6 @@ ActiveRecord::Schema.define(version: 2022_04_07_063921) do
     t.boolean "public_interests", default: false
     t.boolean "recommended_debates", default: true
     t.boolean "recommended_proposals", default: true
-    t.string "keycloak_link"
     t.string "first_name"
     t.string "last_name"
     t.string "plz"
@@ -1877,7 +1876,15 @@ ActiveRecord::Schema.define(version: 2022_04_07_063921) do
     t.string "city_name"
     t.datetime "bam_letter_verification_code_sent_at"
     t.string "bam_unique_stamp"
+    t.string "keycloak_link"
     t.boolean "custom_statistic_cookies_enabled"
+    t.boolean "custom_newsletter", default: false
+    t.string "dor_first_name"
+    t.string "dor_last_name"
+    t.string "dor_street_name"
+    t.string "dor_street_number"
+    t.string "dor_plz"
+    t.string "dor_city"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -2021,6 +2028,7 @@ ActiveRecord::Schema.define(version: 2022_04_07_063921) do
   add_foreign_key "failed_census_calls", "users"
   add_foreign_key "flags", "users"
   add_foreign_key "follows", "users"
+  add_foreign_key "geozones_polls", "geozones"
   add_foreign_key "geozones_polls", "polls"
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
@@ -2052,6 +2060,7 @@ ActiveRecord::Schema.define(version: 2022_04_07_063921) do
   add_foreign_key "polls", "budgets"
   add_foreign_key "polls", "projekts"
   add_foreign_key "projekt_notifications", "projekts"
+  add_foreign_key "projekt_phase_geozones", "geozones"
   add_foreign_key "projekt_phase_geozones", "projekt_phases"
   add_foreign_key "projekt_phases", "projekts"
   add_foreign_key "projekt_settings", "projekts"
@@ -2062,5 +2071,6 @@ ActiveRecord::Schema.define(version: 2022_04_07_063921) do
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "sdg_managers", "users"
   add_foreign_key "site_customization_pages", "projekts"
+  add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
 end
