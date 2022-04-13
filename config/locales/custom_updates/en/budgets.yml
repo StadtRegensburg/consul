@@ -1,4 +1,11 @@
 en:
+  budgets:
+    investments:
+      index:
+        filters:
+          all: All
+          feasible: Feasible
+          undecided: Undecided
   custom:
     budgets:
       investments:
