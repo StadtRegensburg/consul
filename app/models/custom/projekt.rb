@@ -53,6 +53,7 @@ class Projekt < ApplicationRecord
   after_destroy :ensure_projekt_order_integrity
 
   validates :color, format: { with: /\A#[\d, a-f, A-F]{6}\Z/ }
+  validates :name, presence: true
 
   scope :with_order_number, -> { where.not(order_number: nil).order(order_number: :asc) }
   scope :top_level, -> { with_order_number.
