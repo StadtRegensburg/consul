@@ -1,6 +1,10 @@
 class ProjektSetting < ApplicationRecord
   belongs_to :projekt
 
+  after_save do
+    Projekt.all.each { |projekt| projekt.update_selectable_in_sidebar_selectors }
+  end
+
   validates :key, presence: true, uniqueness: { scope: :projekt_id }
 
   default_scope { order(id: :asc) }
