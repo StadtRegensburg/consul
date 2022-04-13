@@ -282,7 +282,7 @@ class Projekt < ApplicationRecord
   end
 
   def update_selectable_in_sidebar_selectors
-    controller_names = ['proposals', 'debates', 'polls']
+    controller_names = ['proposals', 'debates', 'polls', 'projekt_events']
 
     controller_names.each do |controller_name|
       set_selectable_in_sidebar_selector(controller_name, 'current')
