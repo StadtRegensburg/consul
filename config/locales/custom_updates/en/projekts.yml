@@ -59,3 +59,8 @@ en:
           ending: Planned end
         projekt_notification_phase: Notifications
         newsfeed_phase: Newsfeed
+      projekt_events:
+        orders:
+          all: All
+          incoming: Incoming
+          past: Past
