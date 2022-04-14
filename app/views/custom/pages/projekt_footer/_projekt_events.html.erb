@@ -2,7 +2,7 @@
 
 <div class="row">
   <div id="proposal_notifications" class="small-12 column notification-body">
-    <h3 class="projekt-event-tab-title"><%= t('custom.projekts.page.projekt_events_tab.title') %></h3>
+    <%= render Shared::OrderLinksComponent.new("custom.projekts.projekt_events", anchor: "tab-comments") %>
     <% if @projekt_events.blank? %>
       <div class="callout primary text-center">
         <%= t("custom.projekts.page.projekt_events_tab.no_events") %>
@@ -13,7 +13,7 @@
           <div class="projekt-event-item-calendar-column">
             <div class="projekt-event-item-calendar">
               <div class="projekt-event-item-calendar-dayname">
-                <%= event.datetime.strftime('%a').upcase %>
+                <%= event.datetime.strftime('%b').upcase %>
               </div>
               <div class="projekt-event-item-calendar-daynumber">
                 <%= event.datetime.strftime('%d') %>
