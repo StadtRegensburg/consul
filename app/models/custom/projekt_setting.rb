@@ -28,7 +28,7 @@ class ProjektSetting < ApplicationRecord
   end
 
   def projekt_feature_type
-    if %w[main phase general sidebar footer].include? projekt_feature_prefix
+    if %w[main phase general sidebar footer budgets].include? projekt_feature_prefix
       projekt_feature_prefix
     else
       "configuration"
@@ -72,6 +72,8 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.sidebar.show_navigator_in_projekts_page_sidebar": true,
 
         "projekt_feature.footer.show_projekt_footer": 'active',
+
+        "projekt_feature.budgets.show_user_cost_estimate": 'active',
 
         "projekt_newsfeed.id": '',
         "projekt_newsfeed.type": '',

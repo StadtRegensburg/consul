@@ -186,6 +186,9 @@ de:
           budget_info_description: Aktiviert die Budgetphase in der Fußzeile eines Projekts
           milestone_info: Umsetzungsphase
           milestone_info_description: Aktiviert die Umsetzungsphase in der Fußzeile eines Projekts
+        budgets:
+          show_user_cost_estimate: Preisliche Einschätzung
+          show_user_cost_estimate_description: Fügt beim Erstellen eines Investitionsvorschlags ein Auswahlfeld “Preisliche Einschätzung” hinzu
 
       deficiency_reports:
         show_in_main_menu: Mängelmelder in Navigation anzeigen

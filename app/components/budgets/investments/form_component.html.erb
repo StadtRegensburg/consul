@@ -21,6 +21,10 @@
       </div>
     <% end %>
 
+    <% if projekt_feature?(investment.projekt, 'budgets.show_user_cost_estimate') %>
+      <%= f.text_field :user_cost_estimate %>
+    <% end %>
+
     <% if feature?(:map) %>
       <div>
         <%= render "map_locations/form_fields",

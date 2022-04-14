@@ -15,6 +15,7 @@
           extended_feature?('budget_investments.show_follow_button_in_sidebar'),
           extended_feature?('budget_investments.show_community_button_in_sidebar'),
           extended_feature?('budget_investments.show_related_content'),
+          projekt_feature?(investment.projekt, 'budgets.show_user_cost_estimate'),
           investment.followed_by?(current_user),
           feature?(:remove_investments_supports),
           current_user&.voted_for?(investment)] do %>
