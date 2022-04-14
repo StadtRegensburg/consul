@@ -30,9 +30,9 @@
           <div class="projekt-event-item-values">
             <div><strong><%= event.title %></strong></div>
             <div><%= event.location %></div>
-            <div><%= event.datetime.strftime('%d.%M.%Y') %></div>
+            <div><%= event.datetime.strftime('%d.%m.%Y') %></div>
             <div><%= event.datetime.strftime('%H:%M') %></div>
-            <div><a href="<%=  event.weblink %>"><%= event.weblink %></a></div>
+            <div><a href="<%= event.weblink %>"><%= event.weblink %></a></div>
           </div>
         </div>
       <% end %>
