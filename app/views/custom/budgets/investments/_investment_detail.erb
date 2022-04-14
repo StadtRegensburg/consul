@@ -1,3 +1,9 @@
+<% if @investment.feasibility.in?(['undecided', 'unfeasible']) %>
+  <div class='callout warning'>
+    <%= t("custom.budgets.investments.show.callouts.#{@investment.feasibility}") %>
+  </div>
+<% end %>
+
 <% if feature?(:map) && map_location_available?(@investment.map_location) %>
   <div class="">
     <%= render_map(investment.map_location, "budget_investment", false, nil, MapLocation.where(investment_id: investment.id).map(&:json_data)) %>

@@ -23,9 +23,9 @@ class Setting < ApplicationRecord
     def defaults
       {
         "feature.featured_proposals": nil,
-        "feature.facebook_login": true,
-        "feature.google_login": true,
-        "feature.twitter_login": true,
+        "feature.facebook_login": false,
+        "feature.google_login": false,
+        "feature.twitter_login": false,
         "feature.wordpress_login": false,
         "feature.public_stats": true,
         "feature.signature_sheets": true,
@@ -34,7 +34,7 @@ class Setting < ApplicationRecord
         "feature.user.recommendations_on_proposals": true,
         "feature.user.skip_verification": "true",
         "feature.community": true,
-        "feature.map": nil,
+        "feature.map": true,
         "feature.allow_attached_documents": true,
         "feature.allow_images": true,
         "feature.help_page": true,
