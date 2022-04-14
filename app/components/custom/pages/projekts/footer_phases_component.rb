@@ -25,7 +25,7 @@ class Pages::Projekts::FooterPhasesComponent < ApplicationComponent
   def show_arrows?
     phases_total = @phases.to_a
 
-    phases_total += [milestone_phase, projekt_notification_phase, newsfeed_phase].compact
+    phases_total += [milestone_phase, projekt_notification_phase, newsfeed_phase, event_phase].compact
 
     phases_total.select(&:phase_info_activated?).size > 4
   end
