@@ -1,6 +1,8 @@
 class Pages::Projekts::FooterPhasesComponent < ApplicationComponent
   delegate :format_date, :format_date_range, :get_projekt_phase_restriction_name, :projekt_feature?, to: :helpers
-  attr_reader :projekt, :default_phase_name, :phases, :milestone_phase, :projekt_notification_phase, :newsfeed_phase, :event_phase
+  attr_reader :projekt, :default_phase_name, :phases, :milestone_phase,
+              :projekt_notification_phase, :newsfeed_phase, :event_phase,
+              :projekt_events, :projekt_events_count
 
   def initialize(projekt, default_phase_name)
     @projekt = projekt
@@ -17,7 +19,8 @@ class Pages::Projekts::FooterPhasesComponent < ApplicationComponent
     @debates_count = Debate.base_selection(scoped_projekt_ids).count
     @proposals_count = Proposal.base_selection(scoped_projekt_ids).count
     @polls_count = Poll.base_selection(scoped_projekt_ids).count
-    @projekt_events_count = ProjektEvent.base_selection(scoped_projekt_ids).count
+    @projekt_events = ProjektEvent.base_selection(scoped_projekt_ids)
+    @projekt_events_count = @projekt_events.count
   end
 
   private
