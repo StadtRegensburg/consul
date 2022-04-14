@@ -57,3 +57,8 @@ de:
           ending: Gepl. Fertigstellung
         projekt_notification_phase: Benachrichtigungen
         newsfeed_phase: Newsfeed
+      projekt_events:
+        orders:
+          all: Alle
+          incoming: Kommende
+          past: Vergangene
