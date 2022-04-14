@@ -68,8 +68,14 @@
                   </div>
                 </div>
               <% end %>
-            <% elsif investment.unfeasible? %>
-            <% elsif investment.undecided? %>
+            <% elsif investment.unfeasible? && investment.budget.phase == 'selecting' %>
+              <div class='callout alert'>
+                <%= t("custom.budgets.investments.show.callouts.#{investment.feasibility}") %>
+              </div>
+            <% elsif investment.undecided? && investment.budget.phase == 'selecting'  %>
+              <div class='callout warning'>
+                <%= t("custom.budgets.investments.show.callouts.#{investment.feasibility}") %>
+              </div>
             <% end %>
 
             <% if investment.budget.phase.in?(['accepting', 'reviewing', 'valuating', 'reviewing_ballots']) %>
