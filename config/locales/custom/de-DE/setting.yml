@@ -160,35 +160,33 @@ de:
           hide_additional_info_in_projekt_selector_description: Verbirgt die zusätzlichen Projektinformationen wie Gebiet, Dauer und Partizipationsberechtigung im Projekt-Selektor
           show_not_active_phases_in_projekts_page_sidebar: Nicht aktive Teilnahmephasen verbergen
           show_not_active_phases_in_projekts_page_sidebar_description: Verbirgt die Teilnahmephasen in der rechten Seitenleiste der Projektseite und in der Projektauswahl
-          show_map: Karte einblenden
-          show_map_description: Zeigt die Karte sowie die Gebietszuordnung in der Applikation an
-          only_admins_create_debates_proposals: Nur Admins können neue Vorschläge und Diskussionen erstellen
-          only_admins_create_debates_proposals_description: Neue Beiträge können nur von Admins erstellt werden. Nutzer:innen können kommentieren und bewerten
+          allow_downvoting_comments: Downvotes in Kommentaren aktivieren
+          allow_downvoting_comments_description: Aktivieren Sie den "Daumen nach unten"-Button in den Kommentaren
         sidebar:
-          projekt_page_sharing: Teilen-Funktion
-          projekt_page_sharing_description: Aktivieren Sie die Teilen-Funktion in der rechten Seitenleiste der Projektseite
           show_phases_in_projekt_page_sidebar: Projektphasen
           show_phases_in_projekt_page_sidebar_description: Aktivieren Sie die Projektphasen in der rechten Seitenleiste der Projektseite
+          show_map: Karte einblenden
+          show_map_description: Zeigt eine erweiterbare Miniaturkarte in der rechten Seitenleiste der Projektseite
           show_navigator_in_projekts_page_sidebar: Projektverzeichnis
           show_navigator_in_projekts_page_sidebar_description: Zeigt die Projektverzeichnis in der rechten Seitenleiste der Projektseiten an
+          projekt_page_sharing: Teilen-Funktion
+          projekt_page_sharing_description: Aktivieren Sie die Teilen-Funktion in der rechten Seitenleiste der Projektseite
         footer:
           show_projekt_footer: Fußzeile aktivieren
           show_projekt_footer_description: Aktiviert die Fußzeile am unteren Ende des Projektes
-          comment_info: Kommentarphase
-          comment_info_description: Aktiviert die Kommentarphase in der Fußzeile eines Projekts
-          debate_info: Diskussionsphase
-          debate_info_description: Aktiviert die Diskussionsphase in der Fußzeile eines Projekts
-          proposal_info: Vorschlagsphase
-          proposal_info_description: Aktiviert die Vorschlagsphase in der Fußzeile eines Projekts
-          voting_info: Abstimmungsphase
-          voting_info_description: Aktiviert die Abstimmungsphase in der Fußzeile eines Projekts
-          budget_info: Budgetphase
-          budget_info_description: Aktiviert die Budgetphase in der Fußzeile eines Projekts
-          milestone_info: Umsetzungsphase
-          milestone_info_description: Aktiviert die Umsetzungsphase in der Fußzeile eines Projekts
+        debates:
+          only_admins_create_debates: Nur Admins können neue Diskussionen erstellen
+          only_admins_create_debates_description: Die Erstellung von neuen Diskussionen ist auf Admins beschränkt
+        proposals:
+          only_admins_create_proposals: Nur Admins können neue Vorschläge erstellen
+          only_admins_create_proposals_description: Die Erstellung von neuen Vorschlägen ist auf Admins beschränkt
+          show_map: Karte für Vorschläge anzeigen
+          show_map_description: Zeigt die Karte für Vorschläge in diesem Projekt an
         budgets:
           show_user_cost_estimate: Preisliche Einschätzung
           show_user_cost_estimate_description: Fügt beim Erstellen eines Investitionsvorschlags ein Auswahlfeld “Preisliche Einschätzung” hinzu
+          show_map: Karte für Investitionsvorschläge anzeigen
+          show_map_description: Zeigt die Karte für Investitionsvorschläge in diesem Projekt an
 
       deficiency_reports:
         show_in_main_menu: Mängelmelder in Navigation anzeigen

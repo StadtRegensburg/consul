@@ -28,7 +28,7 @@ class ProjektSetting < ApplicationRecord
   end
 
   def projekt_feature_type
-    if %w[main phase general sidebar footer budgets].include? projekt_feature_prefix
+    if %w[main phase general sidebar footer debates proposals polls budgets].include? projekt_feature_prefix
       projekt_feature_prefix
     else
       "configuration"
@@ -62,18 +62,24 @@ class ProjektSetting < ApplicationRecord
 
         "projekt_feature.general.show_in_navigation": '',
         "projekt_feature.general.show_in_overview_page": '',
-        "projekt_feature.general.hide_additional_info_in_projekt_selector": '',
-        "projekt_feature.general.show_not_active_phases_in_projekts_page_sidebar": '',
-        "projekt_feature.general.show_map": 'active',
-        "projekt_feature.general.only_admins_create_debates_proposals": '',
+        "projekt_feature.general.hide_additional_info_in_projekt_selector": 'active',
+        "projekt_feature.general.show_not_active_phases_in_projekts_page_sidebar": 'active',
+        "projekt_feature.general.allow_downvoting_comments": 'active',
 
-        "projekt_feature.sidebar.projekt_page_sharing": 'active',
         "projekt_feature.sidebar.show_phases_in_projekt_page_sidebar": 'active',
-        "projekt_feature.sidebar.show_navigator_in_projekts_page_sidebar": true,
+        "projekt_feature.sidebar.show_map": 'active',
+        "projekt_feature.sidebar.show_navigator_in_projekts_page_sidebar": 'active',
+        "projekt_feature.sidebar.projekt_page_sharing": 'active',
 
         "projekt_feature.footer.show_projekt_footer": 'active',
 
+        "projekt_feature.debates.only_admins_create_debates": '',
+
+        "projekt_feature.proposals.only_admins_create_proposals": '',
+        "projekt_feature.proposals.show_map": 'active',
+
         "projekt_feature.budgets.show_user_cost_estimate": 'active',
+        "projekt_feature.budgets.show_map": 'active',
 
         "projekt_newsfeed.id": '',
         "projekt_newsfeed.type": '',

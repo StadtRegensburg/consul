@@ -1,6 +1,6 @@
 <%= render 'shared/loader_spinner' %>
 
-<% if projekt_feature?(@current_projekt, 'general.show_map') %>
+<% if projekt_feature?(@current_projekt, 'proposals.show_map') %>
   <% cache @all_resources.count do %>
     <div class='margin-bottom'>
       <%= render "proposals/map" %>

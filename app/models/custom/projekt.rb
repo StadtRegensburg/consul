@@ -111,11 +111,12 @@ class Projekt < ApplicationRecord
   def selectable?(controller_name, user)
     return true if controller_name == 'polls'
     return false if user.nil?
-    return false if selectable_by_admins_only? && user.administrator.blank?
 
     if controller_name == 'proposals'
+      return false if proposals_selectable_by_admins_only? && user.administrator.blank?
       proposal_phase.selectable_by?(user)
     elsif controller_name == 'debates'
+      return false if debates_selectable_by_admins_only? && user.administrator.blank?
       debate_phase.selectable_by?(user)
     end
   end
@@ -143,9 +144,16 @@ class Projekt < ApplicationRecord
       total_duration_end < timestamp
   end
 
-  def selectable_by_admins_only?
+  def debates_selectable_by_admins_only?
     projekt_settings.
-      find_by( projekt_settings: { key: "projekt_feature.general.only_admins_create_debates_proposals" } ).
+      find_by( projekt_settings: { key: "projekt_feature.debates.only_admins_create_debates" } ).
+      value.
+      present?
+  end
+
+  def proposals_selectable_by_admins_only?
+    projekt_settings.
+      find_by( projekt_settings: { key: "projekt_feature.proposals.only_admins_create_proposals" } ).
       value.
       present?
   end
