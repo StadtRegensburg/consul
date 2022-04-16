@@ -56,10 +56,6 @@ de:
           intro_text_for_debates_description: Aktivieren Sie einen individuellen Einleitungstext oberhalb der Diskussionsübersicht
           head_image_for_debates: Titelbild für Diskussionen
           head_image_for_debates_description: Aktivieren Sie das Hinzufügen eines Titelbildes für Diskussionen
-          show_report_button_in_debate_sidebar: Diskussion melden
-          show_report_button_in_debate_sidebar_description: Aktivieren Sie die Melden-Funktion für Diskussionen
-          show_related_content: Verwandte Inhalte
-          show_related_content_description: Aktivieren Sie die Funktion “Verwandte Inhalte” für Diskussionen
           enable_projekt_filter: Projektfilter anzeigen
           enable_projekt_filter_description: Zeigt den Projektfilter in der Diskussionsübersichtseite
           enable_my_posts_filter: Meine Beiträge
@@ -175,8 +171,16 @@ de:
           show_projekt_footer: Fußzeile aktivieren
           show_projekt_footer_description: Aktiviert die Fußzeile am unteren Ende des Projektes
         debates:
+          show_report_button_in_sidebar: Diskussion melden
+          show_report_button_in_sidebar_description: Aktivieren Sie die Melden-Funktion für Diskussionen
+          show_related_content: Verwandte Inhalte
+          show_related_content_description: Aktivieren Sie die Funktion “Verwandte Inhalte” für Diskussionen
+          show_comments: Kommentare
+          show_comments_description: Aktivieren Sie "Kommentare" für das Diskussionsmodul
           only_admins_create_debates: Nur Admins können neue Diskussionen erstellen
           only_admins_create_debates_description: Die Erstellung von neuen Diskussionen ist auf Admins beschränkt
+          allow_downvoting: Downvotes aktivieren
+          allow_downvoting_description: Aktivieren Sie den "Daumen nach unten"-Button
         proposals:
           only_admins_create_proposals: Nur Admins können neue Vorschläge erstellen
           only_admins_create_proposals_description: Die Erstellung von neuen Vorschlägen ist auf Admins beschränkt

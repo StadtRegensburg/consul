@@ -73,7 +73,11 @@ class ProjektSetting < ApplicationRecord
 
         "projekt_feature.footer.show_projekt_footer": 'active',
 
+        "projekt_feature.debates.show_report_button_in_sidebar": 'active',
+        "projekt_feature.debates.show_related_content": 'active',
+        "projekt_feature.debates.show_comments": 'active',
         "projekt_feature.debates.only_admins_create_debates": '',
+        "projekt_feature.debates.allow_downvoting": 'active',
 
         "projekt_feature.proposals.only_admins_create_proposals": '',
         "projekt_feature.proposals.show_map": 'active',
