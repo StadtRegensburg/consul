@@ -94,18 +94,8 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.polls.intermediate_poll_results_for_admins": 'active',
         "projekt_feature.polls.show_comments": 'active',
         "projekt_feature.polls.additional_information": 'active',
-        "projekt_feature.polls.additional_info_for_each_answer": 'active',
 
-        "projekt_feature.budgets.remove_investments_supports": 'active',
-        "projekt_feature.budgets.show_report_button_in_sidebar": 'active',
-        "projekt_feature.budgets.show_follow_button_in_sidebar": 'active',
-        "projekt_feature.budgets.show_community_button_in_sidebar": 'active',
-        "projekt_feature.budgets.show_related_content": 'active',
-        "projekt_feature.budgets.show_implementation_option_fields": 'active',
         "projekt_feature.budgets.show_user_cost_estimate": 'active',
-        "projekt_feature.budgets.show_comments": 'active',
-        "projekt_feature.budgets.enable_investment_milestones_tab": 'active',
-        "projekt_feature.budgets.only_admins_create_investment_proposals": '',
         "projekt_feature.budgets.show_map": 'active',
 
         "projekt_newsfeed.id": '',
