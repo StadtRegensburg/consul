@@ -79,8 +79,19 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.debates.only_admins_create_debates": '',
         "projekt_feature.debates.allow_downvoting": 'active',
 
+        "projekt_feature.proposals.quorum_for_proposals": '',
+        "projekt_feature.proposals.enable_proposal_support_withdrawal": 'active',
+        "projekt_feature.proposals.enable_proposal_notifications_tab": '',
+        "projekt_feature.proposals.enable_proposal_milestones_tab": '',
+        "projekt_feature.proposals.show_report_button_in_proposal_sidebar": 'active',
+        "projekt_feature.proposals.show_follow_button_in_proposal_sidebar": 'active',
+        "projekt_feature.proposals.show_community_button_in_proposal_sidebar": 'active',
+        "projekt_feature.proposals.show_related_content": 'active',
+        "projekt_feature.proposals.show_comments": 'active',
         "projekt_feature.proposals.only_admins_create_proposals": '',
         "projekt_feature.proposals.show_map": 'active',
+
+        "projekt_feature.polls.intermediate_poll_results_for_admins": 'active',
 
         "projekt_feature.budgets.show_user_cost_estimate": 'active',
         "projekt_feature.budgets.show_map": 'active',
