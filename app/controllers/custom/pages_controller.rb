@@ -234,6 +234,7 @@ class PagesController < ApplicationController
     params[:filter] ||= 'feasible' if @current_projekt.budget.phase.in?(['selecting', 'valuating'])
     params[:filter] ||= 'winners' if @current_projekt.budget.phase == 'finished'
     @current_filter = @valid_filters.include?(params[:filter]) ? params[:filter] : nil
+    @all_resources = []
 
     @current_tab_phase = @current_projekt.budget_phase
     params[:current_tab_path] = 'budget_phase_footer_tab'
