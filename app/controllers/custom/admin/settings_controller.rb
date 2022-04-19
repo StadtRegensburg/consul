@@ -12,7 +12,6 @@ class Admin::SettingsController < Admin::BaseController
     @extended_feature_debates = all_settings["extended_feature.debates"]
     @extended_feature_proposals = all_settings["extended_feature.proposals"]
     @extended_feature_polls = all_settings["extended_feature.polls"]
-    @extended_feature_budget_investments = all_settings["extended_feature.budget_investments"]
 
     @extended_option_general = all_settings["extended_option.general"]
     @extended_option_gdpr = all_settings["extended_option.gdpr"]
