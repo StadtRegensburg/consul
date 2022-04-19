@@ -1,10 +1,6 @@
 class ProjektSetting < ApplicationRecord
   belongs_to :projekt
 
-  after_update do
-    Projekt.all.each { |projekt| projekt.update_selectable_in_sidebar_selectors }
-  end
-
   validates :key, presence: true, uniqueness: { scope: :projekt_id }
 
   default_scope { order(id: :asc) }
@@ -78,6 +74,7 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.debates.show_comments": 'active',
         "projekt_feature.debates.only_admins_create_debates": '',
         "projekt_feature.debates.allow_downvoting": 'active',
+        "projekt_feature.debates.show_in_sidebar_filter": 'active',
 
         "projekt_feature.proposals.quorum_for_proposals": '',
         "projekt_feature.proposals.enable_proposal_support_withdrawal": 'active',
@@ -89,12 +86,14 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.proposals.show_related_content": 'active',
         "projekt_feature.proposals.show_comments": 'active',
         "projekt_feature.proposals.only_admins_create_proposals": '',
+        "projekt_feature.proposals.show_in_sidebar_filter": 'active',
         "projekt_feature.proposals.show_map": 'active',
 
         "projekt_feature.polls.intermediate_poll_results_for_admins": 'active',
         "projekt_feature.polls.show_comments": 'active',
         "projekt_feature.polls.additional_information": 'active',
         "projekt_feature.polls.additional_info_for_each_answer": 'active',
+        "projekt_feature.polls.show_in_sidebar_filter": 'active',
 
         "projekt_feature.budgets.remove_investments_supports": 'active',
         "projekt_feature.budgets.show_report_button_in_sidebar": 'active',

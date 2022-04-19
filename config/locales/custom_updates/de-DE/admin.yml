@@ -184,6 +184,8 @@ de:
             select_an_element: auswählen
             projekt_notification_phase: Benachrichtigungen
             projekt_notification_phase_description: Aktiviert die Benachrichtigungsfunktion in der Fußzeile eines Projekts
+            milestone_phase: Meilensteine
+            milestone_phase_description: Aktiviert die Meilensteinfunktion in der Fußzeile eines Projektes
             newsfeed_phase: News-Feed
             newsfeed_phase_description: Aktiviert den News-Feed in der Fußzeile eines Projekts
             event_phase: Veranstaltungen

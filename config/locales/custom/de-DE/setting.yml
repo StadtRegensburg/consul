@@ -142,6 +142,8 @@ de:
           only_admins_create_debates_description: Die Erstellung von neuen Diskussionen ist auf Admins beschränkt
           allow_downvoting: Downvotes aktivieren
           allow_downvoting_description: Aktivieren Sie den "Daumen nach unten"-Button
+          show_in_sidebar_filter: Projekt in der Projektseitenleiste anzeigen
+          show_in_sidebar_filter_description: Zeigt das Projekt in der Projektseitenleiste auf der Diskussionsübersichtsseite an
         proposals:
           quorum_for_proposals: Quorum für Vorschläge
           quorum_for_proposals_description: Aktivieren Sie ein Quorum für Vorschläge
@@ -163,6 +165,8 @@ de:
           show_comments_description: Aktivieren Sie "Kommentare" für das Vorschlagsmodul
           only_admins_create_proposals: Nur Admins können neue Vorschläge erstellen
           only_admins_create_proposals_description: Die Erstellung von neuen Vorschlägen ist auf Admins beschränkt
+          show_in_sidebar_filter: Projekt in der Projektseitenleiste anzeigen
+          show_in_sidebar_filter_description: Zeigt das Projekt in der Projektseitenleiste auf der Vorschlagsübersichtsseite an
           show_map: Karte für Vorschläge anzeigen
           show_map_description: Zeigt die Karte für Vorschläge in diesem Projekt an
         polls:
@@ -174,6 +178,8 @@ de:
           additional_information_description: Aktivieren Sie "Erweiterete Informationen" für das Abstimmungsmodul
           additional_info_for_each_answer: Zusätzliche Informationen je Antwort
           additional_info_for_each_answer_description: Zeigt die "Zusätzliche Informationen" je Antwort an
+          show_in_sidebar_filter: Projekt in der Projektseitenleiste anzeigen
+          show_in_sidebar_filter_description: Zeigt das Projekt in der Projektseitenleiste auf der Abstimmungsübersichtsseite an
         budgets:
           remove_investments_supports: Zurückziehen von Unterstützungen für Investitionsvorschläge zulassen
           remove_investments_supports_description: Ermöglicht es den Nutzern, in der Phase der Projektauswahl Unterstützungen für Investitionsvorschläge zurückzuziehen

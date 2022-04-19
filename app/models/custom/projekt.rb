@@ -48,7 +48,6 @@ class Projekt < ApplicationRecord
   after_create :create_corresponding_page, :set_order, :create_projekt_phases, :create_default_settings, :create_map_location
   after_save do
     Projekt.all.each { |projekt| projekt.update_column('level', projekt.calculate_level) }
-    Projekt.all.each { |projekt| projekt.update_selectable_in_sidebar_selectors }
   end
   after_destroy :ensure_projekt_order_integrity
 
@@ -90,11 +89,13 @@ class Projekt < ApplicationRecord
     end
 
     def selectable_in_sidebar_current(controller_name)
-      select { |projekt| projekt.selectable_in_sidebar_selector["#{controller_name}_current"] }
+      return [] unless controller_name.in?(['proposals', 'debates', 'polls'])
+      select { |projekt| projekt.current? && projekt.all_children_projekts.unshift(projekt).any? { |p| p.projekt_settings.find_by(key: "projekt_feature.#{controller_name}.show_in_sidebar_filter").value.present? } }
     end
 
     def selectable_in_sidebar_expired(controller_name)
-      select { |projekt| projekt.selectable_in_sidebar_selector["#{controller_name}_expired"] }
+      return [] unless controller_name.in?(['proposals', 'debates', 'polls'])
+      select { |projekt| projekt.expired? && projekt.all_children_projekts.unshift(projekt).any? { |p| p.projekt_settings.find_by(key: "projekt_feature.#{controller_name}.show_in_sidebar_filter").value.present? } }
     end
   end
 
@@ -288,27 +289,6 @@ class Projekt < ApplicationRecord
       projekt.newsfeed_phase = ProjektPhase::NewsfeedPhase.create unless projekt.newsfeed_phase
       projekt.event_phase = ProjektPhase::EventPhase.create unless projekt.event_phase
     end
-  end
-
-  def update_selectable_in_sidebar_selectors
-    controller_names = ['proposals', 'debates', 'polls', 'projekt_events']
-
-    controller_names.each do |controller_name|
-      set_selectable_in_sidebar_selector(controller_name, 'current')
-      set_selectable_in_sidebar_selector(controller_name, 'expired')
-    end
-  end
-
-  def set_selectable_in_sidebar_selector(controller_name, group)
-    selectable_in_sidebar_selector_value = selectable_in_sidebar_selector
-
-    if group == 'current'
-      selectable_in_sidebar_selector_value["#{controller_name}_#{group}"] = all_children_projekts.unshift(self).any? { |p| p.current? && ( p.send(controller_name).any? || p.has_active_phase?(controller_name) ) }
-    elsif group == 'expired'
-      selectable_in_sidebar_selector_value["#{controller_name}_#{group}"] = all_children_projekts.unshift(self).any? { |p| p.expired? && p.send(controller_name).any? }
-    end
-
-    self.update_column('selectable_in_sidebar_selector', selectable_in_sidebar_selector_value)
   end
 
   def title
