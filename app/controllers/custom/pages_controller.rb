@@ -244,7 +244,6 @@ class PagesController < ApplicationController
     @budget = Budget.find_by(projekt_id: params[:filter_projekt_id])
     @headings = @budget.headings.sort_by_name
     @heading = @headings.first
-    @all_resources = []
 
     params[:section] ||= 'results' if @budget.phase == 'finished'
 
