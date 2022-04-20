@@ -177,7 +177,7 @@ class Setting < ApplicationRecord
         "extended_feature.modulewide.custom_help_text_in_modules": false,
 
         "extended_feature.debates.intro_text_for_debates": true,
-        # "extended_feature.debates.head_image_for_debates": true,
+        "extended_feature.debates.head_image_for_debates": true,
         # "extended_feature.debates.show_report_button_in_debate_sidebar": true,
         # "extended_feature.debates.show_related_content": true,
         "extended_feature.debates.enable_projekt_filter": true,
