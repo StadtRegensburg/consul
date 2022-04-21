@@ -26,6 +26,8 @@
         <% end %>
       <% end %>
 
+      <%= render_custom_block "budget_#{@budget.id}_phase_#{@budget.current_phase.id}_info" %>
+
       <%= render 'pages/projekt_footer/budget/my_ballot'  %>
 
       <%= render Sidebar::ProjektsFilterComponent.new(@top_level_active_projekts, @top_level_archived_projekts, @all_resources, @current_tab_phase, @current_projekt) %>
