@@ -7,6 +7,23 @@ body,
   background-color: #F4F4F4;
 }
 
+.help-header {
+  background-color: #eeeeee;
+
+  .column {
+    float: none;
+  }
+}
+
+.help-header::after,
+.section-header::after {
+  border-bottom: 2px solid #eee;
+}
+
+.footer {
+  background: #d7d7d7;
+}
+
 
 main {
   margin-top: -25px;
