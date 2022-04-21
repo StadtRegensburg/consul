@@ -203,6 +203,8 @@ de:
           only_admins_create_investment_proposals_description: Die Erstellung von neuen Vorschlägen ist auf Admins beschränkt
           show_map: Karte für Investitionsvorschläge anzeigen
           show_map_description: Zeigt die Karte für Investitionsvorschläge in diesem Projekt an
+          show_results_after_first_vote: Ergebnisliste nach erster Beteiligungsphase anzeigen
+          show_results_after_first_vote_description: Zeigt in der Phase "Veröffentliching der Preise" nur ausgewählte Projekte als Ergebnisse an
 
       deficiency_reports:
         show_in_main_menu: Mängelmelder in Navigation anzeigen

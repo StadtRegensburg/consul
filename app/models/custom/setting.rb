@@ -170,7 +170,7 @@ class Setting < ApplicationRecord
         "extended_option.gdpr.devise_verification_token_validity_days": 3,
 
         "extended_feature.modulewide.enable_categories": false,
-        "extended_feature.modulewide.enable_custom_tags": false,
+        # temporarily disabled  "extended_feature.modulewide.enable_custom_tags": false,
         "extended_feature.modulewide.show_number_of_entries_in_modules": true,
         "extended_feature.modulewide.show_affiliation_filter_in_index_sidebar": false,
         "extended_feature.modulewide.hide_comment_replies_by_default": false,
