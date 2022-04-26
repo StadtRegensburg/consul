@@ -25,6 +25,8 @@
             <%= render partial: 'projekt', locals: { projekt: projekt } if projekt.in? @projekts %>
           <% end %>
         <% end %>
+      <% else %>
+        <%= t('custom.projekts.index.no_projekts') %>
       <% end %>
     </div>
 
