@@ -82,8 +82,4 @@ class Proposal < ApplicationRecord
     def set_responsible_name
       self.responsible_name = 'unregistriered'
     end
-
-
-    def custom_votes_for_proposal_success
-    end
 end
