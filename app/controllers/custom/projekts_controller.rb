@@ -9,6 +9,9 @@ class ProjektsController < ApplicationController
   include ProjektControllerHelper
 
   def index
+    @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
+    @filtered_target = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
+
     @projekts =
       Projekt
         .joins( 'INNER JOIN projekt_settings show_in_overview_page ON projekts.id = show_in_overview_page.projekt_id' )
