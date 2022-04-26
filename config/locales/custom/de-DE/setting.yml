@@ -78,6 +78,8 @@ de:
 
       extended_option:
         general:
+          title: Titel der Applikation
+          title_description: Fügt einen Titel zur Applikation hinzu.
           subtitle: Untertitel der Applikation
           subtitle_description: Fügt einen Untertitel zur Applikation hinzu.
         gdpr:
