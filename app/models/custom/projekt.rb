@@ -64,10 +64,8 @@ class Projekt < ApplicationRecord
                                                where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today ).
                                                where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today) }
   scope :active, -> {
-    activated
+    current
       .includes(:projekt_phases)
-      .where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today )
-      .where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today)
       .select { |p| p.projekt_phases.all? { |phase| !phase.active? }}
   }
 
