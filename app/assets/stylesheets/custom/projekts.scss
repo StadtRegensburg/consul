@@ -639,8 +639,11 @@ span.projekt-backlink:before {
   margin-bottom: 20px;
 }
 
-.projekts-map {
+.projekts-map-wrapper {
   margin-bottom: 50px;
+}
+
+.projekts-map {
   margin-left: calc(-50vw + 37.5rem);
   margin-right: calc(-50vw + 37.5rem);
   width: auto;
