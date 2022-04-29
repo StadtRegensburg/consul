@@ -91,8 +91,10 @@ class Projekt < ApplicationRecord
       .where( "total_duration_end > ?", Date.today)
   }
 
-  scope :expired, ->(timestamp = Date.today) { activated.
-                                               where( "total_duration_end < ?", Date.today) }
+  scope :expired, ->(timestamp = Date.today) {
+    activated
+      .where( "total_duration_end < ?", Date.today)
+  }
 
   scope :visible_in_menu, -> { joins( 'INNER JOIN projekt_settings vim ON projekts.id = vim.projekt_id').
                                where( 'vim.key': 'projekt_feature.general.show_in_navigation', 'vim.value': 'active' ) }
