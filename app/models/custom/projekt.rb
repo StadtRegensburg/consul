@@ -62,22 +62,28 @@ class Projekt < ApplicationRecord
 
   scope :current, ->(timestamp = Date.today) {
     activated
+      .includes(:projekt_phases)
       .where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today )
       .where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today)
+      .select { |p| p.projekt_phases.all? { |phase| !phase.active? }}
   }
   scope :active, -> { current }
 
   scope :not_active, -> {
     activated
-      .where.not( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today )
-      .where.not( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today)
+      .where( "total_duration_start IS NULL OR total_duration_start < ?", Date.today )
+      .where( "total_duration_end IS NULL OR total_duration_end < ?", Date.today).or(
+        activated
+          .where( "total_duration_start IS NULL OR total_duration_start > ?", Date.today )
+          .where( "total_duration_end IS NULL OR total_duration_end > ?", Date.today)
+      )
   }
 
   scope :ongoing, -> {
     activated
-      .joins(:projekt_phases)
-      .where( "projekt_phases.start_date <= ?", Date.today )
-      .where( "projekt_phases.end_date >= ?", Date.today )
+      .not_active
+      .includes(:projekt_phases)
+      .select { |p| p.projekt_phases.any? { |phase| phase.active? }}
   }
 
   scope :upcoming, -> {
