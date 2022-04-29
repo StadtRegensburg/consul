@@ -16,7 +16,7 @@ class ProjektsController < ApplicationController
       Projekt
         .joins( 'INNER JOIN projekt_settings show_in_overview_page ON projekts.id = show_in_overview_page.projekt_id' )
         .where( 'show_in_overview_page.key': 'projekt_feature.general.show_in_overview_page', 'show_in_overview_page.value': 'active' )
-        .page(params[:page]).send(@current_order)
+        .page(params[:page])
 
     @projekts_coordinates = all_projekts_map_locations(@projekts)
 
@@ -42,6 +42,8 @@ class ProjektsController < ApplicationController
     @resource_name = 'projekt'
 
     @sdgs = @projekts.includes(:sdg_goals).map(&:sdg_goals).flatten.uniq.compact
+
+    @projekts = @projekts.send(@current_order)
   end
 
   def show
