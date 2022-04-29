@@ -653,6 +653,7 @@ span.projekt-backlink:before {
 .projekt-item-tag-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   margin-bottom: 5px;
 }
 
@@ -664,4 +665,8 @@ span.projekt-backlink:before {
   background: #ECECEC;
   color: black;
   font-size: 14px;
+}
+
+.projekt-item-tags {
+  display: flex;
 }
