@@ -60,14 +60,16 @@ class Projekt < ApplicationRecord
   scope :activated, -> { joins( 'INNER JOIN projekt_settings act ON projekts.id = act.projekt_id' ).
                          where( 'act.key': 'projekt_feature.main.activate', 'act.value': 'active' ) }
 
-  scope :current, ->(timestamp = Date.today) {
+  scope :current, ->(timestamp = Date.today) { activated.
+                                               where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today ).
+                                               where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today) }
+  scope :active, -> {
     activated
       .includes(:projekt_phases)
       .where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today )
       .where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today)
       .select { |p| p.projekt_phases.all? { |phase| !phase.active? }}
   }
-  scope :active, -> { current }
 
   scope :not_active, -> {
     activated
@@ -91,8 +93,10 @@ class Projekt < ApplicationRecord
       .where( "total_duration_end > ?", Date.today)
   }
 
-  scope :expired, ->(timestamp = Date.today) { activated.
-                                               where( "total_duration_end < ?", Date.today) }
+  scope :expired, ->(timestamp = Date.today) {
+    activated
+      .where( "total_duration_end < ?", Date.today)
+  }
 
   scope :visible_in_menu, -> { joins( 'INNER JOIN projekt_settings vim ON projekts.id = vim.projekt_id').
                                where( 'vim.key': 'projekt_feature.general.show_in_navigation', 'vim.value': 'active' ) }
