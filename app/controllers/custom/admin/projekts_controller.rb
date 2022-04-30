@@ -108,7 +108,7 @@ class Admin::ProjektsController < Admin::BaseController
   end
 
   def liveupdate
-    @projekt.update(projekt_params)
+    @projekt.update_attributes(projekt_params)
   end
 
   def update_map
@@ -175,7 +175,7 @@ class Admin::ProjektsController < Admin::BaseController
       projekt_notifications: [:title, :body],
       project_events: [:id, :title, :location, :datetime, :weblink],
     ]
-    params.require(:projekt).permit(attributes, translation_params(Projekt))
+    params.require(:projekt).permit(attributes)
   end
 
   def process_tags

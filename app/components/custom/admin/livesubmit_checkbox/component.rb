@@ -1,18 +1,28 @@
 class Admin::LivesubmitCheckbox::Component < ApplicationComponent
-  def initialize(url, field_name, field_current_value)
+  def initialize(url:, resource_name: , attribute_name:, id:, current_value:)
     @url = url
-    @field_name = field_name
-    @field_current_value = field_current_value
+    @resource_name = resource_name
+    @attribute_name = attribute_name
+    @id = id
+    @current_value = current_value
   end
 
   def options
     {
       data: { disable_with: text },
-      "aria-pressed": (@field_current_value.presence || false).to_s
+      "aria-pressed": (@current_value.presence || false).to_s
     }
   end
 
   private
+
+  def field_name
+    "#{@resource_name}[#{@attribute_name}]"
+  end
+
+  def id_field_name
+    "#{@resource_name}[id]"
+  end
 
   def text
     if enabled?
@@ -31,6 +41,6 @@ class Admin::LivesubmitCheckbox::Component < ApplicationComponent
   end
 
   def enabled?
-    @field_current_value
+    @current_value
   end
 end
