@@ -643,6 +643,12 @@ span.projekt-backlink:before {
   margin-bottom: 50px;
 }
 
+.projekts-page {
+  ul.order-links li a {
+    margin-bottom: 12px;
+  }
+}
+
 .projekts-map {
   margin-left: calc(-50vw + 37.5rem);
   margin-right: calc(-50vw + 37.5rem);
