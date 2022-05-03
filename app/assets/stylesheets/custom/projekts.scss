@@ -545,6 +545,16 @@ span.projekt-backlink:before {
   .image {
     max-width: 150px;
 
+    @media screen and (max-width: 650px) {
+      flex-direction: column;
+    }
+  }
+
+  .image img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
     img {
       display: block;
       margin: 0 auto;
@@ -574,6 +584,18 @@ span.projekt-backlink:before {
 
     a.button {
       min-width: 150px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      width: max-content;
+      height: fit-content;
+
+      @media screen and (max-width: 650px) {
+        width: 100%;
+      }
     }
   }
 
@@ -647,6 +669,14 @@ span.projekt-backlink:before {
 .projekts-page {
   ul.order-links li a {
     margin-bottom: 12px;
+  }
+}
+
+@media screen and (min-width: 75em) {
+  .projekts-map {
+    margin-left: calc(-50vw + 37.5rem);
+    margin-right: calc(-50vw + 37.5rem);
+    width: auto;
   }
 }
 
