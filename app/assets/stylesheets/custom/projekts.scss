@@ -542,11 +542,17 @@ span.projekt-backlink:before {
   padding: 18px;
   margin-bottom: 1rem;
 
+  @media screen and (max-width: 650px) {
+    justify-content: center;
+    padding: 15px 10px;
+  }
+
   .image {
     max-width: 150px;
 
     @media screen and (max-width: 650px) {
       flex-direction: column;
+      max-width: 100%;
     }
   }
 
@@ -582,19 +588,17 @@ span.projekt-backlink:before {
   .projekt-link {
     align-self: center;
 
+    @media screen and (max-width: 650px) {
+      width: 100%;
+    }
+
     a.button {
       min-width: 150px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      width: max-content;
-      height: fit-content;
 
       @media screen and (max-width: 650px) {
         width: 100%;
+        margin-top: 15px;
+        margin-bottom: 10px;
       }
     }
   }
