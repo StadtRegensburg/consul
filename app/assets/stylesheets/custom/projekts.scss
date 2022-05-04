@@ -574,11 +574,12 @@ span.projekt-backlink:before {
   }
 
   .content {
+    padding-right: 15px;
+    padding-left: 15px;
+
     @media (min-width: 40em) {
       max-width: calc(100% - 300px);
     }
-
-    padding-right: 15px;
   }
 
   .projekt-title {
