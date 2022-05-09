@@ -115,6 +115,7 @@
       </div>
     <% end %>
 
-    <%= f.submit(class: "button", value: t("proposals.#{action_name}.form.submit_button")) %>
+    <%= f.submit(class: "button", value: t("custom.proposals.form.buttons.save_draft"), name: 'save_draft') %>
+    <%= f.submit(class: "button", value: t("custom.proposals.form.buttons.publish")) %>
   </div>
 <% end %>

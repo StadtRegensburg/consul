@@ -66,6 +66,27 @@ class ProposalsController
     @selected_projekt = @proposal.projekt.id
   end
 
+  def create
+    @proposal = Proposal.new(proposal_params.merge(author: current_user))
+
+    if params[:save_draft].present? && @proposal.save
+      redirect_to progress_proposal_dashboard_path(@proposal), notice: I18n.t("flash.actions.create.proposal")
+
+    elsif @proposal.save
+      @proposal.publish
+
+      if @proposal.proposal_phase.info_active?
+        redirect_to page_path(@proposal.projekt.page.slug, anchor: 'filter-subnav', selected_phase_id: @proposal.proposal_phase.id, order: 'created_at')
+      else
+        redirect_to proposals_path(order: 'created_at')
+      end
+
+    else
+      render :new
+
+    end
+  end
+
   def show
     super
     @projekt = @proposal.projekt
