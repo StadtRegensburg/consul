@@ -70,20 +70,38 @@ class ProposalsController
     @proposal = Proposal.new(proposal_params.merge(author: current_user))
 
     if params[:save_draft].present? && @proposal.save
-      redirect_to progress_proposal_dashboard_path(@proposal), notice: I18n.t("flash.actions.create.proposal")
+      redirect_to user_path(@proposal.author, filter: 'proposals'), notice: I18n.t("flash.actions.create.proposal")
 
     elsif @proposal.save
       @proposal.publish
 
       if @proposal.proposal_phase.info_active?
-        redirect_to page_path(@proposal.projekt.page.slug, anchor: 'filter-subnav', selected_phase_id: @proposal.proposal_phase.id, order: 'created_at')
+        redirect_to page_path(
+          @proposal.projekt.page.slug,
+          anchor: 'filter-subnav',
+          selected_phase_id: @proposal.proposal_phase.id,
+          order: 'created_at'), notice: t("proposals.notice.published")
       else
-        redirect_to proposals_path(order: 'created_at')
+        redirect_to proposals_path(order: 'created_at'), notice: t("proposals.notice.published")
       end
 
     else
       render :new
 
+    end
+  end
+
+  def publish
+    @proposal.publish
+
+    if @proposal.proposal_phase.info_active?
+      redirect_to page_path(
+        @proposal.projekt.page.slug,
+        anchor: 'filter-subnav',
+        selected_phase_id: @proposal.proposal_phase.id,
+        order: 'created_at'), notice: t("proposals.notice.published")
+    else
+      redirect_to proposals_path(order: 'created_at'), notice: t("proposals.notice.published")
     end
   end
 
