@@ -2,6 +2,7 @@ class Admin::ProjektQuestionsController < Admin::BaseController
   include Translatable
 
   before_action :set_projekt, except: :destroy
+  skip_authorization_check
 
   # load_and_authorize_resource :projekt
   # load_and_authorize_resource :projekt_question, class: "ProjektQuestion", through: :projekt
