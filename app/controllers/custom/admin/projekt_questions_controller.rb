@@ -20,7 +20,6 @@ class Admin::ProjektQuestionsController < Admin::BaseController
       notice = 'Question created'
       redirect_to edit_admin_projekt_path(@projekt.id), notice: notice
     else
-      binding.pry
       flash.now[:error] = t("admin.legislation.questions.create.error")
       render :new
     end

@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
   def create
     if @comment.save
       CommentNotifier.new(comment: @comment).process
-      binding.pry
       add_notification @comment
       EvaluationCommentNotifier.new(comment: @comment).process if send_evaluation_notification?
     else
