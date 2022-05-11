@@ -4,8 +4,8 @@ class Admin::ProjektQuestionsController < Admin::BaseController
   before_action :set_projekt, except: :destroy
   skip_authorization_check
 
-  # load_and_authorize_resource :projekt
-  # load_and_authorize_resource :projekt_question, class: "ProjektQuestion", through: :projekt
+  load_and_authorize_resource :projekt
+  load_and_authorize_resource :question, class: "ProjektQuestion", through: :projekt
 
   def new
     @projekt_question = ProjektQuestion.new(projekt_id: @projekt.id)
@@ -19,7 +19,7 @@ class Admin::ProjektQuestionsController < Admin::BaseController
 
     if @projekt_question.save
       notice = 'Question created'
-      redirect_to edit_admin_projekt_path(@projekt.id), notice: notice
+      redirect_to edit_admin_projekt_path(@projekt.id, anchor: 'tab-projekt-questions'), notice: notice
     else
       flash.now[:error] = t("admin.legislation.questions.create.error")
       render :new
@@ -55,10 +55,6 @@ class Admin::ProjektQuestionsController < Admin::BaseController
           :id, :_destroy, translation_params(::ProjektQuestionOption)
         ]
       )
-    end
-
-    def resource
-      @projekt_question || ::Legislation::projekt_question.find(params[:id])
     end
 
   def set_projekt
