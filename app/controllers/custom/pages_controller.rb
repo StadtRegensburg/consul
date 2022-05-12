@@ -322,6 +322,7 @@ class PagesController < ApplicationController
     # @projekt_questions = ProjektQuestion.base_selection(scoped_projekt_ids)
 
     @projekt_question = @current_projekt.questions.first
+    @projekt_questions_count = @current_projekt.questions.count
     @commentable = @projekt_question
 
     @valid_orders = %w[most_voted newest oldest]

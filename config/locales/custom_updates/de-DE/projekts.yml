@@ -50,6 +50,7 @@ de:
           projekt_notifications: Benachrichtigungen
           newsfeed: News-Feed
           projekt_events: Veranstaltungen
+          projekt_questions: Kurzumfrage
         projekt_events_tab:
           title: Kommende Veranstaltungen
           no_events: Keine Ereignisse
