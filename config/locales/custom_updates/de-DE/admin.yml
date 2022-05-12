@@ -109,6 +109,7 @@ de:
           show_open_answer_without_username: Offene Antworten anonym anzeigen
           show_summary_instead_of_questions: Zusammenfassung statt Liste aller Fragen in der Abstimmungsübersicht anzeigen
           show_on_home_page: Diese Abstimmung wird auf der Homepage angezeigt.
+          show_on_index_page: Diese Abstimmung wird auf der Abstimmungsübersicht angezeigt
       progress_bars:
         index:
           progress_bar: Fortschrittsbalken
