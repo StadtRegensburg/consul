@@ -2,7 +2,7 @@
   <div class="row">
     <div class="small-12 medium-9 column">
       <h3 class="quiz-question"><%= projekt_question.title %></h3>
-      <div class="project-question-list" id="legislation-answer-form">
+      <div class="project-question-list js-project-question-list" id="legislation-answer-form">
         <%= render "custom/projekts/partials/projekt_question_answer_form", projekt: projekt, projekt_question: projekt_question, projekt_answer: projekt_question_answer %>
         <%= render "custom/projekts/partials/projekt_question_particapation_not_allowed", projekt: projekt %>
       </div>
@@ -26,5 +26,7 @@
     </div>
   </div>
 
-  <%= render "/comments/comment_tree", comment_tree: @comment_tree, display_comments_count: true %>
+  <div class="small-12 medium-9">
+    <%= render "/comments/comment_tree", comment_tree: @comment_tree, display_comments_count: true %>
+  <div/>
 </section>

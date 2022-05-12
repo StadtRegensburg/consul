@@ -1,7 +1,9 @@
 <% if projekt_question.question_options.any? %>
-  <% if projekt.question_phase.active? && !projekt_answer.persisted? %>
+  <% if projekt.question_phase.active? %>
 
-    <%= form_for projekt_answer, url: projekt_projekt_question_answers_path(projekt), remote: true, html: { class: "controls-stacked js-projekt-answer-form" } do |f| %>
+    <% path = projekt_answer.persisted? ? projekt_projekt_question_answer_path(projekt, projekt_answer) : projekt_projekt_question_answers_path(projekt) %>
+
+    <%= form_for projekt_answer, url: path, remote: true, html: { class: "controls-stacked js-projekt-answer-form" } do |f| %>
       <% projekt_question.question_options.each do |question_option| %>
         <label class="control radio <%= "is-active" if projekt_answer.question_option&.id == question_option.id %>">
           <%= f.radio_button :projekt_question_option_id, question_option.id, label: false %>

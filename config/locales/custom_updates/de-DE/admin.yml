@@ -112,6 +112,16 @@ de:
         index:
           progress_bar: Fortschrittsbalken
       projekts:
+        projekt_questions:
+          index:
+            title: Kurzumfrage
+            create: Frage erstellen
+          edit:
+            title: Frage bearbeiten
+            save: Frage aktualisieren
+          new:
+            title: Frage erstellen
+            create: Frage aktualisieren
         destroy: Löschen
         edit:
           description: Projektbeschreibung

@@ -10,13 +10,7 @@ namespace :admin do
     end
     resources :projekt_notifications, only: [:create, :update, :destroy]
     resources :projekt_events, only: [:create, :update, :destroy]
-    resources :projekt_questions, shallow: true do
-      # resources :projekt_answers, except: [:index], controller: "questions/answers" do
-      #   resources :images, controller: "questions/answers/images"
-      #   resources :videos, controller: "questions/answers/videos"
-      #   get :documents, to: "questions/answers#documents"
-      # end
-
+    resources :projekt_questions  do
       post "/answers/order_answers", to: "questions/answers#order_answers"
     end
     resources :milestones, controller: "projekt_milestones"
