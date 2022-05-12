@@ -90,6 +90,7 @@ en:
           projekt_settings_tab:
             footer_settings: Footer
             general_settings: General
+            milestone_settings: Settings
             name: Project functions
             select_an_element: select
             sidebar_settings: Sidebar

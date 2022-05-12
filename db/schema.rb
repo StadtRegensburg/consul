@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_02_141403) do
+ActiveRecord::Schema.define(version: 2022_05_12_095107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1115,6 +1115,7 @@ ActiveRecord::Schema.define(version: 2022_05_02_141403) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.text "description"
+    t.string "custom_date"
     t.index ["locale"], name: "index_milestone_translations_on_locale"
     t.index ["milestone_id"], name: "index_milestone_translations_on_milestone_id"
   end
@@ -1465,6 +1466,63 @@ ActiveRecord::Schema.define(version: 2022_05_02_141403) do
     t.boolean "active"
     t.boolean "info_active"
     t.index ["projekt_id"], name: "index_projekt_phases_on_projekt_id"
+  end
+
+  create_table "projekt_question_answers", force: :cascade do |t|
+    t.bigint "projekt_question_id"
+    t.bigint "projekt_question_option_id"
+    t.bigint "user_id"
+    t.datetime "hidden_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hidden_at"], name: "index_projekt_question_answers_on_hidden_at"
+    t.index ["projekt_question_id"], name: "index_projekt_question_answers_on_projekt_question_id"
+    t.index ["projekt_question_option_id"], name: "index_projekt_question_answers_on_projekt_question_option_id"
+    t.index ["user_id"], name: "index_projekt_question_answers_on_user_id"
+  end
+
+  create_table "projekt_question_option_translations", force: :cascade do |t|
+    t.bigint "projekt_question_option_id"
+    t.string "locale", null: false
+    t.string "value"
+    t.datetime "hidden_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projekt_question_option_id"], name: "option_projekt_question_option_id"
+  end
+
+  create_table "projekt_question_options", force: :cascade do |t|
+    t.bigint "projekt_question_id"
+    t.integer "answers_count", default: 0
+    t.datetime "hidden_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hidden_at"], name: "index_projekt_question_options_on_hidden_at"
+    t.index ["projekt_question_id"], name: "index_projekt_question_options_on_projekt_question_id"
+  end
+
+  create_table "projekt_question_translations", force: :cascade do |t|
+    t.bigint "projekt_question_id"
+    t.string "locale", null: false
+    t.text "title"
+    t.datetime "hidden_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["locale"], name: "index_projekt_question_translations_on_locale"
+    t.index ["projekt_question_id"], name: "index_projekt_question_translations_on_projekt_question_id"
+  end
+
+  create_table "projekt_questions", force: :cascade do |t|
+    t.text "title"
+    t.integer "answers_count", default: 0
+    t.integer "comments_count", default: 0
+    t.integer "author_id", default: 0
+    t.datetime "hidden_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "projekt_id"
+    t.index ["hidden_at"], name: "index_projekt_questions_on_hidden_at"
+    t.index ["projekt_id"], name: "index_projekt_questions_on_projekt_id"
   end
 
   create_table "projekt_settings", force: :cascade do |t|

@@ -80,6 +80,7 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt_options_proposals = all_projekt_features['proposal_options']
     @projekt_features_polls = all_projekt_features['polls']
     @projekt_features_budgets = all_projekt_features['budgets']
+    @projekt_features_milestones = all_projekt_features['milestones']
 
     @projekt_newsfeed_settings = all_settings["projekt_newsfeed"]
 

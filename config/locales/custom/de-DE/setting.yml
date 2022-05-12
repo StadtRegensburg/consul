@@ -212,6 +212,10 @@ de:
           show_map_description: Zeigt die Karte für Investitionsvorschläge in diesem Projekt an
           show_results_after_first_vote: Ergebnisliste nach erster Beteiligungsphase anzeigen
           show_results_after_first_vote_description: Zeigt in der Phase "Veröffentliching der Preise" nur ausgewählte Projekte als Ergebnisse an
+        milestones:
+          show_date: Datum der Meilensteine
+          show_date_description: Zeigt das Datum in den Mailensteine an
+
 
       deficiency_reports:
         show_in_main_menu: Mängelmelder in Navigation anzeigen
