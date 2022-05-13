@@ -715,10 +715,8 @@ span.projekt-backlink:before {
     margin-top: $line-height * 2.5;
   }
 
-  #comments {
-    h2 {
+  #comments > h2 {
       font-size: 24px;
-    }
   }
 
   .quiz-header {

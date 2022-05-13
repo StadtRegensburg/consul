@@ -27,9 +27,11 @@
       </div>
     </div>
 
-    <div class="small-12 medium-9">
-      <%= render "/comments/comment_tree", comment_tree: @comment_tree, display_comments_count: true %>
-    <div/>
+    <% if projekt_question.comments_enabled? %>
+      <div class="small-12 medium-9">
+        <%= render "/comments/comment_tree", comment_tree: @comment_tree, display_comments_count: true %>
+      <div/>
+    <% end %>
   </section>
 <% else %>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_06_075651) do
+ActiveRecord::Schema.define(version: 2022_05_13_084243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1099,6 +1099,7 @@ ActiveRecord::Schema.define(version: 2022_05_06_075651) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.text "description"
+    t.string "custom_date"
     t.index ["locale"], name: "index_milestone_translations_on_locale"
     t.index ["milestone_id"], name: "index_milestone_translations_on_milestone_id"
   end
@@ -1383,6 +1384,9 @@ ActiveRecord::Schema.define(version: 2022_05_06_075651) do
     t.bigint "projekt_id"
     t.boolean "show_open_answer_author_name"
     t.boolean "show_summary_instead_of_questions", default: false
+    t.boolean "bam_street_restricted", default: false
+    t.boolean "show_on_home_page", default: true
+    t.boolean "show_on_index_page", default: true
     t.index ["budget_id"], name: "index_polls_on_budget_id", unique: true
     t.index ["geozone_restricted"], name: "index_polls_on_geozone_restricted"
     t.index ["projekt_id"], name: "index_polls_on_projekt_id"
@@ -1503,6 +1507,7 @@ ActiveRecord::Schema.define(version: 2022_05_06_075651) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "projekt_id"
+    t.boolean "comments_enabled", default: true
     t.index ["hidden_at"], name: "index_projekt_questions_on_hidden_at"
     t.index ["projekt_id"], name: "index_projekt_questions_on_projekt_id"
   end

@@ -108,6 +108,8 @@ de:
           show_open_answer_with_username: Offene Antworten mit Nutzer:innen-Name anzeigen
           show_open_answer_without_username: Offene Antworten anonym anzeigen
           show_summary_instead_of_questions: Zusammenfassung statt Liste aller Fragen in der Abstimmungsübersicht anzeigen
+          show_on_home_page: Diese Abstimmung wird auf der Homepage angezeigt.
+          show_on_index_page: Diese Abstimmung wird auf der Abstimmungsübersicht angezeigt
       progress_bars:
         index:
           progress_bar: Fortschrittsbalken
@@ -132,7 +134,7 @@ de:
           projekt_map_tab:
             name: Ind. Kartenkonfiguration
           projekt_questions_tab:
-            name: Questions
+            name: Kurzumfragen
             title: Questions
           projekt_milestones_tab:
             name: Fortschritt & Meilensteine
@@ -200,6 +202,7 @@ de:
             proposals_settings: Vorschläge
             polls_settings: Abstimmungen
             budget_settings: Budgets
+            milestone_settings: Einstellungen
             name: Projektfunktionen
             select_an_element: auswählen
             projekt_notification_phase: Benachrichtigungen
