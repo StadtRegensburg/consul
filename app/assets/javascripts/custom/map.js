@@ -165,13 +165,25 @@
 
 /////////////////////
 
-      var baseLayers = [];
-      var overlayLayers = [];
+      var baseLayers = {};
+      var overlayLayers = {};
 
       var createLayer = function(item, index) {
-        var layer = L.tileLayer(item.provider, {
-          attribution: item.attribution
-        });
+
+        if ( item.protocol == 'wms' ) {
+          var layer = L.tileLayer.wms(item.provider, {
+            attribution: item.attribution,
+            layers: item.layer_names,
+            format: (item.format ? item.format : 'image/jpeg'),
+            transparent: (item.transparent === 'true')
+          });
+
+        } else {
+          var layer = L.tileLayer(item.provider, {
+            attribution: item.attribution
+          });
+
+        }
 
         if ( item.base ) {
           baseLayers[item.name] = layer;
@@ -181,20 +193,7 @@
       }
 
       layersData.forEach(createLayer);
-
-
-
-
-
-
-
-
-      L.control.layers(baseLayers).addTo(map);
-
-
-
-
-
+      L.control.layers(baseLayers, overlayLayers).addTo(map);
 
 //////////////////////
 
