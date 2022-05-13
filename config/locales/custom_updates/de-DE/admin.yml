@@ -115,6 +115,8 @@ de:
           progress_bar: Fortschrittsbalken
       projekts:
         projekt_questions:
+          show_answers_count: 'Anzahl der Stimmen im Frontend anzeigen'
+          comments_enabled: 'Offene Antwort aktiviert'
           index:
             title: Kurzumfrage
             create: Frage erstellen
