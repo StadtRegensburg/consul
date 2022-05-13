@@ -17,6 +17,10 @@
       $('body').on('ajax:success', '.js-projekt-answer-form', function(data) {
         this.loadNextQuestion($('.js-projekt-question-next').attr('href'))
       }.bind(this));
+
+      // $('body').on('change', '.js-project-question-list form input', function(e) {
+      //   $(e.currentTarget).closest('form').trigger('submit.rails')
+      // })
     }
   }
 }).call(this);
