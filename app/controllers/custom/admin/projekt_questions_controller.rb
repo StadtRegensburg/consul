@@ -60,7 +60,7 @@ class Admin::ProjektQuestionsController < Admin::BaseController
     def projekt_question_params
       params.require(:projekt_question).permit(
         translation_params(::ProjektQuestion),
-        :comments_enabled,
+        :comments_enabled, :show_answers_count,
         question_options_attributes: [
           :id, :_destroy, translation_params(::ProjektQuestionOption)
         ]

@@ -16,6 +16,10 @@ de:
         current_projekts: Projekte mit aktiver Beteiligungsphase
         expired_projekts: Abgeschlossene Projekte
         no_projekts: keine Projekte
+      projekt_questions :
+        comments_title: "Offene Antworten"
+        comments_button: "Antwort veröffentlichen"
+        login_to_answer: "Sie müssen sich %{signin} oder %{signup}, um an der Kurzumfrage teilzunehmen."
 
       backlink: Zur Projektübersicht
       errors:

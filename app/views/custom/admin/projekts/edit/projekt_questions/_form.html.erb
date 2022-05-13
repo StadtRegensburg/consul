@@ -11,9 +11,12 @@
       </div>
     <% end %>
   </div>
-  <div class="row">
+  <div class="row margin-bottom">
     <div class="small-12 medium-9 column end">
-      <%= f.check_box :comments_enabled %>
+      <%= f.check_box :show_answers_count, label: t("custom.admin.projekts.projekt_questions.show_answers_count") %>
+    </div>
+    <div class="small-12 medium-9 column end">
+      <%= f.check_box :comments_enabled, label: t("custom.admin.projekts.projekt_questions.comments_enabled") %>
     </div>
   </div>
 
