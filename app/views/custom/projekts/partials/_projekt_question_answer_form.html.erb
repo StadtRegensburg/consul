@@ -9,6 +9,7 @@
           <%= f.radio_button :projekt_question_option_id, question_option.id, label: false %>
           <span class="control-indicator"></span>
           <%= question_option.value %>
+          ( <%= question_option.answers_count  %>)
         </label>
       <% end %>
       <%= f.submit t("legislation.questions.show.answer_question"), class: "button" %>

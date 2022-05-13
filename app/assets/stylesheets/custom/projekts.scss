@@ -715,15 +715,21 @@ span.projekt-backlink:before {
     margin-top: $line-height * 2.5;
   }
 
+  #comments {
+    h2 {
+      font-size: 24px;
+    }
+  }
+
   .quiz-header {
     margin-bottom: $line-height;
 
     .quiz-title,
     .quiz-next {
-      padding: $line-height;
+      padding: 12px;
 
       @include breakpoint(medium) {
-        height: $line-height * 4;
+        height: $line-height * 2;
       }
     }
 
@@ -777,6 +783,7 @@ span.projekt-backlink:before {
   }
 
   .quiz-question {
+    font-size: 32px;
     margin-bottom: $line-height;
   }
 
