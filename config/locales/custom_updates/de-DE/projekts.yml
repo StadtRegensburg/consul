@@ -79,6 +79,7 @@ de:
           ending: Gepl. Fertigstellung
         projekt_notification_phase: Benachrichtigungen
         newsfeed_phase: Newsfeed
+        question_phase: Kurzumfrage
       projekt_events:
         orders:
           all: Alle

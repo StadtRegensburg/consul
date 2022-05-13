@@ -14,13 +14,16 @@
         this.loadNextQuestion(e.currentTarget.href)
       }.bind(this));
 
-      $('body').on('ajax:success', '.js-projekt-answer-form', function(data) {
-        this.loadNextQuestion($('.js-projekt-question-next').attr('href'))
-      }.bind(this));
+      $('body').on('change', '.js-project-question-list form input', function(e) {
+        var $element = $(e.currentTarget)
 
-      // $('body').on('change', '.js-project-question-list form input', function(e) {
-      //   $(e.currentTarget).closest('form').trigger('submit.rails')
-      // })
+        $element.closest('form').trigger('submit.rails')
+
+        var $elementLabel = $element.parent('label')
+
+        $elementLabel.siblings('label').removeClass('is-active')
+        $elementLabel.addClass('is-active')
+      })
     }
   }
 }).call(this);

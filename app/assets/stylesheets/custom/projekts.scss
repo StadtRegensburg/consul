@@ -719,6 +719,12 @@ span.projekt-backlink:before {
       font-size: 24px;
   }
 
+  #comments {
+    .callout.primary[data-alert] {
+      display: none;
+    }
+  }
+
   .quiz-header {
     margin-bottom: $line-height;
 

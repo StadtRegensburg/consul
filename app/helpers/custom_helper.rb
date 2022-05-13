@@ -32,6 +32,7 @@ module CustomHelper
 
   def sorted_projekt_phases_for_footer(projekt)
     [
+      projekt.comment_phase,
       projekt.debate_phase,
       projekt.proposal_phase,
       projekt.voting_phase,
