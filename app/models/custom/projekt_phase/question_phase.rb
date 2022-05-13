@@ -16,6 +16,6 @@ class ProjektPhase::QuestionPhase < ProjektPhase
   end
 
   def default_order
-    4
+    3
   end
 end

@@ -38,7 +38,7 @@ class Admin::ProjektQuestionsController < Admin::BaseController
 
     if @projekt_question.update(projekt_question_params)
       notice = 'Question updated'
-      redirect_to edit_admin_projekt_path(@projekt.id, acnhor: 'tab-projekt-questions'), notice: notice
+      redirect_to edit_admin_projekt_path(@projekt.id, anchor: 'tab-projekt-questions'), notice: notice
     else
       flash.now[:error] = t("admin.legislation.questions.update.error")
       render :edit
