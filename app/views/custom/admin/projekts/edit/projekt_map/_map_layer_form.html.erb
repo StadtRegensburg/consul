@@ -1,0 +1,63 @@
+<div class='map-layer-form'>
+  <%= form_for([:admin, @projekt, layer]) do |f| %>
+    <%= hidden_field_tag :tab, '#tab-projekt-map' %>
+
+    <div class='row'>
+      <div class='column medium-6'>
+        <%= f.text_field :name, 
+                          hint: t('custom.map_layer.hints.name')
+                        %>
+      </div>
+      <div class='column medium-6'>
+        <%= f.text_field :layer_names,
+                          hint: t('custom.map_layer.hints.layer_names')
+      %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='column medium-6'>
+        <%= f.check_box :base,
+                          hint: t('custom.map_layer.hints.layer_names')
+      %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='column'>
+        <%= f.text_field :provider,
+                          hint: t('custom.map_layer.hints.provider')
+      %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='column'>
+        <%= f.text_field :attribution,
+                          hint: t('custom.map_layer.hints.attribution')
+      %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='column medium-4'>
+        <%= f.text_field :protocol,
+                          hint: t('custom.map_layer.hints.protocol')
+      %>
+      </div>
+      <div class='column medium-4'>
+        <%= f.text_field :format,
+                          hint: t('custom.map_layer.hints.format')
+      %>
+      </div>
+      <div class='column medium-4'>
+        <%= f.text_field :transparent,
+                          hint: t('custom.map_layer.hints.transparent')
+      %>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='column'>
+        <%= f.submit %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

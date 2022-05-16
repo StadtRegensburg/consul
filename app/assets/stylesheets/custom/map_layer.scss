@@ -1,0 +1,15 @@
+.map-layer {
+  position: relative;
+
+  .edit-map-layer {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+}
+
+.map-layer-form {
+  border: 1px solid gainsboro;
+  padding-top: 25px;
+  border-radius: 5px;
+}
