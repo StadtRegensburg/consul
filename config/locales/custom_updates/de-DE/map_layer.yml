@@ -2,18 +2,15 @@ de:
   custom:
     map_layer:
       labels:
-        layer_names: Layer names
-        provider: Provider
-        attribution: Attribution
-        protocol: Protocol
-        format: Format
-        transparent: Transparent
+        layer_names: Kartenebenennamen
+        provider: Anbieter
+        attribution: Zuschreibung
+        protocol: Kartenprotokoll
+        transparent: transparent
       hints:
-        name: Visible in selector, if there are more than one layer
-        layer_names: Not mandatory
-        provider: URL of the map
-        attribution: Map attribution
-        protocol: wms, default blank
-        format: default 
-        transparent: default 
-
+        name: für Endbenutzer sichtbar
+        layer_names: WMS Kartenebenename(n), Komma getrennt, ohne Leerzeichen
+        provider: Karten-URL
+        attribution: Text, kann HTML-Tags enthalten
+      buttons:
+        new_layer: Neue Kartenebene erstellen

@@ -16,20 +16,15 @@
   </div>
 
   <div class='row collapse'>
-    <div class='column medium-6'>
-      <% if layer.layer_names.present? %>
-        <%= t('custom.map_layer.labels.layer_names') + ':' %>
-        <%= layer.layer_names %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class='row collapse'>
     <div class='column'>
       <div>
         <%= t('custom.map_layer.labels.provider') + ':' %>
         <%= layer.provider %>
       </div>
+      <% if layer.layer_names.present? %>
+        <%= t('custom.map_layer.labels.layer_names') + ':' %>
+        <%= layer.layer_names %>
+      <% end %>
       <div>
         <%= t('custom.map_layer.labels.attribution') + ':' %>
         <%= layer.attribution %>
@@ -41,15 +36,13 @@
     <div class='column'>
       <% if layer.protocol.present? %>
         <%= t('custom.map_layer.labels.protocol') + ':' %>
-        <%= layer.protocol %>
+        <%= t("activerecord.attributes.map_layer.protocols.#{layer.protocol}") %>
       <% end %>
-      <% if layer.format.present? %>
-        <%= t('custom.map_layer.labels.format') + ':' %>
-        <%= layer.format %>
-      <% end %>
+
       <% if layer.transparent.present? %>
-        <%= t('custom.map_layer.labels.transparent') + ':' %>
-        <%= layer.transparent %>
+        <div>
+          <%= t('custom.map_layer.labels.transparent') %>
+        </div>
       <% end %>
     </div>
   </div>

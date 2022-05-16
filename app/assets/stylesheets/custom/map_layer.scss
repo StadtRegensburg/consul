@@ -12,4 +12,12 @@
   border: 1px solid gainsboro;
   padding-top: 25px;
   border-radius: 5px;
+
+  .checkboxes {
+    margin-bottom: 20px;
+
+    span.checkbox {
+      font-weight: normal;
+    }
+  }
 }

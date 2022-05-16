@@ -174,8 +174,9 @@
           var layer = L.tileLayer.wms(item.provider, {
             attribution: item.attribution,
             layers: item.layer_names,
-            format: (item.format ? item.format : 'image/jpeg'),
-            transparent: (item.transparent === 'true')
+            format: (item.transparent ? 'image/png' : 'image/jpeg'),
+            transparent: (item.transparent),
+            show_by_default: (item.show_by_default)
           });
 
         } else {
@@ -209,6 +210,12 @@
       baseLayers[Object.keys(baseLayers)[0]].addTo(map);
 
       if ( Object.keys(overlayLayers).length > 0 ) {
+        for (let i = 0; i < Object.keys(overlayLayers).length; i++ ) {
+          if ( overlayLayers[Object.keys(overlayLayers)[i]].options.show_by_default == true ) {
+            overlayLayers[Object.keys(overlayLayers)[i]].addTo(map)
+          }
+        }
+
         L.control.layers(baseLayers, overlayLayers).addTo(map);
       }
 
