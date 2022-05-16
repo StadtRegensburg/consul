@@ -323,6 +323,10 @@ class Projekt < ApplicationRecord
     name
   end
 
+  def projekt_list_enabled?
+    true
+  end
+
   private
 
   def create_corresponding_page
