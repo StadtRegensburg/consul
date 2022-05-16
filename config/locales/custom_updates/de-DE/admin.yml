@@ -193,6 +193,7 @@ de:
             comment_phase: Kommentarphase
             budget_phase: Budgetphase
             milestone_phase: Umsetzungsphase
+            question_phase: Kurzumfragenphase
             link:
               voting_phase: Abstimmungen
               budget_phase: Budgets
