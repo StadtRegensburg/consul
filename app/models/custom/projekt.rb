@@ -324,7 +324,7 @@ class Projekt < ApplicationRecord
   end
 
   def projekt_list_enabled?
-    true
+    ProjektSetting.find_by(projekt: self, key: 'projekt_feature.questions.show_questions_list')&.enabled?
   end
 
   private
