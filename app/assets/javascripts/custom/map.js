@@ -163,7 +163,7 @@
 
 
 
-/////////////////////
+///
 
       var baseLayers = {};
       var overlayLayers = {};
@@ -192,10 +192,27 @@
         }
       }
 
-      layersData.forEach(createLayer);
-      L.control.layers(baseLayers, overlayLayers).addTo(map);
+      var ensureBaseLayerExistence = function() {
+        if ( Object.keys(baseLayers).length === 0 ) {
+          var defaultLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors'
+          });
 
-//////////////////////
+          baseLayers['defaultLayer'] = defaultLayer;
+        }
+      }
+
+      if ( typeof layersData !== "undefined"  ) {
+        layersData.forEach(createLayer);
+      }
+      ensureBaseLayerExistence();
+      baseLayers[Object.keys(baseLayers)[0]].addTo(map);
+
+      if ( Object.keys(overlayLayers).length > 0 ) {
+        L.control.layers(baseLayers, overlayLayers).addTo(map);
+      }
+
+///
 
 
       var search = new GeoSearch.GeoSearchControl({
