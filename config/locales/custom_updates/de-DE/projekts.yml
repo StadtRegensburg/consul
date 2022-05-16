@@ -20,6 +20,8 @@ de:
         comments_title: "Offene Antworten"
         comments_button: "Antwort veröffentlichen"
         login_to_answer: "Sie müssen sich %{signin} oder %{signup}, um an der Kurzumfrage teilzunehmen."
+        back_to_question_list: 'Zurück zur Fragenliste'
+        comments_count: "%{count} offene Antworten"
 
       backlink: Zur Projektübersicht
       errors:

@@ -323,6 +323,10 @@ class Projekt < ApplicationRecord
     name
   end
 
+  def projekt_list_enabled?
+    ProjektSetting.find_by(projekt: self, key: 'projekt_feature.questions.show_questions_list')&.enabled?
+  end
+
   private
 
   def create_corresponding_page
