@@ -48,13 +48,15 @@
         $selectedProjekt.find('.projekt-icon .fas').css('color', '#FFF')
         $selectedProjekt.closest('.projekt-selector').css('color', '#FFF')
         App.ProjektSelector.addNextProjektPlaceholder($nextProejektSelector, "(optional)")
-        App.ProjektSelector.replaceProjektMapOnProposalCreation($selectedProjekt)
       } else {
         App.ProjektSelector.resetSelectedProjectStyles();
         $('[id$="projekt_id"]').val('')
         $selectedProjekt.css('background-color', '#CEE9F9')
         App.ProjektSelector.addNextProjektPlaceholder($nextProejektSelector, "(verpflichtend)")
       }
+
+      App.ProjektSelector.replaceProjektMapOnProposalCreation($selectedProjekt)
+      App.ProjektSelector.toggleDocumentAttachment($selectedProjekt)
     },
 
     addNextProjektPlaceholder: function( $nextProejektSelector, text ) {
@@ -88,6 +90,14 @@
         App.Map.maps[0].setView([$projekt.data('latitude'), $projekt.data('longitude')], $projekt.data('zoom')).invalidateSize();
       } else {
         $('#map-container').hide();
+      }
+    },
+
+    toggleDocumentAttachment: function($projekt) {
+      if ( $projekt.data('allowAttachedDocument') ) {
+        $('#attach-documents').show();
+      } else {
+        $('#attach-documents').hide();
       }
     },
 

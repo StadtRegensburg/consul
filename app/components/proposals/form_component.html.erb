@@ -63,11 +63,9 @@
       </div>
     <% end %>
 
-    <% if feature?(:allow_attached_documents) %>
-      <div class="documents">
-        <%= render "documents/nested_documents", f: f %>
-      </div>
-    <% end %>
+    <div class="documents" id="attach-documents">
+      <%= render "documents/nested_documents", f: f %>
+    </div>
 
     <div>
       <%= f.text_field :video_url, hint: t("proposals.form.proposal_video_url_note") %>
