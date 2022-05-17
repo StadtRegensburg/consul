@@ -4,7 +4,7 @@
   </div>
 <% end %>
 
-<% if extended_feature?('proposals.enable_summary') %>
+<% if projekt_feature?(@proposal.projekt, 'proposals.enable_summary') %>
   <blockquote><%= @proposal.summary %></blockquote>
 <% end %>
 

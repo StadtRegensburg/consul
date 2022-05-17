@@ -57,6 +57,7 @@
 
       App.ProjektSelector.replaceProjektMapOnProposalCreation($selectedProjekt)
       App.ProjektSelector.toggleDocumentAttachment($selectedProjekt)
+      App.ProjektSelector.toggleSummary($selectedProjekt)
     },
 
     addNextProjektPlaceholder: function( $nextProejektSelector, text ) {
@@ -98,6 +99,14 @@
         $('#attach-documents').show();
       } else {
         $('#attach-documents').hide();
+      }
+    },
+
+    toggleSummary: function($projekt) {
+      if ( $projekt.data('showSummary') ) {
+        $('#summary-field').show();
+      } else {
+        $('#summary-field').hide();
       }
     },
 

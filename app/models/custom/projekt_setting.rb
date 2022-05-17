@@ -90,6 +90,7 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.proposals.only_admins_create_proposals": '',
         "projekt_feature.proposals.show_in_sidebar_filter": 'active',
         "projekt_feature.proposals.show_map": 'active',
+        "projekt_feature.proposals.enable_summary": '',
 
         "projekt_feature.proposal_options.votes_for_proposal_success": 10000,
 
@@ -112,6 +113,7 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.budgets.only_admins_create_investment_proposals": '',
         "projekt_feature.budgets.show_map": 'active',
         "projekt_feature.budgets.show_results_after_first_vote": '',
+        "projekt_feature.budgets.enable_summary": '',
 
         "projekt_feature.questions.show_questions_list": '',
 
