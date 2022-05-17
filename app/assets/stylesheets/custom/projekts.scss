@@ -850,3 +850,11 @@ span.projekt-backlink:before {
 .projekt-next-to-question-list-button {
   text-align: right;
 }
+
+.projekt-list-tabs {
+  @media screen and (max-width: 650px) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+}
