@@ -4,7 +4,7 @@
   </div>
 <% end %>
 
-<% if extended_feature?('proposals.enable_summary') %>
+<% if projekt_feature?(@proposal.projekt, 'proposals.enable_summary') %>
   <blockquote><%= @proposal.summary %></blockquote>
 <% end %>
 
@@ -58,7 +58,7 @@
   </div>
 <% end %>
 
-<% if feature?(:allow_attached_documents) %>
+<% if projekt_feature?(@proposal.projekt, "proposals.allow_attached_documents") %>
   <%= render "documents/documents",
               documents: @proposal.documents,
               max_documents_allowed: Proposal.max_documents_allowed %>

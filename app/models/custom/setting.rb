@@ -197,7 +197,7 @@ class Setting < ApplicationRecord
         # "extended_feature.proposals.enable_proposal_milestones_tab": true,
         "extended_feature.proposals.enable_projekt_filter": true,
         "extended_feature.proposals.enable_my_posts_filter": true,
-        "extended_feature.proposals.enable_summary": true,
+        # "extended_feature.proposals.enable_summary": true,
         "extended_option.proposals.max_active_proposals_per_user": 100,
         "extended_option.proposals.description_max_length": 6000,
 
