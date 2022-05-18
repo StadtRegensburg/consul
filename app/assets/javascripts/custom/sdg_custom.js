@@ -46,6 +46,11 @@
 
     updateSDGFilterTargets: function(selectedValue, source = '') {
       var url = new URL(window.location.href);
+
+      if (!url.pathname.includes('projekts')) {
+        url.pathname = '/projekts'
+      }
+
       var currentSDGTargetCodes = url.searchParams.get('sdg_targets') || [];
 
       if (currentSDGTargetCodes.includes(selectedValue)) {
@@ -74,6 +79,13 @@
       $("body").on("click", ".js-sdg-custom-goal-filter", function(event) {
         event.preventDefault();
         App.SDGCustom.updateSDGFilterGoals();
+      });
+
+      $("body").on("click", ".js-sdg-custom-target-filter", function(event) {
+        event.preventDefault();
+        var clickedSDGCode = $(event.currentTarget).find('a').attr('data-code');
+
+        App.SDGCustom.updateSDGFilterTargets(clickedSDGCode);
       });
 
       $("body").on("change", ".js-sdg-custom-target-filter-dropdown", function(event) {
