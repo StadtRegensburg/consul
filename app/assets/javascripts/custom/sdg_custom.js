@@ -84,10 +84,13 @@
       });
 
       $("body").on("click", ".js-sdg-custom-target-filter", function(event) {
-        event.preventDefault();
-        var clickedSDGCode = $(event.currentTarget).find('a').attr('data-code');
+        var $target = $(event.currentTarget).find('a')
 
-        App.SDGCustom.updateSDGFilterTargets(clickedSDGCode);
+        if ($(event.currentTarget).find('.more-goals').length === 0) {
+          event.preventDefault();
+          var clickedSDGCode = $target.attr('data-code');
+          App.SDGCustom.updateSDGFilterTargets(clickedSDGCode);
+        }
       });
 
       $("body").on("change", ".js-sdg-custom-target-filter-dropdown", function(event) {
