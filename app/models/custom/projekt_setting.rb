@@ -113,7 +113,6 @@ class ProjektSetting < ApplicationRecord
         "projekt_feature.budgets.only_admins_create_investment_proposals": '',
         "projekt_feature.budgets.show_map": 'active',
         "projekt_feature.budgets.show_results_after_first_vote": '',
-        "projekt_feature.budgets.enable_summary": '',
 
         "projekt_feature.questions.show_questions_list": '',
 
