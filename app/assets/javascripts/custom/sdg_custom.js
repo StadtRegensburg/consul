@@ -49,6 +49,7 @@
 
       if (!url.pathname.includes('projekts')) {
         url.pathname = '/projekts'
+        url.searchParams.set('order', 'all')
       }
 
       var currentSDGTargetCodes = url.searchParams.get('sdg_targets') || [];
@@ -62,7 +63,8 @@
       url.searchParams.set('sdg_targets', currentSDGTargetCodes.join(','))
 
       if ( currentSDGTargetCodes.length > 0 ) {
-        url.searchParams.set('sdg_goals', currentSDGTargetCodes[0].split('.')[0])
+        var sdgGoalCode = currentSDGTargetCodes[0].split('.')[0]
+        url.searchParams.set('sdg_goals', sdgGoalCode)
       }
 
       if ( currentSDGTargetCodes.length == 0 ) {
