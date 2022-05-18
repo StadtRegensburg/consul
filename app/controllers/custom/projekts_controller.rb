@@ -93,7 +93,7 @@ class ProjektsController < ApplicationController
   def take_by_sdgs
     if params[:sdg_targets].present?
       sdg_target_codes = params[:sdg_targets].split(',')
-      @projekts = @projekts.joins(sdg_global_targets: :local_targets)
+      @projekts = @projekts.left_joins(sdg_global_targets: :local_targets)
 
       @projekts = @projekts.where(sdg_targets: { code: sdg_target_codes}).or(@projekts.where(sdg_local_targets: { code: sdg_target_codes })).distinct
       return
