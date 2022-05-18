@@ -1,6 +1,6 @@
 class Admin::MapLayersController < Admin::BaseController
-  before_action :set_projekt, only: [:create, :edit, :new]
-  before_action :set_map_layer, only: [:edit, :update]
+  before_action :set_projekt, only: [:create, :edit, :new, :destroy]
+  before_action :set_map_layer, only: [:edit, :update, :destroy]
 
   def new
     @map_layer = @projekt.map_layers.build
@@ -25,6 +25,11 @@ class Admin::MapLayersController < Admin::BaseController
     else
       redirect_to edit_admin_projekt_path(params[:projekt_id]) + params[:tab].to_s, alert: @map_layer.errors.messages.values.flatten.join('; ')
     end
+  end
+
+  def destroy
+    @map_layer.destroy!
+    redirect_to edit_admin_projekt_path(params[:projekt_id]) + params[:tab].to_s
   end
 
   private
