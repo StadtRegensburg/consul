@@ -249,8 +249,9 @@
           $(this).attr('aria-expanded', 'true')
           $(this).children('.toggle-arrow').attr('aria-expanded', $(this).attr('aria-expanded'))
         }
-
       });
+
+      this.drawProjektFilterTreeLines()
     },
 
     drawProjektFilterTreeLines: function() {
@@ -260,8 +261,7 @@
         var $ulElements = $('#filter-projekts-all ul')
 
         $ulElements.each(function(index, element) {
-          var nestedUl = $(element).children('ul').last().get(0)
-          // var nestedUl = element.querySelector(':scope > ul:last-child')
+          var nestedUl = element.querySelector(':scope > ul:last-child')
 
           if (nestedUl) {
             var elementPosition = element.getBoundingClientRect()
@@ -271,6 +271,7 @@
             var lineHeight = (Math.round(netstedUlPosition.top - elementPosition.top) - Math.round(nestedUlLi.offsetHeight / 2) - 2)
 
             var $lineElement = $(element).children('li').first().children('.projekt-tree-ul-vertical-line')
+            // var lineElement = element.querySelector('li:first-child > .projekt-tree-ul-vertical-line')
 
             $lineElement.css('height', lineHeight + 'px')
           }
