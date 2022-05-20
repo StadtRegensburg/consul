@@ -872,3 +872,16 @@ span.projekt-backlink:before {
   padding: 0.375rem 0.5rem;
   text-decoration: none;
 }
+
+#filter-projekts-active {
+  .projekt-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 165px;
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 1;
+    position: relative;
+    top: 1px;
+  }
+}
