@@ -615,11 +615,11 @@ span.projekt-backlink:before {
   .sdg-tag-list .sdg-goal-tag-list {
     margin-left: 0;
 
-    .selected-goal {
+    .selected-goal, .unselected-goal {
       margin-right: 2px;
       margin-left: 2px;
-
     }
+
     .sdg-goal-icon {
       min-width: 42px;
       max-width: 42px;
