@@ -877,11 +877,11 @@ span.projekt-backlink:before {
   .projekt-name-in-label {
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 165px;
+    max-width: 165px;
     display: inline-block;
     white-space: nowrap;
     line-height: 1;
     position: relative;
-    top: 1px;
+    top: 2px;
   }
 }
