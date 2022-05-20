@@ -9,9 +9,10 @@
         return attr == 'true' ? 'false' : 'true'
       });
 
-
       $label.children('.toggle-arrow').attr('aria-expanded', $label.attr('aria-expanded'))
       App.Projekts.updateToggledProjektsList($label);
+
+      this.drawProjektFilterTreeLines()
     },
 
     updateToggledProjektsList: function($label) {
@@ -252,7 +253,30 @@
       });
     },
 
-    // Initializer
+    drawProjektFilterTreeLines: function() {
+      var projektTree = document.querySelector('#filter-projekts-all')
+
+      if (projektTree) {
+        var $ulElements = $('#filter-projekts-all ul')
+
+        $ulElements.each(function(index, element) {
+          var nestedUl = $(element).children('ul').last().get(0)
+          // var nestedUl = element.querySelector(':scope > ul:last-child')
+
+          if (nestedUl) {
+            var elementPosition = element.getBoundingClientRect()
+            var netstedUlPosition = nestedUl.getBoundingClientRect()
+            var nestedUlLi = nestedUl.querySelector('.checkmark')
+
+            var lineHeight = (Math.round(netstedUlPosition.top - elementPosition.top) - Math.round(nestedUlLi.offsetHeight / 2) - 2)
+
+            var $lineElement = $(element).children('li').first().children('.projekt-tree-ul-vertical-line')
+
+            $lineElement.css('height', lineHeight + 'px')
+          }
+        })
+      }
+    },
 
     initialize: function() {
       $("body").on("click", ".js-filter-projekt", function() {
@@ -308,7 +332,6 @@
       $("body").on("click", ".js-toggle-edit-projekt-info", function(event) {
         var $row = $(this).closest('tr');
         App.Projekts.toggleChildrenInSidebar($row);
-
       });
 
       $("body").on("click", ".js-reset-projekt-filter-toggle-status", function(event) {
@@ -323,6 +346,8 @@
         event.preventDefault();
         $(this).closest('tr').find('form').submit()
       });
+
+      this.drawProjektFilterTreeLines()
     }
   };
 }).call(this);
