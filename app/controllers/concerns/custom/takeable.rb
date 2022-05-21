@@ -8,13 +8,27 @@ module Takeable
   end
 
   def take_by_projekts
+    # filter projekts by id
     if params[:filter_projekt_ids].present?
-      selected_projekts_ids = params[:filter_projekt_ids].select{ |id| Projekt.find_by(id: id).present? }
-      selected_parent_projekt_id = get_highest_unique_parent_projekt_id(selected_projekts_ids)
-      @selected_parent_projekt = Projekt.find_by(id: selected_parent_projekt_id)
+			@resources = @resources.where(projekt_id: params[:filter_projekt_ids].split(',')).distinct
 
-      @resources = @resources.where(projekt_id: params[:filter_projekt_ids].split(',')).distinct
-    end
+    elsif controller_name == 'pages' && @current_projekt.present?
+      scoped_projekt_ids = @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
+			@resources = @resources.where(projekt_id: scoped_projekt_ids).distinct
+
+		else
+			scoped_projekt_ids = Projekt.ids
+			@resources = @resources.where(projekt_id: scoped_projekt_ids).distinct
+		end
+
+    # only activated projekts 
+    @resources = @resources.joins(:projekt).merge(Projekt.activated)
+
+    # only resources where projekt is visible in sidebar
+    @resources = @resources
+      .joins( 'INNER JOIN projekt_settings shwmn ON projekts.id = shwmn.projekt_id' )
+      .where( 'shwmn.key': 'projekt_feature.debates.show_in_sidebar_filter', 'shwmn.value': 'active' )
+
   end
 
   def take_by_sdgs
@@ -75,17 +89,29 @@ module Takeable
     end
   end
 
-  def take_with_activated_projekt_only
-    @resources = @resources.joins(:projekt).merge(Projekt.activated)
-  end
+  # def take_with_activated_projekt_only
+  #   @resources = @resources.joins(:projekt).merge(Projekt.activated)
+  # end
 
-  def take_when_projekt_in_sidebar_only
-    scoped_projekt_ids = Projekt.ids
+  private
 
-    @resources = @resources.where(projekt_id: scoped_projekt_ids).
-      joins(:projekt).merge(Projekt.activated).
-      joins( 'INNER JOIN projekt_settings shwmn ON projekts.id = shwmn.projekt_id' ).
-      where( 'shwmn.key': 'projekt_feature.debates.show_in_sidebar_filter', 'shwmn.value': 'active' )
+  def get_highest_unique_parent_projekt_id(selected_projekts_ids)
+    selected_parent_projekt_id = nil
+    top_level_active_projekt_ids = Projekt.top_level.activated.ids
+    selected_projekts_ids = selected_projekts_ids.select{ |id| top_level_active_projekt_ids.include? Projekt.find_by(id: id).top_parent.id }
+    return nil if selected_projekts_ids.empty?
 
+    selected_projekts = Projekt.where(id: selected_projekts_ids)
+    highest_level_selected_projekts = selected_projekts.sort { |a, b| a.level <=> b.level }.group_by(&:level).first[1]
+
+    if highest_level_selected_projekts.size == 1
+      highest_level_selected_projekt = highest_level_selected_projekts.first
+    end
+
+    if highest_level_selected_projekt && (selected_projekts_ids.map(&:to_i) - highest_level_selected_projekt.all_children_ids.push(highest_level_selected_projekt.id) )
+      selected_parent_projekt_id = highest_level_selected_projekts.first.id
+    end
+
+    selected_parent_projekt_id
   end
 end

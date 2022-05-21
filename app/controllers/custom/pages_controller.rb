@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   include HasOrders
   include CustomHelper
   include ProposalsHelper
+  include Takeable
 
   def show
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
@@ -17,12 +18,6 @@ class PagesController < ApplicationController
       @default_phase_name = default_phase_name(params[:selected_phase_id])
 
       send("set_#{@default_phase_name}_footer_tab_variables", @projekt)
-
-      scoped_projekt_ids = @projekt.top_parent.all_children_projekts.unshift(@projekt.top_parent).pluck(:id)
-      @comments_count = @projekt.comments.count
-      @debates_count = Debate.base_selection(scoped_projekt_ids).count
-      @proposals_count = Proposal.base_selection(scoped_projekt_ids).count
-      @polls_count = Poll.base_selection(scoped_projekt_ids).count
 
       @cards = @custom_page.cards
 
@@ -135,14 +130,6 @@ class PagesController < ApplicationController
     "page"
   end
 
-  def take_by_projekts
-    if params[:filter_projekt_ids].present?
-      @filtered_resources = @all_resources.where(projekt_id: params[:filter_projekt_ids]).distinct
-    else
-      @filtered_resources = @all_resources
-    end
-  end
-
   def set_top_level_projekts
     @top_level_active_projekts = Projekt.where( id: @current_projekt.top_parent ).select { |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.current? && ( p.send(@current_tab_phase.resources_name).any? || p.has_active_phase?(@current_tab_phase.resources_name) ) } }
 
@@ -163,7 +150,6 @@ class PagesController < ApplicationController
   end
 
   def set_debates_footer_tab_variables(projekt=nil)
-
     @valid_orders = Debate.debates_orders(current_user)
     @valid_orders.delete('relevance')
     @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
@@ -171,20 +157,27 @@ class PagesController < ApplicationController
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.debate_phase
     params[:current_tab_path] = 'debate_phase_footer_tab'
-    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
+    params[:filter_projekt_ids] ||= @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
 
     @selected_parent_projekt = @current_projekt
 
-    scoped_projekt_ids = @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
-
-    @all_resources = Debate.base_selection(scoped_projekt_ids)
-
-    take_by_projekts
+		set_resources(Debate)
     set_top_level_projekts
 
-    set_debate_votes(@all_resources)
+    unless params[:search].present?
+      # take_by_tag_names
+      take_by_projekts
+      # take_by_sdgs
+      # take_by_geozone_affiliations
+      # take_by_geozone_restrictions
+      take_by_my_posts
+      take_with_activated_projekt_only
+      take_when_projekt_in_sidebar_only
+    end
 
-    @debates = @filtered_resources.page(params[:page]).send("sort_by_#{@current_order}")
+    set_debate_votes(@resources)
+
+    @debates = @resources.page(params[:page]).send("sort_by_#{@current_order}")
   end
 
   def set_proposals_footer_tab_variables(projekt=nil)
@@ -349,4 +342,12 @@ class PagesController < ApplicationController
       'comments'
     end
   end
+
+  def set_resources(resource_model)
+    @resources = resource_model.all
+
+    @resources = @current_order == "recommendations" && current_user.present? ? @resources.recommendations(current_user) : @resources.for_render
+    @resources = @resources.search(@search_terms) if @search_terms.present?
+    @resources = @resources.filter_by(@advanced_search_terms)
+	end
 end

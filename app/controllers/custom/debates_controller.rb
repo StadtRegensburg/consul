@@ -19,7 +19,8 @@ class DebatesController < ApplicationController
 
     @featured_debates = Debate.featured
 
-    @all_resources = @resources.except(:limit, :offset)
+    @top_level_active_projekts = Projekt.top_level_sidebar_current('debates')
+    @top_level_archived_projekts = Projekt.top_level_sidebar_expired('debates')
 
     unless params[:search].present?
       take_by_tag_names
@@ -31,9 +32,6 @@ class DebatesController < ApplicationController
       take_with_activated_projekt_only
       take_when_projekt_in_sidebar_only
     end
-
-    @top_level_active_projekts = Projekt.top_level_sidebar_current('debates')
-    @top_level_archived_projekts = Projekt.top_level_sidebar_expired('debates')
 
     @resources = @resources.page(params[:page]).send("sort_by_#{@current_order}")
   end
