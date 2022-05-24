@@ -164,9 +164,11 @@ class PagesController < ApplicationController
 		set_resources(Debate)
     set_top_level_projekts
 
+    scoped_projekt_ids = @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
+
     unless params[:search].present?
       # take_by_tag_names
-      take_by_projekts
+      take_by_projekts(scoped_projekts_ids)
       # take_by_sdgs
       # take_by_geozone_affiliations
       # take_by_geozone_restrictions

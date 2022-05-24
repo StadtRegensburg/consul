@@ -7,28 +7,12 @@ module Takeable
     end
   end
 
-  def take_by_projekts
-    # filter projekts by id
+  def take_by_projekts(scoped_projekts_ids)
+    @resources = @resources.where(projekt_id: scoped_projekts_ids)
+
     if params[:filter_projekt_ids].present?
-			@resources = @resources.where(projekt_id: params[:filter_projekt_ids].split(',')).distinct
-
-    elsif controller_name == 'pages' && @current_projekt.present?
-      scoped_projekt_ids = @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
-			@resources = @resources.where(projekt_id: scoped_projekt_ids).distinct
-
-		else
-			scoped_projekt_ids = Projekt.ids
-			@resources = @resources.where(projekt_id: scoped_projekt_ids).distinct
+			@resources = @resources.where(projekt_id: params[:filter_projekt_ids].split(','))
 		end
-
-    # only activated projekts 
-    @resources = @resources.joins(:projekt).merge(Projekt.activated)
-
-    # only resources where projekt is visible in sidebar
-    @resources = @resources
-      .joins( 'INNER JOIN projekt_settings shwmn ON projekts.id = shwmn.projekt_id' )
-      .where( 'shwmn.key': 'projekt_feature.debates.show_in_sidebar_filter', 'shwmn.value': 'active' )
-
   end
 
   def take_by_sdgs
