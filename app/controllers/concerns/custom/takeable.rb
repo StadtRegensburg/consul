@@ -1,29 +1,38 @@
 module Takeable
   extend ActiveSupport::Concern
 
+  def take_by_projekts(scoped_projekts_ids)
+    @resources = @resources.joins(:projekt).merge(Projekt.activated)
+
+    if controller_name.in?(['debates', 'proposals', 'polls'])
+      projekts_visible_in_sidebar = Projekt.joins( 'INNER JOIN projekt_settings spism ON projekts.id = spism.projekt_id' ). where( 'spism.key': "projekt_feature.#{controller_name}.show_in_sidebar_filter", 'spism.value': 'active' )
+      @resources = @resources.where(projekt: projekts_visible_in_sidebar)
+    end
+
+    @resources = @resources.where(projekt_id: scoped_projekts_ids)
+
+    @all_resources = @resources
+
+    if params[:filter_projekt_ids].present?
+      @resources = @resources.where(projekt_id: params[:filter_projekt_ids].split(','))
+    end
+  end
+
   def take_by_tag_names
     if params[:tags].present?
       @resources = @resources.tagged_with(params[:tags].split(","), all: true, any: :true)
     end
   end
 
-  def take_by_projekts(scoped_projekts_ids)
-    @resources = @resources.where(projekt_id: scoped_projekts_ids)
-
-    if params[:filter_projekt_ids].present?
-			@resources = @resources.where(projekt_id: params[:filter_projekt_ids].split(','))
-		end
-  end
-
   def take_by_sdgs
     if params[:sdg_targets].present?
-			@filtered_target = params[:sdg_targets].split(',')[0]
+      @filtered_target = params[:sdg_targets].split(',')[0]
       @resources = @resources.joins(:sdg_global_targets).where(sdg_targets: { code: params[:sdg_targets].split(',')[0] }).distinct
       return
     end
 
     if params[:sdg_goals].present?
-			@filtered_goals = params[:sdg_goals].split(',').map{ |code| code.to_i }
+      @filtered_goals = params[:sdg_goals].split(',').map{ |code| code.to_i }
       @resources = @resources.joins(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
     end
   end
@@ -72,10 +81,6 @@ module Takeable
       @resources = @resources.by_author(current_user&.id)
     end
   end
-
-  # def take_with_activated_projekt_only
-  #   @resources = @resources.joins(:projekt).merge(Projekt.activated)
-  # end
 
   private
 

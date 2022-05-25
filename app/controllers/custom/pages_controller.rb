@@ -157,24 +157,23 @@ class PagesController < ApplicationController
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.debate_phase
     params[:current_tab_path] = 'debate_phase_footer_tab'
-    params[:filter_projekt_ids] ||= @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
 
     @selected_parent_projekt = @current_projekt
 
 		set_resources(Debate)
     set_top_level_projekts
 
-    scoped_projekt_ids = @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
+    @scoped_projekt_ids = @current_projekt
+      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
+      .pluck(:id)
 
     unless params[:search].present?
+      take_by_projekts(@scoped_projekt_ids)
+      take_by_my_posts
       # take_by_tag_names
-      take_by_projekts(scoped_projekts_ids)
       # take_by_sdgs
       # take_by_geozone_affiliations
       # take_by_geozone_restrictions
-      take_by_my_posts
-      take_with_activated_projekt_only
-      take_when_projekt_in_sidebar_only
     end
 
     set_debate_votes(@resources)

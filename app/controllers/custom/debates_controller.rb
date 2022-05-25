@@ -22,18 +22,26 @@ class DebatesController < ApplicationController
     @top_level_active_projekts = Projekt.top_level_sidebar_current('debates')
     @top_level_archived_projekts = Projekt.top_level_sidebar_expired('debates')
 
+    @scoped_projekt_ids = (@top_level_active_projekts + @top_level_archived_projekts)
+      .map{ |p| p.all_children_projekts.unshift(p) }
+      .flatten.select do |projekt|
+        ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.debates.show_in_sidebar_filter').value.present?
+      end
+      .pluck(:id)
+
     unless params[:search].present?
+      take_by_projekts(@scoped_projekt_ids)
+      take_by_my_posts
       take_by_tag_names
-      take_by_projekts
       take_by_sdgs
       take_by_geozone_affiliations
       take_by_geozone_restrictions
-      take_by_my_posts
-      take_with_activated_projekt_only
-      take_when_projekt_in_sidebar_only
+
+      # take_with_activated_projekt_only
+      # take_when_projekt_in_sidebar_only
     end
 
-    @resources = @resources.page(params[:page]).send("sort_by_#{@current_order}")
+    @debates = @resources.page(params[:page]).send("sort_by_#{@current_order}")
   end
 
   def show

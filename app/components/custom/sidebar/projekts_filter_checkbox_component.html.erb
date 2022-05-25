@@ -19,6 +19,6 @@
   </li>
 
   <% selectable_children.each do |projekt| %>
-    <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, @group, @all_resources, @current_projekt) %>
+    <%= render Sidebar::ProjektsFilterCheckboxComponent.new(f, projekt, @scoped_projekt_ids, @group, @all_resources, @current_projekt) %>
   <% end %>
 </ul>

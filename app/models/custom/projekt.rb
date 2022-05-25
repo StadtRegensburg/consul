@@ -117,14 +117,14 @@ class Projekt < ApplicationRecord
       select { |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.selectable?(controller_name, current_user) } }
     end
 
-    def selectable_in_sidebar_current(controller_name)
-      return [] unless controller_name.in?(['proposals', 'debates', 'polls'])
-      select { |projekt| projekt.current? && projekt.all_children_projekts.unshift(projekt).any? { |p| p.projekt_settings.find_by(key: "projekt_feature.#{controller_name}.show_in_sidebar_filter").value.present? } }
+    def selectable_in_sidebar_current(resources_name)
+      return [] unless resources_name.in?(['proposals', 'debates', 'polls'])
+      select { |projekt| projekt.current? && projekt.all_children_projekts.unshift(projekt).any? { |p| p.projekt_settings.find_by(key: "projekt_feature.#{resources_name}.show_in_sidebar_filter").value.present? } }
     end
 
-    def selectable_in_sidebar_expired(controller_name)
-      return [] unless controller_name.in?(['proposals', 'debates', 'polls'])
-      select { |projekt| projekt.expired? && projekt.all_children_projekts.unshift(projekt).any? { |p| p.projekt_settings.find_by(key: "projekt_feature.#{controller_name}.show_in_sidebar_filter").value.present? } }
+    def selectable_in_sidebar_expired(resources_name)
+      return [] unless resources_name.in?(['proposals', 'debates', 'polls'])
+      select { |projekt| projekt.expired? && projekt.all_children_projekts.unshift(projekt).any? { |p| p.projekt_settings.find_by(key: "projekt_feature.#{resources_name}.show_in_sidebar_filter").value.present? } }
     end
   end
 

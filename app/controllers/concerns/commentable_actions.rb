@@ -17,7 +17,7 @@ module CommentableActions
 
     set_resource_votes(@resources)
 
-    set_resources_instance
+    # set_resources_instance
     @remote_translations = detect_remote_translations(@resources, featured_proposals)
   end
 
