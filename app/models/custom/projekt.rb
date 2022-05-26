@@ -96,13 +96,16 @@ class Projekt < ApplicationRecord
   scope :visible_in_menu, -> { joins( 'INNER JOIN projekt_settings vim ON projekts.id = vim.projekt_id').
                                where( 'vim.key': 'projekt_feature.general.show_in_navigation', 'vim.value': 'active' ) }
 
+  scope :visible_in_sidebar, ->(resources_name) { joins( 'INNER JOIN projekt_settings spism ON projekts.id = spism.projekt_id' ).
+                                                  where( 'spism.key': "projekt_feature.#{resources_name}.show_in_sidebar_filter", 'spism.value': 'active' ) }
+
   scope :with_active_feature, ->(projekt_feature_key) { joins( 'INNER JOIN projekt_settings waf ON projekts.id = waf.projekt_id').
                                                         where( 'waf.key': "projekt_feature.#{projekt_feature_key}", 'waf.value': 'active' ) }
 
   scope :top_level_navigation, -> { top_level.visible_in_menu }
 
-  scope :top_level_sidebar_current, ->(controller_name) { top_level.selectable_in_sidebar_current(controller_name) }
-  scope :top_level_sidebar_expired, ->(controller_name) { top_level.selectable_in_sidebar_expired(controller_name) }
+  scope :top_level_sidebar_current, ->(controller_name) { top_level.visible_in_sidebar(controller_name).current }
+  scope :top_level_sidebar_expired, ->(controller_name) { top_level.visible_in_sidebar(controller_name).expired }
 
   scope :by_my_posts, -> (my_posts_switch, current_user_id) {
     return unless my_posts_switch
@@ -112,20 +115,8 @@ class Projekt < ApplicationRecord
 
   scope :last_week, -> { where("projekts.created_at >= ?", 7.days.ago) }
 
-  class << self
-    def selectable_in_selector(controller_name, current_user)
-      select { |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.selectable?(controller_name, current_user) } }
-    end
-
-    def selectable_in_sidebar_current(controller_name)
-      return [] unless controller_name.in?(['proposals', 'debates', 'polls'])
-      select { |projekt| projekt.current? && projekt.all_children_projekts.unshift(projekt).any? { |p| p.projekt_settings.find_by(key: "projekt_feature.#{controller_name}.show_in_sidebar_filter").value.present? } }
-    end
-
-    def selectable_in_sidebar_expired(controller_name)
-      return [] unless controller_name.in?(['proposals', 'debates', 'polls'])
-      select { |projekt| projekt.expired? && projekt.all_children_projekts.unshift(projekt).any? { |p| p.projekt_settings.find_by(key: "projekt_feature.#{controller_name}.show_in_sidebar_filter").value.present? } }
-    end
+  def self.selectable_in_selector(controller_name, current_user)
+    select { |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.selectable?(controller_name, current_user) } }
   end
 
   def regular_projekt_phases
@@ -242,14 +233,6 @@ class Projekt < ApplicationRecord
     end
 
     all_children_projekts
-  end
-
-  def selectable_tree_ids(controller_name, filter)
-    if filter == 'active'
-      all_children_projekts.unshift(self) & Projekt.selectable_in_sidebar_current(controller_name)
-    else
-      all_children_projekts.unshift(self) & Projekt.selectable_in_sidebar_expired(controller_name)
-    end
   end
 
   def has_active_phase?(controller_name)

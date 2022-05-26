@@ -19,7 +19,7 @@ class Pages::Projekts::FooterPhasesComponent < ApplicationComponent
 
     scoped_projekt_ids = @projekt.all_children_projekts.unshift(@projekt).pluck(:id)
     @comments_count = @projekt.comments.count
-    @debates_count = Debate.base_selection(scoped_projekt_ids).count
+    @debates_count = Debate.where(projekt_id: scoped_projekt_ids).joins(:projekt).merge(Projekt.activated).count
     @proposals_count = Proposal.base_selection(scoped_projekt_ids).count
     @polls_count = Poll.base_selection(scoped_projekt_ids).count
     @projekt_events = ProjektEvent.base_selection(scoped_projekt_ids)
