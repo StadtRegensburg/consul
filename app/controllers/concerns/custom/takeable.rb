@@ -74,12 +74,7 @@ module Takeable
         INNER JOIN projekt_phase_geozones ON projekt_phase_geozones.projekt_phase_id = proposal_phases_proposals_join_for_restrictions.id
         INNER JOIN geozones AS geozone_restrictions ON geozone_restrictions.id = projekt_phase_geozones.geozone_id
       "
-
-    when 'polls'
-      phase_name = :voting_phase
     end
-
-
 
     case @selected_geozone_restriction
     when 'no_restriction'
@@ -91,6 +86,21 @@ module Takeable
 
       if @restricted_geozones.present?
         @resources = @resources.joins(sql_query).where(geozone_restrictions: { id: @restricted_geozones }).distinct
+      end
+    end
+  end
+
+  def take_by_polls_geozone_restrictions
+    case @selected_geozone_restriction
+    when 'no_restriction'
+      @resources
+    when 'only_citizens'
+      @resources = @resources.left_outer_joins(:geozones_polls).where("polls.geozone_restricted = ? AND geozones_polls.geozone_id IS NULL", true)
+    when 'only_geozones'
+      if @restricted_geozones.present?
+        @resources = @resources.left_outer_joins(:geozones_polls).where("polls.geozone_restricted = ? AND geozones_polls.geozone_id IN (?)", true, @restricted_geozones)
+      else
+        @resources = @resources.left_outer_joins(:geozones_polls).where("polls.geozone_restricted = ? AND geozones_polls.geozone_id IS NOT NULL", true)
       end
     end
   end

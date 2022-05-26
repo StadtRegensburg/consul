@@ -229,18 +229,27 @@ class PagesController < ApplicationController
 
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.voting_phase
-    @selected_parent_projekt = @current_projekt
     params[:current_tab_path] = 'voting_phase_footer_tab'
-    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
 
-    scoped_projekt_ids = @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
+    @selected_parent_projekt = @current_projekt
 
-    @all_resources = Poll.base_selection(scoped_projekt_ids).send(@current_filter)
+    @resources = Poll
+      .created_by_admin
+      .not_budget
+      .send(@current_filter)
+      .includes(:geozones)
 
-    take_by_projekts
     set_top_level_projekts
 
-    @polls = Kaminari.paginate_array(@filtered_resources.sort_for_list).page(params[:page])
+    @scoped_projekt_ids = @current_projekt
+      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
+      .pluck(:id)
+
+    unless params[:search].present?
+      take_by_projekts(@scoped_projekt_ids)
+    end
+
+    @polls = Kaminari.paginate_array(@resources.sort_for_list).page(params[:page])
   end
 
   def set_budget_footer_tab_variables(projekt=nil)
