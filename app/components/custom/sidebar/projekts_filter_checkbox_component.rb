@@ -22,7 +22,6 @@ class Sidebar::ProjektsFilterCheckboxComponent < ApplicationComponent
   end
 
   def selectable_children
-    # byebug if projekt.id == 16
     projekt.children.select{ |projekt| ( projekt.all_children_ids.unshift(projekt.id) & @scoped_projekt_ids ).any? }
   end
 

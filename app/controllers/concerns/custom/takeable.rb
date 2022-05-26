@@ -5,7 +5,7 @@ module Takeable
     @resources = @resources.joins(:projekt).merge(Projekt.activated)
 
     if controller_name.in?(['debates', 'proposals', 'polls'])
-      projekts_visible_in_sidebar = Projekt.joins( 'INNER JOIN projekt_settings spism ON projekts.id = spism.projekt_id' ). where( 'spism.key': "projekt_feature.#{controller_name}.show_in_sidebar_filter", 'spism.value': 'active' )
+      projekts_visible_in_sidebar = Projekt.visible_in_sidebar(controller_name)
       @resources = @resources.where(projekt: projekts_visible_in_sidebar)
     end
 
