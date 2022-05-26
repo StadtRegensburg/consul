@@ -140,6 +140,7 @@ module Takeable
 
   def load_featured
     return unless !@advanced_search_terms && @search_terms.blank? && params[:retired].blank? && @current_order != "recommendations"
+    return unless controller_name == 'proposals'
 
     if Setting["feature.featured_proposals"]
       @featured_proposals = Proposal.not_archived.unsuccessful
