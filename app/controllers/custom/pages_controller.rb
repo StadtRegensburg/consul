@@ -190,22 +190,37 @@ class PagesController < ApplicationController
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.proposal_phase
     params[:current_tab_path] = 'proposal_phase_footer_tab'
-    params[:filter_projekt_ids] ||= @current_projekt.all_children_ids.unshift(@current_projekt.id).map(&:to_s)
 
     @selected_parent_projekt = @current_projekt
 
-    scoped_projekt_ids = @current_projekt.top_parent.all_children_projekts.unshift(@current_projekt.top_parent).pluck(:id)
-
-    @all_resources = Proposal.base_selection(scoped_projekt_ids)
-
-    take_by_projekts
+    set_resources(Proposal)
     set_top_level_projekts
 
-    set_proposal_votes(@filtered_resources)
+    discard_draft
+    discard_archived
+    load_retired
+    load_selected
+    load_featured
+    remove_archived_from_order_links
 
-    @proposals_coordinates = all_proposal_map_locations(@filtered_resources)
+    @scoped_projekt_ids = @current_projekt
+      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
+      .pluck(:id)
 
-    @proposals = @filtered_resources.page(params[:page]).send("sort_by_#{@current_order}")
+    unless params[:search].present?
+			take_by_projekts(@scoped_projekt_ids)
+      take_by_my_posts
+      # take_by_tag_names
+      # take_by_sdgs
+      # take_by_geozone_affiliations
+      # take_by_geozone_restrictions
+		end
+
+    set_proposal_votes(@resources)
+
+    @proposals_coordinates = all_proposal_map_locations(@resources)
+
+    @proposals = @resources.page(params[:page]).send("sort_by_#{@current_order}")
   end
 
   def set_polls_footer_tab_variables(projekt=nil)

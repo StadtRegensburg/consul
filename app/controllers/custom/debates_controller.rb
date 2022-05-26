@@ -36,9 +36,6 @@ class DebatesController < ApplicationController
       take_by_sdgs
       take_by_geozone_affiliations
       take_by_geozone_restrictions
-
-      # take_with_activated_projekt_only
-      # take_when_projekt_in_sidebar_only
     end
 
     @debates = @resources.page(params[:page]).send("sort_by_#{@current_order}")

@@ -22,8 +22,8 @@
       <div class='small-6 column small'>
         <% if extended_feature?('modulewide.show_number_of_entries_in_modules') %>
           <div class='float-right'>
-            <%= @debates.except(:limit, :offset).count %>
-            <%= t('activerecord.models.debate', count: @debates.except(:limit, :offset).count) %>
+            <%= @resources.count %>
+            <%= t('activerecord.models.debate', count: @resources.count) %>
           </div>
         <% end %>
       </div>

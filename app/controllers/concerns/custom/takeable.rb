@@ -56,21 +56,40 @@ module Takeable
   end
 
   def take_by_geozone_restrictions
+    case controller_name
+
+    when 'debates'
+      phase_name = :debate_phase
+      sql_query = "
+        INNER JOIN projekts AS projekts_debates_join_for_restrictions ON projekts_debates_join_for_restrictions.hidden_at IS NULL AND projekts_debates_join_for_restrictions.id = debates.projekt_id
+        INNER JOIN projekt_phases AS debate_phases_debates_join_for_restrictions ON debate_phases_debates_join_for_restrictions.projekt_id = projekts_debates_join_for_restrictions.id AND debate_phases_debates_join_for_restrictions.type IN ('ProjektPhase::DebatePhase')
+        INNER JOIN projekt_phase_geozones ON projekt_phase_geozones.projekt_phase_id = debate_phases_debates_join_for_restrictions.id
+        INNER JOIN geozones AS geozone_restrictions ON geozone_restrictions.id = projekt_phase_geozones.geozone_id
+      "
+    when 'proposals'
+      phase_name = :proposal_phase
+      sql_query = "
+        INNER JOIN projekts AS projekts_proposals_join_for_restrictions ON projekts_proposals_join_for_restrictions.hidden_at IS NULL AND projekts_proposals_join_for_restrictions.id = proposals.projekt_id
+        INNER JOIN projekt_phases AS proposal_phases_proposals_join_for_restrictions ON proposal_phases_proposals_join_for_restrictions.projekt_id = projekts_proposals_join_for_restrictions.id AND proposal_phases_proposals_join_for_restrictions.type IN ('ProjektPhase::ProposalPhase')
+        INNER JOIN projekt_phase_geozones ON projekt_phase_geozones.projekt_phase_id = proposal_phases_proposals_join_for_restrictions.id
+        INNER JOIN geozones AS geozone_restrictions ON geozone_restrictions.id = projekt_phase_geozones.geozone_id
+      "
+
+    when 'polls'
+      phase_name = :voting_phase
+    end
+
+
+
     case @selected_geozone_restriction
     when 'no_restriction'
-      @resources = @resources.joins(:debate_phase).distinct
+      @resources = @resources.joins(phase_name).distinct
     when 'only_citizens'
-      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: ['only_citizens', 'only_geozones'] }).distinct
+      @resources = @resources.joins(phase_name).where(projekt_phases: { geozone_restricted: ['only_citizens', 'only_geozones'] }).distinct
     when 'only_geozones'
-      @resources = @resources.joins(:debate_phase).where(projekt_phases: { geozone_restricted: 'only_geozones' }).distinct
+      @resources = @resources.joins(phase_name).where(projekt_phases: { geozone_restricted: 'only_geozones' }).distinct
 
       if @restricted_geozones.present?
-        sql_query = "
-          INNER JOIN projekts AS projekts_debates_join_for_restrictions ON projekts_debates_join_for_restrictions.hidden_at IS NULL AND projekts_debates_join_for_restrictions.id = debates.projekt_id
-          INNER JOIN projekt_phases AS debate_phases_debates_join_for_restrictions ON debate_phases_debates_join_for_restrictions.projekt_id = projekts_debates_join_for_restrictions.id AND debate_phases_debates_join_for_restrictions.type IN ('ProjektPhase::DebatePhase')
-          INNER JOIN projekt_phase_geozones ON projekt_phase_geozones.projekt_phase_id = debate_phases_debates_join_for_restrictions.id
-          INNER JOIN geozones AS geozone_restrictions ON geozone_restrictions.id = projekt_phase_geozones.geozone_id
-        "
         @resources = @resources.joins(sql_query).where(geozone_restrictions: { id: @restricted_geozones }).distinct
       end
     end
@@ -80,6 +99,50 @@ module Takeable
     if params[:my_posts_filter] == 'true'
       @resources = @resources.by_author(current_user&.id)
     end
+  end
+
+  def discard_draft
+    @resources = @resources.published
+  end
+
+  def discard_archived
+    unless @current_order == "archival_date" || params[:selected].present?
+      @resources = @resources.not_archived
+    end
+  end
+
+  def load_retired
+    if params[:retired].present?
+      @resources = @resources.retired
+      @resources = @resources.where(retired_reason: params[:retired]) if Proposal::RETIRE_OPTIONS.include?(params[:retired])
+    else
+      @resources = @resources.not_retired
+    end
+  end
+
+  def load_selected
+    if params[:selected].present?
+      @resources = @resources.selected
+    else
+      @resources = @resources.not_selected
+    end
+  end
+
+  def load_featured
+    return unless !@advanced_search_terms && @search_terms.blank? && params[:retired].blank? && @current_order != "recommendations"
+
+    if Setting["feature.featured_proposals"]
+      @featured_proposals = Proposal.not_archived.unsuccessful
+                            .sort_by_confidence_score.limit(Setting["featured_proposals_number"])
+      if @featured_proposals.present?
+        set_featured_proposal_votes(@featured_proposals)
+        @resources = @resources.where.not(id: @featured_proposals)
+      end
+    end
+  end
+
+  def remove_archived_from_order_links
+    @valid_orders.delete("archival_date")
   end
 
   private
