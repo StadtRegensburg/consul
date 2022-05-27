@@ -160,7 +160,7 @@ class PagesController < ApplicationController
 
     @selected_parent_projekt = @current_projekt
 
-		set_resources(Debate)
+    set_resources(Debate)
     set_top_level_projekts
 
     @scoped_projekt_ids = @current_projekt
@@ -168,12 +168,12 @@ class PagesController < ApplicationController
       .pluck(:id)
 
     unless params[:search].present?
-      take_by_projekts(@scoped_projekt_ids)
       take_by_my_posts
       # take_by_tag_names
       # take_by_sdgs
       # take_by_geozone_affiliations
       # take_by_geozone_restrictions
+      take_by_projekts(@scoped_projekt_ids)
     end
 
     set_debate_votes(@resources)
@@ -208,13 +208,13 @@ class PagesController < ApplicationController
       .pluck(:id)
 
     unless params[:search].present?
-			take_by_projekts(@scoped_projekt_ids)
       take_by_my_posts
       # take_by_tag_names
       # take_by_sdgs
       # take_by_geozone_affiliations
       # take_by_geozone_restrictions
-		end
+      take_by_projekts(@scoped_projekt_ids)
+    end
 
     set_proposal_votes(@resources)
 
@@ -246,6 +246,10 @@ class PagesController < ApplicationController
       .pluck(:id)
 
     unless params[:search].present?
+      # take_by_tag_names
+      # take_by_sdgs
+      # take_by_geozone_affiliations
+      # take_by_polls_geozone_restrictions
       take_by_projekts(@scoped_projekt_ids)
     end
 
@@ -376,5 +380,5 @@ class PagesController < ApplicationController
     @resources = @current_order == "recommendations" && current_user.present? ? @resources.recommendations(current_user) : @resources.for_render
     @resources = @resources.search(@search_terms) if @search_terms.present?
     @resources = @resources.filter_by(@advanced_search_terms)
-	end
+  end
 end

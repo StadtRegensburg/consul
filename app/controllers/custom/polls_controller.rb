@@ -39,11 +39,11 @@ class PollsController < ApplicationController
       .pluck(:id)
 
     unless params[:search].present?
-      take_by_projekts(@scoped_projekt_ids)
       take_by_tag_names
       take_by_sdgs
       take_by_geozone_affiliations
       take_by_polls_geozone_restrictions
+      take_by_projekts(@scoped_projekt_ids)
     end
 
     @polls = Kaminari.paginate_array(@resources.sort_for_list).page(params[:page])
