@@ -68,6 +68,12 @@ class Sidebar::ProjektsFilterComponent < ApplicationComponent
       ProjektSetting.where('key LIKE ?', 'projekt_feature.main.activate'),
       ProjektSetting.where('key LIKE ?', '%show_in_sidebar_filter%'),
       params[:filter_projekt_ids],
+      params[:tags],
+      params[:projekts],
+      params[:geozone_affiliation],
+      params[:affiliated_geozones],
+      params[:geozone_restriction],
+      params[:restricted_geozones],
       controller_name,
       action_name
     ].flatten

@@ -21,6 +21,7 @@ module Takeable
   def take_by_tag_names
     if params[:tags].present?
       @resources = @resources.tagged_with(params[:tags].split(","), all: true, any: :true)
+      @all_resources = @resources
     end
   end
 
@@ -28,12 +29,14 @@ module Takeable
     if params[:sdg_targets].present?
       @filtered_target = params[:sdg_targets].split(',')[0]
       @resources = @resources.joins(:sdg_global_targets).where(sdg_targets: { code: params[:sdg_targets].split(',')[0] }).distinct
+      @all_resources = @resources
       return
     end
 
     if params[:sdg_goals].present?
       @filtered_goals = params[:sdg_goals].split(',').map{ |code| code.to_i }
       @resources = @resources.joins(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
+      @all_resources = @resources
     end
   end
 
@@ -53,6 +56,7 @@ module Takeable
         @resources = @resources.joins(:geozone_affiliations).where.not(geozones: { id: nil }).distinct
       end
     end
+    @all_resources = @resources
   end
 
   def take_by_geozone_restrictions
@@ -88,6 +92,8 @@ module Takeable
         @resources = @resources.joins(sql_query).where(geozone_restrictions: { id: @restricted_geozones }).distinct
       end
     end
+
+    @all_resources = @resources
   end
 
   def take_by_polls_geozone_restrictions
@@ -103,11 +109,14 @@ module Takeable
         @resources = @resources.left_outer_joins(:geozones_polls).where("polls.geozone_restricted = ? AND geozones_polls.geozone_id IS NOT NULL", true)
       end
     end
+
+    @all_resources = @resources
   end
 
   def take_by_my_posts
     if params[:my_posts_filter] == 'true'
       @resources = @resources.by_author(current_user&.id)
+      @all_resources = @resources
     end
   end
 
