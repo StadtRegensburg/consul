@@ -33,12 +33,12 @@ class ProposalsController
       .pluck(:id)
 
     unless params[:search].present?
-      take_by_projekts(@scoped_projekt_ids)
       take_by_my_posts
       take_by_tag_names
       take_by_sdgs
       take_by_geozone_affiliations
       take_by_geozone_restrictions
+      take_by_projekts(@scoped_projekt_ids)
     end
 
     @proposals_coordinates = all_proposal_map_locations(@resources)
