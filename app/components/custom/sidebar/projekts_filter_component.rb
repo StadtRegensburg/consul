@@ -74,6 +74,7 @@ class Sidebar::ProjektsFilterComponent < ApplicationComponent
       params[:affiliated_geozones],
       params[:geozone_restriction],
       params[:restricted_geozones],
+      params[:my_posts_filter],
       controller_name,
       action_name
     ].flatten
