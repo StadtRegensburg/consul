@@ -1,7 +1,7 @@
 require_dependency Rails.root.join("app", "models", "widget", "feed").to_s
 
 class Widget::Feed < ApplicationRecord
-  KINDS = %w[active_projekts polls proposals debates expired_projekts].freeze
+  KINDS = %w[active_projekts polls proposals debates expired_projekts investment_proposals].freeze
 
   def active_projekts
     Projekt.top_level.active.first(limit)
@@ -21,5 +21,9 @@ class Widget::Feed < ApplicationRecord
 
   def debates
     Debate.with_current_projekt.sort_by_created_at.limit(limit)
+  end
+
+  def investment_proposals
+    Budget::Investment.joins(:budget).where.not( budgets: { projekt_id: nil } ).sort_by_created_at.limit(limit)
   end
 end

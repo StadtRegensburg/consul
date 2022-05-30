@@ -21,8 +21,11 @@ class WelcomeController < ApplicationController
     @expired_projekts = @active_feeds.include?("expired_projekts") ? @feeds.find{ |feed| feed.kind == 'expired_projekts' }.expired_projekts : []
     @latest_polls = @active_feeds.include?("polls") ? @feeds.find{ |feed| feed.kind == 'polls' }.polls : []
 
-    if @active_feeds.include?("debates") || @active_feeds.include?("proposals")
-      @latest_items = @feeds.select{ |feed| feed.kind == 'proposals' || feed.kind == 'debates' }.collect{ |feed| feed.items.to_a }.flatten.sort_by(&:created_at).reverse
+    if @active_feeds.include?("debates") || @active_feeds.include?("proposals") || @active_feeds.include?("investment_proposals")
+      @latest_items = @feeds
+        .select{ |feed| feed.kind == 'proposals' || feed.kind == 'debates' || feed.kind == 'investment_proposals' }
+        .collect{ |feed| feed.items.to_a }.flatten
+        .sort_by(&:created_at).reverse
       set_debate_votes(@latest_items.select{|item| item.class.name == 'Debate'})
       set_proposal_votes(@latest_items.select{|item| item.class.name == 'Proposal'})
     else
