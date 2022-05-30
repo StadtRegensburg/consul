@@ -31,6 +31,7 @@ class AdminWYSIWYGSanitizer < WYSIWYGSanitizer
       data-anim-in-from-left data-anim-in-from-right data-anim-out-to-left data-anim-out-to-right
       data-options
       data-equalizer data-equalizer-watch data-equalize-on
+      data-target
     ]
   end
 end

@@ -2,8 +2,6 @@
   <%= auto_link_already_sanitized_html AdminWYSIWYGSanitizer.new.sanitize(@custom_page.content) %>
 </div>
 
-<%= button_tag 'Copy content', class: 'button js-copy-source-button', data: { target: '#page-content' } %>
-
 <% if @custom_page.print_content_flag %>
   <%= render "/shared/print" %>
 <% end %>
