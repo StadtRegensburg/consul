@@ -52,6 +52,7 @@ class Setting < ApplicationRecord
         "homepage.widgets.feeds.processes": false,
         "homepage.widgets.feeds.proposals": true,
         "homepage.widgets.feeds.expired_projekts": true,
+        "homepage.widgets.feeds.investment_proposals": true,
         # Code to be included at the top (inside <body>) of every page
         "html.per_page_code_body": "",
         # Code to be included at the top (inside <head>) of every page (useful for tracking)
