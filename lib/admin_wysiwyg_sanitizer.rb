@@ -19,7 +19,7 @@ class AdminWYSIWYGSanitizer < WYSIWYGSanitizer
       data-deep-link data-update-history
       data-animation-duration data-animation-easing data-threshold data-active-class data-deep-linking data-update-history data-offset
       data-drilldown
-      data-accordion data-accordion-item data-tab-content
+      data-accordion data-accordion-item data-tab-content data-allow-all-closed
       data-accordion-menu
       data-dropdown data-auto-focus placeholder
       data-reveal data-open data-close
