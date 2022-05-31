@@ -109,6 +109,11 @@
   </fieldset>
 
   <div class="row">
+    <div class="small-12 column margin-top margin-bottom">
+      <%= render partial: "shared/projekt_selector/projekt_selector", locals: { f: f, model: @process, projekts: Projekt.top_level }  %>
+    </div>
+  </div>
+  <div class="row">
     <div class="small-12 medium-3 column clear end">
       <%= f.submit(class: "button success expanded", value: t("admin.legislation.processes.#{admin_submit_action(@process)}.submit_button")) %>
     </div>
