@@ -17,6 +17,7 @@ class Projekt < ApplicationRecord
   has_many :debates, dependent: :nullify
   has_many :proposals, dependent: :nullify
   has_many :polls, dependent: :nullify
+  has_many :legislation_processes, dependent: :nullify, class_name: "Legislation::Process"
   has_one :budget, dependent: :nullify
   has_many :projekt_events, dependent: :nullify
   has_many :questions, -> { order(:id) },
@@ -36,6 +37,7 @@ class Projekt < ApplicationRecord
   has_one :projekt_notification_phase, class_name: 'ProjektPhase::ProjektNotificationPhase'
   has_one :newsfeed_phase, class_name: 'ProjektPhase::NewsfeedPhase'
   has_one :event_phase, class_name: 'ProjektPhase::EventPhase'
+  has_one :legislation_process_phase, class_name: 'ProjektPhase::LegislationProcessPhase'
   has_one :question_phase, class_name: 'ProjektPhase::QuestionPhase'
   has_many :geozone_restrictions, through: :projekt_phases
   has_and_belongs_to_many :geozone_affiliations, through: :geozones_projekts, class_name: 'Geozone'
@@ -48,7 +50,11 @@ class Projekt < ApplicationRecord
 
   has_many :map_layers
 
-  accepts_nested_attributes_for :debate_phase, :proposal_phase, :budget_phase, :voting_phase, :comment_phase, :milestone_phase, :projekt_notifications, :projekt_events, :event_phase, :question_phase
+  accepts_nested_attributes_for(
+    :debate_phase, :proposal_phase, :budget_phase,
+    :voting_phase, :comment_phase, :milestone_phase, :projekt_notifications,
+    :projekt_events, :event_phase, :question_phase, :legislation_process_phase
+  )
 
   before_validation :set_default_color
   around_update :update_page
@@ -139,6 +145,9 @@ class Projekt < ApplicationRecord
     elsif controller_name == 'debates'
       return false if debates_selectable_by_admins_only? && user.administrator.blank?
       debate_phase.selectable_by?(user)
+    elsif controller_name == 'processes'
+      # return false if proposals_selectable_by_admins_only? && user.administrator.blank?
+      legislation_process_phase.selectable_by?(user)
     end
   end
 
@@ -299,6 +308,7 @@ class Projekt < ApplicationRecord
       projekt.projekt_notification_phase = ProjektPhase::ProjektNotificationPhase.create unless projekt.projekt_notification_phase
       projekt.newsfeed_phase = ProjektPhase::NewsfeedPhase.create unless projekt.newsfeed_phase
       projekt.event_phase = ProjektPhase::EventPhase.create unless projekt.event_phase
+      projekt.legislation_process_phase = ProjektPhase::LegislationProcessPhase.create unless projekt.legislation_process_phase
     end
   end
 
@@ -363,6 +373,7 @@ class Projekt < ApplicationRecord
     self.projekt_notification_phase = ProjektPhase::ProjektNotificationPhase.create
     self.newsfeed_phase = ProjektPhase::NewsfeedPhase.create
     self.event_phase = ProjektPhase::EventPhase.create
+    self.legislation_process_phase = ProjektPhase::LegislationProcessPhase.create
   end
 
   def swap_order_numbers_up
