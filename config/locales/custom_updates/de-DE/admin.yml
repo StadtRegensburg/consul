@@ -181,6 +181,7 @@ de:
             start_date: Anfangsdatum
             voting_manage: Abstimmungen verwalten
             voting_phase: Abstimmungsphase
+            legislation_process_phase: Abstimmungsphase
           projekt_questions_tab:
             name: Kurzumfragen
             title: Fragen
