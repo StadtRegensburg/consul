@@ -66,7 +66,7 @@
         <% if @draft_version.final_version? %>
           <div class="calc-comments"></div>
         <% else %>
-          <%= render "comments_panel", draft_version: @draft_version %>
+          <%= render "legislation/draft_versions/comments_panel", draft_version: @draft_version %>
         <% end %>
 
       </div>
