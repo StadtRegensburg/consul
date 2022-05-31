@@ -104,6 +104,14 @@ class PagesController < ApplicationController
     end
   end
 
+  def legislation_proces_footer_tab
+    set_legislation_process_footer_tab_variables
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/footer_tab" }
+    end
+  end
+
   def question_phase_footer_tab
     set_projekt_questions_footer_tab_variables
 
@@ -254,6 +262,42 @@ class PagesController < ApplicationController
     end
 
     @polls = Kaminari.paginate_array(@resources.sort_for_list).page(params[:page])
+  end
+
+  def set_legislation_process_footer_tab_variables(projekt=nil)
+    # @valid_orders = Debate.debates_orders(current_user)
+    # @valid_orders.delete('relevance')
+    # @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+
+    @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
+    @current_tab_phase = @current_projekt.legislation_process_phase
+    params[:current_tab_path] = 'legislation_processes_footer_tab'
+
+    @selected_parent_projekt = @current_projekt
+
+    # set_resources(Legislation::Process)
+    # set_top_level_projekts
+
+    @scoped_projekt_ids = @current_projekt
+      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
+      .pluck(:id)
+
+    # unless params[:search].present?
+    #   take_by_my_posts
+    #   # take_by_tag_names
+    #   # take_by_sdgs
+    #   # take_by_geozone_affiliations
+    #   # take_by_geozone_restrictions
+    #   take_by_projekts(@scoped_projekt_ids)
+    # end
+
+    # set_debate_votes(@resources)
+
+    # @legislation_processes = @resources.page(params[:page]) #.send("sort_by_#{@current_order}")
+    @legislation_processes = @current_projekt.legislation_processes
+    @process = @current_projekt.legislation_processes.first
+    @draft_versions_list = @process&.draft_versions&.published
+    @draft_version = @draft_versions_list&.last
   end
 
   def set_budget_footer_tab_variables(projekt=nil)

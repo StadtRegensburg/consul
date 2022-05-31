@@ -4,7 +4,7 @@
   <fieldset class="required-fields">
     <legend><%= t("custom.shared.form.projekt_assignment") %></legend>
     <div class="margin-top">
-      <%= render partial: "shared/projekt_selector/projekt_selector", locals: { f: f, model: @proposal }  %>
+      <%= render partial: "shared/projekt_selector/projekt_selector", locals: { f: f, model: @proposal, projekts: Projekt.top_level }  %>
     </div>
 
     <legend class='margin-top'><%= t("custom.proposals.form.required") %></legend>
