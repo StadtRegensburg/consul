@@ -58,6 +58,7 @@
       App.ProjektSelector.replaceProjektMapOnProposalCreation($selectedProjekt)
       App.ProjektSelector.toggleDocumentAttachment($selectedProjekt)
       App.ProjektSelector.toggleSummary($selectedProjekt)
+      App.ProjektSelector.updateAvailableTagsSelection($selectedProjekt)
     },
 
     addNextProjektPlaceholder: function( $nextProejektSelector, text ) {
@@ -92,6 +93,27 @@
       } else {
         $('#map-container').hide();
       }
+    },
+
+    updateAvailableTagsSelection: function($projekt) {
+      $('[id$=_tag_list_predefined]').val('')
+
+      if ( $projekt.data('allow-tags') ) {
+        $('#category_tags').show();
+        $('#category_tags a').show();
+
+        if ( $projekt.data("tag-ids") ) {
+          $('#category_tags a').each(function() {
+            if ( !$projekt.data("tag-ids").split(',').includes($(this).data('categoryId').toString()) ) {
+              $(this).hide();
+            }
+          })
+        }
+
+      } else {
+        $('#category_tags').hide();
+      }
+
     },
 
     toggleDocumentAttachment: function($projekt) {
