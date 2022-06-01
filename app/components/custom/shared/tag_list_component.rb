@@ -18,7 +18,7 @@ class Shared::TagListComponent < ApplicationComponent
     end
 
     def prepare_tags_for_params(tag_name)
-      return tag_name if controller_name.in?([ 'welcome', 'pages' ])
+      return { tags: tag_name } if controller_name.in?([ 'welcome', 'pages' ])
 
       currently_selected_tags = params[:tags].present? ? params[:tags].split(',') : []
       currently_selected_tags.include?(tag_name) ? currently_selected_tags.delete(tag_name) : currently_selected_tags.push(tag_name)
