@@ -105,7 +105,7 @@ class PagesController < ApplicationController
   end
 
   def legislation_proces_footer_tab
-    set_legislation_process_footer_tab_variables
+    set_legislation_processes_footer_tab_variables
 
     respond_to do |format|
       format.js { render "pages/projekt_footer/footer_tab" }
@@ -264,10 +264,11 @@ class PagesController < ApplicationController
     @polls = Kaminari.paginate_array(@resources.sort_for_list).page(params[:page])
   end
 
-  def set_legislation_process_footer_tab_variables(projekt=nil)
+  def set_legislation_processes_footer_tab_variables(projekt=nil)
     # @valid_orders = Debate.debates_orders(current_user)
     # @valid_orders.delete('relevance')
     # @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+    @current_section = params[:section] || 'text'
 
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.legislation_process_phase
@@ -294,10 +295,21 @@ class PagesController < ApplicationController
     # set_debate_votes(@resources)
 
     # @legislation_processes = @resources.page(params[:page]) #.send("sort_by_#{@current_order}")
-    @legislation_processes = @current_projekt.legislation_processes
+    # @legislation_processes = @current_projekt.legislation_processes
+
     @process = @current_projekt.legislation_processes.first
     @draft_versions_list = @process&.draft_versions&.published
-    @draft_version = @draft_versions_list&.last
+
+
+    if params[:text_draft_version_id]
+      @draft_version = @draft_versions_list.find(params[:text_draft_version_id])
+    else
+      @draft_version = @draft_versions_list&.last
+    end
+
+    if @current_section == 'annotations_list'
+      @annotations = @draft_version.annotations
+    end
   end
 
   def set_budget_footer_tab_variables(projekt=nil)
