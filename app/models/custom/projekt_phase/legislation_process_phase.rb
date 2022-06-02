@@ -9,7 +9,7 @@ class ProjektPhase::LegislationProcessPhase < ProjektPhase
 
   def name
     # 'Legislation::Process'
-    'legislation_proces'
+    'legislation_process_phase'
   end
 
   def resources_name
