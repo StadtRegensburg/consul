@@ -276,30 +276,12 @@ class PagesController < ApplicationController
 
     @selected_parent_projekt = @current_projekt
 
-    # set_resources(Legislation::Process)
-    # set_top_level_projekts
-
     @scoped_projekt_ids = @current_projekt
       .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
       .pluck(:id)
 
-    # unless params[:search].present?
-    #   take_by_my_posts
-    #   # take_by_tag_names
-    #   # take_by_sdgs
-    #   # take_by_geozone_affiliations
-    #   # take_by_geozone_restrictions
-    #   take_by_projekts(@scoped_projekt_ids)
-    # end
-
-    # set_debate_votes(@resources)
-
-    # @legislation_processes = @resources.page(params[:page]) #.send("sort_by_#{@current_order}")
-    # @legislation_processes = @current_projekt.legislation_processes
-
     @process = @current_projekt.legislation_processes.first
     @draft_versions_list = @process&.draft_versions&.published
-
 
     if params[:text_draft_version_id]
       @draft_version = @draft_versions_list.find(params[:text_draft_version_id])
