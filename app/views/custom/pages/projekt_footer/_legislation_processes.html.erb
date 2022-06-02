@@ -30,15 +30,6 @@
         </div>
 
 
-          <% unless @draft_version.final_version? %>
-            <div class="small-12 medium-3 column">
-              <%= link_to @current_projekt.page.url + "?text_draft_version_id=#{@draft_version.id}&selected_phase_id=#{@current_projekt.legislation_process_phase.id}" + '#footer-content',
-                          title: t("legislation.draft_versions.show.see_comments"),
-                          class: "button expanded" do %>
-                <strong><%= t("legislation.draft_versions.show.see_comments") %></strong>
-              <% end %>
-            </div>
-          <% end %>
 
     </div>
 
@@ -95,7 +86,7 @@
 
           <% unless @draft_version.final_version? %>
             <div class="small-12 medium-3 column">
-              <%= link_to @current_projekt.page.url + "?text_draft_version_id=#{@draft_version.id}&selected_phase_id=#{@current_projekt.legislation_process_phase.id}" + '#footer-content',
+              <%= link_to @current_projekt.page.url + "?text_draft_version_id=#{@draft_version.id}&selected_phase_id=#{@current_projekt.legislation_process_phase.id}&section=annotations_list" + '#footer-content',
                           title: t("legislation.draft_versions.show.see_comments"),
                           class: "button expanded" do %>
                 <strong><%= t("legislation.draft_versions.show.see_comments") %></strong>
