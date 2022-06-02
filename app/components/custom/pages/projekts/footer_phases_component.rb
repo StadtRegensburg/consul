@@ -25,6 +25,10 @@ class Pages::Projekts::FooterPhasesComponent < ApplicationComponent
     @projekt_events = ProjektEvent.base_selection(scoped_projekt_ids)
     @projekt_events_count = @projekt_events.count
     @projekt_questions_count = @projekt.questions.count
+
+    @process = @projekt.legislation_processes.first
+    @legislation_processes = @process&.draft_versions&.published
+    @legislation_processes_count = @legislation_processes.count
   end
 
   private
