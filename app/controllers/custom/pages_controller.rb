@@ -311,7 +311,6 @@ class PagesController < ApplicationController
       @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
 
       @comment_tree = MergedCommentTree.new(annotations, params[:page], @current_order)
-
       set_comment_flags(@comment_tree.comments)
     end
   end
