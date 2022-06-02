@@ -45,10 +45,11 @@
     updateSDGFilterTargets: function(selectedValue, source = '') {
       var url = new URL(window.location.href);
 
-      if (!url.pathname.includes('projekts')) {
-        url.pathname = '/projekts'
+      if (url.pathname.includes('projekts')) {
         url.searchParams.set('order', 'all')
       }
+
+      url.pathname = $(event.target).closest('ul').data('path')
 
       var currentSDGTargetCodes = url.searchParams.get('sdg_targets') || [];
 

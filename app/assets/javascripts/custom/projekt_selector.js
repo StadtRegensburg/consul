@@ -59,6 +59,7 @@
       App.ProjektSelector.toggleDocumentAttachment($selectedProjekt)
       App.ProjektSelector.toggleSummary($selectedProjekt)
       App.ProjektSelector.updateAvailableTagsSelection($selectedProjekt)
+      App.ProjektSelector.updateAvailableSDGsSelection($selectedProjekt)
     },
 
     addNextProjektPlaceholder: function( $nextProejektSelector, text ) {
@@ -114,6 +115,13 @@
         $('#category_tags').hide();
       }
 
+    },
+
+    updateAvailableSDGsSelection: function($projekt) {
+      debugger
+      sdgs-selector
+      $projekt.data('allow-sdgs')
+      $projekt.data("sdg-ids")
     },
 
     toggleDocumentAttachment: function($projekt) {
