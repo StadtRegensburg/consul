@@ -105,7 +105,7 @@
 
         if ( $projekt.data("tag-ids") ) {
           $('#category_tags a').each(function() {
-            if ( !$projekt.data("tag-ids").split(',').includes($(this).data('categoryId').toString()) ) {
+            if ( !$projekt.data("tag-ids").toString().split(',').includes($(this).data('categoryId').toString()) ) {
               $(this).hide();
             }
           })
@@ -118,10 +118,23 @@
     },
 
     updateAvailableSDGsSelection: function($projekt) {
-      debugger
-      sdgs-selector
-      $projekt.data('allow-sdgs')
-      $projekt.data("sdg-ids")
+      // $('[id$=_tag_list_predefined]').val('')
+
+      if ( $projekt.data('allow-sdgs') ) {
+        $('#sdgs-selector').show();
+        $('#sdgs-selector label[for*=_sdg_goal_ids_]').show();
+
+        if ( $projekt.data("sdg-ids") ) {
+          $('#sdgs-selector label[for*=_sdg_goal_ids_]').each(function() {
+            if ( !$projekt.data("sdg-ids").toString().split(',').includes($(this).data('sdgGoalId').toString()) ) {
+              $(this).hide();
+            }
+          })
+        }
+
+      } else {
+        $('#sdgs-selector').hide();
+      }
     },
 
     toggleDocumentAttachment: function($projekt) {
