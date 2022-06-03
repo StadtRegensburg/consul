@@ -1,13 +1,20 @@
 class Sidebar::ProjektsFilterComponent < ApplicationComponent
   delegate :projekt_filter_resources_name, :show_archived_projekts_in_sidebar?, to: :helpers
 
-  def initialize(top_level_active_projekts, top_level_archived_projekts, scoped_projekt_ids, all_resources, current_tab_phase = nil, current_projekt = nil)
+  def initialize(
+    top_level_active_projekts:,
+    top_level_archived_projekts:,
+    scoped_projekt_ids:,
+    all_resources:,
+    current_tab_phase: nil,
+    current_projekt: nil
+  )
     @top_level_active_projekts = top_level_active_projekts
     @top_level_archived_projekts = top_level_archived_projekts
     @scoped_projekt_ids = scoped_projekt_ids
     @all_resources = all_resources
-    @current_projekt = current_projekt
     @current_tab_phase = current_tab_phase
+    @current_projekt = current_projekt
   end
 
 	private
@@ -67,6 +74,7 @@ class Sidebar::ProjektsFilterComponent < ApplicationComponent
       Projekt.all,
       ProjektSetting.where('key LIKE ?', 'projekt_feature.main.activate'),
       ProjektSetting.where('key LIKE ?', '%show_in_sidebar_filter%'),
+      ProjektSetting.find_by(projekt: @current_projekt, key: 'projekt_custom_feature.default_footer_tab'),
       params[:filter_projekt_ids],
       params[:tags],
       params[:projekts],

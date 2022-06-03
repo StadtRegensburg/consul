@@ -26,16 +26,30 @@ module Takeable
   end
 
   def take_by_sdgs
-    if params[:sdg_targets].present?
+
+    if params[:sdg_goals].present? && params[:sdg_targets].present?
+      @filtered_goals = params[:sdg_goals].split(',').map{ |code| code.to_i }
       @filtered_target = params[:sdg_targets].split(',')[0]
-      @resources = @resources.joins(:sdg_global_targets).where(sdg_targets: { code: params[:sdg_targets].split(',')[0] }).distinct
+
+      @resources = @resources
+        .joins(:sdg_goals).where(sdg_goals: { code: @filtered_goals })
+        .joins(:sdg_global_targets).where(sdg_targets: { code: @filtered_target })
+        .distinct
+
       @all_resources = @resources
       return
     end
 
     if params[:sdg_goals].present?
       @filtered_goals = params[:sdg_goals].split(',').map{ |code| code.to_i }
-      @resources = @resources.joins(:sdg_goals).where(sdg_goals: { code: params[:sdg_goals].split(',') }).distinct
+      @resources = @resources.joins(:sdg_goals).where(sdg_goals: { code: @filtered_goals }).distinct
+      @all_resources = @resources
+      return
+    end
+
+    if params[:sdg_targets].present?
+      @filtered_target = params[:sdg_targets].split(',')[0]
+      @resources = @resources.joins(:sdg_global_targets).where(sdg_targets: { code: @filtered_target }).distinct
       @all_resources = @resources
     end
   end

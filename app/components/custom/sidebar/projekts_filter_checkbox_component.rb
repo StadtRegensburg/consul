@@ -2,13 +2,20 @@ class Sidebar::ProjektsFilterCheckboxComponent < ApplicationComponent
   delegate :projekt_filter_resources_name, to: :helpers
   attr_reader :f, :projekt
 
-  def initialize(f, projekt, scoped_projekt_ids, group, all_resources, current_projekt=nil)
+  def initialize(
+    f:,
+    projekt:,
+    scoped_projekt_ids:,
+    group:,
+    all_resources:,
+    current_projekt: nil
+  )
     @f = f
     @projekt = projekt
     @scoped_projekt_ids = scoped_projekt_ids
-    @current_projekt = current_projekt
     @group = group
     @all_resources = all_resources
+    @current_projekt = current_projekt
   end
 
 	private

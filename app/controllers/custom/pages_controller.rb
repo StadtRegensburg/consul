@@ -166,6 +166,11 @@ class PagesController < ApplicationController
     @current_tab_phase = @current_projekt.debate_phase
     params[:current_tab_path] = 'debate_phase_footer_tab'
 
+    if ProjektSetting.find_by(projekt: @current_projekt, key: 'projekt_feature.general.set_default_sorting_to_newest').value.present? &&
+        @valid_orders.include?('created_at')
+      @current_order = 'created_at'
+    end
+
     @selected_parent_projekt = @current_projekt
 
     set_resources(Debate)
@@ -198,6 +203,11 @@ class PagesController < ApplicationController
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.proposal_phase
     params[:current_tab_path] = 'proposal_phase_footer_tab'
+
+    if ProjektSetting.find_by(projekt: @current_projekt, key: 'projekt_feature.general.set_default_sorting_to_newest').value.present? &&
+        @valid_orders.include?('created_at')
+      @current_order = 'created_at'
+    end
 
     @selected_parent_projekt = @current_projekt
 
@@ -276,30 +286,12 @@ class PagesController < ApplicationController
 
     @selected_parent_projekt = @current_projekt
 
-    # set_resources(Legislation::Process)
-    # set_top_level_projekts
-
     @scoped_projekt_ids = @current_projekt
       .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
       .pluck(:id)
 
-    # unless params[:search].present?
-    #   take_by_my_posts
-    #   # take_by_tag_names
-    #   # take_by_sdgs
-    #   # take_by_geozone_affiliations
-    #   # take_by_geozone_restrictions
-    #   take_by_projekts(@scoped_projekt_ids)
-    # end
-
-    # set_debate_votes(@resources)
-
-    # @legislation_processes = @resources.page(params[:page]) #.send("sort_by_#{@current_order}")
-    # @legislation_processes = @current_projekt.legislation_processes
-
     @process = @current_projekt.legislation_processes.first
     @draft_versions_list = @process&.draft_versions&.published
-
 
     if params[:text_draft_version_id]
       @draft_version = @draft_versions_list.find(params[:text_draft_version_id])
@@ -307,8 +299,29 @@ class PagesController < ApplicationController
       @draft_version = @draft_versions_list&.last
     end
 
-    if @current_section == 'annotations_list'
+    if @current_section == 'all_drafts_annotations'
       @annotations = @draft_version.annotations
+    end
+
+    if @current_section == 'annotations'
+      @annotation = Legislation::Annotation.find(params[:annotation_id])
+
+      @commentable = @annotation
+
+      # if params[:sub_annotation_ids].present?
+      #   @sub_annotations = Legislation::Annotation.where(id: params[:sub_annotation_ids].split(","))
+      #   annotations = [@commentable, @sub_annotations]
+      # else
+      #   annotations = [@commentable]
+      # end
+      #
+      annotations = [@commentable]
+
+      @valid_orders = %w[most_voted newest oldest]
+      @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+
+      @comment_tree = MergedCommentTree.new(annotations, params[:page], @current_order)
+      set_comment_flags(@comment_tree.comments)
     end
   end
 
@@ -362,9 +375,7 @@ class PagesController < ApplicationController
       @top_level_archived_projekts = Projekt.where( id: @current_projekt )
     else
       @top_level_active_projekts = []
-      @top_level_archived_projekts = []
-    end
-  end
+      @top_level_archived_projekts = [] end end
 
   def set_milestones_footer_tab_variables(projekt=nil)
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
