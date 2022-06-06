@@ -90,6 +90,28 @@
     replaceProjektMapOnProposalCreation: function($projekt) {
       if ( $projekt.data('showMap') ) {
         $('#map-container').show();
+
+        App.Map.maps[0].eachLayer( function(layer) {
+          App.Map.maps[0].removeLayer(layer)
+        })
+
+        var newBaseLayer;
+        var newBaseLayerData = $projekt.data('baseLayer');
+
+        if ( newBaseLayerData.protocol == 'wms' ) {
+          newBaseLayer = L.tileLayer.wms( newBaseLayerData.provider, {
+            attribution: newBaseLayerData.attribution,
+            layers:  newBaseLayerData.layer_names,
+            format: 'image/jpeg'
+          } )
+        } else {
+          newBaseLayer = L.tileLayer( newBaseLayerData.provider, {
+            attribution: newBaseLayerData.attribution
+          } )
+        }
+
+        App.Map.maps[0].addLayer(newBaseLayer)
+
         App.Map.maps[0].setView([$projekt.data('latitude'), $projekt.data('longitude')], $projekt.data('zoom')).invalidateSize();
       } else {
         $('#map-container').hide();

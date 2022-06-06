@@ -79,27 +79,22 @@ class Projekt < ApplicationRecord
                                                where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today ).
                                                where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today) }
 
-  scope :active, -> {
-    current
-      .includes(:projekt_phases)
-      .select { |p| p.projekt_phases.any? { |phase| phase.current? }}
-  }
+  scope :expired, ->(timestamp = Date.today) { activated.
+                                               where( "total_duration_end < ?", Date.today) }
 
-  scope :ongoing, -> {
-    current
-      .includes(:projekt_phases)
-      .select { |p| p.projekt_phases.all? { |phase| !phase.current? }}
-  }
+  scope :upcoming, ->(timestamp = Date.today) { activated.
+                                                where( "total_duration_start > ?", Date.today) }
 
-  scope :upcoming, -> {
-    activated
-      .where( "total_duration_start > ?", Date.today)
-  }
+  scope :underway, ->() { current.
+                          includes(:projekt_phases).
+                          select { |p| p.projekt_phases.any? { |phase| phase.current? }} }
 
-  scope :expired, ->(timestamp = Date.today) {
-    activated
-      .where( "total_duration_end < ?", Date.today)
-  }
+  scope :ongoing, ->() { current.
+                         includes(:projekt_phases).
+                         select { |p| p.projekt_phases.all? { |phase| !phase.current? }} }
+
+  scope :show_in_overview_page, -> { joins( 'INNER JOIN projekt_settings siop ON projekts.id = siop.projekt_id' ).
+                                     where( 'siop.key': 'projekt_feature.general.show_in_overview_page', 'siop.value': 'active' ) }
 
   scope :visible_in_menu, -> { joins( 'INNER JOIN projekt_settings vim ON projekts.id = vim.projekt_id').
                                where( 'vim.key': 'projekt_feature.general.show_in_navigation', 'vim.value': 'active' ) }
@@ -320,6 +315,13 @@ class Projekt < ApplicationRecord
 
   def projekt_list_enabled?
     ProjektSetting.find_by(projekt: self, key: 'projekt_feature.questions.show_questions_list')&.enabled?
+  end
+
+  def map_layers_for_render
+    unless map_layers.any?{ |layer| layer.base? }
+      return map_layers.or(MapLayer.where(projekt: nil, base: true))
+    end
+    map_layers
   end
 
   private
