@@ -42,6 +42,8 @@ class Projekt < ApplicationRecord
   has_many :geozone_restrictions, through: :projekt_phases
   has_and_belongs_to_many :geozone_affiliations, through: :geozones_projekts, class_name: 'Geozone'
 
+  has_one :legislation_process, class_name: 'Legislation::Process'
+
   has_many :projekt_settings, dependent: :destroy
   has_many :projekt_notifications, dependent: :destroy
 
