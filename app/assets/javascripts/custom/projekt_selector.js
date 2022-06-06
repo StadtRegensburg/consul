@@ -98,12 +98,20 @@
         var newBaseLayer;
         var newBaseLayerData = $projekt.data('baseLayer');
 
-        if ( newBaseLayerData.protocol == 'wms' ) {
+        debugger
+
+        if ( !newBaseLayerData ) {
+          newBaseLayer = L.tileLayer( "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
+          } )
+
+        } else if ( newBaseLayerData.protocol == 'wms' ) {
           newBaseLayer = L.tileLayer.wms( newBaseLayerData.provider, {
             attribution: newBaseLayerData.attribution,
             layers:  newBaseLayerData.layer_names,
             format: 'image/jpeg'
           } )
+
         } else {
           newBaseLayer = L.tileLayer( newBaseLayerData.provider, {
             attribution: newBaseLayerData.attribution
