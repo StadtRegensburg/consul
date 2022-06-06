@@ -77,6 +77,10 @@ de:
         comments_count: "%{count} offene Antworten"
         comments_title: Offene Antworten
         login_to_answer: Sie müssen sich %{signin} oder %{signup}, um an der Kurzumfrage teilzunehmen.
+        previous_question: Vorherige Frage
+        next_question: Nächste Frage
+        first_question: Erste Frage
+        answers_count: "%{count} stimmen gesamt"
       selector:
         connected_resources:
           debate_description: Bitte ordnen Sie Ihre Diskussion einem der nachfolgenden Projekte oder Unterprojekte zu. Dies dient dazu, dass die Diskussionen in der Diskussionsübersicht besser auffindbar sind.
