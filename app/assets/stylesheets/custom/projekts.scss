@@ -846,6 +846,7 @@ span.projekt-backlink:before {
 
 .projekt-next-question-button-section {
   margin-bottom: 10px;
+  justify-content: flex-end;
 }
 
 .projekt-next-to-question-list-button {
@@ -945,4 +946,12 @@ span.projekt-backlink:before {
   @media screen and (max-width: 650px) {
     order: 1;
   }
+}
+
+.projekt-next-question-button-section {
+  display: flex;
+}
+
+.projet-question-list-item-answers-count {
+  margin-top: -8px;
 }
