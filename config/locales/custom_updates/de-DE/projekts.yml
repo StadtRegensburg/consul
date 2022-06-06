@@ -66,6 +66,7 @@ de:
         proposal_phase: Vorschläge
         question_phase: Kurzumfrage
         voting_phase: Abstimmungen
+        legislation_process_phase: Textbearbeitungsphase
       projekt_events:
         orders:
           all: Alle
@@ -80,7 +81,7 @@ de:
         previous_question: Vorherige Frage
         next_question: Nächste Frage
         first_question: Erste Frage
-        answers_count: "%{count} stimmen gesamt"
+        answers_count: "%{count} Stimmen"
       selector:
         connected_resources:
           debate_description: Bitte ordnen Sie Ihre Diskussion einem der nachfolgenden Projekte oder Unterprojekte zu. Dies dient dazu, dass die Diskussionen in der Diskussionsübersicht besser auffindbar sind.
