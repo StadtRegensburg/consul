@@ -278,9 +278,6 @@ class PagesController < ApplicationController
   end
 
   def set_legislation_processes_footer_tab_variables(projekt=nil)
-    # @valid_orders = Debate.debates_orders(current_user)
-    # @valid_orders.delete('relevance')
-    # @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
     @current_section = params[:section] || 'text'
 
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
