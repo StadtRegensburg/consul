@@ -315,6 +315,13 @@ class Projekt < ApplicationRecord
     ProjektSetting.find_by(projekt: self, key: 'projekt_feature.questions.show_questions_list')&.enabled?
   end
 
+  def map_layers_for_render
+    unless map_layers.any?{ |layer| layer.base? }
+      return map_layers.or(MapLayer.where(projekt: nil, base: true))
+    end
+    map_layers
+  end
+
   private
 
   def create_corresponding_page
