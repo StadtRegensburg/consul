@@ -7,7 +7,7 @@
       <div class="debate-meta">
         <span class="projet-question-list-item-answers-count">
           <i class="fas fa-poll-h"></i>
-          <%= t('custom.projekts.projekt_questions.answers_count', count: question.answers_count) %>
+          <%= link_to t('custom.projekts.projekt_questions.answers_count', count: question.answers_count), projekt_projekt_question_path(projekt, question.id, format: :js), class: 'js-projekt-question-next' %></h4>
         </span>
          ·
         <span class="icon-comments" aria-hidden="true"></span> <span class="debate-comments">
