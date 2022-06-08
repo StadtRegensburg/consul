@@ -112,6 +112,10 @@
               <% else %>
               <section class="legislation-annotatable"
                        data-legislation-draft-version-id="<%= @draft_version.id %>"
+                       data-projekt-slug="<%= @current_projekt.page.url %>"
+                       data-text-draft-version-id="<%= @draft_version.id %>"
+                       data-selected-phase-id="<%= @current_projekt.legislation_process_phase.id %>"
+                       data-section-name="annotations"
                        data-legislation-annotatable-base-url="<%= legislation_process_draft_version_path(@process, @draft_version) %>"
                        data-legislation-open-phase="<%= @process.allegations_phase.open? %>">
               <% end %>

@@ -56,8 +56,16 @@
       event.preventDefault();
       event.stopPropagation();
       if (App.LegislationAnnotatable.isMobile()) {
-        annotation_url = $(event.target).closest(".legislation-annotatable").data("legislation-annotatable-base-url");
+        $sectionElement = $(event.target).closest(".legislation-annotatable")
+        annotation_url = $sectionElement.data("legislation-annotatable-base-url");
+        var projektSlug = $sectionElement.data("projekt-slug")
+        var textDraftVersionId  = $sectionElement.data("text-draft-version-id")
+        var selectedPhaseId  = $sectionElement.data("selected-phase-id")
+        var sectionName  = $sectionElement.data("section")
+        var annotationId = ($(this).data("annotation-id"));
+
         window.location.href = annotation_url + "/annotations/" + ($(this).data("annotation-id"));
+        // window.location.href = '/' + projektSlug + '?text_draft_version_id=' + textDraftVersionId +  '&selected_phase_id=' + selectedPhaseId + '&section=' + sectionName + '&annotation_id=' + annotationId  + '&#footer-content'
         return;
       }
       $("[data-annotation-id]").removeClass("current-annotation");
