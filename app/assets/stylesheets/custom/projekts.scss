@@ -1002,6 +1002,12 @@ span.projekt-backlink:before {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .button {
+    @media screen and (max-width: 750px) {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .projekt-text-hint-button {
