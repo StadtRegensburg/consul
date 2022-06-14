@@ -2,8 +2,11 @@
   <td>
     <%= t("custom.admin.projekts.edit.projekt_phases_tab.#{phase_name}") %>
     <div>
+      <div id=<%= dom_id(projekt_phase, :copy_phase_link) %> class='hide'>
+        <%= request.base_url + "/#{@projekt.page.slug}?selected_phase_id=#{projekt_phase.id}#filter-subnav"  %>
+      </div>
       <small>
-        <%= "/#{@projekt.page.slug}?selected_phase_id=#{projekt_phase.id}#filter-subnav"  %>
+        <%= link_to "</> #{t('custom.admin.projekts.edit.projekt_phases_tab.copy_phase_link')}", '#', class: 'js-copy-source-button phase-copy-link', data: { target: dom_id(projekt_phase, :copy_phase_link) } %>
       </small>
     </div>
   </td>

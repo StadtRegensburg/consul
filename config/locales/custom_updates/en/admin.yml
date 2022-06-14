@@ -159,6 +159,7 @@ en:
             affiliation: Area allocation
             beginning: Start date
             budget_phase: Budget phase
+            copy_phase_link: Copy link to phase
             comment_phase: Commenting phase
             debate_phase: Discussion phase
             end_date: End date

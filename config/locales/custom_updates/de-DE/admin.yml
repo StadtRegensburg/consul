@@ -159,6 +159,7 @@ de:
             affiliation: Gebietszuordnung
             beginning: Anfangsdatum
             budget_phase: Budgetphase
+            copy_phase_link: Link abrufen
             comment_phase: Kommentarphase
             debate_phase: Diskussionsphase
             end_date: Enddatum
