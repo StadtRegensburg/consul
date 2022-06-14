@@ -74,7 +74,7 @@ class ProposalsController
     elsif @proposal.save
       @proposal.publish
 
-      if @proposal.proposal_phase.info_active?
+      if @proposal.proposal_phase.active?
         redirect_to page_path(
           @proposal.projekt.page.slug,
           anchor: 'filter-subnav',
@@ -93,7 +93,7 @@ class ProposalsController
   def publish
     @proposal.publish
 
-    if @proposal.proposal_phase.info_active?
+    if @proposal.proposal_phase.active?
       redirect_to page_path(
         @proposal.projekt.page.slug,
         anchor: 'filter-subnav',
