@@ -3,10 +3,6 @@ class ProjektPhase::VotingPhase < ProjektPhase
     projekt.polls.any? { |poll| poll.current? }
   end
 
-  def phase_info_activated?
-    info_active?
-  end
-
   def name
     'voting_phase'
   end
