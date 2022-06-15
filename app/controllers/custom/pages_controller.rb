@@ -180,7 +180,10 @@ class PagesController < ApplicationController
 
     @scoped_projekt_ids =
       @current_projekt
-        .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
+        .top_parent.all_children_projekts.unshift(@current_projekt.top_parent).select do |projekt|
+          ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.main.activate').value.present? &&
+          projekt.debate_phase.current?
+        end
         .pluck(:id)
 
     unless params[:search].present?
@@ -225,7 +228,10 @@ class PagesController < ApplicationController
     remove_archived_from_order_links
 
     @scoped_projekt_ids = @current_projekt
-      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
+      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent).select do |projekt|
+        ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.main.activate').value.present? &&
+        projekt.proposal_phase.current?
+      end
       .pluck(:id)
 
     unless params[:search].present?
@@ -263,7 +269,10 @@ class PagesController < ApplicationController
     set_top_level_projekts
 
     @scoped_projekt_ids = @current_projekt
-      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
+      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent).select do |projekt|
+        ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.main.activate').value.present? &&
+        projekt.voting_phase.phase_activated?
+      end
       .pluck(:id)
 
     unless params[:search].present?

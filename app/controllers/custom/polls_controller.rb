@@ -34,6 +34,8 @@ class PollsController < ApplicationController
     @scoped_projekt_ids = (@top_level_active_projekts + @top_level_archived_projekts)
       .map{ |p| p.all_children_projekts.unshift(p) }
       .flatten.select do |projekt|
+        projekt.voting_phase.phase_activated? &&
+        ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.main.activate').value.present? &&
         ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.polls.show_in_sidebar_filter').value.present?
       end
       .pluck(:id)
