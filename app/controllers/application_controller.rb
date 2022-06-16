@@ -106,10 +106,10 @@ class ApplicationController < ActionController::Base
     end
 
     def set_return_url
-      logger.tagged("set_return_url") { logger.info "controller_name: #{controller_name}" }
-      logger.tagged("set_return_url") { logger.info "action_name: #{action_name}" }
-      logger.tagged("set_return_url") { logger.info "request.fullpath: #{request.fullpath}" }
-      logger.tagged("set_return_url") { logger.info "-------#{Time.now}-------" }
+      logger.tagged("set_return_url") { logger.debug "controller_name: #{controller_name}" }
+      logger.tagged("set_return_url") { logger.debug "action_name: #{action_name}" }
+      logger.tagged("set_return_url") { logger.debug "request.fullpath: #{request.fullpath}" }
+      logger.tagged("set_return_url") { logger.debug "-------#{Time.now}-------" }
 
       if request.get? && !devise_controller? && is_navigational_format?
         request_path = request.fullpath == '/null' ? '/' : request.fullpath # quickfix
