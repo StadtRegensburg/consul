@@ -37,16 +37,6 @@ class ProjektSetting < ApplicationRecord
       {
         "projekt_feature.main.activate": '',
 
-        "projekt_feature.phase.comment": '',
-        "projekt_feature.phase.debate": '',
-        "projekt_feature.phase.proposal": '',
-        "projekt_feature.phase.voting": '',
-        "projekt_feature.phase.budget": '',
-        "projekt_feature.phase.milestone": '',
-        "projekt_feature.phase.projekt_notification": '',
-        "projekt_feature.phase.newsfeed": '',
-        "projekt_feature.phase.event": '',
-
         "projekt_feature.general.show_in_navigation": '',
         "projekt_feature.general.show_in_overview_page": '',
         "projekt_feature.general.hide_additional_info_in_projekt_selector": 'active',

@@ -170,7 +170,7 @@ class Admin::ProjektsController < Admin::BaseController
       legislation_process_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, :active, geozone_restriction_ids: [] ],
       milestone_phase_attributes: [:id, :start_date, :end_date, :active],
       question_phase_attributes: [:id, :start_date, :end_date, :active],
-      event_phase_attributes: [:id, :start_date, :end_date],
+      event_phase_attributes: [:id, :start_date, :end_date, :active],
       map_location_attributes: map_location_attributes,
       image_attributes: image_attributes,
       projekt_notifications: [:title, :body],

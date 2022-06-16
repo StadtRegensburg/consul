@@ -1,6 +1,6 @@
 class ProjektPhase::NewsfeedPhase < ProjektPhase
   def phase_activated?
-    ProjektSetting.find_by(projekt: projekt, key: "projekt_feature.phase.newsfeed").value.present?
+    active?
   end
 
   def name

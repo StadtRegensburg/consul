@@ -107,9 +107,6 @@ class Projekt < ApplicationRecord
 
   scope :top_level_navigation, -> { top_level.visible_in_menu }
 
-  scope :top_level_sidebar_current, ->(controller_name) { top_level.show_in_sidebar(controller_name).current }
-  scope :top_level_sidebar_expired, ->(controller_name) { top_level.show_in_sidebar(controller_name).expired }
-
   scope :by_my_posts, -> (my_posts_switch, current_user_id) {
     return unless my_posts_switch
 

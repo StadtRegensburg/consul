@@ -178,13 +178,7 @@ class PagesController < ApplicationController
     set_resources(Debate)
     set_top_level_projekts
 
-    @scoped_projekt_ids =
-      @current_projekt
-        .top_parent.all_children_projekts.unshift(@current_projekt.top_parent).select do |projekt|
-          ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.main.activate').value.present? &&
-          projekt.debate_phase.current?
-        end
-        .pluck(:id)
+    @scoped_projekt_ids = Debate.scoped_projekt_ids_for_footer(@current_projekt)
 
     unless params[:search].present?
       take_by_my_posts
@@ -268,12 +262,7 @@ class PagesController < ApplicationController
 
     set_top_level_projekts
 
-    @scoped_projekt_ids = @current_projekt
-      .top_parent.all_children_projekts.unshift(@current_projekt.top_parent).select do |projekt|
-        ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.main.activate').value.present? &&
-        projekt.voting_phase.phase_activated?
-      end
-      .pluck(:id)
+    @scoped_projekt_ids = Poll.scoped_projekt_ids_for_footer(@current_projekt)
 
     unless params[:search].present?
       # take_by_tag_names
@@ -411,8 +400,7 @@ class PagesController < ApplicationController
     @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.event_phase
-    scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).compact.pluck(:id)
-    @projekt_events = ProjektEvent.base_selection(scoped_projekt_ids).page(params[:page]).send("sort_by_#{@current_order}")
+    @projekt_events = ProjektEvent.where(projekt_id: ProjektEvent.scoped_projekt_ids_for_footer(@projekt)).page(params[:page]).send("sort_by_#{@current_order}")
   end
 
   def set_projekt_questions_footer_tab_variables(projekt=nil)
