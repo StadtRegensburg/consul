@@ -36,7 +36,7 @@ module CommentsHelper
 
   # TODO provide correct return
   def commentable_url(comment)
-    # return "/#{comment.commentable.projekt.page.slug}?selected_phase_id=#{comment.commentable.projekt.question_phase.id}#filter-subnav" if comment.commentable.class.name == "ProjektQuestion"
+    return "" if comment.commentable.class.name == "ProjektQuestion"
     polymorphic_url(comment.commentable)
   end
 end
