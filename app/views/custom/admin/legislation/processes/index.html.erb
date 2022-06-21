@@ -7,8 +7,6 @@
 <%= link_to t("admin.legislation.processes.index.create"), new_admin_legislation_process_path,
             class: "button float-right" %>
 
-<%= render "shared/filter_subnav", i18n_namespace: "admin.legislation.processes.index" %>
-
 <% if @processes.any? %>
   <h3><%= page_entries_info @processes %></h3>
 

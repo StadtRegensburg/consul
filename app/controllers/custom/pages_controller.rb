@@ -288,7 +288,7 @@ class PagesController < ApplicationController
       .top_parent.all_children_projekts.unshift(@current_projekt.top_parent)
       .pluck(:id)
 
-    @process = @current_projekt.legislation_processes.first
+    @process = @current_projekt.legislation_process
     @draft_versions_list = @process&.draft_versions&.published
 
     if params[:text_draft_version_id]
