@@ -154,15 +154,17 @@ de:
           projekt_phases_tab:
             actions: Aktionen
             activate: Aktiviert
-            activate_phase: Aktiviert
+            activate_phase: Status
             affiliation: Gebietszuordnung
             beginning: Anfangsdatum
             budget_phase: Budgetphase
             copy_phase_link: Link abrufen
             comment_phase: Kommentarphase
             debate_phase: Diskussionsphase
+            default_tab: Standardelement
             end_date: Enddatum
             ending: Enddatum
+            event_phase: Veranstaltungsphase
             information_block_title: Projektinformationen
             link:
               budget_phase: Budgets
@@ -172,10 +174,12 @@ de:
             main_block_title: Projektstatus
             milestone_phase: Umsetzungsphase
             name: Projekteinstellungen
+            newsfeed_phase: News-Feed
             page_block_title: Projektseite
             phase_name: Phase
             phases_block_title: Projektphasen
             projekt_duration: Projektinformationen
+            projekt_notification_phase: Benachrichtigungen
             proposal_phase: Vorschlagsphase
             question_phase: Kurzumfragenphase
             restriction: Partizipationsbeschränkung
