@@ -7,7 +7,7 @@
       </h4>
       <div class='tab-info-summary'>
         <% if phase.is_a?(ProjektPhase::MilestonePhase) && resource_count.present?  %>
-          <% if phase.projekt.milestones.last.prsent? %>
+          <% if phase.projekt.milestones.last.present? %>
             <span class='time-icon'><%= format_date(phase.projekt.milestones.last.publication_date.to_date) %></span>
           <% end %>
 
