@@ -1,7 +1,9 @@
 class Admin::ProjektQuestionsController < Admin::BaseController
   include Translatable
 
-  before_action :set_projekt_and_projekt_question
+  before_action :set_projekt, only: [:new, :create]
+  before_action :set_projekt_and_projekt_question, except: [:new, :create]
+
   skip_authorization_check
 
   load_and_authorize_resource :projekt
@@ -70,6 +72,10 @@ class Admin::ProjektQuestionsController < Admin::BaseController
   def set_projekt_and_projekt_question
     @projekt = Projekt.find(params[:projekt_id])
     @projekt_question = ProjektQuestion.find(params[:id])
+  end
+
+  def set_projekt
+    @projekt = Projekt.find(params[:projekt_id])
   end
 
   def request_referer
