@@ -9,6 +9,13 @@ de:
       destroy: Löschen
   custom:
     admin:
+      legislation:
+        processes:
+          index:
+            create: Neuer Textbearbeitung
+            title: Textbearbeitung
+            status: Textbearbeitung
+            count: textbearbeitung
       budgets:
         edit:
           info:
