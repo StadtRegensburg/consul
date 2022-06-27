@@ -1,4 +1,4 @@
-<% if current_user && current_user.email.in?(@partner_emails) %>
+<% if current_user && current_user.email.in?(@partner_emails) && !@custom_page.content.include?('template_projekt_library')  %>
   <%= link_to '#', class: 'button hollow expanded js-copy-source-button', data: { target: 'page-content' } do %>
     <i class="fas fa-code"></i>
     <%= t('custom.projekts.page.sidebar.admin_controls.copy_code') %>
