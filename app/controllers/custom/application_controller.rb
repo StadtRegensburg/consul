@@ -1,6 +1,5 @@
 require_dependency Rails.root.join("app", "controllers", "application_controller").to_s
 
-
 class ApplicationController < ActionController::Base
 
   before_action :set_top_level_projekts_for_menu, :set_default_social_media_images, :set_partner_emails
@@ -24,7 +23,8 @@ class ApplicationController < ActionController::Base
   end
 
   def show_launch_page
-    render 'welcome/launch', layout: false
+    @header_launch = Widget::Card.header.find_by(title: 'header_large_launch')
+    render 'welcome/launch', layout: 'launch_page'
   end
 
   def all_selected_tags
