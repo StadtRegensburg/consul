@@ -11,7 +11,7 @@ class Projekts::ProjektListTabsComponent < ApplicationComponent
   private
 
   def current_active_orders_sorted
-    ['all', 'underway', 'ongoing', 'upcoming', 'expired'] & @current_active_orders
+    ['all', 'underway', 'ongoing', 'upcoming', 'expired', 'individual_list'] & @current_active_orders
   end
 
     def html_class(order)

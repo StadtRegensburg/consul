@@ -146,12 +146,28 @@ class Setting < ApplicationRecord
         "sdg.process.budgets": false,
         "sdg.process.legislation": false,
         "sdg.process.projekts": true,
+
         "projekts.overview_page": true,
         "projekts.show_archived.sidebar": true,
         "projekts.show_module_links_in_flyout_menu": true,
         "projekts.second_level_projekts_in_active_filter": false,
         "projekts.second_level_projekts_in_archived_filter": false,
         "projekts.set_default_sorting_to_newest": false,
+
+        "projekts_overview_page_navigation.show_in_navigation": true,
+        "projekts_overview_page_navigation.show_all": true,
+        "projekts_overview_page_navigation.show_underway": true,
+        "projekts_overview_page_navigation.show_ongoing": true,
+        "projekts_overview_page_navigation.show_upcoming": true,
+        "projekts_overview_page_navigation.show_expired": true,
+        "projekts_overview_page_navigation.show_individual_list": true,
+
+        "projekts_overview_page_footer.show_in_all": true,
+        "projekts_overview_page_footer.show_in_underway": true,
+        "projekts_overview_page_footer.show_in_ongoing": true,
+        "projekts_overview_page_footer.show_in_upcoming": true,
+        "projekts_overview_page_footer.show_in_expired": true,
+        "projekts_overview_page_footer.show_in_individual_list": true,
 
         "deficiency_reports.show_in_main_menu": false,
         "deficiency_reports.admins_must_assign_officer": false,

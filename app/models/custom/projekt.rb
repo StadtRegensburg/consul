@@ -1,4 +1,8 @@
 class Projekt < ApplicationRecord
+  OVERVIEW_PAGE_NAME = 'projekt_overview_page'
+
+  default_scope  { where(special: false) }
+
   include Milestoneable
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
@@ -92,8 +96,10 @@ class Projekt < ApplicationRecord
                          includes(:projekt_phases).
                          select { |p| p.projekt_phases.all? { |phase| !phase.current? }} }
 
-  scope :show_in_overview_page, -> { joins( 'INNER JOIN projekt_settings siop ON projekts.id = siop.projekt_id' ).
-                                     where( 'siop.key': 'projekt_feature.general.show_in_overview_page', 'siop.value': 'active' ) }
+  scope :show_in_overview_page, -> {
+    joins( 'INNER JOIN projekt_settings siop ON projekts.id = siop.projekt_id' )
+      .where( 'siop.key': 'projekt_feature.general.show_in_overview_page', 'siop.value': 'active' )
+  }
 
   scope :visible_in_menu, -> { joins( 'INNER JOIN projekt_settings vim ON projekts.id = vim.projekt_id').
                                where( 'vim.key': 'projekt_feature.general.show_in_navigation', 'vim.value': 'active' ) }
@@ -113,6 +119,11 @@ class Projekt < ApplicationRecord
   }
 
   scope :last_week, -> { where("projekts.created_at >= ?", 7.days.ago) }
+
+  scope :individual_list, -> {
+    joins( 'INNER JOIN projekt_settings siil ON projekts.id = siil.projekt_id' )
+      .where( 'siil.key': 'projekt_feature.general.show_in_individual_list', 'siil.value': 'active' )
+  }
 
   def self.selectable_in_selector(controller_name, current_user)
     select { |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.selectable?(controller_name, current_user) } }
@@ -323,6 +334,10 @@ class Projekt < ApplicationRecord
 
   def legislation_process
     legislation_processes.order(:updated_at).last
+  end
+
+  def overview_page?
+    special? && (special_name == OVERVIEW_PAGE_NAME)
   end
 
   private

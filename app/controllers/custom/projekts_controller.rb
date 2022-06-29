@@ -1,57 +1,35 @@
 class ProjektsController < ApplicationController
   skip_authorization_check
-  has_orders %w[underway all ongoing upcoming expired], only: :index
+  has_orders %w[underway all ongoing upcoming expired individual_list], only: [
+    :index, :comment_phase_footer_tab, :debate_phase_footer_tab,
+    :proposal_phase_footer_tab, :voting_phase_footer_tab
+  ]
+
+  before_action :find_overview_page_projekt, only: [
+    :index, :comment_phase_footer_tab, :debate_phase_footer_tab,
+    :proposal_phase_footer_tab, :voting_phase_footer_tab
+  ]
+
+  before_action :select_projekts, only: [
+    :index, :comment_phase_footer_tab, :debate_phase_footer_tab,
+    :proposal_phase_footer_tab, :voting_phase_footer_tab
+  ]
 
   before_action do
-    raise FeatureFlags::FeatureDisabled, :projekts_overview unless Setting['projekts.overview_page']
+    raise FeatureFlags::FeatureDisabled, :projekts_overview unless Setting['projekts_overview_page_navigation.show_in_navigation']
   end
 
   include ProjektControllerHelper
 
   def index
-    @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
-    @filtered_targets = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
+    @projekts_overview_page_navigation_settings = Setting.all.select { |setting| setting.key.start_with?('projekts_overview_page_navigation') }
+    @projekts_overview_page_footer_settings = Setting.all.select { |setting| setting.key.start_with?('projekts_overview_page_footer') }
 
-    @projekts = Projekt.show_in_overview_page
+    @default_phase_name = @overview_page_special_projekt.projekt_phases.first.resources_name
+    @top_level_active_projekts = @projekts
+    @top_level_archived_projekts = @projekts
 
-    @projekts_count_hash = {}
-
-    valid_orders.each do |order|
-      @projekts_count_hash[order] = @projekts.send(order).count
-    end
-
-    @current_active_orders = @projekts_count_hash.select do |key, value|
-      value > 0
-    end.keys
-
-    @current_order = valid_orders.include?(params[:order]) ? params[:order] : @current_active_orders.first
-
-    @geozones = Geozone.all
-    @selected_geozone_affiliation = params[:geozone_affiliation] || 'all_resources'
-    @affiliated_geozones = (params[:affiliated_geozones] || '').split(',').map(&:to_i)
-
-    @selected_geozone_restriction = params[:geozone_restriction] || 'no_restriction'
-    @restricted_geozones = (params[:restricted_geozones] || '').split(',').map(&:to_i)
-
-    unless params[:search].present?
-      take_only_by_tag_names
-      take_by_projekts
-      take_by_sdgs
-      take_by_geozone_affiliations
-      take_by_geozone_restrictions
-      take_by_my_posts
-    end
-
-    @categories = @projekts.map { |p| p.tags.category }.flatten.uniq.compact.sort
-    @tag_cloud = tag_cloud
-    @selected_tags = all_selected_tags
-    @resource_name = 'projekt'
-
-    @projekts = @projekts.send(@current_order)
-    @sdgs = (@projekts.map(&:sdg_goals).flatten.uniq.compact + SDG::Goal.where(code: @filtered_goals).to_a).uniq
-    @sdg_targets = (@projekts.map(&:sdg_targets).flatten.uniq.compact + SDG::Target.where(code: @filtered_targets).to_a).uniq
-
-    @projekts_coordinates = all_projekts_map_locations(@projekts)
+    send("set_#{@default_phase_name}_footer_tab_variables", @overview_page_special_projekt)
   end
 
   def show
@@ -79,11 +57,91 @@ class ProjektsController < ApplicationController
     end
   end
 
+  def comment_phase_footer_tab
+    set_comments_footer_tab_variables
+
+    respond_to do |format|
+      format.js { render "projekts/projekt_overview_footer/footer_tab" }
+    end
+  end
+
+  def debate_phase_footer_tab
+    set_debates_footer_tab_variables
+
+    respond_to do |format|
+      format.js { render "projekts/projekt_overview_footer/footer_tab" }
+    end
+  end
+
+  def proposal_phase_footer_tab
+  end
+
+  def voting_phase_footer_tab
+  end
+
   def map_html
     @projekt = Projekt.find(params[:id])
   end
 
   private
+
+  def set_comments_footer_tab_variables
+    @valid_orders = %w[most_voted newest oldest]
+    @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+
+    @current_tab_phase = @overview_page_special_projekt.comment_phase
+    params[:current_tab_path] = 'comment_phase_footer_tab'
+
+    @commentable = @overview_page_special_projekt
+    @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
+    set_comment_flags(@comment_tree.comments)
+  end
+
+  def set_debates_footer_tab_variables(projekt=nil)
+    @valid_orders = Debate.debates_orders(current_user)
+    @valid_orders.delete('relevance')
+    @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+
+    @current_projekt = @overview_page_special_projekt
+    @current_tab_phase = @current_projekt.debate_phase
+    params[:current_tab_path] = 'debate_phase_footer_tab'
+
+    if ProjektSetting.find_by(projekt: @current_projekt, key: 'projekt_feature.general.set_default_sorting_to_newest').value.present? &&
+        @valid_orders.include?('created_at')
+      @current_order = 'created_at'
+    end
+
+    @selected_parent_projekt = @current_projekt
+
+    set_resources(Debate)
+
+    @top_level_active_projekts = @resources
+    @top_level_archived_projekts = @resources
+
+    @scoped_projekt_ids = Debate.scoped_projekt_ids_for_footer(@current_projekt)
+
+    # unless params[:search].present?
+      take_by_my_posts
+      # take_by_tag_names
+      # take_by_sdgs
+      # take_by_geozone_affiliations
+      # take_by_geozone_restrictions
+      # take_by_projekts(@scoped_projekt_ids)
+    # end
+
+    # set_debate_votes(@resources)
+
+    @debates = @resources.page(params[:page]).send("sort_by_#{@current_order}")
+    @debate_votes = current_user ? current_user.debate_votes(@debates) : {}
+  end
+
+  def set_resources(resource_model)
+    @resources = resource_model.where(projekt_id: @projekts.map(&:id))
+
+    @resources = @current_order == "recommendations" && current_user.present? ? @resources.recommendations(current_user) : @resources.for_render
+    @resources = @resources.search(@search_terms) if @search_terms.present?
+    @resources = @resources.filter_by(@advanced_search_terms)
+  end
 
   def take_only_by_tag_names
     if params[:tags].present?
@@ -157,5 +215,57 @@ class ProjektsController < ApplicationController
 
   def tag_cloud
     TagCloud.new(Projekt.all, params[:tags])
+  end
+
+  def find_overview_page_projekt
+    @overview_page_special_projekt = Projekt.unscoped.find_by(special: true, special_name: 'projekt_overview_page')
+    @current_projekt = @overview_page_special_projekt
+  end
+
+  def select_projekts
+    @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
+    @filtered_targets = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
+
+    @projekts = Projekt.show_in_overview_page
+    @resources = @projekts
+
+    @projekts_count_hash = {}
+
+    valid_orders.each do |order|
+      @projekts_count_hash[order] = @projekts.send(order).count
+    end
+
+    @current_active_orders = @projekts_count_hash.select do |key, value|
+      value > 0
+    end.keys
+
+    @current_order = valid_orders.include?(params[:order]) ? params[:order] : @current_active_orders.first
+
+    @geozones = Geozone.all
+    @selected_geozone_affiliation = params[:geozone_affiliation] || 'all_resources'
+    @affiliated_geozones = (params[:affiliated_geozones] || '').split(',').map(&:to_i)
+
+    @selected_geozone_restriction = params[:geozone_restriction] || 'no_restriction'
+    @restricted_geozones = (params[:restricted_geozones] || '').split(',').map(&:to_i)
+
+    unless params[:search].present?
+      take_only_by_tag_names
+      take_by_projekts
+      take_by_sdgs
+      take_by_geozone_affiliations
+      take_by_geozone_restrictions
+      take_by_my_posts
+    end
+
+    @categories = @projekts.map { |p| p.tags.category }.flatten.uniq.compact.sort
+    @tag_cloud = tag_cloud
+    @selected_tags = all_selected_tags
+    @resource_name = 'projekt'
+
+    @projekts = @projekts.send(@current_order)
+    @sdgs = (@projekts.map(&:sdg_goals).flatten.uniq.compact + SDG::Goal.where(code: @filtered_goals).to_a).uniq
+    @sdg_targets = (@projekts.map(&:sdg_targets).flatten.uniq.compact + SDG::Target.where(code: @filtered_targets).to_a).uniq
+
+    @projekts_coordinates = all_projekts_map_locations(@projekts)
   end
 end
