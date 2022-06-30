@@ -158,7 +158,7 @@ class ProjektsController < ApplicationController
 
     # set_debate_votes(@resources)
 
-    @debates = @resources.page(params[:page]).send("sort_by_#{@current_order}")
+    @debates = @resources.page(params[:page]) #.send("sort_by_#{@current_order}")
     @debate_votes = current_user ? current_user.debate_votes(@debates) : {}
   end
 
@@ -211,8 +211,8 @@ class ProjektsController < ApplicationController
   end
 
   def set_polls_footer_tab_variables(projekt=nil)
-    # @valid_filters = %w[all current]
-    # @current_filter = @valid_filters.include?(params[:filter]) ? params[:filter] : @valid_filters.first
+    @valid_filters = %w[all current]
+    @current_filter = @valid_filters.include?(params[:filter]) ? params[:filter] : @valid_filters.first
 
     # @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.voting_phase

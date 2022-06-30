@@ -95,6 +95,11 @@ class Projekt < ApplicationRecord
                          includes(:projekt_phases).
                          select { |p| p.projekt_phases.all? { |phase| !phase.current? }} }
 
+  scope :individual_list, -> {
+    joins( 'INNER JOIN projekt_settings siil ON projekts.id = siil.projekt_id' )
+      .where( 'siil.key': 'projekt_feature.general.show_in_individual_list', 'siil.value': 'active' )
+  }
+
   scope :show_in_overview_page, -> {
     joins( 'INNER JOIN projekt_settings siop ON projekts.id = siop.projekt_id' )
       .where( 'siop.key': 'projekt_feature.general.show_in_overview_page', 'siop.value': 'active' )
@@ -119,9 +124,8 @@ class Projekt < ApplicationRecord
 
   scope :last_week, -> { where("projekts.created_at >= ?", 7.days.ago) }
 
-  scope :individual_list, -> {
-    joins( 'INNER JOIN projekt_settings siil ON projekts.id = siil.projekt_id' )
-      .where( 'siil.key': 'projekt_feature.general.show_in_individual_list', 'siil.value': 'active' )
+  scope :sort_by_individual_list, -> {
+    individual_list
   }
 
   def self.overview_page
