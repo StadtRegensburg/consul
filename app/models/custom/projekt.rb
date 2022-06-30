@@ -1,8 +1,6 @@
 class Projekt < ApplicationRecord
   OVERVIEW_PAGE_NAME = 'projekt_overview_page'
 
-  default_scope  { where(special: false) }
-
   include Milestoneable
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
@@ -72,6 +70,7 @@ class Projekt < ApplicationRecord
   validates :color, format: { with: /\A#[\d, a-f, A-F]{6}\Z/ }
   validates :name, presence: true
 
+  scope :regular, -> { where(special: false) }
   scope :with_order_number, -> { where.not(order_number: nil).order(order_number: :asc) }
   scope :top_level, -> { with_order_number.
                          where(parent: nil) }
@@ -124,6 +123,13 @@ class Projekt < ApplicationRecord
     joins( 'INNER JOIN projekt_settings siil ON projekts.id = siil.projekt_id' )
       .where( 'siil.key': 'projekt_feature.general.show_in_individual_list', 'siil.value': 'active' )
   }
+
+  def self.overview_page
+    find_by(
+      special_name: 'projekt_overview_page',
+      special: true
+    )
+  end
 
   def self.selectable_in_selector(controller_name, current_user)
     select { |projekt| projekt.all_children_projekts.unshift(projekt).any? { |p| p.selectable?(controller_name, current_user) } }

@@ -8,8 +8,10 @@ class Admin::ProjektsController < Admin::BaseController
   before_action :process_tags, only: [:update]
 
   def index
-    @projekts = Projekt.top_level
-    @projekt = Projekt.new
+    @projekts = Projekt.top_level.regular
+    # @projekt = Projekt.new
+    @projekt = Projekt.overview_page
+    @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
 
     @projekts_settings = Setting.all.group_by(&:type)['projekts']
     skip_user_verification_setting = Setting.find_by(key: 'feature.user.skip_verification')
@@ -163,8 +165,8 @@ class Admin::ProjektsController < Admin::BaseController
   end
 
   def update_standard_phase
-    @projekt = Projekt.find(params[:id])
-    @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
+    @projekt = Projekt.find(params[:id]).reload
+    @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab').reload
 
     if @default_footer_tab_setting.present?
       @default_footer_tab_setting.update(value: params[:default_footer_tab][:id])

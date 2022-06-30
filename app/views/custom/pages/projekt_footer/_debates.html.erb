@@ -18,7 +18,9 @@
 
   <div id="debates" class="debates-list spinner-placeholder small-12 medium-9 column">
     <%= render 'shared/loader_spinner' %>
-    <%= render "shared/order_links", i18n_namespace: "debates.index" %>
+    <% unless @current_projekt.overview_page? %>
+      <%= render "shared/order_links", i18n_namespace: "debates.index" %>
+    <% end %>
 
     <div class='row'>
       <div class='small-6 column small'>

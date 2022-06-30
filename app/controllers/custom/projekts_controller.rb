@@ -1,4 +1,18 @@
 class ProjektsController < ApplicationController
+  include CustomHelper
+  include ProposalsHelper
+
+  skip_authorization_check
+  has_orders %w[underway all ongoing upcoming expired individual_list], only: [
+    :index, :comment_phase_footer_tab, :debate_phase_footer_tab,
+    :proposal_phase_footer_tab, :voting_phase_footer_tab
+  ]
+
+  before_action :find_overview_page_projekt, only: [
+    :index, :comment_phase_footer_tab, :debate_phase_footer_tab,
+    :proposal_phase_footer_tab, :voting_phase_footer_tab
+  ]
+
   skip_authorization_check
   has_orders %w[underway all ongoing upcoming expired individual_list], only: [
     :index, :comment_phase_footer_tab, :debate_phase_footer_tab,
@@ -74,9 +88,19 @@ class ProjektsController < ApplicationController
   end
 
   def proposal_phase_footer_tab
+    set_proposals_footer_tab_variables
+
+    respond_to do |format|
+      format.js { render "projekts/projekt_overview_footer/footer_tab" }
+    end
   end
 
   def voting_phase_footer_tab
+    set_polls_footer_tab_variables
+
+    respond_to do |format|
+      format.js { render "pages/projekt_footer/footer_tab" }
+    end
   end
 
   def map_html
@@ -98,9 +122,12 @@ class ProjektsController < ApplicationController
   end
 
   def set_debates_footer_tab_variables(projekt=nil)
-    @valid_orders = Debate.debates_orders(current_user)
-    @valid_orders.delete('relevance')
-    @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+    # @valid_orders = Debate.debates_orders(current_user)
+    # @valid_orders.delete('relevance')
+    # @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+    # @valid_orders = Debate.debates_orders(current_user)
+    # @valid_orders.delete('relevance')
+    # @current_debates_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
 
     @current_projekt = @overview_page_special_projekt
     @current_tab_phase = @current_projekt.debate_phase
@@ -118,7 +145,7 @@ class ProjektsController < ApplicationController
     @top_level_active_projekts = @resources
     @top_level_archived_projekts = @resources
 
-    @scoped_projekt_ids = Debate.scoped_projekt_ids_for_footer(@current_projekt)
+    # @scoped_projekt_ids = Debate.scoped_projekt_ids_for_footer(@current_projekt)
 
     # unless params[:search].present?
       take_by_my_posts
@@ -135,8 +162,87 @@ class ProjektsController < ApplicationController
     @debate_votes = current_user ? current_user.debate_votes(@debates) : {}
   end
 
+  def set_proposals_footer_tab_variables(projekt=nil)
+    # @valid_orders = Proposal.proposals_orders(current_user)
+    # @valid_orders.delete("archival_date")
+    # @valid_orders.delete('relevance')
+    # @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+
+    # @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
+    @current_tab_phase = @current_projekt.proposal_phase
+    params[:current_tab_path] = 'proposal_phase_footer_tab'
+
+    # if ProjektSetting.find_by(projekt: @current_projekt, key: 'projekt_feature.general.set_default_sorting_to_newest').value.present? &&
+    #     @valid_orders.include?('created_at')
+    #   @current_order = 'created_at'
+    # end
+
+    @selected_parent_projekt = @current_projekt
+
+    set_resources(Proposal)
+
+    # discard_draft
+    # discard_archived
+    # load_retired
+    # load_selected
+    # load_featured
+    # remove_archived_from_order_links
+
+    # @scoped_projekt_ids = @current_projekt
+    #   .top_parent.all_children_projekts.unshift(@current_projekt.top_parent).select do |projekt|
+    #     ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.main.activate').value.present? &&
+    #     projekt.proposal_phase.current?
+    #   end
+    #   .pluck(:id)
+
+    unless params[:proposals_search].present?
+      take_by_my_posts
+      # take_by_tag_names
+      # take_by_sdgs
+      # take_by_geozone_affiliations
+      # take_by_geozone_restrictions
+      # take_by_projekts(@scoped_projekt_ids)
+    end
+
+    set_proposal_votes(@resources)
+
+    @proposals_coordinates = all_proposal_map_locations(@resources)
+    @proposals = @resources.page(params[:page]) #.send("sort_by_#{@current_order}")
+  end
+
+  def set_polls_footer_tab_variables(projekt=nil)
+    # @valid_filters = %w[all current]
+    # @current_filter = @valid_filters.include?(params[:filter]) ? params[:filter] : @valid_filters.first
+
+    # @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
+    @current_tab_phase = @current_projekt.voting_phase
+    params[:current_tab_path] = 'voting_phase_footer_tab'
+
+    @selected_parent_projekt = @current_projekt
+
+    @resources = Poll
+      .created_by_admin
+      .not_budget
+      .where(projekt_id: @overview_page_special_projekt.id)
+      .includes(:geozones)
+      # .send(@current_filter)
+
+    # @scoped_projekt_ids = Poll.scoped_projekt_ids_for_footer(@current_projekt)
+
+    # unless params[:search].present?
+      # take_by_tag_names
+      # take_by_sdgs
+      # take_by_geozone_affiliations
+      # take_by_polls_geozone_restrictions
+      # take_by_projekts(@scoped_projekt_ids)
+    # end
+
+    @polls = Kaminari.paginate_array(@resources.sort_for_list).page(params[:page])
+  end
+
   def set_resources(resource_model)
-    @resources = resource_model.where(projekt_id: @projekts.map(&:id))
+    # @resources = resource_model.where(projekt_id: @overview_page_special_projekt.map(&:id))
+    @resources = resource_model.where(projekt_id: @overview_page_special_projekt.id)
 
     @resources = @current_order == "recommendations" && current_user.present? ? @resources.recommendations(current_user) : @resources.for_render
     @resources = @resources.search(@search_terms) if @search_terms.present?
@@ -226,7 +332,7 @@ class ProjektsController < ApplicationController
     @filtered_goals = params[:sdg_goals].present? ? params[:sdg_goals].split(',').map{ |code| code.to_i } : nil
     @filtered_targets = params[:sdg_targets].present? ? params[:sdg_targets].split(',')[0] : nil
 
-    @projekts = Projekt.show_in_overview_page
+    @projekts = Projekt.show_in_overview_page.regular
     @resources = @projekts
 
     @projekts_count_hash = {}

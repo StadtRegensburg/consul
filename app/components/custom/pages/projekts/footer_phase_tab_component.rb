@@ -10,7 +10,7 @@ class Pages::Projekts::FooterPhaseTabComponent < ApplicationComponent
 
   def link_url
     if phase.projekt.overview_page?
-      "/projekts/#{phase.name}_footer_tab"
+      url_for(controller: 'projekts', action: "#{phase.name}_footer_tab", order: params[:order])
     else
       "/#{params[:id]}/#{phase.name}_footer_tab"
     end
