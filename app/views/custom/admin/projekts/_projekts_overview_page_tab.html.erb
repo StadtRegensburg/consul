@@ -9,7 +9,7 @@
   <tbody>
     <% @projekts_overview_page_navigation_settings.each do |feature| %>
       <tr>
-        <td>
+        <td class="small-9">
           <strong id="<%= dom_id(feature, :title) %>"><%= t("custom.settings.#{feature.key}") %></strong>
           <br>
           <span class="small">
@@ -36,7 +36,7 @@
   <tbody>
     <% @projekts_overview_page_footer_settings.each do |feature| %>
       <tr>
-        <td>
+        <td class="small-9">
           <strong id="<%= dom_id(feature, :title) %>"><%= t("custom.settings.#{feature.key}") %></strong>
           <br>
           <span class="small">
