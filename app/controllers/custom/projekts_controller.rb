@@ -39,11 +39,14 @@ class ProjektsController < ApplicationController
     @projekts_overview_page_navigation_settings = Setting.all.select { |setting| setting.key.start_with?('projekts_overview_page_navigation') }
     @projekts_overview_page_footer_settings = Setting.all.select { |setting| setting.key.start_with?('projekts_overview_page_footer') }
 
-    @default_phase_name = @overview_page_special_projekt.projekt_phases.first.resources_name
     @top_level_active_projekts = @projekts
     @top_level_archived_projekts = @projekts
 
-    send("set_#{@default_phase_name}_footer_tab_variables", @overview_page_special_projekt)
+    @current_phase = @overview_page_special_projekt.projekt_phases.select(&:phase_activated?).first
+
+    if @current_phase.present?
+      send("set_#{@current_phase.resources_name}_footer_tab_variables", @overview_page_special_projekt)
+    end
 
     @show_footer = Setting["projekts_overview_page_footer.show_in_#{@current_order}"]
   end
