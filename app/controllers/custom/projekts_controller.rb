@@ -44,6 +44,8 @@ class ProjektsController < ApplicationController
     @top_level_archived_projekts = @projekts
 
     send("set_#{@default_phase_name}_footer_tab_variables", @overview_page_special_projekt)
+
+    @show_footer = Setting["projekts_overview_page_footer.show_in_#{@current_order}"]
   end
 
   def show
