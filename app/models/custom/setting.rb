@@ -154,20 +154,6 @@ class Setting < ApplicationRecord
         "projekts.second_level_projekts_in_archived_filter": false,
         "projekts.set_default_sorting_to_newest": false,
 
-        "projekts_overview_page_navigation.show_in_navigation": true,
-        "projekts_overview_page_navigation.show_all": true,
-        "projekts_overview_page_navigation.show_underway": true,
-        "projekts_overview_page_navigation.show_ongoing": true,
-        "projekts_overview_page_navigation.show_upcoming": true,
-        "projekts_overview_page_navigation.show_expired": true,
-        "projekts_overview_page_navigation.show_individual_list": true,
-
-        "projekts_overview_page_footer.show_in_all": true,
-        "projekts_overview_page_footer.show_in_underway": true,
-        "projekts_overview_page_footer.show_in_ongoing": true,
-        "projekts_overview_page_footer.show_in_upcoming": true,
-        "projekts_overview_page_footer.show_in_expired": true,
-        "projekts_overview_page_footer.show_in_individual_list": true,
 
         "deficiency_reports.show_in_main_menu": false,
         "deficiency_reports.admins_must_assign_officer": false,
@@ -237,7 +223,22 @@ class Setting < ApplicationRecord
         # "extended_feature.budget_investments.show_implementation_option_fields": true,
         # "extended_feature.budget_investments.enable_investment_milestones_tab": true,
 
-        "extended_feature.deficiency_reports.enable_my_posts_filter": true
+        "extended_feature.deficiency_reports.enable_my_posts_filter": true,
+
+        "extended_feature.projekts_overview_page_navigation.show_in_navigation": true,
+        "extended_feature.projekts_overview_page_navigation.show_all": true,
+        "extended_feature.projekts_overview_page_navigation.show_underway": true,
+        "extended_feature.projekts_overview_page_navigation.show_ongoing": true,
+        "extended_feature.projekts_overview_page_navigation.show_upcoming": true,
+        "extended_feature.projekts_overview_page_navigation.show_expired": true,
+        "extended_feature.projekts_overview_page_navigation.show_individual_list": true,
+
+        "extended_feature.projekts_overview_page_footer.show_in_all": true,
+        "extended_feature.projekts_overview_page_footer.show_in_underway": true,
+        "extended_feature.projekts_overview_page_footer.show_in_ongoing": true,
+        "extended_feature.projekts_overview_page_footer.show_in_upcoming": true,
+        "extended_feature.projekts_overview_page_footer.show_in_expired": true,
+        "extended_feature.projekts_overview_page_footer.show_in_individual_list": true,
       }
     end
 

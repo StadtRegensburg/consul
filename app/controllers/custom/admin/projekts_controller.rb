@@ -17,8 +17,8 @@ class Admin::ProjektsController < Admin::BaseController
     skip_user_verification_setting = Setting.find_by(key: 'feature.user.skip_verification')
     @projekts_settings.push(skip_user_verification_setting)
 
-    @projekts_overview_page_navigation_settings = Setting.all.select { |setting| setting.key.start_with?('projekts_overview_page_navigation') }
-    @projekts_overview_page_footer_settings = Setting.all.select { |setting| setting.key.start_with?('projekts_overview_page_footer') }
+    @projekts_overview_page_navigation_settings = Setting.all.select { |setting| setting.key.start_with?('extended_feature.projekts_overview_page_navigation') }
+    @projekts_overview_page_footer_settings = Setting.all.select { |setting| setting.key.start_with?('extended_feature.projekts_overview_page_footer') }
 
     @overview_page_special_projekt = Projekt.unscoped.find_by(special: true, special_name: 'projekt_overview_page')
 

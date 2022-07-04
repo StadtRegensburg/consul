@@ -1,6 +1,6 @@
 <ul class="projekt-list-tabs no-bullet submenu order-links">
   <% current_active_orders_sorted.each do |order| %>
-    <% if Setting["projekts_overview_page_navigation.show_#{order}"] %>
+    <% if Setting["extended_feature.projekts_overview_page_navigation.show_#{order}"] %>
       <li class="inline-block">
         <%= link_to link_path(order),
           class: html_class(order),
