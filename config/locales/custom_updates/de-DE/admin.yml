@@ -102,6 +102,7 @@ de:
           statuses: Status definieren
         deficiency_reports_title: Mängelmelder
         projekts: Projekte
+        projekt_managers: Projektmanager*innen
         legislation: Textbearbeitung
       polls:
         questions:
@@ -276,6 +277,12 @@ de:
           geozones: Geozonen verwalten
           map_settings: Standard-Kartenkonfiguration
           settings: Funktionen
+      projekt_managers:
+        index:
+          title: Projektmanager*innen
+          no_projekt_managers: Keine Projektmanager*innen vorhanden.
+        search:
+          title: "Projektmanager*innen: Benutzer*innensuche"
       settings:
         index:
           extended_features:

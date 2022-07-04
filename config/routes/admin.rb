@@ -45,6 +45,11 @@ namespace :admin do
   end
   resources :deficiency_reports, only: [:index, :show]
 
+  # custom projekt managers
+  resources :projekt_managers, only: [:index, :create, :destroy] do
+    get :search, on: :collection
+  end
+
 
   resources :organizations, only: :index do
     get :search, on: :collection

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_14_151755) do
+ActiveRecord::Schema.define(version: 2022_07_04_093457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1456,6 +1456,13 @@ ActiveRecord::Schema.define(version: 2022_06_14_151755) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "projekt_managers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projekt_managers_on_user_id"
+  end
+
   create_table "projekt_notifications", force: :cascade do |t|
     t.bigint "projekt_id"
     t.string "title"
@@ -1579,7 +1586,9 @@ ActiveRecord::Schema.define(version: 2022_06_14_151755) do
     t.string "color"
     t.string "icon"
     t.integer "level", default: 1
+    t.bigint "projekt_manager_id"
     t.index ["parent_id"], name: "index_projekts_on_parent_id"
+    t.index ["projekt_manager_id"], name: "index_projekts_on_projekt_manager_id"
   end
 
   create_table "proposal_notifications", id: :serial, force: :cascade do |t|
@@ -2163,11 +2172,13 @@ ActiveRecord::Schema.define(version: 2022_06_14_151755) do
   add_foreign_key "poll_voters", "polls"
   add_foreign_key "polls", "budgets"
   add_foreign_key "polls", "projekts"
+  add_foreign_key "projekt_managers", "users"
   add_foreign_key "projekt_notifications", "projekts"
   add_foreign_key "projekt_phase_geozones", "geozones"
   add_foreign_key "projekt_phase_geozones", "projekt_phases"
   add_foreign_key "projekt_phases", "projekts"
   add_foreign_key "projekt_settings", "projekts"
+  add_foreign_key "projekts", "projekt_managers"
   add_foreign_key "projekts", "projekts", column: "parent_id"
   add_foreign_key "proposals", "communities"
   add_foreign_key "proposals", "projekts"
