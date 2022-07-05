@@ -133,8 +133,8 @@ de:
           set_default_sorting_to_newest_description: Zeigt standardmäßig die neuesten Beiträge anstatt der aktivsten Beiträge an
           show_projekt_footer: Fußzeile aktivieren
           show_projekt_footer_description: Aktiviert die Fußzeile am unteren Ende des Projektes
-          show_in_individual_list: Show in individual list
-          show_in_individual_list_description: Show in individual list
+          show_in_individual_list: Projekt in individueller Liste anzeigen
+          show_in_individual_list_description: Zeigt das Projekt in einer individuellen Liste an
         sidebar:
           show_phases_in_projekt_page_sidebar: Projektphasen
           show_phases_in_projekt_page_sidebar_description: Aktivieren Sie die Projektphasen in der rechten Seitenleiste der Projektseite
