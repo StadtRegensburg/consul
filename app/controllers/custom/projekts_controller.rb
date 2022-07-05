@@ -139,13 +139,6 @@ class ProjektsController < ApplicationController
   end
 
   def set_debates_footer_tab_variables(projekt=nil)
-    # @valid_orders = Debate.debates_orders(current_user)
-    # @valid_orders.delete('relevance')
-    # @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
-    # @valid_orders = Debate.debates_orders(current_user)
-    # @valid_orders.delete('relevance')
-    # @current_debates_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
-
     @current_projekt = @overview_page_special_projekt
     @current_tab_phase = @current_projekt.debate_phase
     params[:current_tab_path] = 'debate_phase_footer_tab'
@@ -162,64 +155,18 @@ class ProjektsController < ApplicationController
     @top_level_active_projekts = @resources
     @top_level_archived_projekts = @resources
 
-    # @scoped_projekt_ids = Debate.scoped_projekt_ids_for_footer(@current_projekt)
-
-    # unless params[:search].present?
-      take_by_my_posts
-      # take_by_tag_names
-      # take_by_sdgs
-      # take_by_geozone_affiliations
-      # take_by_geozone_restrictions
-      # take_by_projekts(@scoped_projekt_ids)
-    # end
-
-    # set_debate_votes(@resources)
-
     @debates = @resources.page(params[:page]) #.send("sort_by_#{@current_order}")
     @debate_votes = current_user ? current_user.debate_votes(@debates) : {}
   end
 
   def set_proposals_footer_tab_variables(projekt=nil)
-    # @valid_orders = Proposal.proposals_orders(current_user)
-    # @valid_orders.delete("archival_date")
-    # @valid_orders.delete('relevance')
-    # @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
-
-    # @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.proposal_phase
     params[:current_tab_path] = 'proposal_phase_footer_tab'
-
-    # if ProjektSetting.find_by(projekt: @current_projekt, key: 'projekt_feature.general.set_default_sorting_to_newest').value.present? &&
-    #     @valid_orders.include?('created_at')
-    #   @current_order = 'created_at'
-    # end
 
     @selected_parent_projekt = @current_projekt
 
     set_resources(Proposal)
 
-    # discard_draft
-    # discard_archived
-    # load_retired
-    # load_selected
-    # load_featured
-    # remove_archived_from_order_links
-
-    # @scoped_projekt_ids = @current_projekt
-    #   .top_parent.all_children_projekts.unshift(@current_projekt.top_parent).select do |projekt|
-    #     ProjektSetting.find_by( projekt: projekt, key: 'projekt_feature.main.activate').value.present? &&
-    #     projekt.proposal_phase.current?
-    #   end
-    #   .pluck(:id)
-
-    unless params[:proposals_search].present?
-      take_by_my_posts
-      # take_by_tag_names
-      # take_by_sdgs
-      # take_by_geozone_affiliations
-      # take_by_geozone_restrictions
-      # take_by_projekts(@scoped_projekt_ids)
-    end
 
     set_proposal_votes(@resources)
 
@@ -242,17 +189,6 @@ class ProjektsController < ApplicationController
       .not_budget
       .where(projekt_id: @overview_page_special_projekt.id)
       .includes(:geozones)
-      # .send(@current_filter)
-
-    # @scoped_projekt_ids = Poll.scoped_projekt_ids_for_footer(@current_projekt)
-
-    # unless params[:search].present?
-      # take_by_tag_names
-      # take_by_sdgs
-      # take_by_geozone_affiliations
-      # take_by_polls_geozone_restrictions
-      # take_by_projekts(@scoped_projekt_ids)
-    # end
 
     @polls = Kaminari.paginate_array(@resources.sort_for_list).page(params[:page])
   end
