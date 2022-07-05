@@ -1,12 +1,17 @@
 class Projekts::ProjektListTabsComponent < ApplicationComponent
   attr_reader :i18n_namespace, :anchor
-  delegate :current_path_with_query_params, :current_order, :valid_orders, to: :helpers
+  delegate :current_path_with_query_params, :valid_orders, to: :helpers
 
-  def initialize(current_active_orders: {}, anchor: nil, overview_page: false)
+  def initialize(current_active_orders: {}, current_order: nil, anchor: nil, overview_page: false)
     @i18n_namespace = i18n_namespace
     @anchor = anchor
     @current_active_orders = current_active_orders
     @overview_page = overview_page
+    @current_order = current_order
+  end
+
+  def current_order
+    @current_order.presence || helpers.current_order
   end
 
   private
