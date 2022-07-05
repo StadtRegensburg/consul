@@ -147,7 +147,6 @@ class Setting < ApplicationRecord
         "sdg.process.legislation": false,
         "sdg.process.projekts": true,
 
-        "projekts.overview_page": true,
         "projekts.show_archived.sidebar": true,
         "projekts.show_module_links_in_flyout_menu": true,
         "projekts.second_level_projekts_in_active_filter": false,
@@ -249,6 +248,5 @@ class Setting < ApplicationRecord
     def destroy_obsolete
       Setting.all.each{ |setting| setting.destroy unless defaults.keys.include?(setting.key.to_sym) }
     end
-
   end
 end
