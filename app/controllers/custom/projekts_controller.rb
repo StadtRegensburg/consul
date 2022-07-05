@@ -128,7 +128,7 @@ class ProjektsController < ApplicationController
 
   def set_comments_footer_tab_variables(projekt = nil)
     @valid_orders = %w[most_voted newest oldest]
-    @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+    # @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
 
     @current_tab_phase = @overview_page_special_projekt.comment_phase
     params[:current_tab_path] = 'comment_phase_footer_tab'
@@ -143,10 +143,10 @@ class ProjektsController < ApplicationController
     @current_tab_phase = @current_projekt.debate_phase
     params[:current_tab_path] = 'debate_phase_footer_tab'
 
-    if ProjektSetting.find_by(projekt: @current_projekt, key: 'projekt_feature.general.set_default_sorting_to_newest').value.present? &&
-        @valid_orders.include?('created_at')
-      @current_order = 'created_at'
-    end
+    # if ProjektSetting.find_by(projekt: @current_projekt, key: 'projekt_feature.general.set_default_sorting_to_newest').value.present? &&
+    #     @valid_orders.include?('created_at')
+    #   # @current_order = 'created_at'
+    # end
 
     @selected_parent_projekt = @current_projekt
 
@@ -197,7 +197,7 @@ class ProjektsController < ApplicationController
     # @resources = resource_model.where(projekt_id: @overview_page_special_projekt.map(&:id))
     @resources = resource_model.where(projekt_id: @overview_page_special_projekt.id)
 
-    @resources = @current_order == "recommendations" && current_user.present? ? @resources.recommendations(current_user) : @resources.for_render
+    # @resources = @current_order == "recommendations" && current_user.present? ? @resources.recommendations(current_user) : @resources.for_render
     @resources = @resources.search(@search_terms) if @search_terms.present?
     @resources = @resources.filter_by(@advanced_search_terms)
   end
