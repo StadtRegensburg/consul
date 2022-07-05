@@ -9,7 +9,7 @@ class Admin::ProjektsController < Admin::BaseController
 
   def index
     @projekts = Projekt.top_level.regular
-    # @projekt = Projekt.new
+    @new_projekt = Projekt.new
     @projekt = Projekt.overview_page
     @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
 
