@@ -23,7 +23,7 @@
 
   <div class='row'>
     <div class='column small-12 medium-9'>
-      <%= render_custom_block 'projekts_list' %>
+      <%= render_custom_block "projekts_list_#{@current_order}" %>
       <%= render Projekts::ProjektListTabsComponent.new(current_active_orders: @current_active_orders, overview_page: @current_projekt.overview_page?) %>
 
       <% if @projekts.any? %>
