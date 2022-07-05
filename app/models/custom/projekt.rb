@@ -350,6 +350,27 @@ class Projekt < ApplicationRecord
     special? && (special_name == OVERVIEW_PAGE_NAME)
   end
 
+  def name
+    if overview_page?
+      I18n.t('custom.projekts.overview_page.projekt_name')
+    else
+      super
+    end
+  end
+
+  def name_for_resource_creation(resource)
+    if overview_page?
+      resource_name = resource.class.name.downcase
+
+      I18n.t(
+        "custom.projekts.overview_page.projekt_name_for_#{resource_name}",
+        default: name
+      )
+    else
+      page.title
+    end
+  end
+
   private
 
   def create_corresponding_page
