@@ -62,6 +62,7 @@
     <nav class="margin-bottom <%= "legislation-process-list" if true %>">
     <div class="row">
       <div class="small-12 column">
+        <h3><%= "Beteiligung" %></h3>
         <div class='footer-phases-filter-subnav'>
           <ul id='filter-subnav' class='key-dates'>
             <%= render Pages::Projekts::FooterPhaseTabComponent.new(@overview_page_special_projekt.comment_phase, @current_phase.resources_name, @comments_count) %>

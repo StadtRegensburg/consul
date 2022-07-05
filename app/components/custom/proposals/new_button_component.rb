@@ -26,10 +26,7 @@ class Proposals::NewButtonComponent < ApplicationComponent
     def link_params_hash
       link_params = {}
 
-      unless @selected_parent_projekt.overview_page?
-        link_params[:projekt] = selected_parent_projekt
-      end
-
+      link_params[:projekt] = selected_parent_projekt
       link_params[:origin] = 'projekt' if controller_name == 'pages'
       link_params
     end

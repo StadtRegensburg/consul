@@ -42,12 +42,24 @@ class ProjektsController < ApplicationController
     @top_level_active_projekts = @projekts
     @top_level_archived_projekts = @projekts
 
-    @current_phase = @overview_page_special_projekt.projekt_phases.select(&:phase_activated?).first
+    @current_phase = find_current_phase(params[:selected_phase_id])
 
     @show_footer = Setting["extended_feature.projekts_overview_page_footer.show_in_#{@current_order}"]
 
     if @current_phase.present?
       send("set_#{@current_phase.resources_name}_footer_tab_variables", @overview_page_special_projekt)
+    end
+  end
+
+  def find_current_phase(default_phase_id)
+    default_phase_id ||= ProjektSetting.find_by(projekt: @overview_page_special_projekt, key: 'projekt_custom_feature.default_footer_tab').value
+
+    if default_phase_id.present?
+      ProjektPhase.find(default_phase_id)
+    elsif @overview_page_special_projekt.projekt_phases.select{ |phase| phase.phase_activated? }.any?
+      @overview_page_special_projekt.projekt_phases.select(&:phase_activated?).first
+    else
+      @overview_page_special_projekt.comment_phase
     end
   end
 

@@ -105,9 +105,13 @@ class Admin::ProjektsController < Admin::BaseController
 
   def update
     if @projekt.update_attributes(projekt_params)
-      redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
+      if @projekt.overview_page?
+        redirect_to admin_projekts_path + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
+      else
+        redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
+      end
     else
-      redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, alert: @projekt.errors.messages.values.flatten.join('; ')
+      redirect_to admin_projekts_path + params[:tab].to_s, alert: @projekt.errors.messages.values.flatten.join('; ')
     end
   end
 
