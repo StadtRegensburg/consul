@@ -15,6 +15,19 @@
   }
 }
 
+// Content blocks
+
+.custom-page {
+  .custom-content-block-body,
+  .custom-content-block-controls {
+    margin-bottom: 2.25rem;
+  }
+
+  .custom-content-block-body + .custom-content-block-controls {
+    margin-top: -1.5rem;
+  }
+}
+
 // Privacy
 
 span.replace-highlighted {
