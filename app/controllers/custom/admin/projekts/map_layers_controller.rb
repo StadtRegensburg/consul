@@ -4,32 +4,34 @@ class Admin::Projekts::MapLayersController < Admin::BaseController
 
   def new
     @map_layer = @projekt.map_layers.build
+    @role = params[:role]
   end
 
   def edit
+    @role = params[:role]
   end
 
   def create
     @map_layer = @projekt.map_layers.new(map_layer_params)
 
     if @map_layer.save
-      redirect_to edit_admin_projekt_path(params[:projekt_id]) + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
+      redirect_to redirect_path(params[:projekt_id], params[:tab].to_s), notice: t("admin.settings.index.map.flash.update")
     else
-      redirect_to edit_admin_projekt_path(params[:projekt_id]) + params[:tab].to_s, alert: @map_layer.errors.messages.values.flatten.join('; ')
+      redirect_to redirect_path(params[:projekt_id], params[:tab].to_s), alert: @map_layer.errors.messages.values.flatten.join('; ')
     end
   end
 
   def update
     if @map_layer.update(map_layer_params)
-      redirect_to edit_admin_projekt_path(params[:projekt_id]) + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
+      redirect_to redirect_path(params[:projekt_id], params[:tab].to_s), notice: t("admin.settings.index.map.flash.update")
     else
-      redirect_to edit_admin_projekt_path(params[:projekt_id]) + params[:tab].to_s, alert: @map_layer.errors.messages.values.flatten.join('; ')
+      redirect_to redirect_path(params[:projekt_id], params[:tab].to_s), alert: @map_layer.errors.messages.values.flatten.join('; ')
     end
   end
 
   def destroy
     @map_layer.destroy!
-    redirect_to edit_admin_projekt_path(params[:projekt_id]) + params[:tab].to_s
+    redirect_to redirect_path(params[:projekt_id], params[:tab].to_s)
   end
 
   private
@@ -44,5 +46,13 @@ class Admin::Projekts::MapLayersController < Admin::BaseController
 
   def set_map_layer
     @map_layer = MapLayer.find(params[:id])
+  end
+
+  def redirect_path(projekt_id, tab)
+    if params[:role] == 'projekt_manager'
+      edit_projekt_management_projekt_path(projekt_id) + tab
+    else
+      edit_admin_projekt_path(projekt_id) + tab
+    end
   end
 end

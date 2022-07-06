@@ -33,9 +33,9 @@ class Admin::ProjektsController < Admin::BaseController
 
   def update
     if @projekt.update_attributes(projekt_params)
-      redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, notice: t("admin.settings.index.map.flash.update")
+      redirect_to redirect_path(params[:id], params[:tab].to_s), notice: t("admin.settings.index.map.flash.update")
     else
-      redirect_to edit_admin_projekt_path(params[:id]) + params[:tab].to_s, alert: @projekt.errors.messages.values.flatten.join('; ')
+      redirect_to redirect_path(params[:id], params[:tab].to_s), alert: @projekt.errors.messages.values.flatten.join('; ')
     end
   end
 
@@ -47,7 +47,7 @@ class Admin::ProjektsController < Admin::BaseController
     map_location = MapLocation.find_by(projekt: params[:projekt_id])
     map_location.update(map_location_params)
 
-    redirect_to edit_admin_projekt_path(params[:projekt_id]) + '#tab-projekt-map', notice: t("admin.settings.index.map.flash.update")
+    redirect_to redirect_path(params[:projekt_id], '#tab-projekt-map'), notice: t("admin.settings.index.map.flash.update")
   end
 
   def create
@@ -148,5 +148,13 @@ class Admin::ProjektsController < Admin::BaseController
 
   def load_geozones
     @geozones = Geozone.all.order(:name)
+  end
+
+  def redirect_path(projekt_id, tab)
+    if params[:role] == 'projekt_manager'
+      edit_projekt_management_projekt_path(projekt_id) + tab
+    else
+      edit_admin_projekt_path(projekt_id) + tab
+    end
   end
 end
