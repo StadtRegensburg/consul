@@ -1,6 +1,17 @@
 (function() {
   "use strict";
   App.ProjektQuestionCustom = {
+    initialize: function() {
+      $("body").on("click", ".js-projekt-question-next", function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        this.loadQuestionSection(e.currentTarget.href)
+      }.bind(this));
+
+      $('body').on('change', '.js-projekt-answer-form input', this.debounce(this.submitForm.bind(this), 500))
+      $('body').on('click', '.js-projekt-answer-form label', this.handleCheckboxClick.bind(this))
+    },
+
     debounce: function(func, duration, immediate) {
       var timeout;
 
@@ -25,6 +36,10 @@
 
     submitForm: function(e) {
       var $element = $(e.currentTarget)
+
+      console.log('Submiting form')
+      console.log({ form: $element.closest('form') })
+
       $element.closest('form').trigger('submit.rails')
       var $elementLabel = $element.parent('label')
 
@@ -40,20 +55,12 @@
       var isLogined = $elementForm.attr('data-logined')
       var redirectTo = $elementForm.attr('data-redirect-to')
 
+      console.log('handleCheckboxClick')
+      console.log({ form: $elementForm, isLogined: isLogined, redirectTo: redirectTo })
+
       if (isLogined === 'false') {
         Turbolinks.visit(redirectTo)
       }
-    },
-
-    initialize: function() {
-      $("body").on("click", ".js-projekt-question-next", function(e) {
-        e.preventDefault()
-        e.stopPropagation()
-        this.loadQuestionSection(e.currentTarget.href)
-      }.bind(this));
-
-      $('body').on('change', '.js-projekt-answer-form input', this.debounce(this.submitForm.bind(this), 500))
-      $('body').on('click', '.js-projekt-answer-form label', this.handleCheckboxClick.bind(this))
     }
   }
 }).call(this);
