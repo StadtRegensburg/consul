@@ -22,8 +22,8 @@ class Admin::ProjektQuestionsController < Admin::BaseController
 
     if @projekt_question.save
       notice = 'Question created'
-      redirect_to edit_admin_projekt_path(@projekt.id, anchor: 'tab-projekt-questions'), notice: notice
-    else
+      redirect_to redirect_path(@projekt.id, '#tab-projekt-questions'), notice: notice
+      else
       flash.now[:error] = t("admin.legislation.questions.create.error")
       render 'admin/projekts/edit/projekt_questions/new'
     end
@@ -38,7 +38,7 @@ class Admin::ProjektQuestionsController < Admin::BaseController
   def update
     if @projekt_question.update(projekt_question_params)
       notice = 'Question updated'
-      redirect_to edit_admin_projekt_path(@projekt.id, anchor: 'tab-projekt-questions'), notice: notice
+      redirect_to redirect_path(@projekt.id, '#tab-projekt-questions'), notice: notice
     else
       flash.now[:error] = t("admin.legislation.questions.update.error")
       render :edit
@@ -48,9 +48,7 @@ class Admin::ProjektQuestionsController < Admin::BaseController
   def destroy
     @projekt_question.destroy!
 
-    notice = t("admin.legislation.questions.destroy.notice")
-
-    redirect_to edit_admin_projekt_path(@projekt, anchor: 'tab-projekt-questions'), notice: notice
+    redirect_to redirect_path(@projekt.id, '#tab-projekt-questions'), notice: t("admin.legislation.questions.destroy.notice")
   end
 
   private
@@ -78,9 +76,11 @@ class Admin::ProjektQuestionsController < Admin::BaseController
     @projekt = Projekt.find(params[:projekt_id])
   end
 
-  def request_referer
-    return request.referer + params[:projekt_question][:tab] if params[:projekt_question][:tab]
-
-    request.referer
+  def redirect_path(projekt_id, tab)
+    if params[:role] == 'projekt_manager'
+      edit_projekt_management_projekt_path(projekt_id) + tab
+    else
+      edit_admin_projekt_path(projekt_id) + tab
+    end
   end
 end

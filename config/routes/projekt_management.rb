@@ -3,7 +3,7 @@ namespace :projekt_management do
 
 
   # custom projekt routes
-  resources :projekts, only: [:index, :edit]
+  resources :projekts, only: [:index, :edit] do
   # resources :projekts, only: [:index, :edit, :update] do
   #   resources :settings, controller: 'projekt_settings', only: [:update] do
   #     member do
@@ -12,9 +12,9 @@ namespace :projekt_management do
   #   end
   #   resources :projekt_notifications, only: [:create, :update, :destroy]
   #   resources :projekt_events, only: [:create, :update, :destroy]
-  #   resources :projekt_questions  do
-  #     post "/answers/order_answers", to: "questions/answers#order_answers"
-  #   end
+    resources :projekt_questions, only: [:new, :edit]  #do
+      # post "/answers/order_answers", to: "questions/answers#order_answers"
+    #end
   #   resources :milestones, controller: "projekt_milestones"
   #   resources :progress_bars, except: :show, controller: "projekt_progress_bars"
   #   member do
@@ -28,6 +28,7 @@ namespace :projekt_management do
 
   #   resources :map_layers, only: [:update, :create, :edit, :new, :destroy], controller: 'projekts/map_layers'
   # end
+  end
 
 
 
