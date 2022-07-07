@@ -1,23 +1,23 @@
 class Admin::ProjektNotificationsController < Admin::BaseController
-  before_action :set_projekt, except: :destroy
+  before_action :set_projekt
 
   def create
     @projekt_notification = ProjektNotification.new(projekt_notification_params)
     @projekt_notification.projekt = @projekt
     @projekt_notification.save
-    redirect_to request_referer, notice: t("admin.settings.flash.updated")
+    redirect_to redirect_path(@projekt), notice: t("admin.settings.flash.updated")
   end
 
   def update
     @projekt_notification = ProjektNotification.find_by(id: params[:id])
     @projekt_notification.update(projekt_notification_params)
-    redirect_to request_referer, notice: t("admin.settings.flash.updated")
+    redirect_to redirect_path(@projekt), notice: t("admin.settings.flash.updated")
   end
 
   def destroy
     @projekt_notification = ProjektNotification.find_by(id: params[:id])
     @projekt_notification.destroy
-    redirect_to(request.referer + '#tab-projekt-notifications')
+    redirect_to redirect_path(@projekt)
   end
 
   private
@@ -30,9 +30,11 @@ class Admin::ProjektNotificationsController < Admin::BaseController
     @projekt = Projekt.find(params[:projekt_id])
   end
 
-  def request_referer
-    return request.referer + params[:projekt_notification][:tab] if params[:projekt_notification][:tab]
-
-    request.referer
+  def redirect_path(projekt)
+    if params[:role] == 'projekt_manager'
+      edit_projekt_management_projekt_path(projekt) + '#tab-projekt-notifications'
+    else
+      edit_admin_projekt_path(projekt) + '#tab-projekt-notifications'
+    end
   end
 end
