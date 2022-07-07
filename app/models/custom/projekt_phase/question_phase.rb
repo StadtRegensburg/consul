@@ -6,6 +6,10 @@ class ProjektPhase::QuestionPhase < ProjektPhase
     )
   end
 
+  def active?
+    phase_activated?
+  end
+
   def name
     'question_phase'
   end
