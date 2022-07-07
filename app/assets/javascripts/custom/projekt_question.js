@@ -36,10 +36,6 @@
 
     submitForm: function(e) {
       var $element = $(e.currentTarget)
-
-      console.log('Submiting form')
-      console.log({ form: $element.closest('form') })
-
       $element.closest('form').trigger('submit.rails')
       var $elementLabel = $element.parent('label')
 
@@ -54,9 +50,6 @@
       var $elementForm = $(e.currentTarget).closest('form')
       var isLogined = $elementForm.attr('data-logined')
       var redirectTo = $elementForm.attr('data-redirect-to')
-
-      console.log('handleCheckboxClick')
-      console.log({ form: $elementForm, isLogined: isLogined, redirectTo: redirectTo })
 
       if (isLogined === 'false') {
         Turbolinks.visit(redirectTo)
