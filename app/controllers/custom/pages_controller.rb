@@ -428,10 +428,17 @@ class PagesController < ApplicationController
 
   def default_phase_name(default_phase_id)
     default_phase_id ||= ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab').value
+
     if default_phase_id.present?
-      ProjektPhase.find(default_phase_id).resources_name
-    elsif @projekt.projekt_phases.select{ |phase| phase.phase_activated? }.any?
-      @projekt.projekt_phases.select{ |phase| phase.phase_activated? }.first.resources_name
+      projekt_phase = ProjektPhase.find(default_phase_id)
+
+      if projekt_phase.phase_activated?
+        return projekt_phase.resources_name
+      end
+    end
+
+    if @projekt.projekt_phases.select { |phase| phase.phase_activated? }.any?
+      @projekt.projekt_phases.select { |phase| phase.phase_activated? }.first.resources_name
     else
       'comments'
     end
