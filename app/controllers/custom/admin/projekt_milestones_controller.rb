@@ -1,7 +1,4 @@
-class Admin::ProjektMilestonesController < Admin::MilestonesController
-  private
+class Admin::ProjektMilestonesController < Admin::BaseController
+  include ProjektMilestoneActions
 
-    def milestoneable
-      Projekt.find(params[:projekt_id])
-    end
 end
