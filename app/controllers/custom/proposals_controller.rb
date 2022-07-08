@@ -71,7 +71,10 @@ class ProposalsController
 
       if @proposal.proposal_phase.active?
         if @proposal.projekt.overview_page?
-          redirect_to projekts_path
+          redirect_to projekts_path(
+            anchor: 'filter-subnav',
+            current_tab_path: 'proposal_phase_footer_tab'
+          )
         else
           redirect_to page_path(
             @proposal.projekt.page.slug,
@@ -81,7 +84,10 @@ class ProposalsController
         end
       else
         if @proposal.projekt.overview_page?
-          redirect_to projekts_path
+          redirect_to projekts_path(
+            anchor: 'filter-subnav',
+            current_tab_path: 'proposal_phase_footer_tab'
+          )
         else
           redirect_to proposals_path(order: 'created_at'), notice: t("proposals.notice.published")
         end
