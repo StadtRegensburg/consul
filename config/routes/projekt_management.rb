@@ -16,7 +16,7 @@ namespace :projekt_management do
       # post "/answers/order_answers", to: "questions/answers#order_answers"
     #end
     resources :milestones, controller: "projekt_milestones", except: %i[index show]
-  #   resources :progress_bars, except: :show, controller: "projekt_progress_bars"
+    resources :progress_bars, controller: "projekt_progress_bars", except: %i[show]
   #   member do
   #     get :order_up
   #     get :order_down

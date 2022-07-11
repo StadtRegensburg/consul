@@ -36,7 +36,6 @@ module ProjektMilestoneActions
 
   def update
     if @milestone.update(milestone_params)
-      byebug
       redirect_to namespaced_polymorphic_path(params[:namespace], @milestoneable, action: :edit) + "#tab-projekt-milestones", notice: t("admin.milestones.update.notice")
     else
       render 'admin/projekts/edit/projekt_milestones/new'

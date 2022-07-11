@@ -3,7 +3,7 @@
 <h2><%= t("custom.admin.progress_bars.index.progress_bar") %></h2>
 
 <%= link_to t("admin.progress_bars.manage"),
-            admin_polymorphic_path(milestoneable.progress_bars.new),
+            namespaced_polymorphic_path(namespace, milestoneable.progress_bars.new),
             class: "button hollow" %>
 
 <h2 class='margin-top'><%= t("admin.milestones.index.milestone") %></h2>
