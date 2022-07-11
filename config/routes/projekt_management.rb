@@ -30,7 +30,20 @@ namespace :projekt_management do
   # end
   end
 
-
+  namespace :site_customization do
+    resources :pages, except: [:show] do
+      resources :cards, except: [:show], as: :widget_cards
+    end
+    # resources :images, only: [:index, :update, :destroy]
+    # resources :content_blocks, except: [:show]
+    # delete "/heading_content_blocks/:id", to: "content_blocks#delete_heading_content_block", as: "delete_heading_content_block"
+    # get "/edit_heading_content_blocks/:id", to: "content_blocks#edit_heading_content_block", as: "edit_heading_content_block"
+    # put "/update_heading_content_blocks/:id", to: "content_blocks#update_heading_content_block", as: "update_heading_content_block"
+    # resources :information_texts, only: [:index] do
+    #   post :update, on: :collection
+    # end
+    # resources :documents, only: [:index, :new, :create, :destroy]
+  end
 
   # resources :projekts, only: [:index, :edit, :update] do
   #   put :hide, on: :member

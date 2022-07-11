@@ -3,7 +3,7 @@
 <% end %>
 
 <div id='new-map-layer'>
-  <%= link_to t("custom.map_layer.buttons.new_layer"), new_admin_projekt_map_layer_path(@projekt, role: 'projekt_manager'), class: 'button success margin-bottom', remote: true %>
+  <%= link_to t("custom.map_layer.buttons.new_layer"), new_admin_projekt_map_layer_path(@projekt, namespace: 'projekt_management'), class: 'button success margin-bottom', remote: true %>
 </div>
 
 
@@ -21,7 +21,7 @@
 
     <%= form_for(@projekt.map_location, url: admin_projekt_update_map_path(@projekt)) do |f| %>
       <%= hidden_field_tag :tab, '#tab-projekt-map' %>
-      <%= hidden_field_tag :role, params[:controller].include?('projekt_management') ? 'projekt_manager' : '' %>
+      <%= hidden_field_tag :namespace, params[:controller].include?('projekt_management') ? 'projekt_management' : '' %>
 
       <%= render partial: 'custom/admin/projekts/edit/projekt_map/map_settings_form', locals: { map_location_form: f, attribute: :latitude } %>
       <%= render partial: 'custom/admin/projekts/edit/projekt_map/map_settings_form', locals: { map_location_form: f, attribute: :longitude } %>
@@ -30,7 +30,7 @@
 
     <%= form_for(@projekt, url: admin_projekt_path, as: :projekt) do |f| %>
       <%= hidden_field_tag :tab, '#tab-projekt-map' %>
-      <%= hidden_field_tag :role, params[:controller].include?('projekt_management') ? 'projekt_manager' : '' %>
+      <%= hidden_field_tag :namespace, params[:controller].include?('projekt_management') ? 'projekt_management' : '' %>
 
       <%= render partial: 'custom/admin/projekts/edit/projekt_map/map_settings_form', locals: { map_location_form: f, attribute: :color }%>
     <% end %>
@@ -49,7 +49,7 @@ afafaa
 
 <%= form_for(@projekt, url: admin_projekt_path, as: :projekt) do |f| %>
   <%= hidden_field_tag :tab, '#tab-projekt-map' %>
-  <%= hidden_field_tag :role, params[:controller].include?('projekt_management') ? 'projekt_manager' : '' %>
+  <%= hidden_field_tag :namespace, params[:controller].include?('projekt_management') ? 'projekt_management' : '' %>
 
   <%= render "shared/errors", resource: @projekt %>
 

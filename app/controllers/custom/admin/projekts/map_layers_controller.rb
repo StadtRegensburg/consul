@@ -49,7 +49,7 @@ class Admin::Projekts::MapLayersController < Admin::BaseController
   end
 
   def redirect_path(projekt_id, tab)
-    if params[:role] == 'projekt_manager'
+    if params[:namespace] == 'projekt_management'
       edit_projekt_management_projekt_path(projekt_id) + tab
     else
       edit_admin_projekt_path(projekt_id) + tab

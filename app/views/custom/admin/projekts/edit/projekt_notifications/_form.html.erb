@@ -1,5 +1,5 @@
 <%= form_for(notification, url: url) do |f| %>
-  <%= hidden_field_tag :role, params[:controller].include?('projekt_management') ? 'projekt_manager' : '' %>
+  <%= hidden_field_tag :namespace, params[:controller].include?('projekt_management') ? 'projekt_management' : '' %>
 
   <div class='small-12 medium-7'>
     <%= f.text_field :title, {label: t("custom.admin.projekts.edit.projekt_notifications_tab.notification_title") } %>
