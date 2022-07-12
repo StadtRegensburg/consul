@@ -31,7 +31,7 @@ namespace :projekt_management do
   end
 
   namespace :site_customization do
-    resources :pages, except: [:show] do
+    resources :pages, only: %i[edit update] do
       resources :cards, except: [:show], as: :widget_cards
     end
     # resources :images, only: [:index, :update, :destroy]
