@@ -1,6 +1,11 @@
 class Admin::ProjektSettingsController < Admin::BaseController
   def update
     @projekt_setting = ProjektSetting.find_by(id: params[:projekt_id]) #workaround to avoid editing FeaturedSettingsComponent
+
+    if current_user.projekt_manager?
+      authorize! :update, @projekt_setting
+    end
+
     @projekt_setting.update!(projekt_setting_params)
 
     respond_to do |format|

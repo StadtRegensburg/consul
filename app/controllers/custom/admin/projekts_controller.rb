@@ -1,12 +1,11 @@
 class Admin::ProjektsController < Admin::BaseController
-  include MapLocationAttributes
-  include Translatable
-  include ImageAttributes
   include ProjektAdminActions
 
   before_action :find_projekt, only: [:update, :liveupdate, :destroy, :quick_update]
   before_action :load_geozones, only: [:new, :create, :edit, :update]
   before_action :process_tags, only: [:update]
+
+  helper_method :namespace_projekt_path
 
   def index
     @projekts = Projekt.top_level
@@ -31,23 +30,8 @@ class Admin::ProjektsController < Admin::BaseController
     redirect_back(fallback_location: admin_projekts_path)
   end
 
-  def update
-    if @projekt.update_attributes(projekt_params)
-      redirect_to redirect_path(params[:id], params[:tab].to_s), notice: t("admin.settings.index.map.flash.update")
-    else
-      redirect_to redirect_path(params[:id], params[:tab].to_s), alert: @projekt.errors.messages.values.flatten.join('; ')
-    end
-  end
-
   def liveupdate
     @projekt.update_attributes(projekt_params)
-  end
-
-  def update_map
-    map_location = MapLocation.find_by(projekt: params[:projekt_id])
-    map_location.update(map_location_params)
-
-    redirect_to redirect_path(params[:projekt_id], '#tab-projekt-map'), notice: t("admin.settings.index.map.flash.update")
   end
 
   def create
@@ -93,6 +77,7 @@ class Admin::ProjektsController < Admin::BaseController
   end
 
   def update_standard_phase
+    byebug
     @projekt = Projekt.find(params[:id])
     @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
 
@@ -107,54 +92,7 @@ class Admin::ProjektsController < Admin::BaseController
 
   private
 
-  def projekt_params
-    attributes = [
-      :name, :parent_id, :total_duration_start, :total_duration_end, :color, :icon, :geozone_affiliated, :tag_list, :related_sdg_list, geozone_affiliation_ids: [], sdg_goal_ids: [],
-      comment_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, :active, geozone_restriction_ids: [] ],
-      debate_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, :active, geozone_restriction_ids: [] ],
-      proposal_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, :active, geozone_restriction_ids: [] ],
-      budget_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, :active, geozone_restriction_ids: [] ],
-      voting_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, :active, geozone_restriction_ids: [] ],
-      legislation_process_phase_attributes: [:id, :start_date, :end_date, :geozone_restricted, :active, geozone_restriction_ids: [] ],
-      milestone_phase_attributes: [:id, :start_date, :end_date, :active],
-      newsfeed_phase_attributes: [:id, :start_date, :end_date, :active],
-      event_phase_attributes: [:id, :start_date, :end_date, :active],
-      question_phase_attributes: [:id, :start_date, :end_date, :active],
-      projekt_notification_phase_attributes: [:id, :start_date, :end_date, :active],
-      map_location_attributes: map_location_attributes,
-      image_attributes: image_attributes,
-      projekt_notifications: [:title, :body],
-      project_events: [:id, :title, :location, :datetime, :weblink],
-    ]
-    params.require(:projekt).permit(attributes, translation_params(Projekt))
-  end
-
-  def process_tags
-    params[:projekt][:tag_list] = (params[:projekt][:tag_list_predefined] || "")
-    params[:projekt].delete(:tag_list_predefined)
-  end
-
-  def map_location_params
-    if params[:map_location]
-      params.require(:map_location).permit(map_location_attributes)
-    else
-      params.permit(map_location_attributes)
-    end
-  end
-
-  def find_projekt
-    @projekt = Projekt.find(params[:id])
-  end
-
-  def load_geozones
-    @geozones = Geozone.all.order(:name)
-  end
-
-  def redirect_path(projekt_id, tab)
-    if params[:namespace] == 'projekt_management'
-      edit_projekt_management_projekt_path(projekt_id) + tab
-    else
-      edit_admin_projekt_path(projekt_id) + tab
-    end
+  def namespace_projekt_path
+    admin_projekt_path
   end
 end
