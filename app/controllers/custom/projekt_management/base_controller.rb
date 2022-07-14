@@ -4,8 +4,6 @@ class ProjektManagement::BaseController < ApplicationController
   before_action :authenticate_user!
   before_action :verify_projekt_manager
 
-  skip_authorization_check
-
   private
 
     def verify_projekt_manager

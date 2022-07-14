@@ -24,6 +24,7 @@
       </thead>
       <tbody>
         <% @cards.each do |card| %>
+          <% next unless card.persisted? %>
           <tr id="<%= dom_id(card) %>" class="homepage-card">
             <td>
               <%= card.label %>

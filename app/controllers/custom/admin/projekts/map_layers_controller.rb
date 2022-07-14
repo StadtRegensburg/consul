@@ -4,11 +4,11 @@ class Admin::Projekts::MapLayersController < Admin::BaseController
 
   def new
     @map_layer = @projekt.map_layers.build
-    @role = params[:role]
+    @namespace = params[:namespace]
   end
 
   def edit
-    @role = params[:role]
+    @namespace = params[:namespace]
   end
 
   def create

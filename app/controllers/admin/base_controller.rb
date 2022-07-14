@@ -8,6 +8,7 @@ class Admin::BaseController < ApplicationController
   private
 
     def verify_administrator
+      return if params[:controller].split('/').first == 'projekt_management'
       raise CanCan::AccessDenied unless current_user&.administrator?
     end
 end
