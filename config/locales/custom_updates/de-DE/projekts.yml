@@ -83,6 +83,8 @@ de:
         question_phase: Kurzumfrage
         voting_phase: Abstimmungen
       projekt_events:
+        index:
+          title: Veranstaltungskalender
         orders:
           all: Alle
           incoming: Kommende
