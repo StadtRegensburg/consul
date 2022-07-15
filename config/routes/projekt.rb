@@ -1,3 +1,7 @@
+namespace :projekts do
+  get 'events', to: 'projekt_events#index'
+end
+
 resources :projekts, only: [:index, :show] do
   resources :projekt_questions, only: [:index, :show]
   resources :projekt_question_answers, only: [:create, :update]
@@ -7,6 +11,7 @@ resources :projekts, only: [:index, :show] do
     get :debate_phase_footer_tab
     get :proposal_phase_footer_tab
     get :voting_phase_footer_tab
+    # get 'events', to: 'projekt_events#index'
   end
 
   member do
