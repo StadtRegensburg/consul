@@ -9,7 +9,6 @@
 
 <h2><%= t("admin.settings.index.map.title") %></h2>
 
-
 <table>
   <thead>
     <tr>
@@ -43,9 +42,7 @@
 
 <%= render 'custom/admin/projekts/edit/projekt_map/map_form', map_location: @projekt.map_location %>
 
-
-
-<%= form_for(@projekt, url: admin_projekt_path, as: :projekt) do |f| %>
+<%= form_for(@projekt, url: namespace_projekt_path, as: :projekt) do |f| %>
   <%= hidden_field_tag :tab, '#tab-projekt-map' %>
   <%= hidden_field_tag :namespace, params[:controller].include?('projekt_management') ? 'projekt_management' : '' %>
 

@@ -1,10 +1,8 @@
 <%= render "shared/globalize_locales", resource: @progress_bar %>
 
-<% namespace = params[:controller].split('/').first.include?('projekt_management') ? 'projekt_management' : 'admin' %>
-
 <%= translatable_form_for @progress_bar, url: namespaced_polymorphic_path(namespace, @progress_bar) do |f| %>
 
-  <%= hidden_field_tag :namespace, namespace %>
+  <%= hidden_field_tag :namespace, @namespace %>
 
   <div class="row">
     <div class="small-12 medium-6 column">

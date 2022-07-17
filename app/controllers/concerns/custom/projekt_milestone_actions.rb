@@ -8,7 +8,7 @@ module ProjektMilestoneActions
     before_action :load_milestoneable, only: [:index, :new, :create, :edit, :update, :destroy]
     before_action :load_milestone, only: [:edit, :update, :destroy]
     before_action :load_statuses, only: [:index, :new, :create, :edit, :update]
-    helper_method :milestoneable_path
+    helper_method :milestoneable_path, :admin_milestone_form_path
   end
 
   def index
@@ -16,37 +16,55 @@ module ProjektMilestoneActions
 
   def new
     @milestone = @milestoneable.milestones.new
+    @namespace = params[:controller].split("/").first
 
-    render 'admin/projekts/edit/projekt_milestones/new'
+    authorize! :new, @milestone if @namespace == "projekt_management"
+
+    render "admin/projekts/edit/projekt_milestones/new"
   end
 
   def create
     @milestone = @milestoneable.milestones.new(milestone_params)
 
+    authorize! :create, @milestone if params[:namespace] == "projekt_management"
+
     if @milestone.save
-      redirect_to namespaced_polymorphic_path(params[:namespace], @milestoneable, action: :edit) + "#tab-projekt-milestones", notice: t("admin.milestones.create.notice")
+      redirect_to namespaced_polymorphic_path(params[:namespace], @milestoneable, action: :edit) +
+        "#tab-projekt-milestones", notice: t("admin.milestones.create.notice")
     else
-      render 'admin/projekts/edit/projekt_milestones/new'
+      render "admin/projekts/edit/projekt_milestones/new"
     end
   end
 
   def edit
-    render 'admin/projekts/edit/projekt_milestones/edit'
+    @namespace = params[:controller].split("/").first
+
+    authorize! :edit, @milestone if @namespace == "projekt_management"
+
+    render "admin/projekts/edit/projekt_milestones/edit"
   end
 
   def update
+    authorize! :update, @milestone if params[:namespace] == "projekt_management"
+
     if @milestone.update(milestone_params)
-      redirect_to namespaced_polymorphic_path(params[:namespace], @milestoneable, action: :edit) + "#tab-projekt-milestones", notice: t("admin.milestones.update.notice")
+      redirect_to namespaced_polymorphic_path(params[:namespace], @milestoneable, action: :edit) +
+        "#tab-projekt-milestones", notice: t("admin.milestones.update.notice")
     else
-      render 'admin/projekts/edit/projekt_milestones/new'
+      render "admin/projekts/edit/projekt_milestones/new"
     end
   end
 
   def destroy
+    @namespace = params[:controller].split("/").first
+
+    authorize! :destroy, @milestone if @namespace == "projekt_management"
+
     @milestone.destroy!
 
-    namespace = params[:controller].split('/').first
-    redirect_to namespaced_polymorphic_path(namespace, @milestoneable, action: :edit) + "#tab-projekt-milestones", notice: t("admin.milestones.delete.notice")
+    namespace = params[:controller].split("/").first
+    redirect_to namespaced_polymorphic_path(namespace, @milestoneable, action: :edit) +
+      "#tab-projekt-milestones", notice: t("admin.milestones.delete.notice")
   end
 
   private
@@ -76,7 +94,7 @@ module ProjektMilestoneActions
     end
 
     def milestoneable_path
-      namespace = params[:controller].split('/').first
+      namespace = params[:controller].split("/").first
       namespaced_polymorphic_path(namespace, @milestoneable, action: :edit) + "#tab-projekt-milestones"
     end
 end

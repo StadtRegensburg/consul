@@ -67,6 +67,9 @@ module ProjektAdminActions
 
   def update_map
     map_location = MapLocation.find_by(projekt: params[:projekt_id])
+
+    authorize!(:update_map, map_location) if params[:namespace] == "projekt_management"
+
     map_location.update(map_location_params)
 
     redirect_to redirect_path(params[:projekt_id], '#tab-projekt-map'), notice: t("admin.settings.index.map.flash.update")

@@ -12,7 +12,7 @@ class Admin::ProjektQuestionsController < Admin::BaseController
   def new
     @projekt_question = ProjektQuestion.new(projekt_id: @projekt.id)
 
-    render 'admin/projekts/edit/projekt_questions/new'
+    render "admin/projekts/edit/projekt_questions/new"
   end
 
   def create
@@ -21,24 +21,24 @@ class Admin::ProjektQuestionsController < Admin::BaseController
     @projekt_question.author = current_user
 
     if @projekt_question.save
-      notice = 'Question created'
-      redirect_to redirect_path(@projekt.id, '#tab-projekt-questions'), notice: notice
-      else
+      notice = "Question created"
+      redirect_to redirect_path(@projekt.id, "#tab-projekt-questions"), notice: notice
+    else
       flash.now[:error] = t("admin.legislation.questions.create.error")
-      render 'admin/projekts/edit/projekt_questions/new'
+      render "admin/projekts/edit/projekt_questions/new"
     end
   end
 
   def edit
     @projekt_question = ProjektQuestion.find(params[:id])
 
-    render 'admin/projekts/edit/projekt_questions/edit'
+    render "admin/projekts/edit/projekt_questions/edit"
   end
 
   def update
     if @projekt_question.update(projekt_question_params)
-      notice = 'Question updated'
-      redirect_to redirect_path(@projekt.id, '#tab-projekt-questions'), notice: notice
+      notice = "Question updated"
+      redirect_to redirect_path(@projekt.id, "#tab-projekt-questions"), notice: notice
     else
       flash.now[:error] = t("admin.legislation.questions.update.error")
       render :edit
@@ -48,7 +48,8 @@ class Admin::ProjektQuestionsController < Admin::BaseController
   def destroy
     @projekt_question.destroy!
 
-    redirect_to redirect_path(@projekt.id, '#tab-projekt-questions'), notice: t("admin.legislation.questions.destroy.notice")
+    redirect_to redirect_path(@projekt.id, "#tab-projekt-questions"),
+      notice: t("admin.legislation.questions.destroy.notice")
   end
 
   private
@@ -67,20 +68,20 @@ class Admin::ProjektQuestionsController < Admin::BaseController
       )
     end
 
-  def set_projekt_and_projekt_question
-    @projekt = Projekt.find(params[:projekt_id])
-    @projekt_question = ProjektQuestion.find(params[:id])
-  end
-
-  def set_projekt
-    @projekt = Projekt.find(params[:projekt_id])
-  end
-
-  def redirect_path(projekt_id, tab)
-    if params[:namespace] == 'projekt_management'
-      edit_projekt_management_projekt_path(projekt_id) + tab
-    else
-      edit_admin_projekt_path(projekt_id) + tab
+    def set_projekt_and_projekt_question
+      @projekt = Projekt.find(params[:projekt_id])
+      @projekt_question = ProjektQuestion.find(params[:id])
     end
-  end
+
+    def set_projekt
+      @projekt = Projekt.find(params[:projekt_id])
+    end
+
+    def redirect_path(projekt_id, tab)
+      if params[:namespace] == "projekt_management"
+        edit_projekt_management_projekt_path(projekt_id) + tab
+      else
+        edit_admin_projekt_path(projekt_id) + tab
+      end
+    end
 end
