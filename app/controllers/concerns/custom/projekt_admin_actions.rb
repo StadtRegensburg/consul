@@ -6,6 +6,7 @@ module ProjektAdminActions
 
   def edit
     @projekt = Projekt.find(params[:id])
+    @namespace = params[:controller].split("/").first
 
     if @projekt.map_location.nil?
       @projekt.send(:create_map_location)
@@ -34,17 +35,17 @@ module ProjektAdminActions
 
     all_settings = ProjektSetting.where(projekt: @projekt).group_by(&:type)
     all_projekt_features = all_settings["projekt_feature"].group_by(&:projekt_feature_type)
-    @projekt_features_main = all_projekt_features['main']
+    @projekt_features_main = all_projekt_features["main"]
 
-    @projekt_features_general = all_projekt_features['general']
-    @projekt_features_sidebar = all_projekt_features['sidebar']
-    @projekt_features_footer = all_projekt_features['footer']
-    @projekt_features_debates = all_projekt_features['debates']
-    @projekt_features_proposals = all_projekt_features['proposals']
-    @projekt_options_proposals = all_projekt_features['proposal_options']
-    @projekt_features_polls = all_projekt_features['polls']
-    @projekt_features_budgets = all_projekt_features['budgets']
-    @projekt_features_milestones = all_projekt_features['milestones']
+    @projekt_features_general = all_projekt_features["general"]
+    @projekt_features_sidebar = all_projekt_features["sidebar"]
+    @projekt_features_footer = all_projekt_features["footer"]
+    @projekt_features_debates = all_projekt_features["debates"]
+    @projekt_features_proposals = all_projekt_features["proposals"]
+    @projekt_options_proposals = all_projekt_features["proposal_options"]
+    @projekt_features_polls = all_projekt_features["polls"]
+    @projekt_features_budgets = all_projekt_features["budgets"]
+    @projekt_features_milestones = all_projekt_features["milestones"]
 
     @projekt_newsfeed_settings = all_settings["projekt_newsfeed"]
 
@@ -54,14 +55,16 @@ module ProjektAdminActions
     @projekt_event = ProjektEvent.new
     @projekt_events = ProjektEvent.where(projekt: @projekt).order(created_at: :desc)
 
-    @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
+    @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: "projekt_custom_feature.default_footer_tab")
   end
 
   def update
+    authorize!(:update, Projekt) if params[:namespace] == "projekt_management"
+
     if @projekt.update_attributes(projekt_params)
       redirect_to redirect_path(params[:id], params[:tab].to_s), notice: t("admin.settings.index.map.flash.update")
     else
-      redirect_to redirect_path(params[:id], params[:tab].to_s), alert: @projekt.errors.messages.values.flatten.join('; ')
+      redirect_to redirect_path(params[:id], params[:tab].to_s), alert: @projekt.errors.messages.values.flatten.join("; ")
     end
   end
 
@@ -70,9 +73,9 @@ module ProjektAdminActions
 
     authorize!(:update_map, map_location) if params[:namespace] == "projekt_management"
 
-    map_location.update(map_location_params)
+    map_location.update!(map_location_params)
 
-    redirect_to redirect_path(params[:projekt_id], '#tab-projekt-map'), notice: t("admin.settings.index.map.flash.update")
+    redirect_to redirect_path(params[:projekt_id], "#tab-projekt-map"), notice: t("admin.settings.index.map.flash.update")
   end
 
   private
@@ -95,7 +98,7 @@ module ProjektAdminActions
       map_location_attributes: map_location_attributes,
       image_attributes: image_attributes,
       projekt_notifications: [:title, :body],
-      project_events: [:id, :title, :location, :datetime, :weblink],
+      project_events: [:id, :title, :location, :datetime, :weblink]
     ]
     params.require(:projekt).permit(attributes, translation_params(Projekt))
   end
@@ -122,7 +125,7 @@ module ProjektAdminActions
   end
 
   def redirect_path(projekt_id, tab)
-    if params[:namespace] == 'projekt_management'
+    if params[:namespace] == "projekt_management"
       edit_projekt_management_projekt_path(projekt_id) + tab
     else
       edit_admin_projekt_path(projekt_id) + tab

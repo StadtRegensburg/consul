@@ -1,6 +1,6 @@
 <%= render "shared/globalize_locales", resource: @milestone %>
 
-<%= translatable_form_for @milestone, url: admin_milestone_form_path do |f| %>
+<%= translatable_form_for @milestone, url: namespaced_polymorphic_path(@namespace, @milestone) do |f| %>
 
   <%= hidden_field_tag :namespace, @namespace %>
 
