@@ -158,6 +158,12 @@ de:
             notification_title: Titel
             page_title: Nachricht senden
             title: Nachricht senden
+          projekt_arguments_tab:
+            button: Stimme erlstellen
+            name: Stimmen
+            argument_title: Titel
+            page_title: Stimmen
+            title: Stimmen
           projekt_page: Projektseite
           projekt_phase_limitation: Beschränkung
           projekt_phases: Projektphasen

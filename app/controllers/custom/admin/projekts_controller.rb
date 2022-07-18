@@ -88,10 +88,13 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt_newsfeed_settings = all_settings["projekt_newsfeed"]
 
     @projekt_notification = ProjektNotification.new
-    @projekt_notifications = ProjektNotification.where(projekt: @projekt).order(created_at: :desc)
+    @projekt_notifications = @projekt.projekt_notifications.order(created_at: :desc)
+
+    @projekt_argument = ProjektArgument.new
+    @projekt_arguments = @projekt.projekt_arguments.order(created_at: :desc)
 
     @projekt_event = ProjektEvent.new
-    @projekt_events = ProjektEvent.where(projekt: @projekt).order(created_at: :desc)
+    @projekt_events = @projekt.projekt_events.order(created_at: :desc)
 
     @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
   end

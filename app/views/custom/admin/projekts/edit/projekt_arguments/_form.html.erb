@@ -1,0 +1,27 @@
+<%= form_for(projekt_argument, url: url) do |f| %>
+  <div class='small-12 medium-7'>
+    <%= f.text_field :name, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_name") } %>
+  </div>
+
+  <div class='small-12 medium-7'>
+    <%= f.check_box :pro, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_pro") } %>
+  </div>
+
+  <div class='small-12 medium-7'>
+    <%= f.text_field :party, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_party") } %>
+  </div>
+
+  <div class='small-12 medium-7'>
+    <%= f.text_field :position, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_position") } %>
+  </div>
+
+  <div class='small-12 medium-7'>
+    <%= f.text_field :note, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_note") } %>
+  </div>
+
+  <%= f.hidden_field :tab, value: "#tab-projekt-notifications" %>
+
+  <div>
+    <%= f.submit(t("custom.admin.projekts.edit.projekt_arguments_tab.button"), class: "button") %>
+  </div>
+<% end %>

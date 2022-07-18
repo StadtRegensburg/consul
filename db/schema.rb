@@ -1447,6 +1447,18 @@ ActiveRecord::Schema.define(version: 2022_07_18_131527) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "projekt_arguments", force: :cascade do |t|
+    t.string "name"
+    t.string "party"
+    t.boolean "pro"
+    t.string "position"
+    t.text "note"
+    t.integer "projekt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projekt_id"], name: "index_projekt_arguments_on_projekt_id"
+  end
+
   create_table "projekt_events", force: :cascade do |t|
     t.string "title"
     t.string "location"
