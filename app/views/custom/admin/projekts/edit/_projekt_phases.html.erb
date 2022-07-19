@@ -130,6 +130,12 @@
 
     <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
       projekt: @projekt,
+      projekt_phase: @projekt.argument_phase,
+      phase_name: 'argument_phase'
+    } %>
+
+    <%= render partial: 'custom/admin/projekts/edit/projekt_phases/edit_projekt_phase', locals: {
+      projekt: @projekt,
       projekt_phase: @projekt.voting_phase,
       phase_name: 'voting_phase'
     } %>

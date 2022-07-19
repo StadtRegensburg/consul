@@ -149,6 +149,17 @@ en:
             notification_title: Title
             page_title: Send message
             title: Send message
+          projekt_arguments_tab:
+            button: Save argument
+            name: Arguments
+            argument_name: Name
+            argument_pro: Pro
+            argument_party: Party
+            argument_position: Position
+            argument_note: Note
+            argument_created_at: Created at
+            page_title: Arguments
+            title: Arguments
           projekt_page: Project page
           projekt_phase_limitation: Restriction
           projekt_phases: Project phases

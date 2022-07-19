@@ -1,25 +1,31 @@
 <%= form_for(projekt_argument, url: url) do |f| %>
   <div class='small-12 medium-7'>
-    <%= f.text_field :name, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_name") } %>
+    <%= f.check_box :pro, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.argument_pro") } %>
   </div>
 
   <div class='small-12 medium-7'>
-    <%= f.check_box :pro, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_pro") } %>
+    <%= f.text_field :name, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.argument_name"), required: true } %>
   </div>
 
   <div class='small-12 medium-7'>
-    <%= f.text_field :party, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_party") } %>
+    <%= f.text_field :party, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.argument_party") } %>
   </div>
 
   <div class='small-12 medium-7'>
-    <%= f.text_field :position, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_position") } %>
+    <%= f.text_field :position, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.argument_position"), required: true } %>
   </div>
 
   <div class='small-12 medium-7'>
-    <%= f.text_field :note, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.notification_note") } %>
+    <%= f.text_area :note, {label: t("custom.admin.projekts.edit.projekt_arguments_tab.argument_note"), required: true } %>
   </div>
 
-  <%= f.hidden_field :tab, value: "#tab-projekt-notifications" %>
+  <div class='small-12 medium-7 margin-bottom'>
+    <%= f.file_field 'image_attributes[attachment]', {label: t("custom.admin.projekts.edit.projekt_arguments_tab.argument_image"), required: true } %>
+    <%= f.hidden_field 'image_attributes[title]', value: 'photo' %>
+    <%= f.hidden_field 'image_attributes[user_id]', value: current_user.id %>
+  </div>
+
+  <%= f.hidden_field :tab, value: "#tab-projekt-arguments" %>
 
   <div>
     <%= f.submit(t("custom.admin.projekts.edit.projekt_arguments_tab.button"), class: "button") %>

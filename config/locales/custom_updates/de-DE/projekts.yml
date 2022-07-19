@@ -64,6 +64,7 @@ de:
           projekt_events: Veranstaltungen
           projekt_notifications: Benachrichtigungen
           projekt_questions: Kurzumfrage
+          projekt_arguments: Stimmen
           proposals: Vorschläge
           questions: Questions
           legislation_process: Textbearbeitung
@@ -99,6 +100,14 @@ de:
         next_question: Nächste Frage
         first_question: Erste Frage
         answers_count: "%{count} Stimmen"
+      projekt_arguments:
+        pro: Pro
+        cons: Contra
+        fields:
+          name: Name
+          party: Partei
+          position: Position
+          note: Stimme
       selector:
         connected_resources:
           debate_description: Bitte ordnen Sie Ihre Diskussion einem der nachfolgenden Projekte oder Unterprojekte zu. Dies dient dazu, dass die Diskussionen in der Diskussionsübersicht besser auffindbar sind.

@@ -2,26 +2,17 @@
 
 <%= render partial: 'custom/admin/projekts/edit/projekt_arguments/form', locals: { url: admin_projekt_projekt_arguments_path(@projekt, @projekt_argument), projekt: @projekt, projekt_argument: @projekt_argument } %>
 
-<div class='margin-top'>
-  <% @projekt_arguments.each do |argument| %>
-    <div class='small-12 medium-7 projekt-argument' id="<%= dom_id(argument) %>">
-      <%= check_box_tag "edit_projekt_argument_#{ dom_id(argument) }" %>
-      <%= label_tag nil, nil, for: "edit_projekt_notification_#{ dom_id(argument) }", class: 'edit-projekt-argument' %>
+<% if @projekt_arguments_pro.any? %>
+    <h3>Pro:</h3>
+    <% @projekt_arguments_pro.each do |projekt_argument| %>
+      <%= render 'admin/projekts/edit/projekt_arguments/projekt_argument', projekt: @projekt, projekt_argument: projekt_argument %>
+    <% end %>
+  </div>
+<% end %>
 
-      <div class='projekt-argument-content'>
-        <h3><%= argument.name %></h3>
-        <p class="more-info"><%= argument.created_at.to_date %></p>
-        <p><%= argument.party %></p>
-        <p><%= argument.position %></p>
-        <p><%= argument.note %></p>
-      </div>
-
-      <div class='edit-projekt-argument-form'>
-        <%= render partial: 'custom/admin/projekts/edit/projekt_notifications/form', locals: { url: admin_projekt_projekt_argument_path(@projekt, argument), projekt: @projekt, notification: notification } %>
-      </div>
-
-      <%= link_to '', admin_projekt_projekt_notification_path(@projekt, notification), method: :delete, class: 'delete-projekt-notification' %>
-      <hr>
-    </div>
-  <% end %>
-</div>
+<% if @projekt_arguments_cons.any? %>
+    <h3>Contra:</h3>
+    <% @projekt_arguments_cons.each do |projekt_argument| %>
+      <%= render 'admin/projekts/edit/projekt_arguments/projekt_argument', projekt: @projekt, projekt_argument: projekt_argument %>
+    <% end %>
+<% end %>

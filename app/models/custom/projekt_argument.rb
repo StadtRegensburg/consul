@@ -4,10 +4,9 @@ class ProjektArgument < ApplicationRecord
   belongs_to :projekt
 
   validates :name, presence: true
-  validates :party, presence: true
-  validates :pro, presence: true
   validates :position, presence: true
   validates :note, presence: true
+  validates :image, presence: true
 
   default_scope { order(created_at: :asc) }
 
@@ -15,11 +14,11 @@ class ProjektArgument < ApplicationRecord
     all
   }
 
-  scope :sort_by_pro, -> {
+  scope :pro, -> {
     where(pro: true)
   }
 
-  scope :sort_by_cons, -> {
-    where(pro: false)
+  scope :cons, -> {
+    where.not(pro: true)
   }
 end

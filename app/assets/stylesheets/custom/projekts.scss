@@ -1017,6 +1017,132 @@ span.projekt-backlink:before {
   }
 }
 
+// Projekt arguments
+.admin .projekt-argument {
+  position: relative;
+
+  input[type='checkbox'] {
+    display: none;
+  }
+
+  .edit-projekt-argument-form {
+    display: none;
+  }
+
+  input:checked ~ .projekt-argument-content {
+    display: none;
+  }
+
+  input:checked ~ .edit-projekt-argument-form {
+    display: block;
+  }
+
+  .projekt-argument-content {
+    display: flex;
+  }
+
+  .projekt-argument-first-column {
+    width: 250px;
+  }
+
+  .edit-projekt-argument {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .edit-projekt-argument::before {
+    content: "\f044";
+    font-weight: normal;
+    font-family: 'Font Awesome 5 Free';
+    color: #004a83;
+  }
+
+  .delete-projekt-argument {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .delete-projekt-argument::before {
+    content: "\f2ed";
+    font-weight: normal;
+    font-family: 'Font Awesome 5 Free';
+    color: #cc4b37;
+  }
+
+  .projekt-argument-title {
+    margin-bottom: 5px;
+  }
+
+  .projekt-argument-row {
+    margin-bottom: 5px;
+
+    > b {
+      display: inline-block;
+      width: 185px;
+    }
+  }
+
+  .projekt-argument-image-column {
+    max-width: 120px;
+    margin-right: 20px;
+  }
+}
+
+.projekt-arguments-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.projekt-argument-column {
+  width: 45%;
+
+  &:first-child {
+  }
+}
+
+.projekt-argument-column-title {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 28px;
+}
+
+.projekt-argument-columns-separator {
+  display: block;
+  width: 1px;
+  margin-top: 10px;
+  background: #c0c0c0;
+}
+
+.projekt-argument-item {
+  display: flex;
+
+  .projekt-argument-image-column {
+    width: 162px;
+    min-height: 100px;
+    margin-right: 20px;
+
+    .projekt-argument-image {
+      width: 100%;
+      min-height: 100px;
+      margin-bottom: 50px;
+    }
+  }
+
+  .projekt-argument-row {
+    > b {
+      display: inline-block;
+      width: 135px;
+    }
+  }
+}
+
 .projekt-text-hint-button {
   min-width: 300px;
   padding: 4px 5px;
