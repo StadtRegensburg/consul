@@ -14,7 +14,7 @@ module Projekts
     def index
       @valid_orders = %w[all incoming past]
       @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
-      @projekt_events = ProjektEvent.all.page(params[:page]).send("sort_by_#{@current_order}")
+      @projekt_events = ProjektEvent.all.page(params[:page]).per(10).send("sort_by_#{@current_order}")
     end
   end
 end

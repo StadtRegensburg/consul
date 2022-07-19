@@ -6,3 +6,5 @@
 </div>
 
 <%= render Projekts::ProjektEvents::List.new(projekt_events: @projekt_events) %>
+
+<%= paginate @projekt_events %>
