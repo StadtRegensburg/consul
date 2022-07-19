@@ -77,7 +77,6 @@ class Admin::ProjektsController < Admin::BaseController
   end
 
   def update_standard_phase
-    byebug
     @projekt = Projekt.find(params[:id])
     @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
 

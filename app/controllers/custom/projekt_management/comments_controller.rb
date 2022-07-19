@@ -1,11 +1,8 @@
-class ProjektManagement::ProposalsController < ProjektManagement::BaseController
+class ProjektManagement::CommentsController < ProjektManagement::BaseController
   include ModerateActions
-  include FeatureFlags
 
   has_filters %w[all unseen seen], only: :index
-  has_orders %w[flags created_at], only: :index
-
-  feature_flag :proposals
+  has_orders %w[flags newest], only: :index
 
   before_action :load_resources, only: [:index, :moderate]
 
@@ -14,12 +11,16 @@ class ProjektManagement::ProposalsController < ProjektManagement::BaseController
   def index
     super
 
-    render "moderation/proposals/index"
+    render "moderation/comments/index"
   end
 
   private
 
     def resource_model
-      Proposal
+      Comment
+    end
+
+    def author_id
+      :user_id
     end
 end

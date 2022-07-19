@@ -12,4 +12,16 @@
       class: ('is-active' if true)
     ) %>
   </li>
+
+	<li class="<%= "is-active" if controller_name == "proposals" %>">
+		<%= link_to t("admin.menu.proposals"), projekt_management_proposals_path, class: "proposals-link" %>
+	</li>
+
+	<li class="<%= "is-active" if controller_name == "debates" %>">
+		<%= link_to t("admin.menu.debates"), projekt_management_debates_path, class: "debates-link" %>
+	</li>
+
+  <li class="<%= "is-active" if controller_name == "comments" %>">
+    <%= link_to t("admin.menu.comments"), projekt_management_comments_path, class: "comments-link" %>
+  </li>
 </ul>

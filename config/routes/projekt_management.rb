@@ -13,7 +13,17 @@ namespace :projekt_management do
     end
   end
 
-  resources :proposals, only: [:index, :update, :show] do
+  resources :proposals, only: :index do
+    put :hide, on: :member
+    put :moderate, on: :collection
+  end
+
+  resources :debates, only: :index do
+    put :hide, on: :member
+    put :moderate, on: :collection
+  end
+
+  resources :comments, only: :index do
     put :hide, on: :member
     put :moderate, on: :collection
   end
