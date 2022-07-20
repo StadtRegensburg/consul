@@ -166,7 +166,7 @@ en:
           projekt_phases_tab:
             actions: Actions
             activate: Enabled
-            activate_phase: Status
+            activate_phase: Active
             affiliation: Area allocation
             beginning: Start date
             budget_phase: Budget phase

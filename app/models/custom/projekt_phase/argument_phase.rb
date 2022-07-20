@@ -4,11 +4,6 @@ class ProjektPhase::ArgumentPhase < ProjektPhase
     active?
   end
 
-  def active?
-    # phase_activated?
-    super
-  end
-
   def name
     'argument_phase'
   end
