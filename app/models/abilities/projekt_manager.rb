@@ -49,14 +49,25 @@ module Abilities
                                       hidden_at: nil,
                                       projekt: { projekt_manager_id: user.projekt_manager.id }
 
-      # can :moderate,      Comment
-      # can :hide,          Comment, hidden_at: nil
-      # can :ignore_flag,   Comment, ignored_flag_at: nil, hidden_at: nil
+      can :moderate, Comment do |comment|
+        comment.projekt.present? &&
+          comment.projekt.projekt_manager_id == user.projekt_manager.id
+      end
 
-      can :moderate, Comment, Comment.joins_projekts
-                                     .where(projekts: { projekt_manager_id: user.projekt_manager.id })
+      can :hide, Comment do |comment|
+        comment.projekt.present? &&
+          comment.projekt.projekt_manager_id == user.projekt_manager.id &&
+          comment.hidden_at == nil
+      end
 
-      can :comment_as_moderator, [Debate, Proposal], projekts: { projekt_manager_id: user.projekt_manager.id }
+      can :ignore_flag, Comment do |comment|
+        comment.projekt.present? &&
+          comment.projekt.projekt_manager_id == user.projekt_manager.id &&
+          comment.ignored_flag_at == nil &&
+          comment.hidden_at == nil
+      end
+
+      # can :comment_as_moderator, [Debate, Proposal], projekts: { projekt_manager_id: user.projekt_manager.id }
       # can :comment_as_moderator, Comment, hidden_at: nil
 
       # can :manage, [Debate, Proposal], projekt: { projekt_manager_id: user.projekt_manager.id }

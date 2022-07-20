@@ -16,7 +16,6 @@ class Admin::BaseController < ApplicationController
 
       params[:namespace] == "projekt_management" ||
         params[:controller].split("/").first == "projekt_management" ||
-        params[:controller] == "admin/projekt_settings" ||
         params[:controller] == "admin/projekts/map_layers"
     end
 end
