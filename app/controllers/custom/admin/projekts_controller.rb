@@ -34,7 +34,6 @@ class Admin::ProjektsController < Admin::BaseController
     @overview_page_special_projekt.build_voting_phase if @overview_page_special_projekt.voting_phase.blank?
     @overview_page_special_projekt.voting_phase.geozone_restrictions.build
 
-
     @map_configuration_settings = Setting.all.group_by(&:type)['map']
     @geozones = Geozone.all.order(Arel.sql("LOWER(name)"))
   end
@@ -88,10 +87,14 @@ class Admin::ProjektsController < Admin::BaseController
     @projekt_newsfeed_settings = all_settings["projekt_newsfeed"]
 
     @projekt_notification = ProjektNotification.new
-    @projekt_notifications = ProjektNotification.where(projekt: @projekt).order(created_at: :desc)
+    @projekt_notifications = @projekt.projekt_notifications.order(created_at: :desc)
+
+    @projekt_argument = ProjektArgument.new
+    @projekt_arguments_pro = @projekt.projekt_arguments.pro.order(created_at: :desc)
+    @projekt_arguments_cons = @projekt.projekt_arguments.cons.order(created_at: :desc)
 
     @projekt_event = ProjektEvent.new
-    @projekt_events = ProjektEvent.where(projekt: @projekt).order(created_at: :desc)
+    @projekt_events = @projekt.projekt_events.order(created_at: :desc)
 
     @default_footer_tab_setting = ProjektSetting.find_by(projekt: @projekt, key: 'projekt_custom_feature.default_footer_tab')
   end
@@ -201,6 +204,7 @@ class Admin::ProjektsController < Admin::BaseController
       event_phase_attributes: [:id, :start_date, :end_date, :active],
       question_phase_attributes: [:id, :start_date, :end_date, :active],
       projekt_notification_phase_attributes: [:id, :start_date, :end_date, :active],
+      argument_phase_attributes: [:id, :start_date, :end_date, :active, geozone_restriction_ids: []],
       map_location_attributes: map_location_attributes,
       image_attributes: image_attributes,
       projekt_notifications: [:title, :body],

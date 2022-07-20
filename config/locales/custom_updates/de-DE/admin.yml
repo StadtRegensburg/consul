@@ -158,6 +158,17 @@ de:
             notification_title: Titel
             page_title: Nachricht senden
             title: Nachricht senden
+          projekt_arguments_tab:
+            button: Stimme erlstellen
+            name: Stimmen
+            argument_name: Name
+            argument_pro: Pro
+            argument_party: Partei
+            argument_position: Position
+            argument_note: Stimme
+            argument_created_at: Created at
+            page_title: Stimmen
+            title: Stimmen
           projekt_page: Projektseite
           projekt_phase_limitation: Beschränkung
           projekt_phases: Projektphasen
@@ -311,3 +322,5 @@ de:
           category_options:
             active_projekt: Aktiver Beteiligungsprozess
             archived_projekt: Abgeschlossener Beteiligungsprozess
+      flash:
+        deleted: Gelöscht
