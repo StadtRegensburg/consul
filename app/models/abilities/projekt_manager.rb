@@ -31,23 +31,27 @@ module Abilities
         resource.projekt.projekt_manager_id == user.projekt_manager.id
       end
 
-      # can :hide, User
-      # cannot :hide, User, id: user.id
-
       can :block, User
       cannot :block, User, id: user.id
 
-      can :moderate,      Proposal,   projekt: { projekt_manager_id: user.projekt_manager.id }
-      can :hide,          Proposal,   hidden_at: nil, projekt: { projekt_manager_id: user.projekt_manager.id }
-      can :ignore_flag,   Proposal,   ignored_flag_at: nil,
-                                      hidden_at: nil,
-                                      projekt: { projekt_manager_id: user.projekt_manager.id }
+      can :moderate, Proposal, projekt: { projekt_manager_id: user.projekt_manager.id }
+      can :hide, Proposal, hidden_at: nil, projekt: { projekt_manager_id: user.projekt_manager.id }
+      can :ignore_flag, Proposal, ignored_flag_at: nil,
+                                  hidden_at: nil,
+                                  projekt: { projekt_manager_id: user.projekt_manager.id }
 
-      can :moderate,      Debate,     projekt: { projekt_manager_id: user.projekt_manager.id }
-      can :hide,          Debate,     hidden_at: nil, projekt: { projekt_manager_id: user.projekt_manager.id }
-      can :ignore_flag,   Debate,     ignored_flag_at: nil,
-                                      hidden_at: nil,
-                                      projekt: { projekt_manager_id: user.projekt_manager.id }
+      can :moderate, Debate, projekt: { projekt_manager_id: user.projekt_manager.id }
+      can :hide, Debate, hidden_at: nil, projekt: { projekt_manager_id: user.projekt_manager.id }
+      can :ignore_flag, Debate, ignored_flag_at: nil,
+                                hidden_at: nil,
+                                projekt: { projekt_manager_id: user.projekt_manager.id }
+
+      can :moderate, Budget::Investment, budget: { projekt: { projekt_manager_id: user.projekt_manager.id }}
+      can :hide, Budget::Investment, hidden_at: nil,
+                                     budget: { projekt: { projekt_manager_id: user.projekt_manager.id }}
+      can :ignore_flag, Budget::Investment, ignored_flag_at: nil,
+                                           hidden_at: nil,
+                                           budget: { projekt: { projekt_manager_id: user.projekt_manager.id }}
 
       can :moderate, Comment do |comment|
         comment.projekt.present? &&
@@ -67,30 +71,9 @@ module Abilities
           comment.hidden_at == nil
       end
 
-      # can :comment_as_moderator, [Debate, Proposal], projekts: { projekt_manager_id: user.projekt_manager.id }
-      # can :comment_as_moderator, Comment, hidden_at: nil
+      can :comment_as_moderator, [Debate, Proposal, Comment]
 
-      # can :manage, [Debate, Proposal], projekt: { projekt_manager_id: user.projekt_manager.id }
-
-      # can :hide, ProposalNotification, hidden_at: nil
-      # cannot :hide, ProposalNotification, author_id: user.id
-
-      # can :ignore_flag, ProposalNotification, ignored_at: nil, hidden_at: nil
-      # # cannot :ignore_flag, ProposalNotification, author_id: user.id
-
-      # can :moderate, ProposalNotification
-      # # cannot :moderate, ProposalNotification, author_id: user.id
-
-      # can :index, ProposalNotification
-
-      # can :hide, Budget::Investment, hidden_at: nil
-      # cannot :hide, Budget::Investment, author_id: user.id
-
-      # can :ignore_flag, Budget::Investment, ignored_flag_at: nil, hidden_at: nil
-      # # cannot :ignore_flag, Budget::Investment, author_id: user.id
-
-      # can :moderate, Budget::Investment
-      # # cannot :moderate, Budget::Investment, author_id: user.id
+      can :manage, [Debate, Proposal], projekt: { projekt_manager_id: user.projekt_manager.id }
     end
   end
 end
