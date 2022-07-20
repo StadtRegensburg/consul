@@ -7,7 +7,6 @@
     <% @projekt_arguments_pro.each do |projekt_argument| %>
       <%= render 'admin/projekts/edit/projekt_arguments/projekt_argument', projekt: @projekt, projekt_argument: projekt_argument %>
     <% end %>
-  </div>
 <% end %>
 
 <% if @projekt_arguments_cons.any? %>
