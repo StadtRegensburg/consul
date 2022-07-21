@@ -637,6 +637,10 @@ span.projekt-backlink:before {
   }
 }
 
+.custom-content-block-body + .projekt-listing, .custom-content-block-controls + .projekt-listing {
+  margin-top: 20px;
+}
+
 .projekt-event-item {
   display: flex;
   border-bottom: 1px solid #dcdcdc;
