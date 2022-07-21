@@ -102,6 +102,7 @@ de:
           statuses: Status definieren
         deficiency_reports_title: Mängelmelder
         projekts: Projekte
+        projekt_managers: Projektmanager*innen
         legislation: Textbearbeitung
       polls:
         questions:
@@ -293,6 +294,12 @@ de:
           map_settings: Standard-Kartenkonfiguration
           settings: Funktionen
           overview_page: Projektübersichtseite
+      projekt_managers:
+        index:
+          title: Projektmanager*innen
+          no_projekt_managers: Keine Projektmanager*innen vorhanden.
+        search:
+          title: "Projektmanager*innen: Benutzer*innensuche"
       settings:
         index:
           extended_features:

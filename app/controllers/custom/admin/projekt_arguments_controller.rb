@@ -1,45 +1,58 @@
 class Admin::ProjektArgumentsController < Admin::BaseController
   include ImageAttributes
 
-  before_action :set_projekt, except: :destroy
+  before_action :set_projekt
+  before_action :set_namespace, except: :destroy
 
   def create
     @projekt_argument = ProjektArgument.new(projekt_argument_params)
     @projekt_argument.projekt = @projekt
 
-    if @projekt_argument.save
-      redirect_to request_referer, notice: t("admin.settings.flash.updated")
-    else
-      render request_referer, error: t("admin.settings.flash.error")
-    end
+    authorize! :create, @projekt_argument if @namespace == "projekt_management"
+
+    @projekt_argument.save!
+    redirect_to redirect_path(@projekt), notice: t("admin.settings.flash.updated")
   end
 
   def update
     @projekt_argument = ProjektArgument.find_by(id: params[:id])
-    @projekt_argument.update(projekt_argument_params)
 
-    redirect_to request_referer, notice: t("admin.settings.flash.updated")
+    authorize! :update, @projekt_argument if @namespace == "projekt_management"
+
+    @projekt_argument.update!(projekt_argument_params)
+    redirect_to redirect_path(@projekt), notice: t("admin.settings.flash.updated")
   end
 
   def destroy
     @projekt_argument = ProjektArgument.find_by(id: params[:id])
-    @projekt_argument.destroy
-    redirect_to(request.referer + '#tab-projekt-arguments', notice: t("custom.admin.flash.deleted"))
+    @namespace = params[:namespace]
+
+    authorize! :destroy, @projekt_argument if @namespace == "projekt_management"
+
+    @projekt_argument.destroy!
+    redirect_to redirect_path(@projekt)
   end
 
   private
 
-  def projekt_argument_params
-    params.require(:projekt_argument).permit(:name, :party, :pro, :position, :note, image_attributes: image_attributes)
-  end
+    def projekt_argument_params
+      params.require(:projekt_argument).permit(:name, :party, :pro, :position,
+                                               :note, image_attributes: image_attributes)
+    end
 
-  def set_projekt
-    @projekt = Projekt.find(params[:projekt_id])
-  end
+    def set_projekt
+      @projekt = Projekt.find(params[:projekt_id])
+    end
 
-  def request_referer
-    return request.referer + params[:projekt_argument][:tab] if params[:projekt_argument][:tab]
+    def set_namespace
+      @namespace = params[:projekt_argument][:namespace]
+    end
 
-    request.referer
-  end
+    def redirect_path(projekt)
+      if @namespace == "projekt_management"
+        edit_projekt_management_projekt_path(projekt) + "#tab-projekt-arguments"
+      else
+        edit_admin_projekt_path(projekt) + "#tab-projekt-arguments"
+      end
+    end
 end

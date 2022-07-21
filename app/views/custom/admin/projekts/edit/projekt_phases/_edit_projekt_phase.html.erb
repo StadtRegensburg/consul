@@ -14,8 +14,9 @@
 
   </td>
   <td>
-    <%= form_for(projekt, url: admin_projekt_path(projekt), as: :projekt) do |f| %>
+    <%= form_for(@projekt, url: namespace_projekt_path(@projekt), as: :projekt) do |f| %>
       <%= hidden_field_tag :tab, '#tab-projekt-phases' %>
+      <%= hidden_field_tag :namespace, params[:controller].include?('projekt_management') ? 'projekt_management' : '' %>
 
       <%= f.fields_for phase_name.to_s do |phase_form| %>
         <div style='display: flex'>

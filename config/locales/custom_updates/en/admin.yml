@@ -95,6 +95,7 @@ en:
           statuses: Set categories
         deficiency_reports_title: Deficiency reports
         projekts: Projects
+        projekt_managers: Project managers
         legislation: Text edit
       polls:
         questions:
@@ -281,6 +282,12 @@ en:
           settings: Functions
           legislation_process: Text edit
           overview_page: Project overview page
+      projekt_managers:
+        index:
+          title: Projekt managers
+          no_projekt_managers: No projekt managers
+        search:
+          title: "Projekt managers: User search"
       settings:
         index:
           extended_features:
