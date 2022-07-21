@@ -84,19 +84,32 @@ class Projekt < ApplicationRecord
                                                where( "total_duration_start IS NULL OR total_duration_start <= ?", Date.today ).
                                                where( "total_duration_end IS NULL OR total_duration_end >= ?", Date.today) }
 
-  scope :expired, ->(timestamp = Date.today) { activated.
-                                               where( "total_duration_end < ?", Date.today) }
+  scope :expired, ->(timestamp = Date.today) {
+    activated.
+      not_in_individual_list.
+      where( "total_duration_end < ?", Date.today)
+  }
 
-  scope :upcoming, ->(timestamp = Date.today) { activated.
-                                                where( "total_duration_start > ?", Date.today) }
+  scope :upcoming, ->(timestamp = Date.today) {
+    activated.
+      not_in_individual_list.
+      where( "total_duration_start > ?", Date.today)
+  }
 
   scope :underway, ->() { current.
+                          not_in_individual_list.
                           includes(:projekt_phases).
                           select { |p| p.projekt_phases.any? { |phase| phase.current? }} }
 
   scope :ongoing, ->() { current.
+                         not_in_individual_list.
                          includes(:projekt_phases).
                          select { |p| p.projekt_phases.all? { |phase| !phase.current? }} }
+
+  scope :not_in_individual_list, -> {
+    joins( 'INNER JOIN projekt_settings siil ON projekts.id = siil.projekt_id' )
+      .where( 'siil.key': 'projekt_feature.general.show_in_individual_list', 'siil.value': [nil, ''])
+  }
 
   scope :individual_list, -> {
     joins( 'INNER JOIN projekt_settings siil ON projekts.id = siil.projekt_id' )
