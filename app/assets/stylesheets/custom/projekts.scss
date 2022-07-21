@@ -544,28 +544,41 @@ span.projekt-backlink:before {
 
 .projekt-listing {
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   border: 1px solid #e5e6e9;
   background: #f9f9f9;
   color: #707070;
   padding: 18px;
   margin-bottom: 1rem;
+  justify-content: space-between;
+
+  @media screen and (max-width: 750px) {
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 10px;
+  }
 
   .sdg-goal-tag-list li:first-child {
     margin-left: 0;
   }
 
-  @media screen and (max-width: 650px) {
-    justify-content: center;
-    padding: 15px 10px;
+  .projekt-listing--inner-container {
+    display: flex;
+    // flex-wrap: wrap;
+
+    @media screen and (max-width: 750px) {
+      flex-direction: column;
+    }
   }
 
   .image {
     max-width: 150px;
+    min-width: 150px;
 
-    @media screen and (max-width: 650px) {
+    @media screen and (max-width: 750px) {
       flex-direction: column;
       max-width: 100%;
+      min-width: 100%;
     }
   }
 
@@ -591,8 +604,9 @@ span.projekt-backlink:before {
     padding-left: 15px;
 
     @media (min-width: 40em) {
-      max-width: calc(100% - 300px);
+      // max-width: calc(100% - 300px);
     }
+
   }
 
   .projekt-title {
@@ -602,14 +616,14 @@ span.projekt-backlink:before {
   .projekt-link {
     align-self: center;
 
-    @media screen and (max-width: 650px) {
+    @media screen and (max-width: 750px) {
       width: 100%;
     }
 
     a.button {
       min-width: 150px;
 
-      @media screen and (max-width: 650px) {
+      @media screen and (max-width: 750px) {
         width: 100%;
         margin-top: 15px;
         margin-bottom: 10px;
