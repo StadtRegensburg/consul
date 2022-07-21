@@ -21,7 +21,8 @@ class Admin::BaseController < ApplicationController
       ]
 
       params[:namespace] == "projekt_management" ||
+        params[:controller].split("/").first == "projekt_management" ||
         (params[:controller].in?(shared_controllers) && current_user&.projekt_manager?) ||
-        params[:controller].split("/").first == "projekt_management"
+        (params[:action] == "update_standard_phase" && current_user&.projekt_manager?)
     end
 end
