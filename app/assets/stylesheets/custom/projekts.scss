@@ -1038,7 +1038,7 @@ span.projekt-backlink:before {
 .admin .projekt-argument {
   position: relative;
 
-  input[type='checkbox'] {
+  .projekt-argument--edit-switch-checkbox {
     display: none;
   }
 
@@ -1187,4 +1187,8 @@ span.projekt-backlink:before {
   width: 100px;
   margin-top: 20px;
   text-align: center;
+}
+
+.d-flex {
+  display: flex;
 }

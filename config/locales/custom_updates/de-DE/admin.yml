@@ -164,9 +164,11 @@ de:
             name: Stimmen
             argument_name: Name
             argument_pro: Pro
+            argument_cons: Contra
             argument_party: Partei
             argument_position: Position
             argument_note: Stimme
+            argument_image: Bild
             argument_created_at: Created at
             page_title: Stimmen
             title: Stimmen

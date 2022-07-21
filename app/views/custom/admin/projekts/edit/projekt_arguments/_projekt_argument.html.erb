@@ -1,5 +1,5 @@
 <div class='small-12 medium-7 projekt-argument' id="<%= dom_id(projekt_argument) %>">
-  <%= check_box_tag "edit_projekt_argument_#{ dom_id(projekt_argument) }" %>
+  <%= check_box_tag "edit_projekt_argument_#{ dom_id(projekt_argument) }", nil, false, class: 'projekt-argument--edit-switch-checkbox' %>
   <%= label_tag nil, nil, for: "edit_projekt_argument_#{ dom_id(projekt_argument) }", class: 'edit-projekt-argument' %>
 
   <div class='projekt-argument-content'>
