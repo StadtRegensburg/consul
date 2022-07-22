@@ -1,6 +1,6 @@
 class Admin::ProjektNotificationsController < Admin::BaseController
   before_action :set_projekt
-  before_action :set_namespace
+  before_action :set_namespace, only: %i[create update]
 
   def create
     @projekt_notification = ProjektNotification.new(projekt_notification_params)
@@ -23,6 +23,7 @@ class Admin::ProjektNotificationsController < Admin::BaseController
 
   def destroy
     @projekt_notification = ProjektNotification.find_by(id: params[:id])
+    @namespace = params[:namespace]
 
     authorize! :destroy, @projekt_notification if @namespace == "projekt_management"
 
@@ -41,11 +42,11 @@ class Admin::ProjektNotificationsController < Admin::BaseController
     end
 
     def set_namespace
-      @namespace = params[:projekt_argument][:namespace]
+      @namespace = params[:projekt_notification][:namespace]
     end
 
     def redirect_path(projekt)
-      if params[:namespace] == "projekt_management"
+      if @namespace == "projekt_management"
         edit_projekt_management_projekt_path(projekt) + "#tab-projekt-notifications"
       else
         edit_admin_projekt_path(projekt) + "#tab-projekt-notifications"

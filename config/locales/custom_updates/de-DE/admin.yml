@@ -146,6 +146,8 @@ de:
             event_weblink: Weblink
             name: Veranstaltungen
             page_title: Veranstaltungen
+          projekt_managers_tab:
+            name: Projektmanager*innen
           projekt_map_tab:
             name: Ind. Kartenkonfiguration
           projekt_milestones_tab:

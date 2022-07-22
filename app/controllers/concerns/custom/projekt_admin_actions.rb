@@ -49,6 +49,8 @@ module ProjektAdminActions
 
     @projekt_newsfeed_settings = all_settings["projekt_newsfeed"]
 
+    @projekt_managers = ProjektManager.all
+
     @projekt_notification = ProjektNotification.new
     @projekt_notifications = @projekt.projekt_notifications.order(created_at: :desc)
 
@@ -134,7 +136,8 @@ module ProjektAdminActions
         map_location_attributes: map_location_attributes,
         image_attributes: image_attributes,
         projekt_notifications: [:title, :body],
-        project_events: [:id, :title, :location, :datetime, :weblink]
+        project_events: [:id, :title, :location, :datetime, :weblink],
+        projekt_manager_ids: []
       ]
       params.require(:projekt).permit(attributes, translation_params(Projekt))
     end

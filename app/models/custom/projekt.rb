@@ -54,6 +54,9 @@ class Projekt < ApplicationRecord
 
   has_many :map_layers
 
+  has_many :projekt_manager_assignments, dependent: :destroy
+  has_many :projekt_managers, through: :projekt_manager_assignments
+
   accepts_nested_attributes_for(
     :debate_phase, :proposal_phase, :budget_phase,
     :voting_phase, :comment_phase, :milestone_phase,

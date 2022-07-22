@@ -1,8 +1,6 @@
-<% namespace = params[:controller].include?('projekt_management') ? 'projekt_management' : 'admin' %>
-
 <%= form_for(notification, url: url) do |f| %>
   <%= f.hidden_field :tab, value: "#tab-projekt-notifications" %>
-  <%= f.hidden_field :namespace, value: namespace %>
+  <%= f.hidden_field :namespace, value: @namespace %>
 
   <div class='small-12 medium-7'>
     <%= f.text_field :title, {label: t("custom.admin.projekts.edit.projekt_notifications_tab.notification_title") } %>

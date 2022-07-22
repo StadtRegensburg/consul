@@ -17,6 +17,14 @@
     <% end %>
   </li>
 
+  <% if current_user&.administrator? %>
+    <li class="tabs-title" id="projekt-managers-tab">
+      <%= link_to "#tab-projekt-managers" do %>
+        <%= t("custom.admin.projekts.edit.projekt_managers_tab.name") %>
+      <% end %>
+    </li>
+  <% end %>
+
   <li class="tabs-title" id="projekt-map-tab">
     <%= link_to "#tab-projekt-map" do %>
       <%= t("custom.admin.projekts.edit.projekt_map_tab.name") %>

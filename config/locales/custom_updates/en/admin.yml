@@ -137,6 +137,8 @@ en:
             event_weblink: Weblink
             name: Events
             page_title: Create notification
+          projekt_managers_tab:
+            name: Project managers
           projekt_map_tab:
             name: Ind. card configuration
           projekt_milestones_tab:

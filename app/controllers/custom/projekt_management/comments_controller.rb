@@ -40,7 +40,8 @@ class ProjektManagement::CommentsController < ProjektManagement::BaseController
 
     def load_resources
       if current_user&.projekt_manager?
-        @resources = Comment.moderatable_by_projekt_manager(current_user.projekt_manager.id)
+        # @resources = Comment.moderatable_by_projekt_manager(current_user.projekt_manager.id)
+        @resources = Comment.all
       elsif current_user&.administrator?
         @resources = Comment.all
       end
