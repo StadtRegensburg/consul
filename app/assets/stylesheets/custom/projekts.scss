@@ -1038,7 +1038,7 @@ span.projekt-backlink:before {
 .admin .projekt-argument {
   position: relative;
 
-  input[type='checkbox'] {
+  .projekt-argument--edit-switch-checkbox {
     display: none;
   }
 
@@ -1115,12 +1115,17 @@ span.projekt-backlink:before {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+
+  @media screen and (max-width: 950px) {
+    flex-direction: column;
+  }
 }
 
 .projekt-argument-column {
   width: 45%;
 
-  &:first-child {
+  @media screen and (max-width: 950px) {
+    width: 100%;
   }
 }
 
@@ -1128,6 +1133,10 @@ span.projekt-backlink:before {
   text-align: center;
   margin-bottom: 32px;
   font-size: 28px;
+
+  @media screen and (max-width: 950px) {
+    font-size: 30px;
+  }
 }
 
 .projekt-argument-columns-separator {
@@ -1135,27 +1144,56 @@ span.projekt-backlink:before {
   width: 1px;
   margin-top: 10px;
   background: #c0c0c0;
+
+  @media screen and (max-width: 950px) {
+    width: 100%;
+    height: 1px;
+    margin-bottom: 20px;
+  }
 }
 
 .projekt-argument-item {
   display: flex;
+  margin-bottom: 35px;
+  font-size: 15px;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+
+  .projekt-argument-titles-column {
+    min-width: 90px;
+  }
+
+  .projekt-argument-values-column {
+
+  }
 
   .projekt-argument-image-column {
-    width: 162px;
     min-height: 100px;
-    margin-right: 20px;
+    margin-right: 17px;
 
     .projekt-argument-image {
       width: 100%;
       min-height: 100px;
+      max-width: 125px;
+      min-width: 125px;
       margin-bottom: 50px;
     }
   }
 
   .projekt-argument-row {
+    display: flex;
+
+    &.-note-row {
+      @media screen and (max-width: 550px) {
+        flex-direction: column;
+      }
+    }
+
     > b {
-      display: inline-block;
-      width: 135px;
+      display: block;
+      min-width: 100px;
     }
   }
 }
@@ -1187,4 +1225,12 @@ span.projekt-backlink:before {
   width: 100px;
   margin-top: 20px;
   text-align: center;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex-start {
+  justify-content: flex-start;
 }

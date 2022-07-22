@@ -6,7 +6,7 @@ class ProjektArgument < ApplicationRecord
   validates :name, presence: true
   validates :position, presence: true
   validates :note, presence: true
-  validates :image, presence: true
+  # validates :image, presence: true, on: :create
 
   default_scope { order(created_at: :asc) }
 

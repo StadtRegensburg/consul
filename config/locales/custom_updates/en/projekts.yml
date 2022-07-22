@@ -37,6 +37,7 @@ en:
           event_time: Time
           event_title: Title
           event_weblink: Weblink
+          event_projekt: Projekt
           no_events: No events
           title: Events
         sidebar:

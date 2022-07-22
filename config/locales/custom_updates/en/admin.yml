@@ -157,9 +157,11 @@ en:
             name: Arguments
             argument_name: Name
             argument_pro: Pro
+            argument_cons: Cons
             argument_party: Party
             argument_position: Position
             argument_note: Note
+            argument_image: Image
             argument_created_at: Created at
             page_title: Arguments
             title: Arguments

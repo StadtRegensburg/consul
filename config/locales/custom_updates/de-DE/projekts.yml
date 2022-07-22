@@ -37,6 +37,7 @@ de:
           event_time: Zeit
           event_title: Veranstaltungstitel
           event_weblink: Weblink
+          event_projekt: Projekt
           no_events: Keine Ereignisse
           title: Kommende Veranstaltungen
         sidebar:
@@ -83,10 +84,11 @@ de:
         proposal_phase: Vorschläge
         question_phase: Kurzumfrage
         voting_phase: Abstimmungen
+        argument_phase: Stimmen
       projekt_events:
         index:
           title: Veranstaltungskalender
-        orders:
+        filters:
           all: Alle
           incoming: Kommende
           past: Vergangene
