@@ -84,6 +84,7 @@ de:
         proposal_phase: Vorschläge
         question_phase: Kurzumfrage
         voting_phase: Abstimmungen
+        argument_phase: Stimmen
       projekt_events:
         index:
           title: Veranstaltungskalender
