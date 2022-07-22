@@ -395,11 +395,14 @@ class PagesController < ApplicationController
   end
 
   def set_projekt_events_footer_tab_variables(projekt=nil)
-    @valid_orders = %w[all incoming past]
-    @current_order = @valid_orders.include?(params[:order]) ? params[:order] : @valid_orders.first
+    @valid_filters = %w[all incoming past]
+    @current_filter = @valid_filters.include?(params[:filter]) ? params[:filter] : @valid_filters.first
+
+    params[:current_tab_path] = 'event_phase_footer_tab'
+
     @current_projekt = projekt || SiteCustomization::Page.find_by(slug: params[:id]).projekt
     @current_tab_phase = @current_projekt.event_phase
-    @projekt_events = ProjektEvent.where(projekt_id: @current_projekt).page(params[:page]).send("sort_by_#{@current_order}")
+    @projekt_events = ProjektEvent.where(projekt_id: @current_projekt).page(params[:page]).send("sort_by_#{@current_filter}")
   end
 
   def set_projekt_questions_footer_tab_variables(projekt=nil)
@@ -407,6 +410,8 @@ class PagesController < ApplicationController
     @current_tab_phase = @current_projekt.question_phase
     scoped_projekt_ids = @current_projekt.all_children_projekts.unshift(@current_projekt).compact.pluck(:id)
     # @projekt_questions = ProjektQuestion.base_selection(scoped_projekt_ids)
+
+    params[:current_tab_path] = 'question_phase_footer_tab'
 
     if @current_projekt.projekt_list_enabled?
       @projekt_questions = @current_projekt.questions

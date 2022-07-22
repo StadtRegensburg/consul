@@ -1,6 +1,6 @@
 <div class="row">
   <div id="proposal_notifications" class="small-12 column notification-body">
-    <%= render Shared::OrderLinksComponent.new("custom.projekts.projekt_events") %>
+    <%= render "custom/shared/filter_links", i18n_namespace: "custom.projekts.projekt_events" %>
 
     <% if projekt_events.blank? %>
       <div class="callout primary text-center">

@@ -86,7 +86,7 @@ de:
       projekt_events:
         index:
           title: Veranstaltungskalender
-        orders:
+        filters:
           all: Alle
           incoming: Kommende
           past: Vergangene
