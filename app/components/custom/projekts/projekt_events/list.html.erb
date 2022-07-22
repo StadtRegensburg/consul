@@ -8,7 +8,7 @@
       </div>
     <% else  %>
       <% projekt_events.each do |event| %>
-        <%= render Projekts::ProjektEvents::ListItem.new(projekt_event: event) %>
+        <%= render Projekts::ProjektEvents::ListItem.new(projekt_event: event, show_projekt_link: @show_projekt_link) %>
       <% end %>
     <% end %>
   </div>

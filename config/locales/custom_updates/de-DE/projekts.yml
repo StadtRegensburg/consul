@@ -37,6 +37,7 @@ de:
           event_time: Zeit
           event_title: Veranstaltungstitel
           event_weblink: Weblink
+          event_projekt: Projekt
           no_events: Keine Ereignisse
           title: Kommende Veranstaltungen
         sidebar:
