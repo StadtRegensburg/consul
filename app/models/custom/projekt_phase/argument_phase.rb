@@ -5,11 +5,11 @@ class ProjektPhase::ArgumentPhase < ProjektPhase
   end
 
   def name
-    'argument_phase'
+    "argument_phase"
   end
 
   def resources_name
-    'projekt_arguments'
+    "projekt_arguments"
   end
 
   def default_order

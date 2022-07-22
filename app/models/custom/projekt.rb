@@ -159,12 +159,20 @@ class Projekt < ApplicationRecord
   end
 
   def regular_projekt_phases
+    special_types = [
+      "ProjektPhase::MilestonePhase",
+      "ProjektPhase::ProjektNotificationPhase",
+      "ProjektPhase::NewsfeedPhase",
+      "ProjektPhase::EventPhase",
+      "ProjektPhase::ArgumentPhase"
+    ]
+
     projekt_phases.
-      where.not(type: ['ProjektPhase::MilestonePhase', 'ProjektPhase::ProjektNotificationPhase', 'ProjektPhase::NewsfeedPhase', 'ProjektPhase::EventPhase'])
+      where.not(type: special_types)
   end
 
   def update_page
-    update_corresponding_page if self.name_changed?
+    update_corresponding_page if name_changed?
     yield
   end
 
