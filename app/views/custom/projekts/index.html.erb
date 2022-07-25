@@ -23,8 +23,9 @@
 
   <div class='row'>
     <div class='column small-12 medium-9'>
-      <%= render_custom_block 'projekts_list' %>
-      <%= render Projekts::ProjektListTabsComponent.new(current_active_orders: @current_active_orders) %>
+      <%= render_custom_block "projekts_list_before_tabs_#{@current_projekts_order}" %>
+      <%= render Projekts::ProjektListTabsComponent.new(current_order: @current_projekts_order, current_active_orders: @current_active_orders, overview_page: @current_projekt.overview_page?) %>
+      <%= render_custom_block "projekts_list_after_tabs_#{@current_projekts_order}" %>
 
       <% if @projekts.any? %>
         <% Projekt.top_level.each do |top_level_projekt| %>
@@ -38,6 +39,10 @@
     </div>
 
     <div class='column small-12 medium-3'>
+      <div class="custom-content-block--margin-bottom">
+        <%= render_custom_block "projekt_index_sidebar" %>
+      </div>
+
       <% if show_affiliation_filter_in_sidebar? %>
         <%= render "shared/sidebar_filter/geozone_affiliations" %>
       <% end %>
@@ -50,11 +55,35 @@
 
       <%= render "shared/social_share",
           share_title: t("custom.pages.social_share.share"),
-          title: 'Title',
+          title: t("custom.projekts.index.social_share.title"),
           url: url_for(only_path: false),
-          description: 'Description',
-          mobile: 'Description'
+          description: t("custom.projekts.index.social_share.description", domain: request.domain),
+          mobile: t("custom.projekts.index.social_share.description", domain: request.domain)
       %>
     </div>
   </div>
+
+  <% if @show_footer %>
+    <nav class="margin-bottom projekt-footer <%= "legislation-process-list" if true %>">
+    <div class="row">
+      <div class="small-12 column">
+        <h3><%= "Beteiligung" %></h3>
+        <div class='footer-phases-filter-subnav'>
+          <ul id='filter-subnav' class='key-dates'>
+            <%= render Pages::Projekts::FooterPhaseTabComponent.new(@overview_page_special_projekt.comment_phase, @current_phase.resources_name, @comments_count) %>
+            <%= render Pages::Projekts::FooterPhaseTabComponent.new(@overview_page_special_projekt.debate_phase, @current_phase.resources_name, @debates_count) %>
+            <%= render Pages::Projekts::FooterPhaseTabComponent.new(@overview_page_special_projekt.proposal_phase, @current_phase.resources_name, @proposals_count) %>
+            <%= render Pages::Projekts::FooterPhaseTabComponent.new(@overview_page_special_projekt.voting_phase, @current_phase.resources_name, @polls_count) %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+      <div id='footer-content'>
+        <% if (@current_phase.present? && @current_phase.phase_activated?) %>
+          <%= render 'shared/loader_spinner' %>
+          <%= render "pages/projekt_footer/#{@current_phase.resources_name}" %>
+        <% end %>
+      </div>
+  <% end %>
 </main>
