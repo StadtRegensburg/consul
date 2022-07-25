@@ -137,6 +137,7 @@
 //= require custom_admin
 //= require moderation_custom
 //= require copy_content
+//= require xray
 //= require_tree ./admin
 //= require_tree ./sdg
 //= require_tree ./sdg_management
