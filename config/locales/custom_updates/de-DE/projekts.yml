@@ -15,6 +15,9 @@ de:
         no_projekts: keine Projekte
         title: Projekte
         to_projekt: Zum Projekt
+        social_share:
+          title: Projektübersicht
+          description:  Die Übersicht aller Projekte
       orders:
         all: 'Alle Projekte'
         all_title: 'Alle Projekte'
@@ -88,6 +91,9 @@ de:
       projekt_events:
         index:
           title: Veranstaltungskalender
+          social_share:
+            title: Veranstaltungen
+            description: "Die Veranstaltungsübersicht von %{domain}"
         filters:
           all: Alle
           incoming: Kommende
