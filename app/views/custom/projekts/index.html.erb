@@ -39,6 +39,10 @@
     </div>
 
     <div class='column small-12 medium-3'>
+      <div class="custom-content-block--margin-bottom">
+        <%= render_custom_block "projekt_index_sidebar" %>
+      </div>
+
       <% if show_affiliation_filter_in_sidebar? %>
         <%= render "shared/sidebar_filter/geozone_affiliations" %>
       <% end %>
@@ -51,10 +55,10 @@
 
       <%= render "shared/social_share",
           share_title: t("custom.pages.social_share.share"),
-          title: 'Title',
+          title: t("custom.projekts.index.social_share.title"),
           url: url_for(only_path: false),
-          description: 'Description',
-          mobile: 'Description'
+          description: t("custom.projekts.index.social_share.description", domain: request.domain),
+          mobile: t("custom.projekts.index.social_share.description", domain: request.domain)
       %>
     </div>
   </div>
