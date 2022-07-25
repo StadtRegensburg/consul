@@ -1,6 +1,4 @@
-namespace :projekts do
-  get 'events', to: 'projekt_events#index'
-end
+get :events, to: "projekt_events#index", as: :projekts_events
 
 resources :projekts, only: [:index, :show] do
   resources :projekt_questions, only: [:index, :show]
@@ -19,5 +17,4 @@ resources :projekts, only: [:index, :show] do
   end
 end
 
-
-post 'update_selected_parent_projekt', to: "projekts#update_selected_parent_projekt"
+post "update_selected_parent_projekt", to: "projekts#update_selected_parent_projekt"
