@@ -1,4 +1,4 @@
-get :events, to: "projekt_events#index", as: :projekts_events
+get :events, to: "projekt_events#index", as: :projekt_events
 
 resources :projekts, only: [:index, :show] do
   resources :projekt_questions, only: [:index, :show]
